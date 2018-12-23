@@ -1,0 +1,45 @@
+.modalPageContainer {
+    background-color: rgba(0, 0, 0, 0.041);
+    height: 100vh;
+    width: 100vw;
+}
+
+.modalContainer {
+    display: block;
+    position: relative;
+    border-radius: 2%;
+    border: 1px solid black;
+    top: 30%;
+    left: 10%;
+    height: 30%;
+    width: 80%;
+}
+
+.modalHeader {
+    box-sizing: border-box;
+    height: 20%;
+    width: 100%;
+    border: 1px solid black;
+}
+
+.modalBody{
+    box-sizing: border-box;
+    height: 60%;
+    width: 100%;
+    border: 1px solid black;
+}
+
+.modalFooter{
+    box-sizing: border-box;
+    height: 20%;
+    width: 100%;
+    border: 1px solid black;
+}
+
+.searchButtonContainer {
+    display: inline-block;
+}
+
+.postButtonContainer {
+    display: inline-block;
+}
