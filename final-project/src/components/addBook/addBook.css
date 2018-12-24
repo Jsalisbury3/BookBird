@@ -21,8 +21,9 @@
 
 .fieldsText {
     background-color: #f2ff29;
+    /*background-color: black;*/
     display: block;
-    width: 80%;
+    width: 81.2%;
     height: 4vh;
     margin: auto;
     font-size: 1rem;
@@ -66,4 +67,13 @@
     width: 100%;
     background-color: black;
     color: white;
+}
+
+.condition {
+    display: block;
+    width: 81.2%;
+    height: 3.7vh;
+    margin: auto;
+    margin-bottom: 0.5%;
+    font-size: 1rem;
 }
