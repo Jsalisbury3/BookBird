@@ -1,10 +1,18 @@
 import React from 'react';
-import AddBook from './addBook'
+import AddBook from './addBook';
+import Header from '../universal/header';
+import Nav from '../universal/nav';
+import '../universal/universal.css';
 
-function Index() {
+function AddBookIndex() {
     return (
-        <AddBook/>
+        <div>
+            <Header/>
+            <AddBook/>
+            <Nav/>
+        </div>
+
     )
 }
 
-export default Index
+export default AddBookIndex
