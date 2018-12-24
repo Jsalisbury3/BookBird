@@ -27,8 +27,8 @@ export default class LandingPage extends Component {
         return(
             <div className='main-container'>
                 <div className='main-content'>
-                    <form>
-                        <input></input>
+                    <form className='search-form'>
+                        <input className='search'></input>
                     </form>
                     <ResultList/>
                 </div>
