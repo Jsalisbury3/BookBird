@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import ResultsList from './resultList';
+import ResultList from './resultList';
 
 
 
@@ -26,13 +26,11 @@ export default class LandingPage extends Component {
     render(){
         return(
             <div className='main-container'>
-                <header className="header">This is the header</header>
                 <div className='main-content'>
                     <form>
                         <input></input>
                     </form>
-                    <List/>
-                <nav>two buttons will go here</nav>
+                    <ResultList/>
                 </div>
             </div>
         )

@@ -2,7 +2,7 @@
 export default [
 
     {
-        id: 00,
+        id: '00',
         title: 'biology the core',
         ISBN: 9780134287829,
         edition: '2nd edition',
@@ -14,7 +14,7 @@ export default [
         images: ['9780134152196.jpeg']
     },
     {
-        id: 01,
+        id: '01',
         title: 'Social Psychology',
         ISBN: 9780133810189,
         edition: '6th edition',
@@ -26,7 +26,7 @@ export default [
         images: ['9780133810189.jpeg']
     },
     {
-        id: 02,
+        id: '02',
         title: 'Organic Chemistry',
         ISBN: 9781119106968,
         edition: '6th edition',
@@ -38,7 +38,7 @@ export default [
         images: ['9781119106968.jpeg']
     },
     {
-        id: 03,
+        id: '03',
         title: 'Engaging Theories in Interpersonal Communication',
         ISBN: 9781452261409,
         edition: '2nd edition',
@@ -51,7 +51,7 @@ export default [
     },
 
     {
-        id: 04,
+        id: '04',
         title: 'College Physics',
         ISBN: 9780321902788,
         edition: '10th edition',
@@ -64,7 +64,7 @@ export default [
     },
 
     {
-        id: 05,
+        id: '05',
         title: 'Abnormal Psychology',
         ISBN: 9781337624282,
         edition: 'N/A',
@@ -77,7 +77,7 @@ export default [
     },
 
     {
-        id: 06,
+        id: '06',
         title: 'Calculus & Its Applics: Expd Vers',
         ISBN: 9780134123493,
         edition: 'N/A',
@@ -90,7 +90,7 @@ export default [
     },
 
     {
-        id: 07,
+        id: '07',
         title: 'Psychology of Music',
         ISBN: 9781138124684,
         edition: '2nd',
@@ -106,7 +106,7 @@ export default [
 
 
     {
-        id: 08,
+        id: '08',
         title: 'Critical Thinking in Psychology',
         ISBN: 9780534634599,
         edition: '2nd',
@@ -122,7 +122,7 @@ export default [
 
 
     {
-        id: 09,
+        id: '09',
         title: 'Intro to Clinical Psychology',
         ISBN: 9781118360019,
         edition: 'N/A',
@@ -138,7 +138,7 @@ export default [
 
 
     {
-        id: 10,
+        id: '10',
         title: 'Film History',
         ISBN: 9780073386133,
         edition: '3rd',

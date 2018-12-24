@@ -7,12 +7,8 @@ export default ()=>{
     
         return(
         <header className='uni-header'>
-            <div className='birdLogo'>
-                <img src={bookBirdLogo}/>
-            </div>
-            <div className='universityLogo'>
-                <img src={sfStateLogo}/>
-            </div>
+            <img className='birdLogo' src={bookBirdLogo}/>  
+            <img className='universityLogo' src={sfStateLogo}/>
         </header>
     
     );
