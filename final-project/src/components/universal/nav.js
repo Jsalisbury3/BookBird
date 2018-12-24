@@ -5,7 +5,7 @@ export default () => (
         <div className="searchButton">
             <button> Search Button</button>
         </div>
-        
+
         <div className="postButton">
             <button> Post button </button>
         </div>
