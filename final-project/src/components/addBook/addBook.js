@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './addBook.css'
+
 
 class AddBook extends Component {
     constructor(props) {
@@ -27,13 +27,13 @@ class AddBook extends Component {
     addBook = (event) => {
         event.preventDefault();
         const infoObj = this.state;
+        console.log(infoObj);
         return infoObj;
     };
 
     render() {
         return (
             <div className={"container"}>
-                <div className={"header"}>HEADER</div>
                 <div className={"fieldsText"}>Complete all required * fields:</div>
                 <form onSubmit={this.addBook}>
                     <input name={"Course"} placeholder={"Course"} className={"inputs"} onChange={this.handleInput}/>
@@ -51,7 +51,6 @@ class AddBook extends Component {
                     <div className={"text"}>Upload Book Images</div>
                     <img className={"dragDrop"} src="" alt="drag and drop"/>
                     <button className={"POST"}>Post</button>
-                    <div className={"nav"}>nav</div>
                 </form>
             </div>
         )
