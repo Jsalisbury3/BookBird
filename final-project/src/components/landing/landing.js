@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import dummyData from '../../data/dummy';
-import ListItem from './listItem';
+import ResultsList from './resultList';
+
+
 
 
 export default class LandingPage extends Component {
@@ -22,17 +23,6 @@ export default class LandingPage extends Component {
         })
     };
 
-    createListItems=()=>{
-        const books= dummyData.map((listItem,index)=>{
-            return (
-                <ListItem
-            )
-        })
-        //map through the array of objects from dummy and pass into listItem component as props to fill in the component
-        this.setState={
-            
-        }
-
     render(){
         return(
             <div className='main-container'>
@@ -41,30 +31,10 @@ export default class LandingPage extends Component {
                     <form>
                         <input></input>
                     </form>
-                    <div>
-                        <img/>
-                        <p>Title</p>
-                        <p>Author</p>
-                        <p>Course</p>
-                        <p></p>Price</p>
-                    </div>                                                                    
-                    <div>
-                        </img>
-                        <p>Title</p>
-                        <p>Author</p>
-                        <p>Course</p>
-                        <p>Price</p>
-                        
-                    </div>
-
-
-
-
-                </div>
-
+                    <List/>
                 <nav>two buttons will go here</nav>
+                </div>
             </div>
-
         )
     }    
 }
