@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import Index from './components/BookInfo/index';
 
 
 class App extends Component {
   render() {
     return (
-      <div>App</div>
+      <div>
+          <Index/>
+      </div>
     );
   }
 }
