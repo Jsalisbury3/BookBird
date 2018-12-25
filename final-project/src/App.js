@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Index from './components/BookInfo/index';
+import Images from './components/BookInfo/images';
 
 
 class App extends Component {
@@ -7,6 +8,7 @@ class App extends Component {
     return (
       <div>
           <Index/>
+          <Images/>
       </div>
     );
   }

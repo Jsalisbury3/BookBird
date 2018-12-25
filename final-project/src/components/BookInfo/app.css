@@ -1,6 +1,57 @@
-.bookInfo {
-    right: 400px;
+.BookInfo {
+    left: 100px;
+    width: 189px;
+    position: relative;
+    height: 216px;
+    top: 60px;
+    font-size: 12px;
+    opacity: 1;
 }
 .Container {
-    right: 400px;
+    height: 143vh;
+    width: 100vw;
+
+    background-color: lightblue;
+
+}
+
+.main-container{
+    background-color: blue;
+    height: 100vh;
+    width: 100vw;
+}
+.SellerTitle {
+    position: relative;
+    top: 40px;
+    font-size: 19px;
+}
+.SellersEmail {
+    top: 49px;
+    position: relative;
+    width: 146vw;
+    font-size: 20px;
+    opacity: 1;
+}
+.userEmail{
+    position: relative;
+    left: 13px;
+    top: 31px;
+    font-size: 21px;
+}
+.BookPrice {
+    position: relative;
+    background-color: yellow;
+    width: 84px;
+    left: 197px;
+    bottom: 99px;
+
+}
+
+.SellersComments {
+    position: relative;
+    font-size: 12px;
+    background-color: beige;
+    width: 168px;
+    top: 35px;
+    height: 124px;
 }

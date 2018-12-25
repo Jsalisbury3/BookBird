@@ -1,25 +1,31 @@
 import React from 'react';
+import './app.css'
 
 function IndividualBookData(props) {
     console.log('props:',props);
     return (
      <div className='Container'>
         <div className='BookInfo'>
-             <h1>Title: {props.title}</h1>
-             <h2>ISBN: {props.ISBN}</h2>
-             <h3>Edition: {props.edition}</h3>
-             <h4>Author: {props.author} </h4>
-            <h5> Condition: {props.condition}</h5>
+            <h1><strong>Title: </strong> {props.title}</h1>
+            <h2><strong>ISBN:</strong> {props.ISBN}</h2>
+            <h3><strong>Edition:</strong> {props.edition}</h3>
+            <h4><strong>Author:</strong> {props.author} </h4>
+            <h5><strong>Condition:</strong> {props.condition}</h5>
+
         </div>
-        <div className="SellersEmail">
-            <h1>Sellers Email: {props.sellersEmail} </h1>
+        <div>
+            <h1 className="SellersEmail"><strong>Sellers Email:</strong> </h1>
+            <h1 className='userEmail'>{props.sellersEmail} </h1>
         </div>
-         <div className='SellersComments'>
-             <h1> Sellers Comments: {props.sellersComment} </h1>
+         <div>
+             <h1 className='SellerTitle'> Sellers Comments:</h1>
+             <h1 className='SellersComments'>{props.sellersComment} </h1>
          </div>
-         <div className='Images'>
-             <h1>{props.images}</h1>
+         <div className='BookPrice'>
+             <h1> Price:</h1>
+             <h1>{props.price}</h1>
          </div>
+
      </div>
 
     )

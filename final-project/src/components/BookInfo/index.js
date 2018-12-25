@@ -20,13 +20,14 @@ const user =
 
 const Index = () => {
     return (
-        <div>
+        <div className='main-container'>
             <div className='bookContainer'>
-               <BookData title={user.title} ISBN={user.ISBN} edition={user.edition} author={user.author} condition={user.condition} sellersEmail={user.sellersEmail} sellersComment={user.sellersComment} images={user.images} />
+               <BookData title={user.title} ISBN={user.ISBN} edition={user.edition} author={user.author} condition={user.condition} sellersEmail={user.sellersEmail} sellersComment={user.sellersComment}price={user.price} />
+
             </div>
         </div>
      )
-}
+};
 
 export default Index;
 
