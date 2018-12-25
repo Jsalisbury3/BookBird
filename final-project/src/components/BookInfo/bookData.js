@@ -7,9 +7,9 @@ function IndividualBookData(props) {
      <div className='Container'>
         <div className='BookInfo'>
             <h1><strong>Title: </strong> {props.title}</h1>
-            <h2><strong>ISBN:</strong> {props.ISBN}</h2>
+            <h2><strong>Author:</strong> {props.author} </h2>
             <h3><strong>Edition:</strong> {props.edition}</h3>
-            <h4><strong>Author:</strong> {props.author} </h4>
+            <h4><strong>ISBN:</strong> {props.ISBN}</h4>
             <h5><strong>Condition:</strong> {props.condition}</h5>
 
         </div>
@@ -23,7 +23,7 @@ function IndividualBookData(props) {
          </div>
          <div className='BookPrice'>
              <h1> Price:</h1>
-             <h1>{props.price}</h1>
+             <h1 className='price'>${props.price}</h1>
          </div>
 
      </div>

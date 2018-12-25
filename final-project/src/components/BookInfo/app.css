@@ -40,18 +40,24 @@
 }
 .BookPrice {
     position: relative;
-    background-color: yellow;
     width: 84px;
     left: 197px;
-    bottom: 99px;
+    bottom: 93px;
+    opacity: 1;
 
+}
+.price {
+    color: green;
+    font-size: 45px;
+    position: relative;
+    bottom: 29px;
 }
 
 .SellersComments {
     position: relative;
     font-size: 12px;
     background-color: beige;
-    width: 168px;
+    width: 157px;
     top: 35px;
-    height: 124px;
+    height: 91px;
 }
