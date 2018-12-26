@@ -1,6 +1,7 @@
-/* .search-bar-container{
-
-} */
+.search-bar-container{
+    height: 7vh;
+    top:2%;
+}
 
 *{
     box-sizing:border-box;
@@ -42,7 +43,6 @@
 }
 .itemPrice{
     vertical-align: top;
-
     display:inline-block;
     height:100%;
     width:25%;
@@ -53,6 +53,18 @@
 .itemPrice>h1{
     margin:8% 0;
     font-size: 2.7rem;
+
+.search-text{
+    height: 5vh;
+    width: 100vw;
+    border: 1px solid black;
+    position: relative;
+    top: 2vh;
 }
 
-
+.search-bar-icon{
+    bottom: 4vh;
+    position: relative;
+    width: 16%;
+    left: 96%;
+}
