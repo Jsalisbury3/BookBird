@@ -3,10 +3,56 @@
     top:2%;
 }
 
-
+*{
+    box-sizing:border-box;
+}
 .search-results-container{
     height:68vh;
+    overflow:auto;
 }
+.listItem{
+    height:17vh;
+    border:solid black;
+}
+.itemImageContainer{
+    vertical-align: top;
+    display:inline-block;
+    height:100%;
+    width:25%;
+}
+.itemImage{
+    background-color: blueviolet;
+    margin:5%;
+    height:90%;
+    width:90%;
+}
+.itemDetails{
+    padding:1%;
+    display:inline-block;
+    height:100%;
+    width:50%;
+}
+.itemDetails>p:first-of-type{
+    height:36px;
+    overflow:hidden;
+    margin:1%;
+}
+.itemDetails>p{
+    margin:1%;
+    overflow:hidden;
+}
+.itemPrice{
+    vertical-align: top;
+    display:inline-block;
+    height:100%;
+    width:25%;
+}
+.itemPrice>h3{
+    margin:4%;
+}
+.itemPrice>h1{
+    margin:8% 0;
+    font-size: 2.7rem;
 
 .search-text{
     height: 5vh;
