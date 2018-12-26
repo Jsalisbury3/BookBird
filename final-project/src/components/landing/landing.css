@@ -1,0 +1,24 @@
+.search-bar-container{
+    height: 7vh;
+    top:2%;
+}
+
+
+.search-results-container{
+    height:68vh;
+}
+
+.search-text{
+    height: 5vh;
+    width: 100vw;
+    border: 1px solid black;
+    position: relative;
+    top: 2vh;
+}
+
+.search-bar-icon{
+    bottom: 4vh;
+    position: relative;
+    width: 16%;
+    left: 96%;
+}
