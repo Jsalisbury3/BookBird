@@ -49,16 +49,25 @@
     margin: 8% 0;
     font-size: 2.7rem;
 }
-
 .search-text{
+    vertical-align: top;
     height: 7vh;
-    width: 100vw;
+    width: 84vw;
     position: relative;
-}
+    font-size:23px;
 
-.search-bar-icon{
-    bottom: 4vh;
-    position: relative;
-    width: 16%;
-    left: 96%;
 }
+.search-bar-icon{
+    height:100%;
+    width: 100%;
+} 
+.searchInputButton{
+     width:16%;
+     height: 100%;
+}
+.searchForm{
+    height: 7vh;
+    width: 100%;
+}  
+
+
