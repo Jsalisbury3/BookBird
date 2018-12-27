@@ -7,10 +7,8 @@ import SearchBar from './search_bar'
 function Index(){
     return (
         <div>
-        <Header/>
         <SearchBar/>
         <Landing/>
-        <Nav/>
         </div>
     )
 }

@@ -7,8 +7,8 @@ export default ()=>{
     
         return(
         <header className='uni-header'>
-            <img className='birdLogo' src={bookBirdLogo}/>  
-            <img className='universityLogo' src={sfStateLogo}/>
+            <img alt={"birdlogo"} className='birdLogo' src={bookBirdLogo}/>
+            <img alt={"university"} className='universityLogo' src={sfStateLogo}/>
         </header>
     
     );

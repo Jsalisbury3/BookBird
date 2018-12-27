@@ -8,7 +8,7 @@
     opacity: 1;
 }
 .Container {
-    height: 143vh;
+    height: 76vh;
     width: 100vw;
 
     background-color: lightblue;
@@ -16,8 +16,7 @@
 }
 
 .main-container{
-    background-color: blue;
-    height: 100vh;
+    height: 76vh;
     width: 100vw;
 }
 .SellerTitle {
@@ -28,11 +27,12 @@
 .SellersEmail {
     top: 49px;
     position: relative;
-    width: 146vw;
+    width: 100vw;
     font-size: 20px;
     opacity: 1;
 }
 .userEmail{
+    display: inline-block;
     position: relative;
     left: 13px;
     top: 31px;
@@ -60,4 +60,13 @@
     width: 157px;
     top: 35px;
     height: 91px;
+}
+
+.image {
+    margin: 6px auto;
+    min-height: 27vh;
+    position: relative;
+    width: 29vw;
+    bottom: 409px;
+    right: -6px;
 }

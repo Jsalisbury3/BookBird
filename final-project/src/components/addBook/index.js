@@ -7,9 +7,7 @@ import '../universal/universal.css';
 function AddBookIndex() {
     return (
         <div>
-            <Header/>
             <AddBook/>
-            <Nav/>
         </div>
 
     )
