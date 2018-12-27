@@ -1,17 +1,12 @@
-.search-bar-container{
-    height: 7vh;
-    top:2%;
-}
-
 *{
     box-sizing:border-box;
 }
 .search-results-container{
-    height:68vh;
+    height:69vh;
     overflow:auto;
 }
 .listItem{
-    height:17vh;
+    height:17.25vh;
     border:solid black;
 }
 .itemImageContainer{
@@ -50,16 +45,15 @@
 .itemPrice>h3{
     margin:4%;
 }
-.itemPrice>h1{
-    margin:8% 0;
+.itemPrice>h1 {
+    margin: 8% 0;
     font-size: 2.7rem;
+}
 
 .search-text{
-    height: 5vh;
+    height: 7vh;
     width: 100vw;
-    border: 1px solid black;
     position: relative;
-    top: 2vh;
 }
 
 .search-bar-icon{
