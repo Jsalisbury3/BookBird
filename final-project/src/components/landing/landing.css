@@ -50,9 +50,10 @@
 .itemPrice>h3{
     margin:4%;
 }
-.itemPrice>h1{
-    margin:8% 0;
+.itemPrice>h1 {
+    margin: 8% 0;
     font-size: 2.7rem;
+}
 
 .search-text{
     height: 5vh;
