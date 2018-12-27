@@ -24,7 +24,7 @@ class App extends Component {
                     <Header/>
                     <Route exact path={"/"} component={LandingPageIndex}/>
                     <Route path={"/AddBook"} component={AddBookIndex}/>
-                    <Route path={"/BookInfoIndex"} component={BookInfoIndex}/>
+                    <Route path={"/BookInfoIndex/:bookId"} component={BookInfoIndex}/>
                     <Nav/>
                 </div>
             </Router>
