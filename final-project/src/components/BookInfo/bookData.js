@@ -1,17 +1,21 @@
 import React from 'react';
+import Images from './images'
 
 function IndividualBookData(props) {
     console.log('props:',props);
     return (
      <div className='Container'>
         <div className='BookInfo'>
-            <h1><strong>Title: </strong> {props.title}</h1>
+            <h1 className='h1tag'><strong>Title: </strong> {props.title}</h1>
             <h2><strong>Author:</strong> {props.author} </h2>
             <h3><strong>Edition:</strong> {props.edition}</h3>
             <h4><strong>ISBN:</strong> {props.ISBN}</h4>
             <h5><strong>Condition:</strong> {props.condition}</h5>
 
         </div>
+         <div className='image'>
+             <Images/>
+         </div>
         <div>
             <h1 className="SellersEmail"><strong>Sellers Email:</strong> </h1>
             <h1 className='userEmail'>{props.sellersEmail} </h1>
@@ -24,6 +28,7 @@ function IndividualBookData(props) {
              <h1> Price:</h1>
              <h1 className='price'>${props.price}</h1>
          </div>
+
 
      </div>
 

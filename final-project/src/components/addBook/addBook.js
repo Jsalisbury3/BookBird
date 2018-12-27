@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import DragDrop from './images/x3KMH.jpg'
 
 class AddBook extends Component {
     constructor(props) {
@@ -34,7 +34,7 @@ class AddBook extends Component {
     render() {
         return (
             <div className={"container"}>
-                <div className={"fieldsText"}>Complete all required * fields:</div>
+                <div className={"fieldsText"}><span className={"textSpan"}>Complete all required * fields:</span></div>
                 <form onSubmit={this.addBook}>
                     <input name={"Course"} placeholder={"Course"} className={"inputs"} onChange={this.handleInput}/>
                     <input name={"ISBN"} placeholder={"*ISBN"} className={"inputs"} onChange={this.handleInput}/>
@@ -49,7 +49,7 @@ class AddBook extends Component {
                     <input name={"Price"} placeholder={"*Price $$$$"} className={"inputs"} onChange={this.handleInput}/>
                     <input name={"Comments"} placeholder={"Seller's Comments"} className={"inputs last"} onChange={this.handleInput}/>
                     <div className={"text"}>Upload Book Images</div>
-                    <img className={"dragDrop"} src="" alt="drag and drop"/>
+                    <img className={"dragDrop"} src={DragDrop} alt="drag and drop"/>
                     <button className={"POST"}>Post</button>
                 </form>
             </div>
