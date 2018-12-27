@@ -16,18 +16,18 @@ class SearchBar extends Component{
     }
 
     handleSubmit = (event)=>{
+        event.preventDefault();
         this.setState({
             ISBN: ''
         })
-        event.preventDefault();
         console.log('handle submit', this.state)
     }
     render(){
         return(
             <div className="search-bar-container">
-                <form onSubmit={this.handleSubmit}>
+                <form className="searchForm" onSubmit={this.handleSubmit}>
                     <input className="search-text" placeholder="Search by ISBN" onChange={this.handleInputs}></input>
-                    {/*<button><img src={searchIcon} className="search-bar-icon"/></button>*/}
+                    <button className="searchInputButton"><img src={searchIcon} className="search-bar-icon"/></button>
                 </form>
             </div>
         )
