@@ -1,6 +1,7 @@
 import React from 'react';
 import BookData from './bookData'
 
+
 const user =
 
     {
@@ -28,6 +29,7 @@ const Index = () => {
                       sellersEmail={user.sellersEmail}
                       sellersComment={user.sellersComment}
                       price={user.price}/>
+
         </div>
     )
 };
