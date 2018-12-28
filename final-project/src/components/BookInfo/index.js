@@ -1,6 +1,6 @@
 import React from 'react';
 import dummyData from '../../data/dummy';
-import BookInfo from './bookData';
+import BookInfo from './BookData';
 
 const Index = (props) => {
     
