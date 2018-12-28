@@ -1,0 +1,38 @@
+
+.uni-header{
+    height: 12vh;
+    width: 100vw;
+    background-color: #5bc0de;
+    color: white;
+}
+.birdLogo, .universityLogo{
+    display:inline-block;
+    height:100%;
+}
+.birdLogo{
+    width:22%;
+    background-color:#C2E5F9;
+}
+.universityLogo{
+    width: 78%;
+}
+.uni-footer {
+    position: absolute;
+    /*top: 13.3vh;*/
+    bottom: 0vh;
+    height: 12vh;
+    width: 100%;
+    background-color: #F2C94C;
+    color: white;
+}
+.searchButton, .postButton{
+    display: inline-block;
+    height:100%;
+    width:50%;
+}
+.postButton>Link > button,.searchButton>Link>button{
+    margin:10%;
+    width:75%;
+    height:60%;
+}
+
