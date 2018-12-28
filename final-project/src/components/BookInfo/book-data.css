@@ -1,16 +1,21 @@
 .BookInfo {
-    left: 47%;
     width: 53%;
     position: relative;
     height: 46%;
     top: 1%;
     font-size: 12px;
     opacity: 1;
+    left: 41%;
     display: inline-block;
+    margin: 1%;
+}
+.bookInfo > h1 {
+    margin: 0;
 }
 .Container {
     height: 76vh;
     width: 100vw;
+    background-color: lightblue;
 
 }
 
@@ -20,33 +25,35 @@
 }
 .SellerTitle {
     position: relative;
-    top: -5vh;
     font-size: 19px;
+    bottom: 8vh;
+    left: 3%;
 }
 .SellersEmail {
     position: relative;
     width: 100vw;
     font-size: 20px;
     opacity: 1;
+    left: 4%;
 }
 .userEmail{
     display: inline-block;
     position: relative;
     left: 17%;
-    top: -5vh;
-    font-size: 21px;
+    font-size: 27px;
+    bottom: 5vh;
 }
 .BookPrice {
     position: relative;
     width: 29%;
-    left: 62%;
-    bottom: 37%;
+    left: 68%;
+    bottom: 48%;
     opacity: 1;
 
 }
 .price {
     color: green;
-    font-size: 45px;
+    font-size: 52px;
     position: relative;
     bottom: 29px;
     display: block;
@@ -56,18 +63,20 @@
     position: relative;
     font-size: 12px;
     background-color: beige;
-    top: -6vh;
+    bottom: 11vh;
     height: 16vh;
     width: 58%;
     display: inline-block;
+    left: 3%;
 }
 
 .image {
-    min-height: 27vh;
+    min-height: 23vh;
     position: relative;
-    width: 38vw;
+    width: 33vw;
     display: inline-block;
-    right: 36%;
+    right: 39%;
+    bottom: 1vh;
 }
 .h1tag {
     margin: 0;
