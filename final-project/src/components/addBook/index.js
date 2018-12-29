@@ -1,4 +1,3 @@
-import Modal from './modal';
 import React from 'react';
 import AddBook from './addBook';
 import Header from '../universal/header';
