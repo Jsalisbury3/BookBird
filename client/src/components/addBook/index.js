@@ -1,17 +1,16 @@
 import React from 'react';
-import Landing from './landing';
+import AddBook from './addBook';
 import Header from '../universal/header';
 import Nav from '../universal/nav';
-import SearchBar from './search_bar'
+import '../universal/universal.css';
 
-function Index(){
+function AddBookIndex() {
     return (
         <div>
-        <SearchBar/>
-        <Landing/>
+            <AddBook/>
         </div>
+
     )
 }
 
-
-export default Index
+export default AddBookIndex
