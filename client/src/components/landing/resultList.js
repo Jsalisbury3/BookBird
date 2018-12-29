@@ -9,18 +9,12 @@ class ResultList extends Component {
     };
 
     getServerData = () => {
-        // debugger;
-        // let results;
         const searchResults = axios.get("http://www.localhost:7000/listings").then( (response) => {
             this.getRowData(response.data.data);
         });
-        // await this.setState({
-        //     data: searchResults.data.data
-        // });
     };
 
     getRowData = (results) => {
-        debugger;
         const listItems = results.map((item, index) => {
             return (
                 <ListItem key={index} about={item}/>
@@ -37,7 +31,6 @@ class ResultList extends Component {
     };
 
     render() {
-        debugger;
         return (
             <div className='search-results-container'>
                 {this.state.data}
