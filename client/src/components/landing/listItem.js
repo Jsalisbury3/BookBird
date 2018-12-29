@@ -4,7 +4,8 @@ import {Link} from 'react-router-dom';
 
 
 export default props => {
-    const {title, edition, author, condition, course, price} = props.about;
+    console.log("IMM IN LISTITEM");
+    const {title, edition, author, book_condition, course, price} = props.about;
     return (
         <Link to={"/BookInfoIndex"}>
             <div className='listItem'>
@@ -15,7 +16,7 @@ export default props => {
                     <p>Title: {title}</p>
                     <p>Edition: {edition}</p>
                     <p>Author: {author}</p>
-                    <p>Condition: {condition}</p>
+                    <p>Condition: {book_condition}</p>
                     {/* <p>Course: {course}</p> */}
                 </div>
                 <div className='itemPrice'>
