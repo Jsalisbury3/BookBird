@@ -29,6 +29,7 @@ class AddBook extends Component {
         event.preventDefault();
         const infoObj = this.state;
         console.log(infoObj);
+        document.getElementsByClassName('modalPageContainer')[0].style.display = "block";
         return infoObj;
     };
 
