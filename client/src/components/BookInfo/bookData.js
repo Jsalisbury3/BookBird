@@ -1,4 +1,5 @@
 import React from 'react';
+import './book-data.css';
 
 function IndividualBookData(props) {
     console.log('props:',props);

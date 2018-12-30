@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ResultList from './resultList';
-
+import SearchBar from './search_bar'
+import './landing.css';
 
 export default class LandingPage extends Component {
     constructor(props) {
@@ -24,6 +25,7 @@ export default class LandingPage extends Component {
     render() {
         return (
             <div>
+                <SearchBar/>
                 <ResultList/>
             </div>
         )
