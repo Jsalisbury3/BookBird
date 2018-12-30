@@ -1,5 +1,5 @@
 import React from 'react';
-import ',/51pw4Y1-iJL._SX388_BO1,204,203,200_.jpg'
+// import ',/51pw4Y1-iJL._SX388_BO1,204,203,200_.jpg'
 
 function IndividualBookData(props) {
     console.log('props:',props);
@@ -14,7 +14,7 @@ function IndividualBookData(props) {
 
         </div>
          <div className='image'>
-             <img src="51pw4Y1-iJL._SX388_BO1,204,203,200_.jpg"/>
+             {/* <img src="51pw4Y1-iJL._SX388_BO1,204,203,200_.jpg"/> */}
          </div>
         <div>
             <h1 className="SellersEmail"><strong>Sellers Email:</strong> </h1>
