@@ -1,17 +1,42 @@
-import React from 'react';
+import React, {Component} from 'react';
 import dummyData from '../../data/dummy';
 import ListItem from './listItem';
+import axios from 'axios';
 
-export default props => {
+class ResultList extends Component {
+    state = {
+        data : null
+    };
 
-    const searchResults= dummyData.map((item,index)=>{
+    getServerData = () => {
+        const searchResults = axios.get("http://www.localhost:7000/listings").then( (response) => {
+            this.getRowData(response.data.data);
+        });
+    };
+
+    getRowData = (results) => {
+        const listItems = results.map((item, index) => {
+            return (
+                <ListItem key={index} about={item}/>
+            )
+        });
+        this.setState({
+            data: listItems
+        });
+        return listItems;
+    };
+
+    componentDidMount = () => {
+        this.getServerData();
+    };
+
+    render() {
         return (
-            <ListItem key={index} about={item}/>
+            <div className='search-results-container'>
+                {this.state.data}
+            </div>
         )
-    });
-    return(
-        <div className='search-results-container'>
-            {searchResults}
-        </div>
-    )
+    }
 }
+
+export default ResultList
