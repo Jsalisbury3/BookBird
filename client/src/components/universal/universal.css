@@ -25,14 +25,79 @@
     background-color: #F2C94C;
     color: white;
 }
-.searchButton, .postButton{
-    display: inline-block;
-    height:100%;
-    width:50%;
-}
-.postButton>Link > button,.searchButton>Link>button{
-    margin:10%;
-    width:75%;
-    height:60%;
-}
+.IconContainer {
 
+}
+.SearchIcon {
+    display: inline-block;
+    position: relative;
+    /*width: 50%;*/
+    height: 100%;
+}
+.AddBookIcon {
+    display: inline-block;
+    position: relative;
+    /*width: 20%;*/
+    left: 37%;
+    height: 100%;
+
+}
+.ProfileIcon {
+    display: inline-block;
+    position: relative;
+    /*width: 20%;*/
+    height: 100%;
+}
+.BookIcon {
+    position: relative;
+    display: inline-block;
+    height: 100%;
+    right: 4%;
+    bottom: 104%;
+    border-style: solid;
+    border-color: black;
+    border-width: 32%;
+    width: 33.33%;
+    margin: 0%;
+    padding: 2%;
+}
+.ProfilePicture {
+    position: relative;
+    display: inline-block;
+    height: 100%;
+    left: 66%;
+    border-style: solid;
+    border-color: black;
+    border-width: 32%;
+    width: 33.33%;
+    bottom: 208%;
+    margin: 0%;
+    padding: 2%
+}
+.SearchPicture {
+    position: relative;
+    display: inline-block;
+    height: 100%;
+    left: 0%;
+    border-style: solid;
+    border-color: black;
+    border-width: 32%;
+    width: 33.33%;
+    padding: 2%;
+    margin: 0%;
+}
+/*.SearchIcon>Link,.AddBookIc>Link > button,.ProfileIcon>Link>button{*/
+    /*margin:10%;*/
+    /*width:75%;*/
+    /*height:60%;*/
+/*}*/
+
+
+/*height: 100%;*/
+/*!*width: 58%;*!*/
+
+/*.AddBookIcon,.ProfileIcon{*/
+    /*display: inline-block;*/
+    /*height:100%;*/
+    /*width:50%;*/
+/*}*/
