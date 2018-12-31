@@ -1,4 +1,8 @@
+body{
+    overflow-x: hidden;
+    overflow-y: hidden;
 
+}
 .uni-header{
     height: 12vh;
     width: 100vw;
@@ -18,21 +22,58 @@
 }
 .uni-footer {
     position: absolute;
-    /*top: 13.3vh;*/
     bottom: 0vh;
     height: 12vh;
     width: 100%;
     background-color: #F2C94C;
     color: white;
 }
-.searchButton, .postButton{
+
+.SearchIcon {
     display: inline-block;
-    height:100%;
-    width:50%;
+    position: relative;
+    height: 100%;
+    width: 23.33%
 }
-.postButton>Link > button,.searchButton>Link>button{
-    margin:10%;
-    width:75%;
-    height:60%;
+.AddBookIcon {
+    display: inline-block;
+    position: relative;
+    left: 3%;
+    height: 100%;
+    width: 23.33%;
+}
+.ProfileIcon {
+    display: inline-block;
+    position: relative;
+    height: 100%;
+    width: 24.33%;
+    left: 23%;
+}
+.BookPicture {
+    position: relative;
+    display: inline-block;
+    height: 100%;
+    width: 96%;
+    padding: 22%;
+    left: 51%;
+
+}
+.ProfilePicture {
+    position: relative;
+    display: inline-block;
+    height: 100%;
+    width: 89%;
+    padding: 22%;
+    left: 13%;
+
+}
+.SearchPicture {
+    position: relative;
+    display: inline-block;
+    height: 100%;
+    width: 92.33%;
+    padding: 21%;
+    left: 16%;
+
 }
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import dummyData from '../../data/dummy';
 import BookInfo from './BookData';
+import Modal from '../addBook/modal';
 
 const Index = (props) => {
     

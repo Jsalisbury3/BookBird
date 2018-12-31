@@ -1,4 +1,15 @@
+:root {
+    --moveRight: 92.2%;
+    --moveup: 4.5vh;
+}
+
+.tempContainer {
+    height: 100%;
+    width: 100%;
+}
+
 .container {
+    position: absolute;
     height: 76vh;
     background-color: #C2E5F9;
 }
@@ -11,22 +22,14 @@
 }
 
 .inputs {
-    display: block;
+    position: relative;
+    display: inline-block;
     width: 80%;
     height: 5vh;
     margin: auto;
     margin-bottom: 0.3%;
     font-size: 1rem;
-}
-
-.fieldsText {
-    background-color: #F2C94C;
-    display: block;
-    width: 80%;
-    height: 4vh;
-    margin: auto;
-    font-size: 1rem;
-    text-align: center;
+    left: 6.5%;
 }
 
 .textSpan {
@@ -35,7 +38,7 @@
 }
 
 .last {
-    height: 10vh;
+    height: 6vh;
     font-size: 1rem;
 }
 
@@ -64,23 +67,25 @@
     border: none;
 }
 
-.nav {
-    position: absolute;
-    /*top: 13.3vh;*/
-    bottom: 0vh;
-    height: 12vh;
-    width: 100%;
-    background-color: black;
-    color: white;
-}
+/*.nav {*/
+    /*position: absolute;*/
+    /*!*top: 13.3vh;*!*/
+    /*bottom: 0vh;*/
+    /*height: 12vh;*/
+    /*width: 100%;*/
+    /*background-color: black;*/
+    /*color: white;*/
+/*}*/
 
 .condition {
-    display: block;
+    position: relative;
+    display: inline-block;
     width: 80%;
     height: 5vh;
     margin: auto;
     margin-bottom: 0.3%;
     font-size: 1rem;
+    left: 6.5%;
 }
 
 select {
@@ -91,4 +96,50 @@ select {
 select option {
     background-color: white;
     border-radius: 0;
+}
+
+.error {
+    color: red;
+    text-align: center;
+}
+
+.checkMark {
+    position: relative;
+    height: 3vh;
+    width: 3vh;
+    left: var(--moveRight);
+    color: green;
+    visibility: hidden;
+}
+
+.markPrice {
+    top: -6.4vh;
+}
+
+.markEdition {
+    top: -4.4vh;
+}
+
+.markAuthor {
+    top: -4.4vh;
+}
+
+.markTitle {
+    top: -4.5vh;
+}
+
+.markISBN {
+    top: -4.4vh;
+}
+
+.ISBN {
+    left: 12%;
+}
+
+.TITLE {
+    left: 12%;
+}
+
+.visible {
+    visibility: visible;
 }
