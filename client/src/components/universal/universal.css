@@ -1,4 +1,8 @@
+body{
+    overflow-x: hidden;
+    overflow-y: hidden;
 
+}
 .uni-header{
     height: 12vh;
     width: 100vw;
@@ -29,72 +33,44 @@
 .SearchIcon {
     display: inline-block;
     position: relative;
-    /*width: 50%;*/
     height: 100%;
+    width: 33.33%;
 }
 .AddBookIcon {
     display: inline-block;
     position: relative;
-    /*width: 20%;*/
-    left: 37%;
+    left: 0%;
     height: 100%;
+    width: 33.33%;
 }
 .ProfileIcon {
     display: inline-block;
     position: relative;
-    /*width: 20%;*/
     height: 100%;
+    width: 33.33%;
 }
-.BookIcon {
+.BookPicture {
     position: relative;
     display: inline-block;
     height: 100%;
-    right: 4%;
-    bottom: 104%;
-    border-style: solid;
-    border-color: black;
-    border-width: 32%;
-    width: 33.33%;
-    margin: 0%;
-    padding: 2%;
+    width: 100%;
+    padding: 17%;
+
 }
 .ProfilePicture {
     position: relative;
     display: inline-block;
     height: 100%;
-    left: 66%;
-    border-style: solid;
-    border-color: black;
-    border-width: 32%;
-    width: 33.33%;
-    bottom: 208%;
-    margin: 0%;
-    padding: 2%
+    width: 100%;
+    padding: 17%;
+
 }
 .SearchPicture {
     position: relative;
     display: inline-block;
     height: 100%;
-    left: 0%;
-    border-style: solid;
-    border-color: black;
-    border-width: 32%;
-    width: 33.33%;
-    padding: 2%;
-    margin: 0%;
+    width: 99.33%;
+    padding: 17%;
+
 }
-/*.SearchIcon>Link,.AddBookIc>Link > button,.ProfileIcon>Link>button{*/
-    /*margin:10%;*/
-    /*width:75%;*/
-    /*height:60%;*/
-/*}*/
 
-
-/*height: 100%;*/
-/*!*width: 58%;*!*/
-
-/*.AddBookIcon,.ProfileIcon{*/
-    /*display: inline-block;*/
-    /*height:100%;*/
-    /*width:50%;*/
-/*}*/
