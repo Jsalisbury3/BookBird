@@ -1,3 +1,8 @@
+:root {
+    --moveRight: 92.2%;
+    --moveup: 4.5vh;
+}
+
 .tempContainer {
     height: 100%;
     width: 100%;
@@ -17,23 +22,25 @@
 }
 
 .inputs {
-    display: block;
+    position: relative;
+    display: inline-block;
     width: 80%;
     height: 5vh;
     margin: auto;
     margin-bottom: 0.3%;
     font-size: 1rem;
+    left: 6.5%;
 }
 
-.fieldsText {
-    background-color: #F2C94C;
-    display: block;
-    width: 80%;
-    height: 4vh;
-    margin: auto;
-    font-size: 1rem;
-    text-align: center;
-}
+/*.fieldsText {*/
+    /*background-color: #F2C94C;*/
+    /*display: block;*/
+    /*width: 80%;*/
+    /*height: 4vh;*/
+    /*margin: auto;*/
+    /*font-size: 1rem;*/
+    /*text-align: center;*/
+/*}*/
 
 .textSpan {
     position: relative;
@@ -81,12 +88,14 @@
 }
 
 .condition {
-    display: block;
+    position: relative;
+    display: inline-block;
     width: 80%;
     height: 5vh;
     margin: auto;
     margin-bottom: 0.3%;
     font-size: 1rem;
+    left: 6.5%;
 }
 
 select {
@@ -102,4 +111,45 @@ select option {
 .error {
     color: red;
     text-align: center;
+}
+
+.checkMark {
+    position: relative;
+    height: 3vh;
+    width: 3vh;
+    left: var(--moveRight);
+    color: green;
+    visibility: hidden;
+}
+
+.markPrice {
+    top: -6.4vh;
+}
+
+.markEdition {
+    top: -4.4vh;
+}
+
+.markAuthor {
+    top: -4.4vh;
+}
+
+.markTitle {
+    top: -4.5vh;
+}
+
+.markISBN {
+    top: -4.4vh;
+}
+
+.ISBN {
+    left: 12%;
+}
+
+.TITLE {
+    left: 12%;
+}
+
+.visible {
+    visibility: visible;
 }

@@ -19,6 +19,10 @@ export default () => (
         <div className={'ProfileIcon'}>
             <Link to={"/Sign"}><img alt={ProfileIcon} className={'ProfilePicture'} src={ProfileIcon}/></Link>
         </div>
+  
+        {/*<div className="profileButton">*/}
+            {/*<Link to={"/sign/signin"}><button>Profile button</button></Link>*/}
+        {/*</div>*/}
     </footer>
 
 )
