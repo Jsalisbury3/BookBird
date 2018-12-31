@@ -26,12 +26,6 @@
     color: white;
 }
 
-.searchButton, .postButton, .profileButton{
-    display: inline-block;
-    height:100%;
-    width:33%;
-
-
 .SearchIcon {
     display: inline-block;
     position: relative;
