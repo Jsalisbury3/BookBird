@@ -53,6 +53,30 @@ webserver.post('/addListing', (request, response) => {
     })
 });
 
+webserver.post('/filter', (request, response) => {
+    console.log('filter worked');
+    console.log('Request filter: ', request.body);
+
+    const { ISBN } = request.body;
+    
+    db.connect(()=> {
+        console.log('Connected Filter!');
+        const query = "SELECT l.title, l.ISBN, l.author FROM listing as l WHERE l.title LIKE '%"+ISBN+"%' OR l.ISBN LIKE '%"+ISBN+"%' OR l.author LIKE '%"+ISBN+"%' "
+
+        db.query(query,(err, data) => {
+            if(!err) {
+                let output = {
+                    success: true,
+                    data: data,
+                };
+                response.send(output);
+            } else {
+                console.log("error", err);
+            }
+        })
+    })
+})
+
 
 webserver.listen(7000, () => {
     console.log("listening on port 7000");
