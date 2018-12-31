@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 // import App from '../../App';
 import './modal.css';
 // import 'materialize-css';
-import success from './images/successlogo.png'
+import success from './images/successlogo.png';
+import { Link } from 'react-router-dom';
 
 class Modal extends Component {
     render() {
@@ -25,10 +26,18 @@ class Modal extends Component {
                     </div>
                     <div className="modalFooter">
                         <div className="searchButtonContainer">
-                            <a className="btn searchButtonModal" name="Search">Search</a>
+                            <Link className="searchButtonModal" to="/">
+                                <div>
+                                    Home
+                                </div>
+                            </Link>
                         </div>
                         <div className="postButtonContainer">
-                            <a className="btn postButtonModal" name="Post">Post Again</a>
+                            <Link className="postButtonModal" to="/addbook">
+                                <div>
+                                    Post Again
+                                </div>
+                            </Link>
                         </div>
                     </div>
                 </div>
