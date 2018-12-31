@@ -54,24 +54,25 @@ body{
     position: relative;
     display: inline-block;
     height: 100%;
-    width: 100%;
+    width: 96%;
     padding: 22%;
-    left: 40%;
+    left: 51%;
 
 }
 .ProfilePicture {
     position: relative;
     display: inline-block;
     height: 100%;
-    width: 100%;
-    padding: 22%
+    width: 89%;
+    padding: 22%;
+    left: 13%;
 
 }
 .SearchPicture {
     position: relative;
     display: inline-block;
     height: 100%;
-    width: 97.33%;
+    width: 92.33%;
     padding: 21%;
     left: 16%;
 
