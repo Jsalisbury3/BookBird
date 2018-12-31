@@ -34,27 +34,29 @@ body{
     display: inline-block;
     position: relative;
     height: 100%;
-    width: 33.33%;
+    width: 25.33%;
 }
 .AddBookIcon {
     display: inline-block;
     position: relative;
     left: 0%;
     height: 100%;
-    width: 33.33%;
+    width: 25.33%;
 }
 .ProfileIcon {
     display: inline-block;
     position: relative;
     height: 100%;
-    width: 33.33%;
+    width: 25.33%;
+    left: 17%;
 }
 .BookPicture {
     position: relative;
     display: inline-block;
     height: 100%;
     width: 100%;
-    padding: 17%;
+    padding: 22%;
+    left: 40%;
 
 }
 .ProfilePicture {
@@ -62,15 +64,16 @@ body{
     display: inline-block;
     height: 100%;
     width: 100%;
-    padding: 17%;
+    padding: 22%
 
 }
 .SearchPicture {
     position: relative;
     display: inline-block;
     height: 100%;
-    width: 99.33%;
-    padding: 17%;
+    width: 97.33%;
+    padding: 21%;
+    left: 16%;
 
 }
 
