@@ -1,0 +1,49 @@
+.sign_up, .sign_in{
+    text-align: center;
+    display: grid;
+    top: 9%;
+}
+
+.signin_container, .signup_container{
+    background-color: #C2E5F9;
+    height: 76vh;
+    overflow: auto;
+}
+
+.input{
+    width: 55%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    left: 24%;
+    position: relative;
+    color:black;
+}
+
+.signup_footer, .signin_footer{
+    position:relative;
+    text-align: center;
+    top: 89%;
+}
+
+label{
+    text-align: center;
+    display: block;
+    position: relative;
+}
+
+.sign_in_button, .sign_up_button{
+    position: relative;
+    left:41%;
+    background-color:green;
+    width:23vw;
+    height:9vh;
+    border-radius:31px;
+}
+
+.error{
+    color:red;
+    text-align: center;
+}

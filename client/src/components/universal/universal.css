@@ -25,9 +25,13 @@
     background-color: #F2C94C;
     color: white;
 }
-.IconContainer {
 
-}
+.searchButton, .postButton, .profileButton{
+    display: inline-block;
+    height:100%;
+    width:33%;
+
+
 .SearchIcon {
     display: inline-block;
     position: relative;
@@ -40,7 +44,6 @@
     /*width: 20%;*/
     left: 37%;
     height: 100%;
-
 }
 .ProfileIcon {
     display: inline-block;
