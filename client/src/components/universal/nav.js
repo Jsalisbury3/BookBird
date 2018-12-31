@@ -14,16 +14,11 @@ export default () => (
         </div>
 
         <div className={'AddBookIcon'}>
-            <Link to={"/AddBook"}><img alt={'AddBookIcon'} className={'BookIcon'} src={AddBookImg}/></Link>
+            <Link to={"/AddBook"}><img alt={'AddBookIcon'} className={'BookPicture'} src={AddBookImg}/></Link>
         </div>
         <div className={'ProfileIcon'}>
             <Link to={"/Sign"}><img alt={ProfileIcon} className={'ProfilePicture'} src={ProfileIcon}/></Link>
         </div>
-        <div className="profileButton">
-            <Link to={"/sign/signin"}><button>Profile button</button></Link>
-        </div>
-
-
     </footer>
 
 )
