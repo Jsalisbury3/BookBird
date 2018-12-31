@@ -13,6 +13,7 @@
     margin: 0;
 }
 .Container {
+    position: absolute;
     height: 76vh;
     width: 100vw;
     background-color: lightblue;

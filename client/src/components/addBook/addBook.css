@@ -1,4 +1,10 @@
+.tempContainer {
+    height: 100%;
+    width: 100%;
+}
+
 .container {
+    position: absolute;
     height: 76vh;
     background-color: #C2E5F9;
 }
@@ -91,4 +97,9 @@ select {
 select option {
     background-color: white;
     border-radius: 0;
+}
+
+.error {
+    color: red;
+    text-align: center;
 }
