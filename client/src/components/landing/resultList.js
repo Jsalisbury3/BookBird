@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
+import axios from 'axios';
 import dummyData from '../../data/dummy';
 import ListItem from './listItem';
-import axios from 'axios';
+import SearchBar from './search_bar';
+
 
 class ResultList extends Component {
     state = {
@@ -13,6 +15,14 @@ class ResultList extends Component {
             this.getRowData(response.data.data);
         });
     };
+
+    receiveFilterResults = (response) => {
+        // const searchResults = axios.get('http://www.localhost:7000/filter').then( 
+       
+        console.log('Receive Filter Results: ', response);
+        this.getRowData(response.data.data);
+        // })
+    }
 
     getRowData = (results) => {
         const listItems = results.map((item, index) => {
@@ -33,7 +43,9 @@ class ResultList extends Component {
     render() {
         return (
             <div className='search-results-container'>
+                <SearchBar function={this.receiveFilterResults}/>
                 {this.state.data}
+                
             </div>
         )
     }
