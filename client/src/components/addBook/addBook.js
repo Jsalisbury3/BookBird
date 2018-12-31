@@ -81,6 +81,8 @@ class AddBook extends Component {
             document.getElementsByClassName("error")[index].nextElementSibling.classList.add("visible");
             document.querySelector(element).nextSibling.innerHTML = '';
         }
+
+        document.getElementsByClassName('modalPageContainer')[0].style.display = "block";
         return result;
     };
 
@@ -93,7 +95,8 @@ class AddBook extends Component {
             url: 'http://localhost:7000/addListing',
             data: request,
         });
-        document.getElementsByClassName('modalPageContainer')[0].style.display = "block";
+
+        // document.getElementsByClassName('modalPageContainer')[0].style.display = "block";
     };
 
     render() {
