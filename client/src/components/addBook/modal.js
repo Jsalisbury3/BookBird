@@ -6,6 +6,12 @@ import success from './images/successlogo.png';
 import { Link } from 'react-router-dom';
 
 class Modal extends Component {
+
+    closeModal = () => {
+        console.log('close modal');
+        document.getElementsByClassName('modalPageContainer')[0].style.display = "none";
+    }
+
     render() {
         return (
             <div className="modalPageContainer">
@@ -16,7 +22,7 @@ class Modal extends Component {
                         </div>
                         
                         <div className="closeModalContainer">
-                            <div>X</div>
+                            <div onClick={this.closeModal}>X</div>
                         </div>
                     </div>
                     
@@ -26,14 +32,14 @@ class Modal extends Component {
                     </div>
                     <div className="modalFooter">
                         <div className="searchButtonContainer">
-                            <Link className="searchButtonModal" to="/">
+                            <Link onClick={this.closeModal} className="searchButtonModal" to="/">
                                 <div>
                                     Home
                                 </div>
                             </Link>
                         </div>
                         <div className="postButtonContainer">
-                            <Link className="postButtonModal" to="/addbook">
+                            <Link onClick={this.closeModal} className="postButtonModal" to="/addbook">
                                 <div>
                                     Post Again
                                 </div>
