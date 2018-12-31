@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import './sign.css'
-// import 'materialize-css'
+
 
 class Signin extends Component{
     constructor(props){
@@ -28,7 +28,6 @@ class Signin extends Component{
         ]
         if(test.length === test.filter( this.validateInputAndDisplayError).length){
             //send message
-            alert("works")
         }
     }
     validateInputAndDisplayError=(test)=>{

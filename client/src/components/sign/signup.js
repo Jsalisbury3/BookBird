@@ -7,7 +7,8 @@ class Signup extends Component{
         super(props);
         this.state={
             Email: "",
-            password:""
+            password:"",
+            name:""
         }
     }
     validateContactForm=(event)=>{
@@ -23,11 +24,10 @@ class Signup extends Component{
                 element: "input[name=password]",
                 pattern: /^(?=.*\d).{4,8}$/,
                 errorMessage: "Password must be between 4 and 8 digits long and include at least one numeric digit"
-            }
+            },
         ]
         if(test.length === test.filter( this.validateInputAndDisplayError).length){
             //send message
-            alert("works")
         }
     }
     validateInputAndDisplayError=(test)=>{
@@ -44,7 +44,6 @@ class Signup extends Component{
         } else {
             document.querySelector(element).nextSibling.innerHTML = errorMessage;
         }
-
         return result;
     }
 
