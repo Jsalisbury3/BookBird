@@ -22,8 +22,6 @@ class AddBook extends Component {
 
 
     handleInput = (event) => {
-        console.log("change event name", event.target.name);
-        console.log("change event value", event.target.value);
         this.setState({
             [event.target.name]: event.target.value,
         })
@@ -75,21 +73,11 @@ class AddBook extends Component {
         let pattern = test.pattern;
         let errorMessage = test.errorMessage;
         let index = test.index;
-        console.log("e: ",element);
-        console.log("p: ", pattern);
-        console.log("err: ",errorMessage);
-        console.log("index", index);
         const result = pattern.test( elementVal );
         if( !result ){
-            // const secondSibling = document.querySelector(element).nextSibling;
-            // console.log(secondSibling);
-            // console.log(document.getElementsByClassName("error")[1].nextElementSibling);
             document.getElementsByClassName("error")[index].nextElementSibling.classList.remove("visible");
             document.querySelector(element).nextSibling.innerHTML = errorMessage;
         } else {
-            // const secondSibling = document.querySelector(element).nextSibling;
-            // console.log(secondSibling);
-            // console.log(document.getElementsByClassName("error")[1].nextElementSibling);
             document.getElementsByClassName("error")[index].nextElementSibling.classList.add("visible");
             document.querySelector(element).nextSibling.innerHTML = '';
         }

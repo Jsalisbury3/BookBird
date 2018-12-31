@@ -32,23 +32,13 @@
     left: 6.5%;
 }
 
-/*.fieldsText {*/
-    /*background-color: #F2C94C;*/
-    /*display: block;*/
-    /*width: 80%;*/
-    /*height: 4vh;*/
-    /*margin: auto;*/
-    /*font-size: 1rem;*/
-    /*text-align: center;*/
-/*}*/
-
 .textSpan {
     position: relative;
     top: 13%;
 }
 
 .last {
-    height: 10vh;
+    height: 6vh;
     font-size: 1rem;
 }
 
@@ -77,15 +67,15 @@
     border: none;
 }
 
-.nav {
-    position: absolute;
-    /*top: 13.3vh;*/
-    bottom: 0vh;
-    height: 12vh;
-    width: 100%;
-    background-color: black;
-    color: white;
-}
+/*.nav {*/
+    /*position: absolute;*/
+    /*!*top: 13.3vh;*!*/
+    /*bottom: 0vh;*/
+    /*height: 12vh;*/
+    /*width: 100%;*/
+    /*background-color: black;*/
+    /*color: white;*/
+/*}*/
 
 .condition {
     position: relative;
