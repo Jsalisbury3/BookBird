@@ -1,5 +1,5 @@
 :root {
-    --moveRight: 92.2%;
+    --moveRight: 90.2%;
     --moveup: 4.5vh;
 }
 
@@ -25,11 +25,11 @@
     position: relative;
     display: inline-block;
     width: 80%;
-    height: 5vh;
+    height: 4vh;
     margin: auto;
-    margin-bottom: 0.3%;
     font-size: 1rem;
-    left: 6.5%;
+    left: 4.5%;
+    top: 4vh;
 }
 
 .textSpan {
@@ -49,15 +49,18 @@
 }
 
 .dragDrop {
+    position: relative;
     display: block;
     border: black 1px solid;
-    height: 15vh;
+    height: 13vh;
     width: 50%;
     margin-left: 25%;
     margin-top: 1%;
+    top: 4vh;
 }
 
 .POST {
+    position: relative;
     height: 6.1vh;
     width: 50%;
     margin-left: 25%;
@@ -65,28 +68,21 @@
     border-radius: 40px;
     background-color: white;
     border: none;
+    top: 5vh;
 }
-
-/*.nav {*/
-    /*position: absolute;*/
-    /*!*top: 13.3vh;*!*/
-    /*bottom: 0vh;*/
-    /*height: 12vh;*/
-    /*width: 100%;*/
-    /*background-color: black;*/
-    /*color: white;*/
-/*}*/
 
 .condition {
     position: relative;
     display: inline-block;
     width: 80%;
-    height: 5vh;
+    height: 4vh;
     margin: auto;
-    margin-bottom: 0.3%;
     font-size: 1rem;
-    left: 6.5%;
+    left: 4.5%;
+    top: 4vh;
 }
+
+
 
 select {
     background-color: white;
@@ -99,6 +95,8 @@ select option {
 }
 
 .error {
+    /*visibility: hidden;*/
+    height: 2.6vh;
     color: red;
     text-align: center;
 }
@@ -113,31 +111,35 @@ select option {
 }
 
 .markPrice {
-    top: -6.4vh;
+    top: -2.4vh;
 }
 
 .markEdition {
-    top: -4.4vh;
+    top: -2.4vh;
 }
 
 .markAuthor {
-    top: -4.4vh;
+    top: -2.4vh;
 }
 
 .markTitle {
-    top: -4.5vh;
+    top: -2.5vh;
 }
 
 .markISBN {
-    top: -4.4vh;
+    top: -2.4vh;
 }
 
 .ISBN {
-    left: 12%;
+    left: 10%;
 }
 
 .TITLE {
-    left: 12%;
+    left: 4.7%;
+}
+
+.markCondition {
+    top: -2.4vh;
 }
 
 .visible {
