@@ -4,10 +4,10 @@ import {Link} from 'react-router-dom';
 
 
 export default props => {
-    console.log("IMM IN LISTITEM");
-    const {title, edition, author, book_condition, course, price} = props.about;
+    const {title, edition, author, book_condition, ID, price} = props.about;
+    console.log(props.about);
     return (
-        <Link to={"/BookInfoIndex"}>
+        <Link to={`/BookInfoIndex/${ID}`}>
             <div className='listItem'>
                 <div className='itemImageContainer'>
                     <img className='itemImage' src={props.images}/>
@@ -17,7 +17,6 @@ export default props => {
                     <p>Edition: {edition}</p>
                     <p>Author: {author}</p>
                     <p>Condition: {book_condition}</p>
-                    {/* <p>Course: {course}</p> */}
                 </div>
                 <div className='itemPrice'>
                     <h3>Price:</h3>

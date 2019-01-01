@@ -154,8 +154,7 @@ class AddBook extends Component {
                     <input name={"price"} placeholder={"*Price $$$$"} className={"inputs"} onChange={this.handleInput}/>
                     <div className={"error"}></div>
                     <div className={"checkMark markPrice material-icons"}>check_circle_outline</div>
-                    <input name={"comments"} placeholder={"Seller's Comments"} className={"inputs last"}
-                           onChange={this.handleInput}/>
+                    <textarea name={"comments"} placeholder={"Seller's Comments"} className={"inputs last"} onChange={this.handleInput}/>
                     {/*<div className={"text"}>Upload Book Images</div>*/}
                     {/*<img className={"dragDrop"} src={DragDrop} alt="drag and drop"/>*/}
                     <div className={"photo material-icons"}>add_a_photo</div>

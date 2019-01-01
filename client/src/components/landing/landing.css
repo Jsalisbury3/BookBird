@@ -35,6 +35,7 @@
 .itemDetails>p{
     margin:1%;
     overflow:hidden;
+    height: 18px;
 }
 .itemPrice{
     vertical-align: top;
