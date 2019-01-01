@@ -16,11 +16,10 @@ export default props => {
                     <p>Edition: {edition}</p>
                     <p>Author: {author}</p>
                     <p>Condition: {condition}</p>
-                    {/* <p>Course: {course}</p> */}
+                    <p>Price: ${price}</p>
                 </div>
-                <div className='itemPrice'>
-                    <h3>Price:</h3>
-                    <h1>${price}</h1>
+                <div className='delete-btn-container'>
+                    <button className='delete-button waves-effect btn danger'>Delete <i className='material-icons right'>delete_outline</i></button>
                 </div>
             </div>
         </Link>

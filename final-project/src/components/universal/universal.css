@@ -35,14 +35,14 @@
     background-color: #F2C94C;
     color: white;
 }
-.searchButton, .postButton{
+.searchButton, .postButton, .profileButton{
     display: inline-block;
     height:100%;
-    width:50%;
+    width:33.33%;
 }
-.postButton>Link > button,.searchButton>Link>button{
+/* .postButton>Link > button,.searchButton>Link>button{
     margin:10%;
     width:75%;
     height:60%;
-}
+} */
 

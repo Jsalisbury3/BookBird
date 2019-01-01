@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import ResultList from './resultList';
+import ResultList from '../universal/resultList';
 
 
 export default class LandingPage extends Component {

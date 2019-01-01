@@ -15,7 +15,7 @@ class Modal extends Component {
                         </div>
                         
                         <div className="closeModalContainer">
-                            <div>X</div>
+                            <div >X</div>
                         </div>
                     </div>
                     
