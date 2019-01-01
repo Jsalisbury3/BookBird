@@ -64,7 +64,7 @@ class Signin extends Component{
     render(){
         return(
             <div className="signin_container">
-                <p className="signin_footer">Dont have an account? <Link to={"/sign/signup"}>Sign up now! </Link> </p>
+                <p className="signin_footer">Dont have an account? <Link to={"/SignUp"}>Sign up now! </Link> </p>
                 <h1 className="sign_in">Sign in</h1>
                 <form className="sign_in_form" onSubmit={this.validateContactForm}>
                     <label htmlFor="Email">Email</label>

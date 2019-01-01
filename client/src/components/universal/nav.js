@@ -17,7 +17,7 @@ export default () => (
             <Link to={"/AddBook"}><img alt={'AddBookIcon'} className={'BookPicture'} src={AddBookImg}/></Link>
         </div>
         <div className={'ProfileIcon'}>
-            <Link to={"/Sign"}><img alt={ProfileIcon} className={'ProfilePicture'} src={ProfileIcon}/></Link>
+            <Link to={"/UserProfile"}><img alt={ProfileIcon} className={'ProfilePicture'} src={ProfileIcon}/></Link>
         </div>
   
         {/*<div className="profileButton">*/}

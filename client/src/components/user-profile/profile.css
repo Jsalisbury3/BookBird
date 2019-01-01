@@ -1,0 +1,51 @@
+.delete-button-container{
+    vertical-align: top;
+    display:inline-block;
+    height:100%;
+    width:25%;
+}
+.circleBase {
+    border-radius: 50%;
+    /* behavior: url(PIE.htc); */
+}
+.profile-main-container{
+    display:inline-block;
+    height:76vh;
+    width:100vw;
+    background-color:aqua;
+}
+.user-image-container{
+    display:inline-block;
+    height:28%;
+    width:36%;
+    margin-top:6%;
+    margin-left:32%;
+    background-color:brown;
+}
+.user-image-container>img{
+    height:100%;
+    width:100%;
+}
+.signOut{
+    display:inline-block;
+    margin-left:12%;
+    margin-top:3%;
+    vertical-align: top;
+    height:8%;
+    width:20%;
+    /* background-color:red; */
+}
+.user-posts-container{
+    display:inline-block;
+    height:57%;
+    width: 90%;
+    margin-top:10%;
+    margin-left:5vw;
+    background-color: blue;
+    overflow:auto;
+}
+.samplePost{
+    display:inline-block;
+    height:17.8%;
+    background-color: bisque;
+}

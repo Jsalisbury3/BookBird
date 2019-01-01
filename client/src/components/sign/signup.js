@@ -58,7 +58,7 @@ class Signup extends Component{
     render(){
         return(
         <div className="signup_container">
-            <p className="signup_footer">Already have an account? <Link to={"/sign/signin"}> Sign In </Link></p>
+            <p className="signup_footer">Already have an account? <Link to={"/SignIn"}> Sign In </Link></p>
             <h1 className="sign_in">Sign Up</h1>
             <form onSubmit={this.validateContactForm} className="sign_up_form">
                 <div>
