@@ -25,7 +25,7 @@ export default class LandingPage extends Component {
     render() {
         return (
             <div>
-                <SearchBar/>
+                {/* <SearchBar/> */}
                 <ResultList/>
             </div>
         )

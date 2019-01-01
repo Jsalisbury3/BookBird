@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
+import UserPost from './userPost';
 import axios from 'axios';
-import ListItem from './listItem';
-import SearchBar from './search_bar';
+import './profile.css';
+import 'materialize-css';
 
 
-class ResultList extends Component {
+export default class UserPostList extends Component {
     state = {
         data : null
     };
@@ -15,15 +16,10 @@ class ResultList extends Component {
         });
     };
 
-    receiveFilterResults = (response) => {
-        console.log('Receive Filter Results: ', response);
-        this.getRowData(response.data.data);
-    };
-
     getRowData = (results) => {
         const listItems = results.map((item, index) => {
             return (
-                <ListItem key={index} about={item}/>
+                <UserPost key={index} about={item}/>
             )
         });
         this.setState({
@@ -38,13 +34,10 @@ class ResultList extends Component {
 
     render() {
         return (
-            <div className='search-results-container'>
-                <SearchBar function={this.receiveFilterResults}/>
+            <div className='user-posts-container'>
                 {this.state.data}
-                
+                <div className='samplePost'></div>
             </div>
         )
     }
 }
-
-export default ResultList

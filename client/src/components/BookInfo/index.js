@@ -1,36 +1,54 @@
-import React from 'react';
+import React, {Component} from 'react';
 import BookData from './bookData'
+import axios from 'axios'
 
-const user =
 
-    {
-        id: '00',
-        title: 'biology the core',
-        ISBN: 9780134287829,
-        edition: '2nd edition',
-        author: 'Simon',
-        condition: 'used',
-        price: 35,
-        sellersComment: 'for Bio 181',
-        sellersEmail: 'jordan@sfstate.edu',
-        images: ['9780134152196.jpeg']
+class Index extends Component{
+    state = {
+        bookId : this.props.match.params.bookId,
+        data: ''
     };
 
+    getDataForBookCLicked = async () => {
+        console.log("Porps: ", this.props);
+        console.log("ID: ", this.state.bookId);
+        await axios({
+            method: "get",
+            url: `http://www.localhost:7000/BookInfoIndex/${this.state.bookId}`,
+            // data : this.state.bookId
+        }).then( (response) => {
+            this.handleIncomingBookData(response);
+        })
+    };
 
-const Index = () => {
-    return (
-        <div className='main-container'>
-            <BookData title={user.title}
-                      ISBN={user.ISBN}
-                      edition={user.edition}
-                      author={user.author}
-                      condition={user.condition}
-                      sellersEmail={user.sellersEmail}
-                      sellersComment={user.sellersComment}
-                      price={user.price}/>
-        </div>
-    )
-};
+    handleIncomingBookData = async (response) => {
+        console.log("response: ", response);
+        await this.setState({
+            data : response.data.data[0]
+        })
+    };
+
+    componentDidMount = () => {
+        this.getDataForBookCLicked();
+    };
+
+    render() {
+        console.log("yoyoyoyoyooyo", this.state.data);
+        return (
+            <div className='main-container'>
+                <BookData title={this.state.data.title}
+                          ISBN={this.state.data.ISBN}
+                          edition ={this.state.data.edition}
+                          author={this.state.data.author}
+                          condition={this.state.data.book_condition}
+                          sellersComment={this.state.data.comments}
+                          price={this.state.data.price}
+                          sellersEmail={this.state.data.email}
+                />
+            </div>
+        )
+        }
+    }
 
 export default Index;
 
