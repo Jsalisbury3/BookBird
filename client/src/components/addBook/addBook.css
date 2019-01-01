@@ -144,28 +144,35 @@ select option {
     font-size: 50px !important;
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1000px) {
     .container {
-        width: 70vw;
-        margin-left: 15vw;
+        width: 60vw;
+        margin-left: 20vw;
     }
 
     .inputs {
+        height: 5vh;
         width: 40vw;
-        margin-left: 10vw;
+        margin-left: 7vw;
     }
 
     .condition {
         width: 40vw;
-        margin-left: 10vw;
+        margin-left: 7vw;
     }
 
     .ISBN {
-        left: 4.75vw;
+        left: 4.3vw;
     }
 
     .last {
-        top: 2vh;
+        height: 10vh;
+        top: 4vh;
+        resize: none;
+    }
+
+    .last::placeholder {
+        font-size: 1.5em;
     }
 
     .checkMark {
@@ -178,5 +185,10 @@ select option {
 
     .photo {
         left: -18.5vw;
+    }
+
+    .POST {
+        height: 5vh;
+        width: 20vw;
     }
 }
