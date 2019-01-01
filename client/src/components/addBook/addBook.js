@@ -95,7 +95,6 @@ class AddBook extends Component {
                 document.getElementById("conditionError").innerHTML = errorMessage;
                 document.getElementById("conditionCheckMArk").classList.remove("visible");
             }
-
         } else {
             if(element !== "input[name=condition]") {
                 document.getElementsByClassName("error")[index].nextElementSibling.classList.add("visible");
@@ -134,7 +133,7 @@ class AddBook extends Component {
                     <div className={"error"}></div>
                     <div className={"checkMark markISBN material-icons"}>check_circle_outline</div>
                     <select name={"condition"} onChange={this.handleInput} id={"mySelect"} className={"condition"}>
-                        <option value="" disabled selected>Select your option</option>
+                        <option value="" disabled selected>*Select your option</option>
                         <option value="New">New</option>
                         <option value="Like New">Like New</option>
                         <option value="Good">Good</option>
@@ -143,10 +142,10 @@ class AddBook extends Component {
                     </select>
                     <div id={"conditionError"} className={"error"}></div>
                     <div id={"conditionCheckMArk"} className={"checkMark markCondition material-icons"}>check_circle_outline</div>
-                    <input name={"title"} placeholder={"Title"} className={"inputs TITLE"} onChange={this.handleInput}/>
+                    <input name={"title"} placeholder={"*Title"} className={"inputs TITLE"} onChange={this.handleInput}/>
                     <div className={"error"}></div>
                     <div className={"checkMark markTitle material-icons"}>check_circle_outline</div>
-                    <input name={"author"} placeholder={"Author"} className={"inputs"} onChange={this.handleInput}/>
+                    <input name={"author"} placeholder={"*Author"} className={"inputs"} onChange={this.handleInput}/>
                     <div className={"error"}></div>
                     <div className={"checkMark markAuthor material-icons"}>check_circle_outline</div>
                     <input name={"edition"} placeholder={"*Edition"} className={"inputs"} onChange={this.handleInput}/>
@@ -158,7 +157,8 @@ class AddBook extends Component {
                     <input name={"comments"} placeholder={"Seller's Comments"} className={"inputs last"}
                            onChange={this.handleInput}/>
                     {/*<div className={"text"}>Upload Book Images</div>*/}
-                    <img className={"dragDrop"} src={DragDrop} alt="drag and drop"/>
+                    {/*<img className={"dragDrop"} src={DragDrop} alt="drag and drop"/>*/}
+                    <div className={"photo material-icons"}>add_a_photo</div>
                     <button className={"POST"}>Post</button>
                 </form>
             </div>
