@@ -1,6 +1,8 @@
 :root {
-    --moveRight: 90.2%;
+    --moveRight: 91%;
     --moveup: 4.5vh;
+    --marktop: 7.8vh;
+    --markbase: 4.2vh;
 }
 
 .tempContainer {
@@ -11,7 +13,7 @@
 .container {
     position: absolute;
     height: 76vh;
-    WIDTH: 100vw;
+    width: 100vw;
     background-color: #C2E5F9;
 }
 
@@ -26,10 +28,10 @@
     position: relative;
     display: inline-block;
     width: 80%;
-    height: 4vh;
+    height: 5vh;
     margin: auto;
     font-size: 1rem;
-    left: 4.5%;
+    left: 10.5%;
     top: 4vh;
 }
 
@@ -40,9 +42,9 @@
 
 .last {
     position: relative;
-    top: 1vh;
-    height: 6vh;
-    font-size: 1rem;
+    top: 4.1vh;
+    height: 10vh;
+    font-size: 1.3rem;
 }
 
 .text {
@@ -71,7 +73,7 @@
     border-radius: 40px;
     background-color: white;
     border: none;
-    top: 13vh;
+    top: 12vh;
     font-size: 1.5em;
 }
 
@@ -79,14 +81,12 @@
     position: relative;
     display: inline-block;
     width: 80%;
-    height: 4vh;
+    height: 5vh;
     margin: auto;
     font-size: 1rem;
-    left: 4.5%;
+    left: 10.5%;
     top: 4vh;
 }
-
-
 
 select {
     background-color: white;
@@ -100,14 +100,14 @@ select option {
 
 .error {
     position: relative;
-    top: 4.5vh;
+    top: 4vh;
     height: 2.6vh;
     color: red;
     text-align: center;
 }
 
 .checkMark {
-    position: relative;
+    position: absolute;
     height: 3vh;
     width: 3vh;
     left: var(--moveRight);
@@ -115,36 +115,78 @@ select option {
     visibility: hidden;
 }
 
-.markISBN, .markEdition, .markAuthor, .markTitle, .markCondition
- {
-    top: -2.4vh;
+.markISBN {
+    top: var(--markbase)
+
+}
+
+.markCondition {
+    top: calc(var(--markbase) + var(--marktop) * 1);
+}
+
+.markTitle {
+    top: calc(var(--markbase) + var(--marktop) * 2);
+}
+
+.markAuthor {
+    top: calc(var(--markbase) + var(--marktop) * 3);
+}
+
+.markEdition {
+    top: calc(var(--markbase) + var(--marktop) * 4);
 }
 
 .markPrice {
-    top: -6.4vh;
+    top: calc(var(--markbase) + var(--marktop) * 5);
 }
 
-.ISBN {
-    left: 10%;
-}
-
-.TITLE {
-    left: 4.7%;
-}
 
 .visible {
     visibility: visible;
 }
 
 .photo {
-    display: block;
-    position: relative;
-    top: 13vh;
-    left: -42vw;
+    display: inline-block;
+    position: absolute;
+    /*top: 12vh;*/
+    /*left: -37.7%;*/
+    left: 49.5%;
+    top: 84%;
+    transform: translate(-50%, -50%);
     font-size: 50px !important;
 }
 
-@media screen and (min-width: 1000px) {
+@media screen and (max-width: 600px) {
+    .container {
+        width: 100vw;
+    }
+
+    .inputs {
+        width: 80%;
+        left: 10%;
+    }
+
+
+}
+
+@media screen and (min-width: 600px) and (max-width: 800px) {
+    .inputs {
+        width: 50%;
+        left: 8%;
+    }
+
+    .condition {
+        width: 50%;
+        left: 8%;
+    }
+
+    .container {
+        width: 60vw;
+        margin-left: 20vw;
+    }
+}
+
+@media screen and (min-width: 600px) {
     .container {
         width: 60vw;
         margin-left: 20vw;
@@ -161,13 +203,9 @@ select option {
         margin-left: 7vw;
     }
 
-    .ISBN {
-        left: 4.3vw;
-    }
-
     .last {
         height: 10vh;
-        top: 4vh;
+        top: 5vh;
         resize: none;
     }
 
@@ -175,19 +213,9 @@ select option {
         font-size: 1.5em;
     }
 
-    .checkMark {
-        left: 80%;
-    }
-
-    .markPrice {
-        top: -5.2vh;
-    }
-
-    .photo {
-        left: -18.5vw;
-    }
-
     .POST {
+        top: 12vh;
+        left: 5.2vw;
         height: 5vh;
         width: 20vw;
     }
