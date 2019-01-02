@@ -47,7 +47,7 @@ webserver.post('/addListing', (request, response) => {
                     data: data,
                 };
             } else {
-                console.log("you dunn fuhhh up bruh");
+                console.log("error", err);
             }
         });
     })
@@ -80,4 +80,27 @@ webserver.post('/filter', (request, response) => {
 
 webserver.listen(7000, () => {
     console.log("listening on port 7000");
+});
+
+
+webserver.get('/BookInfoIndex/:bookId', (request, response) => {
+    console.log("listing running");
+    console.log("HEYYYYYOOO", request);
+    db.connect(() => {
+        console.log("connected to database");
+        const query = "SELECT *, a.email FROM `listing` AS l JOIN `accounts` AS a ON l.accounts_id = a.ID WHERE l.ID = "+request.params.bookId+"";
+        db.query(query, (err, data) => {
+            console.log("query valid");
+            console.log(query);
+            if(!err) {
+                let output = {
+                    success: true,
+                    data: data,
+                };
+                response.send(output);
+            } else {
+                console.log(err);
+            }
+        })
+    })
 });
