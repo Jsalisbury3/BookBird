@@ -69,7 +69,7 @@ class AddBook extends Component {
         ];
 
         if(test.length === test.filter(this.validateInputAndDisplayError).length) {
-            console.log("yayayaayayayyaayy");
+            this.addBook();
         }
     };
 
@@ -110,8 +110,8 @@ class AddBook extends Component {
         return result;
     };
 
-    addBook = async (event) => {
-        event.preventDefault();
+    addBook = async () => {
+        // event.preventDefault();
         console.log("state:", this.state);
         let request = {...this.state};
         axios({
