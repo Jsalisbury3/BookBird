@@ -116,7 +116,7 @@ class AddBook extends Component {
         let request = {...this.state};
         axios({
             method: 'post',
-            url: 'http://localhost:7000/addListing',
+            url: '/api/addListing',
             data: request,
         });
 
