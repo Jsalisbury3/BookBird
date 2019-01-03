@@ -10,7 +10,7 @@ class ResultList extends Component {
     };
 
     getServerData = () => {
-        const searchResults = axios.get("http://www.localhost:7000/listings").then( (response) => {
+        const searchResults = axios.get("/api/listings").then( (response) => {
             this.getRowData(response.data.data);
         });
     };
