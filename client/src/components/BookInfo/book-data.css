@@ -1,11 +1,23 @@
 .BookInfo {
-    left: 100px;
-    width: 189px;
+    left: 40%;
+    width: 60%;
+    height: 44%;
     position: relative;
-    height: 216px;
-    top: 60px;
     font-size: 12px;
     opacity: 1;
+    top: 2%;
+}
+.BookInfo > h2{
+    margin: 2%;
+}
+
+h2:nth-child(1)  {
+
+    height: 23%
+}
+h2:nth-child(2)  {
+    height: 23%;
+
 }
 .Container {
     height: 76vh;
@@ -20,46 +32,51 @@
     width: 100vw;
 }
 .SellerTitle {
-    position: relative;
-    top: 40px;
+    position: absolute;
+    display: inline-block;
     font-size: 19px;
+    top: 56%;
+    margin-left: 3vw;
 }
 .SellersEmail {
-    top: 49px;
-    position: relative;
+    display: inline-block;
+    position: absolute;
+    left: 3%;
+    font-size: 21px;
+    bottom: 48%;
     width: 100vw;
-    font-size: 20px;
-    opacity: 1;
 }
 .userEmail{
     display: inline-block;
-    position: relative;
-    left: 13px;
-    top: 31px;
+    position: absolute;
+    left: 10%;
     font-size: 21px;
+    bottom: 43%;
+    width: 100vw;
 }
 .BookPrice {
-    position: relative;
-    width: 84px;
-    left: 197px;
-    bottom: 93px;
+    position: absolute;
+    width: 32%;
+    left: 62%;
+    bottom: 30%;
     opacity: 1;
 
 }
 .price {
     color: green;
-    font-size: 45px;
-    position: relative;
-    bottom: 29px;
+    font-size: 51px;
+    position: absolute;
+    top: 39%;
 }
 
 .SellersComments {
-    position: relative;
+    position: absolute;
     font-size: 12px;
     background-color: beige;
-    width: 157px;
-    top: 35px;
-    height: 91px;
+    width: 50%;
+    top: 62%;
+    height: 18%;
+    margin-left: 3vw;
 }
 
 .image {
@@ -69,4 +86,104 @@
     width: 29vw;
     bottom: 409px;
     right: -6px;
+}
+.TitleTag {
+    margin: 0;
+}
+
+@media screen and (min-width: 1000px) {
+
+    .BookInfo {
+        left: 40%;
+        width: 60%;
+        height: 44%;
+        position: relative;
+        font-size: 12px;
+        opacity: 1;
+        top: 2%;
+    }
+    .BookInfo > h2{
+        margin: 2%;
+    }
+
+    h2:nth-child(1)  {
+
+        height: 23%
+    }
+    h2:nth-child(2)  {
+        height: 23%;
+
+    }
+    .Container {
+        width: 60vw;
+        margin-left: 20vw;
+
+        background-color: lightblue;
+
+    }
+
+    .main-container{
+        height: 76vh;
+        width: 100vw;
+    }
+    .SellerTitle {
+        position: absolute;
+        display: inline-block;
+        font-size: 19px;
+        top: 56%;
+        margin-left: 3vw;
+    }
+    .SellersEmail {
+        display: inline-block;
+        position: absolute;
+        left: 3%;
+        font-size: 21px;
+        bottom: 48%;
+        width: 100vw;
+    }
+    .userEmail{
+        display: inline-block;
+        position: absolute;
+        left: 10%;
+        font-size: 21px;
+        bottom: 43%;
+        width: 100vw;
+    }
+    .BookPrice {
+        position: absolute;
+        width: 32%;
+        left: 62%;
+        bottom: 30%;
+        opacity: 1;
+
+    }
+    .price {
+        color: green;
+        font-size: 51px;
+        position: absolute;
+        top: 39%;
+    }
+
+    .SellersComments {
+        position: absolute;
+        font-size: 12px;
+        background-color: beige;
+        width: 50%;
+        top: 62%;
+        height: 18%;
+        margin-left: 3vw;
+    }
+
+    .image {
+        margin: 6px auto;
+        min-height: 27vh;
+        position: relative;
+        width: 29vw;
+        bottom: 409px;
+        right: -6px;
+    }
+    .TitleTag {
+        margin: 0;
+    }
+
 }

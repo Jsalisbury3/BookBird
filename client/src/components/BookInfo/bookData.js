@@ -5,11 +5,11 @@ function IndividualBookData(props) {
     return (
         <div className='Container'>
             <div className='BookInfo'>
-                <h1><strong>Title: </strong> {props.title}</h1>
+                <h2 className='TitleTag'><strong>Title: </strong> {props.title}</h2>
                 <h2><strong>Author:</strong> {props.author} </h2>
-                <h3><strong>Edition:</strong> {props.edition}</h3>
-                <h4><strong>ISBN:</strong> {props.ISBN}</h4>
-                <h5><strong>Condition:</strong> {props.condition}</h5>
+                <h2><strong>Edition:</strong> {props.edition}</h2>
+                <h2><strong>ISBN:</strong> {props.ISBN}</h2>
+                <h2><strong>Condition:</strong> {props.condition}</h2>
 
             </div>
             <div>
