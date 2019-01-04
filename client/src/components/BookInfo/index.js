@@ -14,7 +14,7 @@ class Index extends Component{
         console.log("ID: ", this.state.bookId);
         await axios({
             method: "get",
-            url: `http://www.localhost:7000/BookInfoIndex/${this.state.bookId}`,
+            url: `/api/BookInfoIndex/${this.state.bookId}`,
             // data : this.state.bookId
         }).then( (response) => {
             this.handleIncomingBookData(response);

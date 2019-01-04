@@ -23,7 +23,7 @@ class SearchBar extends Component{
 
         axios({
             method: 'post',
-            url: 'http://localhost:7000/filter',
+            url: '/api/filter',
             data: request,
 
         }).then( (response) => { 

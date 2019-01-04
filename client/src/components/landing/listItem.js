@@ -4,10 +4,10 @@ import {Link} from 'react-router-dom';
 
 
 export default props => {
-    const {title, edition, author, book_condition, ID, price} = props.about;
-    console.log(props.about);
+    const {title, edition, author, book_condition, ID, price, book_id} = props.about;
+    console.log("PROPS ABOUTTTTT: ", props.about);
     return (
-        <Link to={`/BookInfoIndex/${ID}`}>
+        <Link to={`/BookInfoIndex/${book_id}`}>
             <div className='listItem'>
                 <div className='itemImageContainer'>
                     <img className='itemImage' src={props.images}/>
