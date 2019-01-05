@@ -1,16 +1,23 @@
 import types from './types';
 import axios from 'axios';
 
-export async function getServerData () {
-    debugger;
-    const searchResults = await axios.get("/api/listings");
-    console.log('SEARCH RESULTS: ', searchResults);
 
-        return {
-            type: types.SEARCH_RESULTS,
-            payload: searchResults.data.data,
-        }
-    ;
+function requestData() {
+    axios.get("/api/listings").then((res)=>{
+        console.log('RES', res);
+        return res.data.data
+    });
+
+}
+export function getServerData () {
+    debugger;
+    
+
+    return {
+        type: types.SEARCH_RESULTS,
+        payload: requestData()
+    }
+
     
         
   
