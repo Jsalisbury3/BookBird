@@ -29,15 +29,12 @@ class ResultList extends Component {
                 <ListItem key={index} about={item}/>
             )
         });
-        // this.setState({
-        //     data: listItems
-        // });
         return listItems;
     };
 
-    componentDidMount = async () => {
+    componentDidMount = () => {
         debugger;
-        const serverData = await this.props.getServerData();
+        const serverData = this.props.getServerData();
         console.log('Server Data: ', serverData)
         this.getRowData(serverData);
     };
@@ -47,8 +44,6 @@ class ResultList extends Component {
         return (
             <div className='search-results-container'>
                 <SearchBar function={this.receiveFilterResults}/>
-                {/* {this.state.data} */}
-                
                 hello
             </div>
         )

@@ -2,24 +2,28 @@ import types from './types';
 import axios from 'axios';
 
 
-function requestData() {
-    axios.get("/api/listings").then((res)=>{
-        console.log('RES', res);
-        return res.data.data
-    });
+// function requestData() {
+//     axios.get("/api/listings").then((res)=>{
+        
+//         res.data.data
+//     });
 
-}
-export function getServerData () {
+// }
+export async function getServerData () {
     debugger;
     
-
+    const searchResults = await axios.get("/api/listings");
+    console.log('SEARCH RESULTS: ', searchResults);
+    debugger;
     return {
         type: types.SEARCH_RESULTS,
-        payload: requestData()
-    }
+        payload: searchResults.data.data,
+    };
 
     
         
   
     
 };
+
+
