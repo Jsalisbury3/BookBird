@@ -9,21 +9,19 @@ import axios from 'axios';
 //     });
 
 // }
-export async function getServerData () {
+export const getServerData = () => {
     debugger;
-    
-    const searchResults = await axios.get("/api/listings");
-    console.log('SEARCH RESULTS: ', searchResults);
-    debugger;
-    return {
-        type: types.SEARCH_RESULTS,
-        payload: searchResults.data.data,
-    };
-
+    axios.get("/api/listings")
+    // .then(response => response.json())
+    .then( searchResults => {
+            dispatch({
+                type: types.SEARCH_RESULTS,
+                payload: response
+            })
+        
+        })
     
         
-  
-    
-};
-
+        
+}
 

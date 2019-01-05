@@ -37,6 +37,7 @@ class ResultList extends Component {
         const serverData = this.props.getServerData();
         console.log('Server Data: ', serverData)
         this.getRowData(serverData);
+
     };
 
     render() {
