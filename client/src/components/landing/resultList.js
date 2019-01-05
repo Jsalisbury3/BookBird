@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux'; // converts component to redux and turns specified parts of state into props
 import { getServerData } from '../../actions/listing.js'; // Importing the actions index and getting specific functions out of the file
+import { bindActionCreators } from 'redux';
 import axios from 'axios';
 import ListItem from './listItem';
 import SearchBar from './search_bar';
@@ -24,6 +25,8 @@ class ResultList extends Component {
 
     getRowData = (results) => {
         debugger;
+        console.log('GET row data: ',results)
+        
         const listItems = results.map((item, index) => {
             return (
                 <ListItem key={index} about={item}/>
@@ -34,18 +37,18 @@ class ResultList extends Component {
 
     componentDidMount = () => {
         debugger;
-        const serverData = this.props.getServerData();
-        console.log('Server Data: ', serverData)
-        this.getRowData(serverData);
+        this.props.getServerData();
+        // this.getRowData(serverData);
 
     };
 
     render() {
         console.log('Results List PROPS: ', this.props);
+        let listings = this.getRowData(this.props.searchResults);
         return (
             <div className='search-results-container'>
                 <SearchBar function={this.receiveFilterResults}/>
-                hello
+                {listings}
             </div>
         )
     }
@@ -59,7 +62,15 @@ function mapStateToProps(state) {
         searchResults: state.listing.searchResults
     }
 }
-export default connect(mapStateToProps, {
-    getServerData: getServerData
-})(ResultList);
 
+function mapDispatchToProps(dispatch) {
+    return {
+        getServerData: bindActionCreators(getServerData, dispatch),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ResultList);
+
+// , {
+//     getServerData: getServerData
+// },

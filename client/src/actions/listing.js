@@ -11,17 +11,20 @@ import axios from 'axios';
 // }
 export const getServerData = () => {
     debugger;
-    axios.get("/api/listings")
-    // .then(response => response.json())
-    .then( searchResults => {
+    return (dispatch) => {
+        axios.get("/api/listings")
+        // .then( (response) => {
+        //     response.json()
+        // })
+        .then( (searchResults) => {
             dispatch({
                 type: types.SEARCH_RESULTS,
-                payload: response
+                payload: searchResults.data.data
             })
         
         })
+
+    }
     
-        
-        
 }
 

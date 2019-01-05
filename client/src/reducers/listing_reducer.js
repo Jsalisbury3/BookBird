@@ -4,7 +4,7 @@ const DEFAULT_STATE = {
     searchResults: []
 }
 
-function listingReducer(state = DEFAULT_STATE, action) {
+export default (state = DEFAULT_STATE, action) => {
     debugger;
     console.log("Listing Reducer State: ", state);
     console.log("Listing Reducer Action: ", action);
@@ -19,4 +19,3 @@ function listingReducer(state = DEFAULT_STATE, action) {
     }
 }
 
-export default listingReducer;
