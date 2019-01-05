@@ -32,11 +32,11 @@ class ResultList extends Component {
         return listItems;
     };
 
-    componentDidMount = async () => {
+    componentDidMount = () => {
         debugger;
-        const serverData = await this.props.getServerData();
-        console.log('Server Data: ', serverData)
-        this.getRowData(serverData);
+        const serverData = this.props.getServerData();
+        console.log('Server Data: ', serverData);
+        // this.getRowData(serverData);
     };
 
     render() {
