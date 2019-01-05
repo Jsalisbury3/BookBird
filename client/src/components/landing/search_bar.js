@@ -4,10 +4,10 @@ import axios from 'axios';
 
 class SearchBar extends Component{
     constructor(props){
-        super(props)
-        const state = {
-            ISBN: ''
-        }
+        super(props);
+        // const state = {
+        //     ISBN: ''
+        // }
     }
 
     handleInputs = async (event)=>{
@@ -21,15 +21,15 @@ class SearchBar extends Component{
 
         const request = {...this.state};
 
-        axios({
-            method: 'post',
-            url: '/api/filter',
-            data: request,
-
-        }).then( (response) => { 
-        
-            this.props.function(response);
-        })
+        // axios({
+        //     method: 'post',
+        //     url: '/api/filter',
+        //     data: request,
+        //
+        // }).then( (response) => {
+        //
+        //     this.props.function(response);
+        // })
 
         
     }

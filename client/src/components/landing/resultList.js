@@ -29,9 +29,6 @@ class ResultList extends Component {
                 <ListItem key={index} about={item}/>
             )
         });
-        // this.setState({
-        //     data: listItems
-        // });
         return listItems;
     };
 
@@ -47,8 +44,6 @@ class ResultList extends Component {
         return (
             <div className='search-results-container'>
                 <SearchBar function={this.receiveFilterResults}/>
-                {/* {this.state.data} */}
-                
                 hello
             </div>
         )

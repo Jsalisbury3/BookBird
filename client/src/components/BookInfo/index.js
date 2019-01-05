@@ -9,17 +9,17 @@ class Index extends Component{
         data: ''
     };
 
-    getDataForBookCLicked = async () => {
-        console.log("Porps: ", this.props);
-        console.log("ID: ", this.state.bookId);
-        await axios({
-            method: "get",
-            url: `/api/BookInfoIndex/${this.state.bookId}`,
-            // data : this.state.bookId
-        }).then( (response) => {
-            this.handleIncomingBookData(response);
-        })
-    };
+    // getDataForBookCLicked = async () => {
+    //     console.log("Porps: ", this.props);
+    //     console.log("ID: ", this.state.bookId);
+    //     await axios({
+    //         method: "get",
+    //         url: `/api/BookInfoIndex/${this.state.bookId}`,
+    //         // data : this.state.bookId
+    //     }).then( (response) => {
+    //         this.handleIncomingBookData(response);
+    //     })
+    // };
 
     handleIncomingBookData = async (response) => {
         console.log("response: ", response);
