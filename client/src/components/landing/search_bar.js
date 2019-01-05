@@ -66,8 +66,8 @@ class SearchBar extends Component{
         console.log('handle submit', this.state)
     }
     render(){
-        console.log('Props: ', this.props);
-        console.log('State: ', this.state)
+        // console.log('Props: ', this.props);
+        // console.log('State: ', this.state)
         return(
             <div className="search-bar-container">
                 <form className="searchForm" onSubmit={this.handleSubmit}>
