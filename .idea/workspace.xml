@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="95440fba-7bd2-4cb3-b12c-ec482b3d4c06" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/addBook/addBook.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/addBook/addBook.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/addBook/addBook.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/addBook/addBook.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/addBook/modal.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/addBook/modal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -153,7 +147,7 @@
     <servers />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="777" />
+    <option name="x" value="334" />
     <option name="y" value="23" />
     <option name="width" value="1280" />
     <option name="height" value="720" />
@@ -245,15 +239,15 @@
       <workItem from="1546667239393" duration="98000" />
       <workItem from="1546667358868" duration="1600000" />
       <workItem from="1546724874245" duration="896000" />
-      <workItem from="1546726055540" duration="14203000" />
+      <workItem from="1546726055540" duration="14792000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16849000" />
+    <option name="totallyTimeSpent" value="17438000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="777" y="23" width="1280" height="720" extended-state="0" />
+    <frame x="334" y="23" width="1280" height="720" extended-state="0" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.3069467" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
