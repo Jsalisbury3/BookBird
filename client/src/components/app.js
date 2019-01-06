@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import axios from 'axios';
 import LandingPage from './landing';
 import './landing/package';
 import AddBook from './addBook';
@@ -12,10 +13,13 @@ import Nav from './universal/nav';
 import Header from './universal/header';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import Modal from './addBook/modal';
+import 'materialize-css/dist/css/materialize.min.css';
+import {BASE_URL_GOOGLE_BOOKS, API_KEY} from '../../../config/api'
 
 
 
 class App extends Component {
+
     render() {
         return (
             <Router>

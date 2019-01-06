@@ -18,6 +18,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.4",
+    "materialize-css": "^1.0.0",
     "mysql": "^2.16.0",
     "nodemon": "^1.18.9",
     "npm-run-all": "^4.1.5",
