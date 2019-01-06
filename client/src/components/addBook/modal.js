@@ -21,6 +21,7 @@ class Modal extends Component {
         return (
 
             <div className="modalPageContainer">
+
                  <div className="modalContainer">
                     <div className="modalHeader">
                         <div className="successImage">
@@ -54,7 +55,11 @@ class Modal extends Component {
                      </div>
                   </div>
             </div>
+        </div>
+    
         )
+        
+        
     }
 
 }

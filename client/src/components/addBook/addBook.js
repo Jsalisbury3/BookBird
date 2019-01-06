@@ -120,18 +120,16 @@ class AddBook extends Component {
         return result;
     };
 
-    addBook = async () => {
-        // event.preventDefault();
-        console.log("state:", this.state);
-        let request = {...this.state};
-        axios({
-            method: 'post',
-            url: '/api/addListing',
-            data: request,
-        });
-
-        // document.getElementsByClassName('modalPageContainer')[0].style.display = "block";
-    };
+    // addBook = async () => {
+    //     // event.preventDefault();
+    //     console.log("state:", this.state);
+    //     let request = {...this.state};
+    //     axios({
+    //         method: 'post',
+    //         url: '/api/addListing',
+    //         data: request,
+    //     });
+    // };
 
     render() {
         return (
