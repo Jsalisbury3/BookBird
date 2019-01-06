@@ -1,7 +1,14 @@
 import types from '../actions/types';
 
 const DEFAULT_STATE = {
-    book_id_info: []
+    title: '',
+    ISBN: '',
+    edition: '',
+    author: '',
+    condition: '',
+    sellersComment: '',
+    price: '',
+    sellersEmail: '',
 };
 
 function bookIdReducer(state = DEFAULT_STATE, action) {
@@ -11,7 +18,7 @@ function bookIdReducer(state = DEFAULT_STATE, action) {
         case types.BOOK_INFO_INDEX:
             return {
                 ...state,
-                book_id_info: action.payload,
+                ...action.payload[0],
             }
         default:
             return state;

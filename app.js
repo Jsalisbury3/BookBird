@@ -110,7 +110,7 @@ webserver.get('/api/BookInfoIndex/:bookId', (request, response) => {
     db.connect(() => {
         console.log("connected to database");
         console.log("LLOOOOKIE HERE: ", request.params.bookId);
-        const query = "SELECT l.ID, l.accounts_id, l.book_condition, l.price, l.comments, l.book_id, b.ID, b.title, b.author, b.edition, b.ISBN, a.email, a.ID FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id";
+        const query = "SELECT l.ID, l.accounts_id, l.book_condition, l.price, l.comments, l.book_id, b.ID, b.title, b.author, b.edition, b.ISBN, a.email, a.ID FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id WHERE l.`id` = "+request.params.bookId+"";
         db.query(query, (err, data) => {
             console.log("query valid");
             console.log(query);

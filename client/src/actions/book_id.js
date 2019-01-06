@@ -2,6 +2,7 @@ import types from './types';
 import axios from "axios/index";
 
 export const getDataForBookClicked = (bookId) => {
+    console.log('BOOK ID: ', bookId)
     return (dispatch) => {
         axios({
             method: "get",
@@ -11,7 +12,7 @@ export const getDataForBookClicked = (bookId) => {
             console.log("BOOKINFO YO: ", bookInfo);
             dispatch({
                 type: types.BOOK_INFO_INDEX,
-                payload: bookInfo,
+                payload: bookInfo.data.data,
             })
         });
     }

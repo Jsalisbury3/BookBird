@@ -24,30 +24,35 @@ class Index extends Component {
     //     })
     // };
 
-    handleIncomingBookData = async (response) => {
-        console.log("response: ", response);
-        await this.setState({
-            data : response.data.data[0]
-        })
-    };
+    // handleIncomingBookData = async (response) => {
+    //     console.log("response: ", response);
+    //     await this.setState({
+    //         data : response.data.data[0]
+    //     })
+    // };
 
     componentDidMount = () => {
         this.props.getDataForBookClicked(this.state.bookId);
+
+        // this.setState({
+        //     ...this.state,
+        //     data: bookInfo
+        // })
     };
 
     render() {
         // console.log("yoyoyoyoyooyo", this.state.data);
-        console.log(this.props);
+        console.log("Book INFO index: ", this.props);
         return (
             <div className='main-container'>
-                <BookData title={this.state.data.title}
-                          ISBN={this.state.data.ISBN}
-                          edition ={this.state.data.edition}
-                          author={this.state.data.author}
-                          condition={this.state.data.book_condition}
-                          sellersComment={this.state.data.comments}
-                          price={this.state.data.price}
-                          sellersEmail={this.state.data.email}
+                <BookData title={this.props.bookInfo.title}
+                          ISBN={this.props.bookInfo.ISBN}
+                          edition ={this.props.bookInfo.edition}
+                          author={this.props.bookInfo.author}
+                          condition={this.props.bookInfo.book_condition}
+                          sellersComment={this.props.bookInfo.comments}
+                          price={this.props.bookInfo.price}
+                          sellersEmail={this.props.bookInfo.email}
                 />
             </div>
         )
@@ -57,7 +62,7 @@ class Index extends Component {
 function mapStateToProps(state) {
     console.log('book index state: ', state);
     return {
-        bookInfo: state.bookIdReducer.book_id_index
+        bookInfo: state.bookIdReducer
     }
 }
 
