@@ -8,9 +8,10 @@ export const getDataForBookClicked = (bookId) => {
             url: `/api/BookInfoIndex/${bookId}`,
             // data : this.state.bookId
         }).then( (bookInfo) => {
+            console.log("BOOKINFO YO: ", bookInfo);
             dispatch({
                 type: types.BOOK_INFO_INDEX,
-                payload: bookInfo.data,
+                payload: bookInfo,
             })
         });
     }

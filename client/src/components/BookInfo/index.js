@@ -36,7 +36,8 @@ class Index extends Component {
     };
 
     render() {
-        console.log("yoyoyoyoyooyo", this.state.data);
+        // console.log("yoyoyoyoyooyo", this.state.data);
+        console.log(this.props);
         return (
             <div className='main-container'>
                 <BookData title={this.state.data.title}
