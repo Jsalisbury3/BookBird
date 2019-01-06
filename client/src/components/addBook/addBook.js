@@ -4,6 +4,8 @@ import './addBook.css';
 import axios from 'axios';
 import 'materialize-css';
 import 'material-icons';
+import 'materialize-css/dist/css/materialize.min.css'
+import M from 'materialize-css/dist/js/materialize.min.js'
 
 class AddBook extends Component {
     constructor(props) {
@@ -20,6 +22,14 @@ class AddBook extends Component {
         }
     }
 
+    componentDidMount() {
+        document.getElementsByClassName('modalIsbn')[0].style.display = "block";
+
+    }
+
+    closeModalIsbn() {
+        document.getElementsByClassName('modalIsbn')[0].style.display = "none";
+    }
 
     handleInput = (event) => {
         this.setState({
@@ -126,6 +136,18 @@ class AddBook extends Component {
     render() {
         return (
             <div className={"container"}>
+                <div id="modal1" className="modalIsbn">
+                    <div className="modal-content">
+                        <form className='form-isbn'>
+                            <input name={"ISBN"} placeholder={" Enter ISBN"}/>
+                        </form>
+                    <div className="modal-footer">
+                        <div className='searchButtonContainer'>
+                            <button className=' btn btn-large' onClick={this.closeModalIsbn}>Search</button>
+                       </div>
+                    </div>
+                  </div>
+                </div>
                 <form onSubmit={this.validateInputsFields}>
                     <input name={"ISBN"} placeholder={"*ISBN"} className={"inputs"} onChange={this.handleInput}/>
                     <div className={"error"}></div>
@@ -157,6 +179,7 @@ class AddBook extends Component {
                     <button className={"POST"}>Post</button>
                 </form>
             </div>
+
         )
     }
 }
