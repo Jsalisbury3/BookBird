@@ -25,7 +25,6 @@ class ResultList extends Component {
     };
 
     getRowData = (results) => {
-        debugger;
         console.log('GET row data: ',results)
         
         const listItems = results.map((item, index) => {
@@ -37,7 +36,6 @@ class ResultList extends Component {
     };
 
     componentDidMount = () => {
-        debugger;
         console.log('PROPS: ', this.props);
         this.props.getServerData();
         // this.getRowData(serverData);
@@ -59,7 +57,6 @@ class ResultList extends Component {
 // Takes relevant pieces of state and puts it in the component as props
 function mapStateToProps(state) {
     console.log('Redux STATE: ', state);
-    debugger;
     return {
         searchResults: state.listing.searchResults,
     }

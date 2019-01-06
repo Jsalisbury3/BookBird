@@ -25,21 +25,10 @@ class SearchBar extends Component{
         const request = {...this.state};
 
         this.props.searchFilter(request);
-        // axios({
-        //     method: 'post',
-        //     url: '/api/filter',
-        //     data: request,
-        //
-        // }).then( (response) => {
-        //
-        //     this.props.function(response);
-        // })
-
         
     }
 
     getRowData = (results) => {
-        debugger;
         console.log('GET row data: ',results)
         
         const listItems = results.map((item, index) => {

@@ -2,7 +2,6 @@ import types from './types';
 import axios from 'axios';
 
 export const getServerData = () => {
-    debugger;
     return (dispatch) => {
         axios.get("/api/listings")
         .then( (searchResults) => {

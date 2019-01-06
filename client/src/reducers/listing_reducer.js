@@ -5,7 +5,6 @@ const DEFAULT_STATE = {
 }
 
 export default (state = DEFAULT_STATE, action) => {
-    debugger;
     console.log("Listing Reducer State: ", state);
     console.log("Listing Reducer Action: ", action);
     switch(action.type) {

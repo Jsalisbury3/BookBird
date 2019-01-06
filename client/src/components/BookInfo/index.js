@@ -1,9 +1,12 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { getDataForBookClicked } from '../../actions/book_id';
 import BookData from './bookData'
 import axios from 'axios'
 
 
-class Index extends Component{
+class Index extends Component {
     state = {
         bookId : this.props.match.params.bookId,
         data: ''
@@ -29,7 +32,7 @@ class Index extends Component{
     };
 
     componentDidMount = () => {
-        this.getDataForBookCLicked();
+        this.props.getDataForBookClicked(this.state.bookId);
     };
 
     render() {
@@ -48,7 +51,20 @@ class Index extends Component{
             </div>
         )
         }
-    }
+}
 
-export default Index;
+function mapStateToProps(state) {
+    console.log('book index state: ', state);
+    return {
+        bookInfo: state.bookIdReducer.book_id_index
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        getDataForBookClicked: bindActionCreators(getDataForBookClicked,dispatch)
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Index);
 

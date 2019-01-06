@@ -5,7 +5,6 @@ const DEFAULT_STATE = {
 };
 
 function bookIdReducer(state = DEFAULT_STATE, action) {
-    debugger;
     console.log("book_Id Reducer State: ", state);
     console.log("book_Id Reducer Action: ", action);
     switch(action.type) {
