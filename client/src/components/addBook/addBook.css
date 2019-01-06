@@ -1,3 +1,31 @@
+.modalIsbn {
+    display: block;
+    position: absolute;
+    z-index: 1;
+    width: 80%;
+    height: 50%;
+    margin-left: 9%;
+    margin-top: 30%;
+    background-color: grey;
+}
+.searchButtonContainer{
+    padding-left: 35%;
+    margin-top: 0%;
+    position: relative;
+    right: 15%;
+}
+.form-isbn {
+    margin-top: 33%;
+    position: relative;
+    height: 100%
+
+}
+.modal-content {
+    eight: 100%;
+    width: 100%;
+}
+
+
 :root {
     --moveRight: 91%;
     --moveup: 4.5vh;
