@@ -1,13 +1,16 @@
 import React, {Component} from 'react';
 import searchIcon from '../universal/images/search_icon.png'
-import axios from 'axios';
+import { searchFilter } from '../../actions/search';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import ListItem from './listItem';
 
 class SearchBar extends Component{
     constructor(props){
         super(props);
-        // const state = {
-        //     ISBN: ''
-        // }
+        const state = {
+            ISBN: ''
+        }
     }
 
     handleInputs = async (event)=>{
@@ -21,6 +24,7 @@ class SearchBar extends Component{
 
         const request = {...this.state};
 
+        this.props.searchFilter(request);
         // axios({
         //     method: 'post',
         //     url: '/api/filter',
@@ -34,8 +38,20 @@ class SearchBar extends Component{
         
     }
 
-    componentDidUpdate = () => {
+    getRowData = (results) => {
+        debugger;
+        console.log('GET row data: ',results)
+        
+        const listItems = results.map((item, index) => {
+            return (
+                <ListItem key={index} about={item}/>
+            )
+        });
+        return listItems;
+    };
 
+    componentDidUpdate = () => {
+        
     }
     // receiveFilterResults = () => {
     //     const searchResults = axios.get('http://localhost:7000/filter').then( (response)=>{
@@ -68,6 +84,8 @@ class SearchBar extends Component{
     render(){
         // console.log('Props: ', this.props);
         // console.log('State: ', this.state)
+
+        let displayFiltered = this.getRowData(this.props.filterResults);
         return(
             <div className="search-bar-container">
                 <form className="searchForm" onSubmit={this.handleSubmit}>
@@ -79,4 +97,18 @@ class SearchBar extends Component{
     }   
 }
 
-export default SearchBar
+function mapStateToProps(state) {
+
+    console.log('Search Bar State: ', state);
+    return {
+        filterResults: state.searchBarReducer.filterResults
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        searchFilter: bindActionCreators(searchFilter, dispatch)
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);

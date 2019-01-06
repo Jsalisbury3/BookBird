@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux'; // converts component to redux and turns specified parts of state into props
-import { getServerData } from '../../actions/listing.js'; // Importing the actions index and getting specific functions out of the file
+import { getServerData } from '../../actions/listing'; // Importing the actions index and getting specific functions out of the file
+import { searchFilter } from '../../actions/search';
 import { bindActionCreators } from 'redux';
 import axios from 'axios';
 import ListItem from './listItem';
@@ -37,6 +38,7 @@ class ResultList extends Component {
 
     componentDidMount = () => {
         debugger;
+        console.log('PROPS: ', this.props);
         this.props.getServerData();
         // this.getRowData(serverData);
 
@@ -59,7 +61,7 @@ function mapStateToProps(state) {
     console.log('Redux STATE: ', state);
     debugger;
     return {
-        searchResults: state.listing.searchResults
+        searchResults: state.listing.searchResults,
     }
 }
 
