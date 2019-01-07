@@ -135,7 +135,7 @@ class AddBook extends Component {
 
     render() {
         return (
-            <div className={"container"}>
+            <div className={"containerAddBook"}>
                 <div id="modal1" className="modalIsbn">
                     <div className="modal-content">
                         <form className='form-isbn'>
@@ -148,7 +148,7 @@ class AddBook extends Component {
                     </div>
                   </div>
                 </div>
-                <form onSubmit={this.validateInputsFields}>
+                <form className={'form-container'} onSubmit={this.validateInputsFields}>
                     <input name={"ISBN"} placeholder={"*ISBN"} className={"inputs"} onChange={this.handleInput}/>
                     <div className={"error"}></div>
                     <div className={"checkMark markISBN material-icons"}>check_circle_outline</div>
@@ -161,7 +161,7 @@ class AddBook extends Component {
                         <option value="Thrashed">Thrashed</option>
                     </select>
                     <div id={"conditionError"} className={"error"}></div>
-                    <div id={"conditionCheckMArk"} className={"checkMark markCondition material-icons"}>check_circle_outline</div>
+                    <div id={"conditionCheckMArk input-field "} className={"checkMark markCondition material-icons"}>check_circle_outline</div>
                     <input name={"title"} placeholder={"*Title"} className={"inputs"} onChange={this.handleInput}/>
                     <div className={"error"}></div>
                     <div className={"checkMark markTitle material-icons"}>check_circle_outline</div>

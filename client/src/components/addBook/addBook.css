@@ -25,24 +25,30 @@
     width: 100%;
 }
 
-
-:root {
-    --moveRight: 91%;
-    --moveup: 4.5vh;
-    --marktop: 7.8vh;
-    --markbase: 4.2vh;
+.inputs {
+    background-color: yellow;
 }
+/*:root {*/
+    /*--moveRight: 91%;*/
+    /*--moveup: 4.5vh;*/
+    /*--marktop: 7.8vh;*/
+    /*--markbase: 4.2vh;*/
+/*}*/
 
 .tempContainer {
     height: 100%;
     width: 100%;
 }
+.form-container {
+    width: 87%;
+}
 
-.container {
+.containerAddBook {
     position: absolute;
     height: 76vh;
     width: 100vw;
     background-color: #C2E5F9;
+    overflow: scroll;
 }
 
 .header {
@@ -57,7 +63,7 @@
     display: inline-block;
     width: 80%;
     height: 5vh;
-    margin: auto;
+    /*margin: auto;*/
     font-size: 1rem;
     left: 10.5%;
     top: 4vh;
