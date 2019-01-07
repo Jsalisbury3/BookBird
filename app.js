@@ -184,6 +184,24 @@ webserver.get('/api/UserProfile', (request, response) => {
     })
 });
 
+webserver.delete("/api/UserProfile",(request,response)=>{
+    console.log("R.Body:",request.body);
+    const {ID} = request.body;
+    db.connect(()=>{
+        const query = "DELETE FROM `listing` WHERE ID = "+ID;
+        db.query(query,(err)=>{
+            console.log("query valid deletePost");
+            if(!err){
+                const output = {
+                    success: true,              
+                };
+                response.send(output);
+            }else{
+                console.log("Delete error:",err);
+            }
+        })
+    })
+});
 
 
 
