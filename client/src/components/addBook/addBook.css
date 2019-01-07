@@ -1,12 +1,15 @@
 .modalIsbn {
-    display: block;
+    /* display: block; */
     position: absolute;
     z-index: 1;
-    width: 80%;
-    height: 50%;
-    margin-left: 9%;
-    margin-top: 30%;
+    width: 87vw;
+    height: 74vh;
+    /* margin-left: 9%;
+    margin-top: 30%; */
     background-color: grey;
+    left:22px;
+    top:6px
+
 }
 .searchButtonContainer{
     padding-left: 35%;
