@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import DragDrop from './images/x3KMH.jpg'
+import SingleBookPhoto from './singleBookPhoto';
 import './addBook.css';
+import Modal from './modal';
 import axios from 'axios';
 import 'materialize-css';
 import 'material-icons';
@@ -24,19 +26,24 @@ class AddBook extends Component {
             comments: '',
             subtitle:'',
             bookImage: undefined,
-            books:[]
+            books:[],
+            photoArray:[],
+            loaded:0,
+            imgTagArray:[],
         }
     }
 
-    componentDidMount() {
+    componentDidMount = async() => {
         document.getElementsByClassName('modalIsbn')[0].style.display = "block";
+        await this.addPhotoToMultiPhotoContainer();
 
-    }
+
+    };
 
     closeModalIsbn() {
         document.getElementsByClassName('modalIsbn')[0].style.display = "none";
     }
-
+   
     handleInput = (event) => {
         this.setState({
             [event.target.name]: event.target.value,
@@ -127,7 +134,50 @@ class AddBook extends Component {
     // };
 
     addBook = async (event) => {
-        event.preventDefault();
+        document.getElementsByClassName('modalPageContainer')[0].style.display = "block";
+        return result;
+    };
+    
+    fileSelectedHandler = async event => {
+        console.log(event.target.files[0])
+        const newImage = event.target.files[0];
+        await this.setState({
+            photoArray: [newImage, ...this.state.photoArray]
+        })
+            console.log(this.state.photoArray);
+            this.addPhotoToMultiPhotoContainer();
+    }
+
+    photoUploadHandler = async()=>{
+        
+    }
+    
+    addPhotoToMultiPhotoContainer = () => {
+        const imgTagArray = this.state.photoArray.map((item, index) => {
+            return (
+                <SingleBookPhoto delete={this.deletePhotoFromStateAndContainer(index)} key={index} index={index} about={item}/>
+            )
+        });
+        this.setState({
+            imgTagArray
+        });
+        console.log(this.state.imgTagArray);
+        return imgTagArray;
+    };
+    deletePhotoFromStateAndContainer = (index) => () => {
+        const newPhotoArray=[...this.state.photoArray];
+        const newImgTagArray=[...this.state.imgTagArray];
+        const nPASplice=newPhotoArray.splice(index,1);
+        const nITASplice=newImgTagArray.splice(index,1);
+        console.log("11",newPhotoArray, newImgTagArray);
+        this.setState({
+            photoArray: newPhotoArray,
+            imgTagArray: newImgTagArray
+        });
+        
+    }
+    addBook = async () => {
+        // event.preventDefault();
         console.log("state:", this.state);
         let request = {...this.state};
         axios({
@@ -136,14 +186,16 @@ class AddBook extends Component {
             headers: {token: localStorage.getItem('Token')},
             data: request,
         });
+        // document.getElementsByClassName('modalPageContainer')[0].style.display = "block";
     };
     getBooks=(event)=>{
         event.preventDefault();
         axios.request({
             method: 'get',
-            url: BASE_URL_GOOGLE_BOOKS +"isbn:"+this.state.ISBN + API_KEY,
+            url: BASE_URL_GOOGLE_BOOKS +this.state.ISBN + API_KEY,
             
         }).then((response)=>{
+            console.log('URL: ', BASE_URL_GOOGLE_BOOKS +"isbn:"+this.state.ISBN + API_KEY)
             this.setState({
                 books: response.data.items,
                 author: response.data.items[0].volumeInfo.authors[0],
@@ -181,6 +233,7 @@ class AddBook extends Component {
                             <div className="modal-footer">
                                 <div className='searchButtonContainer'>
                                     <button onClick={this.getBooks} type="button" className=' btn btn-large'>Search</button>
+                                    <button onClick={this.closeModalIsbn} type="button" className=' btn btn-large'>Close</button>
                                 </div>
                             <p>ISBN: {this.state.ISBN}</p>
                             <p>Author: {this.state.author}</p>
@@ -194,10 +247,11 @@ class AddBook extends Component {
                         </form>
                     </div>
                 </div>
-                <form className={'form-container'} onSubmit={this.addBook}>
+                <form className={'form-container'} onSubmit={this.validateInputsFields} encType="multipart/form-data" >
                     <input name={"ISBN"} placeholder={"*ISBN"} className={"inputs"} onChange={this.handleInput}/>
+                    {/* <input name={"ISBN"} placeholder={"*ISBN"} className={"inputs"} onChange={this.handleInput}/>
                     <div className={"error"}></div>
-                    <div className={"checkMark markISBN material-icons"}>check_circle_outline</div>
+                    <div className={"checkMark markISBN material-icons"}>check_circle_outline</div> */}
                     <select name={"condition"} onChange={this.handleInput} id={"mySelect"} className={"condition"}>
                         <option value="" disabled selected>*Select Condition:</option>
                         <option value="New">New</option>
@@ -209,6 +263,7 @@ class AddBook extends Component {
                     <div id={"conditionError"} className={"error"}></div>
                     <div id={"conditionCheckMArk input-field "} className={"checkMark markCondition material-icons"}>check_circle_outline</div>
                     <input name={"title"} placeholder={"*Title"} className={"inputs"} onChange={this.handleInput}/>
+
                     <div className={"error"}></div>
                     <div className={"checkMark markTitle material-icons"}>check_circle_outline</div>
                     <input name={"author"} placeholder={"*Author"} className={"inputs"} onChange={this.handleInput}/>
@@ -221,13 +276,20 @@ class AddBook extends Component {
                     <div className={"error"}></div>
                     <div className={"checkMark markPrice material-icons"}>check_circle_outline</div>
                     <textarea name={"comments"} placeholder={"Seller's Comments"} className={"inputs last"} onChange={this.handleInput}/>
-                    <div className={"photo material-icons"}>add_a_photo</div>
+                    <div className={"photo material-icons"}>add_a_photo
+                        <input id="photo" type="file" name='photo' capture="camera" accept="image/*" onChange={this.fileSelectedHandler}/>
+                    </div>
+                    <div className="multi-photo-container">
+                    {/* <p>Tap to delete</p> */}
+                        {this.state.imgTagArray}
+                    </div>
                     <button className={"POST"}>Post</button>
                 </form>
             </div>
-
         )
+                
     }
 }
 
-export default AddBook
+
+export default AddBook;

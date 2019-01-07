@@ -24,7 +24,7 @@
 
 }
 .modal-content {
-    eight: 100%;
+    height: 100%;
     width: 100%;
 }
 
@@ -100,7 +100,22 @@
     margin-top: 1%;
     top: 4vh;
 }
-
+.multi-photo-container{
+    display:flex;
+    flex-wrap:wrap;
+    height:100px;
+    width:86vw;
+    justify-content: space-around;
+}
+.single-photo-container{
+    display:inline-flex;
+    height:96px;
+    width:23%;
+}
+.single-photo-container>img{
+    height:100%;
+    width:100%;
+}
 .POST {
     position: relative;
     height: 6.7vh;
@@ -249,7 +264,7 @@ select option {
     .last::placeholder {
         font-size: 1.5em;
     }
-
+    
     .POST {
         top: 12vh;
         left: 5.2vw;
