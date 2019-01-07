@@ -7,10 +7,7 @@ import { Link } from 'react-router-dom';
 
 
 class Modal extends Component {
-    // componentDidMount() {
-    //     document.getElementsByClassName('modalIsbn')[0].style.display = "none";
-    //
-    // }
+
 
     closeModal = () => {
         console.log('close modal');
