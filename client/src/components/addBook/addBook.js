@@ -19,6 +19,7 @@ class AddBook extends Component {
             edition: '',
             price: '',
             comments: '',
+            books:[]
         }
     }
 
@@ -120,6 +121,23 @@ class AddBook extends Component {
         return result;
     };
 
+    getBooks(){
+        axios.request({
+            method: 'get',
+            url: BASE_URL_GOOGLE_BOOKS + this.state.text + API_KEY
+        }).then((response)=>{
+            this.setState({books: response.data.items},()=>{
+                console.log(this.state)
+            })
+        }).catch((error)=>{
+            console.log('Error occured', error);
+        })
+    }
+
+    handleIsbnChange=()=>{
+        this.setState({ISBN:ISBN}, this.getBooks());
+    }
+
     // addBook = async () => {
     //     // event.preventDefault();
     //     console.log("state:", this.state);
@@ -136,16 +154,20 @@ class AddBook extends Component {
             <div className={"container"}>
                 <div id="modal1" className="modalIsbn">
                     <div className="modal-content">
-                        <form className='form-isbn'>
-                            <input name={"ISBN"} placeholder={" Enter ISBN"}/>
+                        <form onSubmit={this.getBooks}className='form-isbn'>
+                            <input type="text" onChange={this.handleIsbnChange.bind(this)} name={"ISBN"} placeholder={" Enter ISBN"} value={this.state.ISBN}/>
+                            <div className="modal-footer">
+                                <div className='searchButtonContainer'>
+                                    <button type="button" className=' btn btn-large'>Search</button>
+                                </div>
+                            
+                            </div>
                         </form>
-                    <div className="modal-footer">
-                        <div className='searchButtonContainer'>
-                            <button className=' btn btn-large' onClick={this.closeModalIsbn}>Search</button>
-                       </div>
                     </div>
-                  </div>
                 </div>
+
+
+
                 <form onSubmit={this.validateInputsFields}>
                     <input name={"ISBN"} placeholder={"*ISBN"} className={"inputs"} onChange={this.handleInput}/>
                     <div className={"error"}></div>
