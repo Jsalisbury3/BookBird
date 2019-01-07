@@ -1,6 +1,6 @@
 const amazon_creds = {
-    accessKeyId: 'AKIAIQ6RR5PXOFU5EXUA',
-    secretAccessKey: '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'
+    accessKeyId = 'AKIAIGXJT2IM67S5KXDQ',
+    secretAccessKey: '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'
 }
 
-module.exports = amazon_creds;
+module.exports = amazon.creds;
