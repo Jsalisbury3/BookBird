@@ -126,7 +126,8 @@ class AddBook extends Component {
         return result;
     };
 
-    getBooks=()=>{
+    getBooks=(event)=>{
+        event.preventDefault();
         axios.request({
             method: 'get',
             url: BASE_URL_GOOGLE_BOOKS +"isbn:"+this.state.ISBN + API_KEY,
@@ -155,11 +156,7 @@ class AddBook extends Component {
 
     handleIsbnChange(event){
         this.setState({ISBN: event.target.value});
-        // this.props.onChange(this.state.ISBN)
-        // this.setState({ISBN:ISBN}, this.getBooks());
     }
-
-    
 
     render() {
         return (
@@ -180,7 +177,8 @@ class AddBook extends Component {
                             <p>Title: {this.state.title}</p>
                             <p>SubTitle: {this.state.subtitle}</p>
                             <p>Publisher: {this.state.publisher}</p>
-                            <p>BookImage: {this.state.bookImage}</p>
+                            {/* <p>BookImage: {this.state.bookImage}</p> */}
+                            <img src={this.state.bookImage} alt=""/>
 
                             </div>
                         </form>
