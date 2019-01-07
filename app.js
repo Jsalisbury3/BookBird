@@ -142,12 +142,12 @@ webserver.post('/api/SignIn', (request, response) => {
             console.log("THE QUERYYYYYYY: ", query);
             console.log("SIGN IN ID FROM QUERY: ", data);
             if(!err) {
-                // const userToken = jwt.encode(data, secret);
+                const userToken = jwt.encode(data, 'HS256');
                 let output = {
                     success: true,
-                    data: data,
+                    data: userToken,
                 };
-                console.log("THIS IS THE TOKEN I MADEEEEE: ", data);
+                console.log("THIS IS THE TOKEN I MADEEEEE: ", userToken);
                 response.send(output);
             } else {
                 console.log("Error sign-in", err);

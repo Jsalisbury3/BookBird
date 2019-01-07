@@ -57,12 +57,16 @@ class Signin extends Component{
         console.log("change event value", event.target.value);
         this.setState({
             [event.target.name]: event.target.value,
-        })
+        });
     };
 
     storeToken = (token) => {
-       console.log("TOKEN: ", token);
-    };
+        console.log("TOKEN: ", token);
+        const Token = token.data.data;
+        if (typeof(Storage) !== "undefined") {
+            localStorage.setItem("Token", Token);
+        }
+    }
 
     getIdForToken = (event) => {
         event.preventDefault();
@@ -71,7 +75,6 @@ class Signin extends Component{
             method: 'post',
             url: '/api/SignIn',
             data: request,
-            header: 'suckmywang'
         }).then((response) => {
             this.storeToken(response);
         });
