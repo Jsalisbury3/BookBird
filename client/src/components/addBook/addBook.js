@@ -6,6 +6,9 @@ import 'materialize-css';
 import 'material-icons';
 import 'materialize-css/dist/css/materialize.min.css'
 import M from 'materialize-css/dist/js/materialize.min.js'
+import {BASE_URL_GOOGLE_BOOKS, API_KEY} from '../../../../config/api';
+import SearchInput from './isbn_search'
+
 
 class AddBook extends Component {
     constructor(props) {
@@ -19,6 +22,9 @@ class AddBook extends Component {
             edition: '',
             price: '',
             comments: '',
+            subtitle:'',
+            bookImage: undefined,
+            books:[]
         }
     }
 
@@ -131,21 +137,62 @@ class AddBook extends Component {
             data: request,
         });
     };
+    getBooks=(event)=>{
+        event.preventDefault();
+        axios.request({
+            method: 'get',
+            url: BASE_URL_GOOGLE_BOOKS +"isbn:"+this.state.ISBN + API_KEY,
+            
+        }).then((response)=>{
+            this.setState({
+                books: response.data.items,
+                author: response.data.items[0].volumeInfo.authors[0],
+                title: response.data.items[0].volumeInfo.title,
+                subtitle: response.data.items[0].volumeInfo.subtitle,
+                publisher: response.data.items[0].volumeInfo.publisher,
+                bookImage: response.data.items[0].volumeInfo.imageLinks.smallThumbnail
+            },()=>{
+                console.log(this.state.books)
+                console.log(`Author: ${this.state.author}`)
+                console.log(`Title: ${this.state.title}`)
+                console.log(`Publisher: ${this.state.publisher}`)
+                console.log(`Book Image Url: ${this.state.bookImage}`)
+             
+
+            })
+        }).catch((error)=>{
+            console.log('Error occured', error);
+        })
+    }
+
+    handleIsbnChange(event){
+        this.setState({ISBN: event.target.value});
+    }
 
     render() {
         return (
-            <div className={"containerAddBook"}>
+            <div className={"container"}>
                 <div id="modal1" className="modalIsbn">
                     <div className="modal-content">
-                        <form className='form-isbn'>
-                            <input name={"ISBN"} placeholder={" Enter ISBN"}/>
+                        <form onSubmit={this.getBooks}className='form-isbn'>
+                            <div className = "input-field">
+                                <input  className=""type="text" onChange={this.handleIsbnChange.bind(this)} name={"ISBN"} placeholder={" Enter ISBN"} value={this.state.ISBN}/>
+                            </div>
+                            <div className="modal-footer">
+                                <div className='searchButtonContainer'>
+                                    <button onClick={this.getBooks} type="button" className=' btn btn-large'>Search</button>
+                                </div>
+                            <p>ISBN: {this.state.ISBN}</p>
+                            <p>Author: {this.state.author}</p>
+                            <p>Title: {this.state.title}</p>
+                            <p>SubTitle: {this.state.subtitle}</p>
+                            <p>Publisher: {this.state.publisher}</p>
+                            {/* <p>BookImage: {this.state.bookImage}</p> */}
+                            <img src={this.state.bookImage} alt=""/>
+
+                            </div>
                         </form>
-                    <div className="modal-footer">
-                        <div className='searchButtonContainer'>
-                            <button className=' btn btn-large' onClick={this.closeModalIsbn}>Search</button>
-                       </div>
                     </div>
-                  </div>
                 </div>
                 <form className={'form-container'} onSubmit={this.addBook}>
                     <input name={"ISBN"} placeholder={"*ISBN"} className={"inputs"} onChange={this.handleInput}/>
