@@ -5,6 +5,7 @@ import './modal.css';
 import success from './images/successlogo.png';
 import { Link } from 'react-router-dom';
 
+
 class Modal extends Component {
 
     closeModal = () => {

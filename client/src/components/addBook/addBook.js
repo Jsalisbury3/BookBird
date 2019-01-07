@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import DragDrop from './images/x3KMH.jpg'
+import SingleBookPhoto from './singleBookPhoto';
 import './addBook.css';
+import Modal from './modal';
 import axios from 'axios';
 import 'materialize-css';
 import 'material-icons';
@@ -17,10 +19,16 @@ class AddBook extends Component {
             edition: '',
             price: '',
             comments: '',
+            photoArray:[],
+            loaded:0,
+            imgTagArray:[],
         }
     }
 
+    componentDidMount = async() => {
+        await this.addPhotoToMultiPhotoContainer();
 
+    };
     handleInput = (event) => {
         this.setState({
             [event.target.name]: event.target.value,
@@ -109,7 +117,44 @@ class AddBook extends Component {
         document.getElementsByClassName('modalPageContainer')[0].style.display = "block";
         return result;
     };
+    fileSelectedHandler = async event => {
+        console.log(event.target.files[0])
+        const newImage = event.target.files[0];
+        await this.setState({
+            photoArray: [newImage, ...this.state.photoArray]
+        })
+            console.log(this.state.photoArray);
+            this.addPhotoToMultiPhotoContainer();
+    }
 
+    photoUploadHandler = async()=>{
+        
+    }
+    
+    addPhotoToMultiPhotoContainer = () => {
+        const imgTagArray = this.state.photoArray.map((item, index) => {
+            return (
+                <SingleBookPhoto delete={this.deletePhotoFromStateAndContainer(index)} key={index} index={index} about={item}/>
+            )
+        });
+        this.setState({
+            imgTagArray
+        });
+        console.log(this.state.imgTagArray);
+        return imgTagArray;
+    };
+    deletePhotoFromStateAndContainer = (index) => () => {
+        const newPhotoArray=[...this.state.photoArray];
+        const newImgTagArray=[...this.state.imgTagArray];
+        const nPASplice=newPhotoArray.splice(index,1);
+        const nITASplice=newImgTagArray.splice(index,1);
+        console.log("11",newPhotoArray, newImgTagArray);
+        this.setState({
+            photoArray: newPhotoArray,
+            imgTagArray: newImgTagArray
+        });
+        
+    }
     addBook = async () => {
         // event.preventDefault();
         console.log("state:", this.state);
@@ -119,17 +164,17 @@ class AddBook extends Component {
             url: '/api/addListing',
             data: request,
         });
-
+        
         // document.getElementsByClassName('modalPageContainer')[0].style.display = "block";
     };
 
     render() {
         return (
             <div className={"container"}>
-                <form onSubmit={this.validateInputsFields}>
-                    <input name={"ISBN"} placeholder={"*ISBN"} className={"inputs"} onChange={this.handleInput}/>
+                <form onSubmit={this.validateInputsFields} encType="multipart/form-data" >
+                    {/* <input name={"ISBN"} placeholder={"*ISBN"} className={"inputs"} onChange={this.handleInput}/>
                     <div className={"error"}></div>
-                    <div className={"checkMark markISBN material-icons"}>check_circle_outline</div>
+                    <div className={"checkMark markISBN material-icons"}>check_circle_outline</div> */}
                     <select name={"condition"} onChange={this.handleInput} id={"mySelect"} className={"condition"}>
                         <option value="" disabled selected>*Select Condition:</option>
                         <option value="New">New</option>
@@ -140,7 +185,7 @@ class AddBook extends Component {
                     </select>
                     <div id={"conditionError"} className={"error"}></div>
                     <div id={"conditionCheckMArk"} className={"checkMark markCondition material-icons"}>check_circle_outline</div>
-                    <input name={"title"} placeholder={"*Title"} className={"inputs"} onChange={this.handleInput}/>
+                    {/* <input name={"title"} placeholder={"*Title"} className={"inputs"} onChange={this.handleInput}/>
                     <div className={"error"}></div>
                     <div className={"checkMark markTitle material-icons"}>check_circle_outline</div>
                     <input name={"author"} placeholder={"*Author"} className={"inputs"} onChange={this.handleInput}/>
@@ -148,12 +193,18 @@ class AddBook extends Component {
                     <div className={"checkMark markAuthor material-icons"}>check_circle_outline</div>
                     <input name={"edition"} placeholder={"*Edition"} className={"inputs"} onChange={this.handleInput}/>
                     <div className={"error"}></div>
-                    <div className={"checkMark markEdition material-icons"}>check_circle_outline</div>
+                    <div className={"checkMark markEdition material-icons"}>check_circle_outline</div> */}
                     <input name={"price"} placeholder={"*Price $$$$"} className={"inputs"} onChange={this.handleInput}/>
                     <div className={"error"}></div>
                     <div className={"checkMark markPrice material-icons"}>check_circle_outline</div>
                     <textarea name={"comments"} placeholder={"Seller's Comments"} className={"inputs last"} onChange={this.handleInput}/>
-                    <div className={"photo material-icons"}>add_a_photo</div>
+                    <div className={"photo material-icons"}>add_a_photo
+                        <input id="photo" type="file" name='photo' capture="camera" accept="image/*" onChange={this.fileSelectedHandler}/>
+                    </div>
+                    <div className="multi-photo-container">
+                    {/* <p>Tap to delete</p> */}
+                    {this.state.imgTagArray}
+                    </div>
                     <button className={"POST"}>Post</button>
                 </form>
             </div>
