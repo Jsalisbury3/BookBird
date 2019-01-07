@@ -1,5 +1,6 @@
 const express = require('express');
 const webserver = express();
+const jwt = require('jwt-simple');
 const mysql_creds = require('./config/mysql_creds.js');
 const mysql = require('mysql');
 const db = mysql.createConnection(mysql_creds);
@@ -126,6 +127,58 @@ webserver.get('/api/BookInfoIndex/:bookId', (request, response) => {
         })
     })
 });
+
+//sign-in endpoint to grab the users id.
+webserver.post('/api/SignIn', (request, response) => {
+    console.log("sign-in running");
+    const {email, password} = request.body;
+    console.log("BODYYYYYYY: ", request.body);
+    console.log("email and password: ", email, password);
+    db.connect(() => {
+        console.log("connected to db sign-in");
+        const query = "SELECT a.ID from `accounts` AS a WHERE a.email = '"+email+"' ";
+        db.query(query, (err, data) => {
+            console.log("sign-in query valid");
+            console.log("THE QUERYYYYYYY: ", query);
+            console.log("SIGN IN ID FROM QUERY: ", data);
+            if(!err) {
+                // const userToken = jwt.encode(data, secret);
+                let output = {
+                    success: true,
+                    data: data,
+                };
+                console.log("THIS IS THE TOKEN I MADEEEEE: ", data);
+                response.send(output);
+            } else {
+                console.log("Error sign-in", err);
+            }
+        })
+    })
+});
+
+
+//kuroash's profile page.
+// webserver.post('api/UserProfile', (request, response) => {
+//     console.log("user profile is running");
+//     db.connect(() => {
+//         console.log("connected to db profile");
+//         const query = "SELECT l.book_condition, l.price, l.comments, l.book_id, b.title, b.ISBN, b.author, b.edition FROM `` AS  JOIN `` AS  ON";
+//         db.query(query, (err, data) => {
+//             console.log("query valid profile");
+//             if(!err) {
+//                 const output = {
+//                     success: true,
+//                     data: data,
+//                 };
+//                 response.send(output);
+//             } else {
+//                 console.log("Profile error: ", error);
+//             }
+//         })
+//     })
+// });
+
+
 
 
 // webserver.post('/api/login', (request, response) => {
