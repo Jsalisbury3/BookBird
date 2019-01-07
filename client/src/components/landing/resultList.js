@@ -13,12 +13,6 @@ class ResultList extends Component {
     //     data : null
     // };
 
-    // getServerData = () => {
-    //     const searchResults = axios.get("/api/listings").then( (response) => {
-    //         this.getRowData(response.data.data);
-    //     });
-    // };
-
     receiveFilterResults = (response) => {
         console.log('Receive Filter Results: ', response);
         this.getRowData(response.data.data);
@@ -46,9 +40,10 @@ class ResultList extends Component {
         console.log('Results List PROPS: ', this.props);
         let listings = this.getRowData(this.props.searchResults);
         return (
-            <div className='search-results-container'>
+            <div>
                 <SearchBar function={this.receiveFilterResults}/>
-                {listings}
+                <div className='search-results-container'>{listings}</div>
+
             </div>
         )
     }
@@ -69,7 +64,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ResultList);
-
-// , {
-//     getServerData: getServerData
-// },

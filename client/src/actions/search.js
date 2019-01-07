@@ -3,7 +3,6 @@ import axios from "axios/index";
 
 
 export const searchFilter = (request) => {
-    
     return (dispatch) => {
         axios({
             method: 'post',
@@ -15,10 +14,5 @@ export const searchFilter = (request) => {
                 payload: filteredResults.data.data
             })
         })
-        
     }
-}
-
-//     .then( (response) => {
-//     this.props.function(response);
-// })
+};

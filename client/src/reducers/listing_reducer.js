@@ -12,7 +12,7 @@ export default (state = DEFAULT_STATE, action) => {
             return {
                 ...state,
                 searchResults: action.payload,
-            }
+            };
         default:
             return state;
     }
