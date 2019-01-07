@@ -10,26 +10,30 @@ export default class UserPostList extends Component {
         data : null
     };
 
-    getServerData = () => {
-        const searchResults = axios.get("http://www.localhost:7000/listings").then( (response) => {
-            this.getRowData(response.data.data);
-        });
-    };
-
-    getRowData = (results) => {
-        const listItems = results.map((item, index) => {
+    getUserProfileListings = async (results) => {
+        let listItems = results.data.data.map((item, index) => {
             return (
                 <UserPost key={index} about={item}/>
             )
         });
-        this.setState({
-            data: listItems
+        await this.setState({
+            data: listItems,
         });
-        return listItems;
+    };
+
+    getUserPosts = () => {
+        axios({
+            method: 'get',
+            url: '/api/UserProfile',
+            headers: {token: localStorage.getItem('Token')},
+        }).then( (results) => {
+            console.log(results);
+            this.getUserProfileListings(results);
+        });
     };
 
     componentDidMount = () => {
-        this.getServerData();
+        this.getUserPosts();
     };
 
     render() {
