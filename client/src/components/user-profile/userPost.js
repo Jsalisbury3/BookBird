@@ -7,12 +7,12 @@ import axios from 'axios';
 export default class UserPost extends Component{
     constructor(props){
         super(props);
-        console.log(this.props);
-        const { title, edition, author, condition, course, price, ID } = this.props.about;
     }
     
     
     render(){
+        console.log("about props: ", this.props.about);
+        const { title, edition, author, condition, course, price, ID, listingID } = this.props.about;
         return (
             <div>
                 <Link to={`/BookInfoIndex/${this.ID}`}>
@@ -21,11 +21,11 @@ export default class UserPost extends Component{
                             <img className='itemImage' src="" />
                         </div>
                         <div className='itemDetails'>
-                            <p>Title: {this.title}</p>
-                            <p>Edition: {this.edition}</p>
-                            <p>Author: {this.author}</p>
-                            <p>Condition: {this.condition}</p>
-                            <p>Price: ${this.price}</p>
+                            <p>Title: {title}</p>
+                            <p>Edition: {edition}</p>
+                            <p>Author: {author}</p>
+                            <p>Condition: {condition}</p>
+                            <p>Price: ${price}</p>
                         </div>
     
                     </div>

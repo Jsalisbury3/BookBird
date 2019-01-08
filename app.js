@@ -137,12 +137,11 @@ webserver.post('/api/SignIn', (request, response) => {
 
 webserver.get('/api/UserProfile', (request, response) => {
     const userIDToken = request.headers['token'];
-    // const decoded = jwt.decode(userIDToken, 'HS256', true);
     db.connect(() => {
         const query = 'SELECT lg.account_id FROM `loggedin` AS lg WHERE lg.token = "' + userIDToken + '"';
         db.query(query, (err, data) => {
             if (!err) {
-                const query = "SELECT a.ID, l.book_condition, l.price, l.comments, l.book_id, b.title, b.ISBN, b.author, b.edition FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id WHERE a.ID = '" + data[0].account_id + "'";
+                const query = "SELECT a.ID, l.book_condition, l.ID, l.price, l.comments, l.book_id, b.title, b.ISBN, b.author, b.edition FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id WHERE a.ID = '" + data[0].account_id + "'";
                 db.query(query, (err, data) => {
                     if (!err) {
                         const output = {
@@ -162,17 +161,22 @@ webserver.get('/api/UserProfile', (request, response) => {
 });
 
 webserver.delete("/api/UserProfile",(request,response)=>{
-    console.log("R.Body:",request.body);
-    const {ID} = request.body;
+    const userIDToken = request.headers['token'];
+    const listingID = request.body.ID;
     db.connect(()=>{
-        const query = "DELETE FROM `listing` WHERE ID = "+ID;
-        db.query(query,(err)=>{
+        const query = "SELECT lg.account_id FROM `loggedin` AS lg WHERE lg.token = '"+userIDToken+"'";
+        db.query(query,(err, data)=>{
             console.log("query valid deletePost");
             if(!err){
-                const output = {
-                    success: true,              
-                };
-                response.send(output);
+                const query = "DELETE FROM `listing` WHERE accounts_id = '"+data[0].account_id+"' AND ID = '"+listingID+"'";
+                console.log("delete query: ", query);
+                db.query(query, (err, data) => {
+                    if(!err) {
+                        console.log("deleted ID: " + listingID);
+                    } else {
+                        console.log("error deleting post: ", err);
+                    }
+                })
             }else{
                 console.log("Delete error:",err);
             }
