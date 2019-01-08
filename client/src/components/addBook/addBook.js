@@ -24,7 +24,6 @@ class AddBook extends Component {
             edition: '',
             price: '',
             comments: '',
-            subtitle:'',
             bookImage: undefined,
             books:[],
             photoArray:[],
@@ -35,7 +34,10 @@ class AddBook extends Component {
 
     componentDidMount = async() => {
         document.getElementsByClassName('modalIsbn')[0].style.display = "block";
+        document.getElementsByClassName("modal-footer")[0].style.display = "none"
+        document.getElementsByClassName("modal-body")[0].style.display = "none"
         await this.addPhotoToMultiPhotoContainer();
+
 
 
     };
@@ -195,15 +197,15 @@ class AddBook extends Component {
             url: BASE_URL_GOOGLE_BOOKS +this.state.ISBN + API_KEY,
             
         }).then((response)=>{
-            console.log('URL: ', BASE_URL_GOOGLE_BOOKS +"isbn:"+this.state.ISBN + API_KEY)
+            console.log('URL: ', BASE_URL_GOOGLE_BOOKS + this.state.ISBN + API_KEY)
             this.setState({
                 books: response.data.items,
                 author: response.data.items[0].volumeInfo.authors[0],
                 title: response.data.items[0].volumeInfo.title,
-                subtitle: response.data.items[0].volumeInfo.subtitle,
-                publisher: response.data.items[0].volumeInfo.publisher,
                 bookImage: response.data.items[0].volumeInfo.imageLinks.smallThumbnail
             },()=>{
+                document.getElementsByClassName("modal-footer")[0].style.display = "block"
+                document.getElementsByClassName("modal-body")[0].style.display = "block"
                 console.log(this.state.books)
                 console.log(`Author: ${this.state.author}`)
                 console.log(`Title: ${this.state.title}`)
@@ -221,30 +223,54 @@ class AddBook extends Component {
         this.setState({ISBN: event.target.value});
     }
 
+    populateData(event){
+        event.preventDefault();
+        // this.setState({
+            
+        // })
+    }
+
     render() {
         return (
             <div className={"container"}>
                 <div id="modal1" className="modalIsbn">
-                    <div className="modal-content">
-                        <form onSubmit={this.getBooks}className='form-isbn'>
-                            <div className = "input-field">
-                                <input  className=""type="text" onChange={this.handleIsbnChange.bind(this)} name={"ISBN"} placeholder={" Enter ISBN"} value={this.state.ISBN}/>
-                            </div>
-                            <div className="modal-footer">
-                                <div className='searchButtonContainer'>
-                                    <button onClick={this.getBooks} type="button" className=' btn btn-large'>Search</button>
-                                    <button onClick={this.closeModalIsbn} type="button" className=' btn btn-large'>Close</button>
-                                </div>
-                            <p>ISBN: {this.state.ISBN}</p>
-                            <p>Author: {this.state.author}</p>
-                            <p>Title: {this.state.title}</p>
-                            <p>SubTitle: {this.state.subtitle}</p>
-                            <p>Publisher: {this.state.publisher}</p>
-                            {/* <p>BookImage: {this.state.bookImage}</p> */}
-                            <img src={this.state.bookImage} alt=""/>
 
+
+                    <div className="modal-content">
+                        
+                        <div className="isbnModalHeader">
+                            <p className="isbnModalHeader">Post your book by ISBN</p>
+                            <form onSubmit={this.getBooks}className='form-isbn'>
+                                <div className = "input-field">
+                                    <input autocomplete="off" className="input-field" type="text" onChange={this.handleIsbnChange.bind(this)} name={"ISBN"} placeholder={" Enter ISBN"} value={this.state.ISBN}/>
+                                    <label className="enterIsbnLabel"htmlFor="ISBN">ISBN</label>
+                                </div>
+                                <div className='search_button_container'>
+                                        <button onClick={this.getBooks} type="button" className='isbnSearchButton btn btn-small waves-effect'>Search</button>
+                                </div>
+
+                            </form>
+                        </div>
+
+                            <div className="modal-body">
+                                <img className="google_book_image" src={this.state.bookImage} alt=""/>
+                                <div className="isbnModalBookDescription">
+                                    <p>ISBN: {this.state.ISBN}</p>
+                                    <p>Author: {this.state.author}</p>
+                                    <p>Title: {this.state.title}</p>
+                                </div>
                             </div>
-                        </form>
+                        
+
+                        <div className="modal-footer">
+                            <form onSubmit={this.populateData}>
+                                    <div className="submit_clear_buttons">
+                                        <button className="btn-small btn waves-effect" type="button"> Accept </button>
+                                        <button onClick={this.populateData} className="btn-small btn waves-effect" type="button">Clear</button>
+                                    </div>
+                            </form>
+                        </div>
+                            
                     </div>
                 </div>
                 <form className={'form-container'} onSubmit={this.validateInputsFields} encType="multipart/form-data" >
