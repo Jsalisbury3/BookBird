@@ -36,15 +36,15 @@ export default class UserPostList extends Component {
             url:"/api/UserProfile",
             method:"delete",
             data:{ID: id},
-
-        }).then(()=>{
-        this.getUserPosts()    
-        });
-
-    }
+            headers: {token: localStorage.getItem('Token')},
+        }).then( () => {
+            this.getUserPosts();
+        })
+    };
     componentDidMount = () => {
         this.getUserPosts();
     };
+
 
     render() {
         return (
