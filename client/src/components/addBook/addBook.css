@@ -11,15 +11,20 @@
 }
 
 .submit_clear_buttons{
-    bottom: 20%;
+    bottom: 6%;
     position: absolute;
-    left: 23%;
+    left: 22%;
 }
 .isbnModalBookDescription{
-    display:inline-block;
+    display: inline-block;  
     position: absolute;
     bottom: 47%;
-    left: 47%;
+    left: 50%; 
+    top:36%; 
+    /* display:inline-block;
+    position: absolute;
+    bottom: 47%;
+    left: 47%; */
 }
 
 .isbnSearchButton{
@@ -27,7 +32,9 @@
 }
 
 .google_book_image{
-    padding-top: 6px;
+    position: relative;
+    right: 59%;
+    bottom: 48px;
 
 }
 .isbnModalHeader{
@@ -36,6 +43,8 @@
     /* align-content: center; */
     /* left: 19%; */
     font-size: 20px;
+    bottom : 14%;
+    position: relative;
 }
 
 .enterIsbnLabel{
@@ -44,13 +53,16 @@
 }
 .search_button_container{
     position: relative;
-    left: 25%;
+    left: 16%;
 }
 .form-isbn {
     /* margin-top: 33%; */
     /* position: relative; */
     height: 50%;
 
+}
+.modal-body{
+    left:9%
 }
 .modal-content {
     height: 75%;
@@ -67,6 +79,9 @@
     flex-flow: column nowrap;
 }
 
+.avvept_button, .clear_button{
+    margin:8px;
+}
 /* .inputs {
     background-color: yellow;
 } */

@@ -66,7 +66,7 @@ class Signup extends Component{
                     <input className="input"name = "Email" placeholder="Email"type="text"/>
                     <div className="error"></div>
                     <label htmlFor="password">Password</label>
-                    <input className="input"name = "password" placeholder="Password"type="text"/>
+                    <input className="input"name = "password" placeholder="Password"type="password"/>
                     <div className="error"></div>
                     <label htmlFor="Name">Name</label>
                     <input className="input"name = "Name" placeholder="Name"type="text"/>
