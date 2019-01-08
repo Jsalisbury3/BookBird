@@ -24,7 +24,6 @@ class AddBook extends Component {
             edition: '',
             price: '',
             comments: '',
-            subtitle:'',
             bookImage: undefined,
             books:[],
             photoArray:[],
@@ -35,7 +34,10 @@ class AddBook extends Component {
 
     componentDidMount = async() => {
         document.getElementsByClassName('modalIsbn')[0].style.display = "block";
+        document.getElementsByClassName("modal-footer")[0].style.display = "none"
+        document.getElementsByClassName("modal-body")[0].style.display = "none"
         await this.addPhotoToMultiPhotoContainer();
+
 
 
     };
@@ -137,7 +139,6 @@ class AddBook extends Component {
         document.getElementsByClassName('modalPageContainer')[0].style.display = "block";
         return result;
     };
-    
     fileSelectedHandler = async event => {
         console.log(event.target.files[0])
         const newImage = event.target.files[0];
@@ -147,11 +148,9 @@ class AddBook extends Component {
             console.log(this.state.photoArray);
             this.addPhotoToMultiPhotoContainer();
     }
-
     photoUploadHandler = async()=>{
         
     }
-    
     addPhotoToMultiPhotoContainer = () => {
         const imgTagArray = this.state.photoArray.map((item, index) => {
             return (
@@ -195,56 +194,79 @@ class AddBook extends Component {
             url: BASE_URL_GOOGLE_BOOKS +this.state.ISBN + API_KEY,
             
         }).then((response)=>{
-            console.log('URL: ', BASE_URL_GOOGLE_BOOKS +"isbn:"+this.state.ISBN + API_KEY)
             this.setState({
                 books: response.data.items,
                 author: response.data.items[0].volumeInfo.authors[0],
                 title: response.data.items[0].volumeInfo.title,
-                subtitle: response.data.items[0].volumeInfo.subtitle,
-                publisher: response.data.items[0].volumeInfo.publisher,
                 bookImage: response.data.items[0].volumeInfo.imageLinks.smallThumbnail
             },()=>{
-                console.log(this.state.books)
-                console.log(`Author: ${this.state.author}`)
-                console.log(`Title: ${this.state.title}`)
-                console.log(`Publisher: ${this.state.publisher}`)
-                console.log(`Book Image Url: ${this.state.bookImage}`)
-             
-
+                document.getElementsByClassName("modal-footer")[0].style.display = "block"
+                document.getElementsByClassName("modal-body")[0].style.display = "block"
             })
         }).catch((error)=>{
             console.log('Error occured', error);
         })
     }
-
     handleIsbnChange(event){
         this.setState({ISBN: event.target.value});
     }
+    populateData=(event)=>{
+        event.preventDefault();
+        this.setState({
+            ISBN: document.getElementsByName("ModalISBN").value=`${this.state.ISBN}`,
+            title: document.getElementsByName("ModalTitle").value=`${this.state.title}`,
+            author: document.getElementsByName("ModalAuthor").value=`${this.state.author}`,
+        })
+        document.getElementsByClassName('modalIsbn')[0].style.display = "none"
+        document.getElementsByName("author")[0].value=`${this.state.author}`
+        document.getElementsByName("title")[0].value=`${this.state.title}`
+        document.getElementsByName("ISBN")[0].value=`${this.state.ISBN}`
+    }
 
+    clearData=(event)=>{
+        event.preventDefault();
+        document.getElementsByClassName("modal-footer")[0].style.display = "none"
+        document.getElementsByClassName("modal-body")[0].style.display = "none"
+        document.getElementsByName("ModalISBN")[0].value = " "
+        setState({
+            ISBN: '',
+            author: '',
+            title:''
+        })
+    }
     render() {
         return (
             <div className={"container"}>
                 <div id="modal1" className="modalIsbn">
                     <div className="modal-content">
-                        <form onSubmit={this.getBooks}className='form-isbn'>
-                            <div className = "input-field">
-                                <input  className=""type="text" onChange={this.handleIsbnChange.bind(this)} name={"ISBN"} placeholder={" Enter ISBN"} value={this.state.ISBN}/>
-                            </div>
-                            <div className="modal-footer">
-                                <div className='searchButtonContainer'>
-                                    <button onClick={this.getBooks} type="button" className=' btn btn-large'>Search</button>
-                                    <button onClick={this.closeModalIsbn} type="button" className=' btn btn-large'>Close</button>
+                        <div className="isbnModalHeader">
+                            <p className="isbnModalHeader">Post your book by ISBN</p>
+                            <form onSubmit={this.getBooks}className='form-isbn'>
+                                <div className = "input-field">
+                                    <input autoComplete="off" type="text" onChange={this.handleIsbnChange.bind(this)} name={"ModalISBN"} value={this.state.ISBN}/>
+                                    <label className="enterIsbnLabel"htmlFor="ISBN">ISBN</label>
                                 </div>
-                            <p>ISBN: {this.state.ISBN}</p>
-                            <p>Author: {this.state.author}</p>
-                            <p>Title: {this.state.title}</p>
-                            <p>SubTitle: {this.state.subtitle}</p>
-                            <p>Publisher: {this.state.publisher}</p>
-                            {/* <p>BookImage: {this.state.bookImage}</p> */}
-                            <img src={this.state.bookImage} alt=""/>
-
+                                <div className='search_button_container'>
+                                        <button onClick={this.getBooks} type="button" className='isbnSearchButton btn btn-small waves-effect'>Search</button>
+                                </div>
+                            </form>
+                        </div>
+                            <div className="modal-body">
+                                <img className="google_book_image" src={this.state.bookImage} alt=""/>
+                                <div className="isbnModalBookDescription">
+                                    <p name="ModalISBN">ISBN: {this.state.ISBN}</p>
+                                    <p name="ModalAuthor">Author: {this.state.author}</p>
+                                    <p name="ModalTitle">Title: {this.state.title}</p>
+                                </div>
                             </div>
-                        </form>
+                        <div className="modal-footer">
+                            <form>
+                                    <div className="submit_clear_buttons">
+                                        <button className="accept_button btn-small btn waves-effect" type="button" onClick={this.populateData}> Accept </button>
+                                        <button onClick={this.clearData} className="clear_button btn-small btn waves-effect" type="button">Clear</button>
+                                    </div>
+                            </form>
+                        </div>    
                     </div>
                 </div>
                 <form className={'form-container'} onSubmit={this.validateInputsFields} encType="multipart/form-data" >
@@ -263,10 +285,9 @@ class AddBook extends Component {
                     <div id={"conditionError"} className={"error"}></div>
                     <div id={"conditionCheckMArk input-field "} className={"checkMark markCondition material-icons"}>check_circle_outline</div>
                     <input name={"title"} placeholder={"*Title"} className={"inputs"} onChange={this.handleInput}/>
-
                     <div className={"error"}></div>
                     <div className={"checkMark markTitle material-icons"}>check_circle_outline</div>
-                    <input name={"author"} placeholder={"*Author"} className={"inputs"} onChange={this.handleInput}/>
+                    <input name="author" placeholder={"*Author"} className={"inputs"} onChange={this.handleInput}/>
                     <div className={"error"}></div>
                     <div className={"checkMark markAuthor material-icons"}>check_circle_outline</div>
                     <input name={"edition"} placeholder={"*Edition"} className={"inputs"} onChange={this.handleInput}/>
