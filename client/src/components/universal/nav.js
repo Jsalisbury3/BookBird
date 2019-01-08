@@ -22,7 +22,6 @@ export default () => (
         <div className={'ProfileIcon'}>
             <Link to={"/UserProfile"}><img alt={ProfileIcon} className={'ProfilePicture'} src={ProfileIcon}/></Link>
         </div>
-
     </footer>
 
 )
