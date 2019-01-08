@@ -9,8 +9,7 @@ import 'material-icons';
 import 'materialize-css/dist/css/materialize.min.css'
 import M from 'materialize-css/dist/js/materialize.min.js'
 import {BASE_URL_GOOGLE_BOOKS, API_KEY} from '../../../../config/api';
-import SearchInput from './isbn_search'
-
+import SearchInput from './isbn_search';
 
 class AddBook extends Component {
     constructor(props) {

@@ -5,6 +5,19 @@ const mysql_creds = require('./config/mysql_creds.js');
 const mysql = require('mysql');
 const db = mysql.createConnection(mysql_creds);
 
+const upload = require('./services/file-upload');
+console.log('UPLOAD: ', upload)
+
+const imageUpload = upload.single('image');
+
+webserver.post('/api/file-upload', function ( req, res ) {
+
+    imageUpload(req, res, function(err) {
+          return res.json({ 'imageUrl: ': req.file.location });
+    })
+
+});
+
 webserver.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");

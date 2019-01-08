@@ -1,6 +1,7 @@
 const amazon_creds = {
-    accessKeyId: 'AKIAIQ6RR5PXOFU5EXUA',
-    secretAccessKey: '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'
+    accessKeyId: 'AKIAJK56TJ7BH4BSTPUA',
+    secretAccessKey: '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',
+    region: 'us-east-2'
 }
 
 module.exports = amazon_creds;
