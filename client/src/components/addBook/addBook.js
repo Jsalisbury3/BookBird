@@ -10,6 +10,7 @@ import 'materialize-css/dist/css/materialize.min.css'
 import M from 'materialize-css/dist/js/materialize.min.js'
 import {BASE_URL_GOOGLE_BOOKS, API_KEY} from '../../../../config/api';
 import SearchInput from './isbn_search'
+import image2 from './images/488.jpg';
 
 
 class AddBook extends Component {
@@ -223,7 +224,7 @@ class AddBook extends Component {
 
     render() {
         return (
-            <div className={"container"}>
+            <div className="post-book-container">
                 <div id="modal1" className="modalIsbn">
                     <div className="modal-content">
                         <form onSubmit={this.getBooks}className='form-isbn'>
@@ -247,42 +248,61 @@ class AddBook extends Component {
                         </form>
                     </div>
                 </div>
-                <form className={'form-container'} onSubmit={this.validateInputsFields} encType="multipart/form-data" >
-                    <input name={"ISBN"} placeholder={"*ISBN"} className={"inputs"} onChange={this.handleInput}/>
+                <form className={'form-container '} onSubmit={this.validateInputsFields} encType="multipart/form-data">
+                    <div className=' title-container row'>
+                        <div id={"conditionError"} className={"error"}></div>
+                        <div id={"conditionCheckMArk input-field "} className={"checkMark markCondition material-icons"}>check_circle_outline</div>
+                        <input name={"title"} placeholder={"*Title"} id={'input-field'} className={"inputs col s10 push-s1"} onChange={this.handleInput}/>
+                    </div>
+                    <div className='row'>
+                        <div className={"error"}></div>
+                        <div className={"checkMark markTitle material-icons"}>check_circle_outline</div>
+                        <input name={"author"} placeholder={"*Author"} id={'input-field'} className={"inputs col s10 push-s1"} onChange={this.handleInput}/>
+                    </div>
+                    <div className='row'>
+                        <div className={"error"}></div>
+                        <div className={"checkMark markEdition material-icons"}>check_circle_outline</div>
+                        <input name={"price"} placeholder={"*Price $$$$"} id={'input-field'} className={"inputs col s10 push-s1"} onChange={this.handleInput}/>
+                    </div>
+                    <div className='row'>
+                        <select name={"condition"} onChange={this.handleInput} id={"mySelect"} className={"condition  col s6 push-s3"}>
+                            <option value="" disabled selected>*Select Condition:</option>
+                            <option value="New">New</option>
+                            <option value="Like New">Like New</option>
+                            <option value="Good">Good</option>
+                            <option value="Worn">Worn</option>
+                            <option value="Thrashed">Thrashed</option>
+                        </select>
+                    </div>
+                    <div className={"error"}></div>
+                    <div className={"checkMark markPrice material-icons"}>check_circle_outline</div>
+                    <div className={'comment-text-area'}>
+                        <textarea name={"comments"} placeholder={"Seller's Comments"}  id={"input-field"} className={"inputs last "} onChange={this.handleInput}/>
+                    </div>
+
+
+
+                    {/*<div className="row">*/}
+                        {/*<input name={"ISBN"} placeholder={"*ISBN"} className={"inputs isbn-container col s6 offset-s6"} onChange={this.handleInput}/>*/}
+                    {/*</div>*/}
                     {/* <input name={"ISBN"} placeholder={"*ISBN"} className={"inputs"} onChange={this.handleInput}/>
                     <div className={"error"}></div>
                     <div className={"checkMark markISBN material-icons"}>check_circle_outline</div> */}
-                    <select name={"condition"} onChange={this.handleInput} id={"mySelect"} className={"condition"}>
-                        <option value="" disabled selected>*Select Condition:</option>
-                        <option value="New">New</option>
-                        <option value="Like New">Like New</option>
-                        <option value="Good">Good</option>
-                        <option value="Worn">Worn</option>
-                        <option value="Thrashed">Thrashed</option>
-                    </select>
-                    <div id={"conditionError"} className={"error"}></div>
-                    <div id={"conditionCheckMArk input-field "} className={"checkMark markCondition material-icons"}>check_circle_outline</div>
-                    <input name={"title"} placeholder={"*Title"} className={"inputs"} onChange={this.handleInput}/>
 
-                    <div className={"error"}></div>
-                    <div className={"checkMark markTitle material-icons"}>check_circle_outline</div>
-                    <input name={"author"} placeholder={"*Author"} className={"inputs"} onChange={this.handleInput}/>
-                    <div className={"error"}></div>
-                    <div className={"checkMark markAuthor material-icons"}>check_circle_outline</div>
-                    <input name={"edition"} placeholder={"*Edition"} className={"inputs"} onChange={this.handleInput}/>
-                    <div className={"error"}></div>
-                    <div className={"checkMark markEdition material-icons"}>check_circle_outline</div>
-                    <input name={"price"} placeholder={"*Price $$$$"} className={"inputs"} onChange={this.handleInput}/>
-                    <div className={"error"}></div>
-                    <div className={"checkMark markPrice material-icons"}>check_circle_outline</div>
-                    <textarea name={"comments"} placeholder={"Seller's Comments"} className={"inputs last"} onChange={this.handleInput}/>
-                    <div className={"photo material-icons"}>add_a_photo
-                        <input id="photo" type="file" name='photo' capture="camera" accept="image/*" onChange={this.fileSelectedHandler}/>
-                    </div>
-                    <div className="multi-photo-container">
-                    {/* <p>Tap to delete</p> */}
-                        {this.state.imgTagArray}
-                    </div>
+
+
+                    {/*<div className={"error"}></div>*/}
+                    {/*<div className={"checkMark markAuthor material-icons"}>check_circle_outline</div>*/}
+                    {/*<input name={"edition"} placeholder={"*Edition"} className={"inputs"} onChange={this.handleInput}/>*/}
+
+
+                    {/*<div className={"photo material-icons"}>add_a_photo*/}
+                        {/*<input id="photo" className='upload-image' type="file" name='photo' capture="camera" accept="image/*" onChange={this.fileSelectedHandler}/>*/}
+                    {/*/!*</div>*!/*/}
+                    {/*<div className="upload-image-container">*/}
+                     {/*<p>Tap to delete</p>*/}
+                        {/*{this.state.imgTagArray}*/}
+                    {/*</div>*/}
                     <button className={"POST"}>Post</button>
                 </form>
             </div>

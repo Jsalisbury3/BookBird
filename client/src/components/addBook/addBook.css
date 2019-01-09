@@ -11,6 +11,44 @@
     top:6px
 
 }
+.post-book-container{
+    height: 100vh;
+    width: 100vw;
+    background-color: #C2E5F9;
+}
+.isbn-container {
+    height: 100%
+}
+.image-container {
+    position: absolute;
+    display: inline-block;
+    height: 25%;
+    top: 12%;
+    width: 38%;
+    margin-left: 5%;
+    margin-top: 1%;
+}
+img {
+    height: 100%;
+    width: 100%;
+
+}
+.pageContainer {
+    height: 100vh;
+    width: 100vw;
+}
+.upload-image {
+    background-color: yellow;
+    width: 0%;
+}
+.upload-image-container {
+    position: relative;
+    background-color: yellow;
+    height: 8vh;
+    width: 13vw;
+    margin: left;
+    margin-left: 37%;
+}
 .searchButtonContainer{
     padding-left: 35%;
     margin-top: 0%;
@@ -27,9 +65,14 @@
     height: 100%;
     width: 100%;
 }
+.row {
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
 
-.inputs {
-    background-color: yellow;
+}
+#mySelect {
+    margin-top: 4%;
 }
 /*:root {*/
     /*--moveRight: 91%;*/
@@ -37,13 +80,19 @@
     /*--marktop: 7.8vh;*/
     /*--markbase: 4.2vh;*/
 /*}*/
+title-container {
+    height: 0%;
+}
 
 .tempContainer {
     height: 100%;
     width: 100%;
 }
 .form-container {
-    width: 87%;
+    width: 100vw;
+
+    height: 49%;
+
 }
 
 .containerAddBook {
@@ -60,12 +109,16 @@
     background-color: #5bc0de;
     color: white;
 }
+#input-field {
+    background-color: #FFFFFF;
+}
 
 .inputs {
     position: relative;
     display: inline-block;
     width: 80%;
-    height: 5vh;
+    /*height: 5vh;*/
+     height: min-content;
     /*margin: auto;*/
     font-size: 1rem;
     left: 10.5%;
@@ -88,6 +141,11 @@
     width: 50%;
     margin: auto;
     text-align: center;
+}
+.comment-text-area {
+    position: relative;
+    /* bottom: 54%; */
+    top: 55%;
 }
 
 .dragDrop {
@@ -117,16 +175,15 @@
     width:100%;
 }
 .POST {
-    position: relative;
+    position: absolute;
+    display: inline-block;
     height: 6.7vh;
     width: 50%;
     margin-left: 24.5%;
-    margin-top: 1.2%;
     border-radius: 40px;
-    background-color: white;
     border: none;
-    top: 12vh;
-    font-size: 1.5em;
+    font-size: 1.5em;;
+    background-color: #FFFFFF;
 }
 
 .condition {
@@ -198,14 +255,14 @@ select option {
 }
 
 .photo {
+    width: 12%;
+    z-index: 1;
+    position: relative;
     display: inline-block;
-    position: absolute;
-    /*top: 12vh;*/
-    /*left: -37.7%;*/
-    left: 49.5%;
-    top: 84%;
+    margin-top: 6%;
     transform: translate(-50%, -50%);
     font-size: 50px !important;
+    background-color: red;
 }
 
 @media screen and (max-width: 600px) {
