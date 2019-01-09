@@ -2,29 +2,19 @@
     position: absolute;
     z-index: 1;
     width: 100vw;
-    height: 100vh;
-    background-color: rgba(0,0,0,0.87);
-    /* opacity: 0.9; */
+    height: 76vh;
     left: 0;
-    top: 0;
-    /* transform: translate(-50%, -50%); */
+    background-color: rgba(0,0,0,0.87);
 }
-
+.isbnModalContainer{   
+}
 .submit_clear_buttons{
-    bottom: 6%;
-    position: absolute;
-    left: 22%;
 }
 .isbnModalBookDescription{
-    display: inline-block;  
-    position: absolute;
     bottom: 47%;
-    left: 50%; 
-    top:36%; 
-    /* display:inline-block;
-    position: absolute;
-    bottom: 47%;
-    left: 47%; */
+    left: 21%; 
+    top:49%;
+    font-weight: bold; 
 }
 
 .isbnSearchButton{
@@ -32,66 +22,51 @@
 }
 
 .google_book_image{
-    position: relative;
-    right: 59%;
-    bottom: 48px;
-
+    margin-top: 9px;
 }
 .isbnModalHeader{
-    /* position: relative; */
-    /* align-items: center; */
-    /* align-content: center; */
-    /* left: 19%; */
-    font-size: 20px;
-    bottom : 14%;
-    position: relative;
+    font-size: 16px;
+    margin-top: 6px;
+    margin-bottom: 18px;
 }
 
+.input_label{
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
 .enterIsbnLabel{
     font-size: 10px;
     left:2%
 }
 .search_button_container{
     position: relative;
-    left: 16%;
+    left: 5%;
 }
 .form-isbn {
-    /* margin-top: 33%; */
-    /* position: relative; */
     height: 50%;
-
 }
 .modal-body{
     left:9%
 }
 .modal-content {
-    height: 75%;
-    width: 80%;
+    width: 72%;
     background-color: white;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /* opacity: 1; */
     display: flex;
     align-items: center;
     justify-content: center;
     flex-flow: column nowrap;
 }
-
+.modal-footer{
+    margin-bottom: 11px;
+}
 .avvept_button, .clear_button{
     margin:8px;
 }
-/* .inputs {
-    background-color: yellow;
-} */
-/*:root {*/
-    /*--moveRight: 91%;*/
-    /*--moveup: 4.5vh;*/
-    /*--marktop: 7.8vh;*/
-    /*--markbase: 4.2vh;*/
-/*}*/
-
 .tempContainer {
     height: 100%;
     width: 100%;
@@ -99,7 +74,6 @@
 .form-container {
     width: 87%;
 }
-
 .containerAddBook {
     position: absolute;
     height: 76vh;
@@ -114,7 +88,6 @@
     background-color: #5bc0de;
     color: white;
 }
-
 .inputs {
     position: relative;
     display: inline-block;
@@ -125,25 +98,21 @@
     left: 10.5%;
     top: 4vh;
 }
-
 .textSpan {
     position: relative;
     top: 13%;
 }
-
 .last {
     position: relative;
     top: 4.1vh;
     height: 10vh;
     font-size: 1.3rem;
 }
-
 .text {
     width: 50%;
     margin: auto;
     text-align: center;
 }
-
 .dragDrop {
     position: relative;
     display: block;

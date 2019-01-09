@@ -29,6 +29,7 @@ class AddBook extends Component {
             photoArray:[],
             loaded:0,
             imgTagArray:[],
+            hideIsbnSearchBar: false
         }
     }
 
@@ -189,12 +190,14 @@ class AddBook extends Component {
     };
     getBooks=(event)=>{
         event.preventDefault();
+        this.setState({hideIsbnSearchBar: true});
         axios.request({
             method: 'get',
             url: BASE_URL_GOOGLE_BOOKS +this.state.ISBN + API_KEY,
             
         }).then((response)=>{
             this.setState({
+
                 books: response.data.items,
                 author: response.data.items[0].volumeInfo.authors[0],
                 title: response.data.items[0].volumeInfo.title,
@@ -225,6 +228,7 @@ class AddBook extends Component {
 
     clearData=(event)=>{
         event.preventDefault();
+        this.setState({hideIsbnSearchBar: false});
         document.getElementsByClassName("modal-footer")[0].style.display = "none"
         document.getElementsByClassName("modal-body")[0].style.display = "none"
         document.getElementsByName("ModalISBN")[0].value = " "
@@ -235,38 +239,42 @@ class AddBook extends Component {
         })
     }
     render() {
+        const hideISBN = this.state.hideIsbnSearchBar ? {display: 'none'} : {display: 'block'};
+        
         return (
             <div className={"container"}>
-                <div id="modal1" className="modalIsbn">
-                    <div className="modal-content">
-                        <div className="isbnModalHeader">
-                            <p className="isbnModalHeader">Post your book by ISBN</p>
-                            <form onSubmit={this.getBooks}className='form-isbn'>
-                                <div className = "input-field">
-                                    <input autoComplete="off" type="text" onChange={this.handleIsbnChange.bind(this)} name={"ModalISBN"} value={this.state.ISBN}/>
-                                    <label className="enterIsbnLabel"htmlFor="ISBN">ISBN</label>
-                                </div>
-                                <div className='search_button_container'>
-                                        <button onClick={this.getBooks} type="button" className='isbnSearchButton btn btn-small waves-effect'>Search</button>
-                                </div>
-                            </form>
-                        </div>
-                            <div className="modal-body">
-                                <img className="google_book_image" src={this.state.bookImage} alt=""/>
-                                <div className="isbnModalBookDescription">
-                                    <p name="ModalISBN">ISBN: {this.state.ISBN}</p>
-                                    <p name="ModalAuthor">Author: {this.state.author}</p>
-                                    <p name="ModalTitle">Title: {this.state.title}</p>
-                                </div>
-                            </div>
-                        <div className="modal-footer">
-                            <form>
-                                    <div className="submit_clear_buttons">
-                                        <button className="accept_button btn-small btn waves-effect" type="button" onClick={this.populateData}> Accept </button>
-                                        <button onClick={this.clearData} className="clear_button btn-small btn waves-effect" type="button">Clear</button>
+                <div className="isbnModalContainer">
+                    <div id="modal1" className="modalIsbn">
+                        <div className="modal-content">
+                            <div style = {hideISBN}className="isbnModalHeader">
+                                <p className="isbnModalHeader">Post your book by ISBN</p>
+                                <form onSubmit={this.getBooks}className='form-isbn'>
+                                    <div className = "input_label input-field">
+                                        <input autoComplete="off" type="text" onChange={this.handleIsbnChange.bind(this)} name={"ModalISBN"} value={this.state.ISBN}/>
+                                        <label className="enterIsbnLabel"htmlFor="ISBN">ISBN</label>
                                     </div>
-                            </form>
-                        </div>    
+                                    <div className='search_button_container'>
+                                            <button onClick={this.getBooks} type="button" className='isbnSearchButton btn btn-small waves-effect'>Search</button>
+                                    </div>
+                                </form>
+                            </div>
+                                <div className="modal-body">
+                                    <img className="google_book_image" src={this.state.bookImage} alt=""/>
+                                    <div className="isbnModalBookDescription">
+                                        <p name="ModalISBN">ISBN: {this.state.ISBN}</p>
+                                        <p name="ModalAuthor">Author: {this.state.author}</p>
+                                        <p name="ModalTitle">Title: {this.state.title}</p>
+                                    </div>
+                                </div>
+                            <div className="modal-footer">
+                                <form>
+                                        <div className="submit_clear_buttons">
+                                            <button className="accept_button btn-small btn waves-effect" type="button" onClick={this.populateData}> Accept </button>
+                                            <button onClick={this.clearData} className="clear_button btn-small btn waves-effect" type="button">Try Again</button>
+                                        </div>
+                                </form>
+                            </div>    
+                        </div>
                     </div>
                 </div>
                 <form className={'form-container'} onSubmit={this.validateInputsFields} encType="multipart/form-data" >
