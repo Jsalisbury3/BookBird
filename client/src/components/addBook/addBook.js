@@ -305,9 +305,9 @@ class AddBook extends Component {
                     <div className={"error"}></div>
                     <div className={"checkMark markPrice material-icons"}>check_circle_outline</div>
                     <textarea name={"comments"} placeholder={"Seller's Comments"} className={"inputs last"} onChange={this.handleInput}/>
-                    <div className={"photo material-icons"}>add_a_photo
-                        <input id="photo" type="file" name='photo' capture="camera" accept="image/*" onChange={this.fileSelectedHandler}/>
-                    </div>
+                    <label className="btn waves-effect waves-light" htmlFor="photoInput"><i className={"material-icons"}>add_a_photo</i></label>
+                    <input id="photoInput" type="file" name="photo" capture="camera" accept="image/*" onChange={this.fileSelectedHandler}/>
+                    
                     <div className="multi-photo-container">
                     {/* <p>Tap to delete</p> */}
                         {this.state.imgTagArray}
