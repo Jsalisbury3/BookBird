@@ -13,7 +13,7 @@ export default class UserPostList extends Component {
     getUserProfileListings = async (results) => {
         let listItems = results.data.data.map((item, index) => {
             return (
-                <UserPost key={index} about={item}/>
+                <UserPost delete={this.deletePost(item.ID)} key={index} about={item}/>
             )
         });
         await this.setState({
@@ -31,10 +31,20 @@ export default class UserPostList extends Component {
             this.getUserProfileListings(results);
         });
     };
-
+    deletePost=(id)=>()=>{
+        axios({
+            url:"/api/UserProfile",
+            method:"delete",
+            data:{ID: id},
+            headers: {token: localStorage.getItem('Token')},
+        }).then( () => {
+            this.getUserPosts();
+        })
+    };
     componentDidMount = () => {
         this.getUserPosts();
     };
+
 
     render() {
         return (

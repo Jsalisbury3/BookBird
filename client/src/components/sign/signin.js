@@ -96,7 +96,7 @@ class Signin extends Component{
                     <input className="input" name = "email" placeholder="Email" type="text"  onChange={this.handleInputs}/>
                     <div className="error"></div>
                     <label htmlFor="password">password</label>
-                    <input className="input" name = "password" placeholder="Password" type="text" onChange={this.handleInputs} />
+                    <input className="input" name = "password" placeholder="Password" type="password" onChange={this.handleInputs} />
                     <div className="error"></div>
                     <button onClick={this.getIdForToken} className="sign_in_button">Sign in</button>
                 </form>

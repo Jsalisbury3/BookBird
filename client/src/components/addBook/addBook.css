@@ -1,16 +1,35 @@
 .modalIsbn {
-    /* display: block; */
     position: absolute;
     z-index: 1;
-    width: 87vw;
-    height: 74vh;
-    /* margin-left: 9%;
-    margin-top: 30%; */
-    background-color: grey;
-    left:22px;
-    top:6px
-
+    width: 100vw;
+    height: 76vh;
+    left: 0;
+    background-color: rgba(0,0,0,0.87);
 }
+.isbnModalContainer{   
+}
+.submit_clear_buttons{
+}
+.isbnModalBookDescription{
+    bottom: 47%;
+    left: 21%; 
+    top:49%;
+    font-weight: bold; 
+}
+
+.isbnSearchButton{
+    left: 28px;
+}
+
+.google_book_image{
+    margin-top: 9px;
+}
+.isbnModalHeader{
+    font-size: 16px;
+    margin-top: 6px;
+    margin-bottom: 18px;
+}
+
 .addBook-container{
     height: 100vh;
     width: 100%;
@@ -55,16 +74,45 @@ img {
     position: relative;
     right: 15%;
     /*comment*/
-}
-.form-isbn {
-    margin-top: 33%;
+
+
+.input_label{
     position: relative;
-    height: 100%
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 
 }
+.enterIsbnLabel{
+    font-size: 10px;
+    left:2%
+}
+.search_button_container{
+    position: relative;
+    left: 5%;
+}
+.form-isbn {
+    height: 50%;
+}
+.modal-body{
+    left:9%
+}
 .modal-content {
-    height: 100%;
-    width: 100%;
+    width: 72%;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column nowrap;
+}
+.modal-footer{
+    margin-bottom: 11px;
+}
+.avvept_button, .clear_button{
+    margin:8px;
 }
 .row {
     margin-left: auto;
@@ -95,7 +143,6 @@ title-container {
     height: 49%;
 
 }
-
 .containerAddBook {
     position: absolute;
     height: 76vh;
@@ -125,29 +172,28 @@ title-container {
     left: 10.5%;
     top: 4vh;
 }
-
 .textSpan {
     position: relative;
     top: 13%;
 }
-
 .last {
     position: relative;
     top: 4.1vh;
     height: 10vh;
     font-size: 1.3rem;
 }
-
 .text {
     width: 50%;
     margin: auto;
     text-align: center;
 }
+
 .comment-text-area {
     position: relative;
     /* bottom: 54%; */
     top: 55%;
 }
+
 
 .dragDrop {
     position: relative;
@@ -158,6 +204,14 @@ title-container {
     margin-left: 25%;
     margin-top: 1%;
     top: 4vh;
+}
+#photoInput{
+    width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
 }
 .multi-photo-container{
     display:flex;
