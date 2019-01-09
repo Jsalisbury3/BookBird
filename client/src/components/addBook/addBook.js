@@ -175,9 +175,10 @@ class AddBook extends Component {
             imgTagArray: newImgTagArray
         });
         
-    }
-    addBook = async () => {
-        // event.preventDefault();
+    };
+
+    addBookToDb = async (event) => {
+        event.preventDefault();
         console.log("state:", this.state);
         let request = {...this.state};
         axios({
@@ -232,7 +233,7 @@ class AddBook extends Component {
         document.getElementsByClassName("modal-footer")[0].style.display = "none"
         document.getElementsByClassName("modal-body")[0].style.display = "none"
         document.getElementsByName("ModalISBN")[0].value = " "
-        setState({
+        this.setState({
             ISBN: '',
             author: '',
             title:''
@@ -277,7 +278,7 @@ class AddBook extends Component {
                         </div>
                     </div>
                 </div>
-                <form className={'form-container'} onSubmit={this.validateInputsFields} encType="multipart/form-data" >
+                <form className={'form-container'} onSubmit={this.addBookToDb} encType="multipart/form-data" >
                     <input name={"ISBN"} placeholder={"*ISBN"} className={"inputs"} onChange={this.handleInput}/>
                     {/* <input name={"ISBN"} placeholder={"*ISBN"} className={"inputs"} onChange={this.handleInput}/>
                     <div className={"error"}></div>

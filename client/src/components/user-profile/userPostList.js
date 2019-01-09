@@ -37,7 +37,7 @@ export default class UserPostList extends Component {
             method:"delete",
             data:{ID: id},
             headers: {token: localStorage.getItem('Token')},
-        }).then( () => {
+        }).then((response) => {
             this.getUserPosts();
         })
     };

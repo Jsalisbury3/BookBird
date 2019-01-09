@@ -38,12 +38,14 @@ webserver.post('/api/addListing', (request, response) => {
     const userIDToken = request.headers['token'];
     db.connect(() => {
         const query = "SELECT b.ID FROM `books` AS b WHERE b.ISBN = '" + ISBN + "'";
+        console.log(query)
         db.query(query, (err, data) => {
             if (!data.length) {
                 const query = "INSERT INTO `books` SET title = '" + title + "', ISBN = '" + ISBN + "', author = '" + author + "', edition = " + edition + "";
                 db.query(query, (err, data) => {
                     if (!err) {
                         const query = "INSERT INTO `listing` SET listing.book_id = '" + data.insertId + "', price = '" + price + "', book_condition = '" + condition + "', comments = '" + comments + "', accounts_id = '1', public_id='21'";
+                        console.log(query);
                         db.query(query, (err, response) => {
                             if (!err) {
                                 console.log("all queries are good")
@@ -135,6 +137,7 @@ webserver.post('/api/SignIn', (request, response) => {
     })
 });
 
+// sign-in give user token add them to the logged in table
 webserver.get('/api/UserProfile', (request, response) => {
     const userIDToken = request.headers['token'];
     db.connect(() => {
@@ -160,6 +163,7 @@ webserver.get('/api/UserProfile', (request, response) => {
     })
 });
 
+//delete user postings
 webserver.delete("/api/UserProfile",(request,response)=>{
     const userIDToken = request.headers['token'];
     const listingID = request.body.ID;
@@ -171,8 +175,12 @@ webserver.delete("/api/UserProfile",(request,response)=>{
                 const query = "DELETE FROM `listing` WHERE accounts_id = '"+data[0].account_id+"' AND ID = '"+listingID+"'";
                 console.log("delete query: ", query);
                 db.query(query, (err, data) => {
+                    console.log("DATA: ", data);
                     if(!err) {
-                        console.log("deleted ID: " + listingID);
+                        const output = {
+                            data: data
+                        }
+                        response.send(output);
                     } else {
                         console.log("error deleting post: ", err);
                     }
@@ -184,7 +192,27 @@ webserver.delete("/api/UserProfile",(request,response)=>{
     })
 });
 
-
+//sign-up query.
+// validate the user doesn't have the same email or password
+// make a new table with the user info
+//make a new column that has the verification token and the status of the user.
+//send email to the user to verify the account.
+//once verified, use the sign-in query to add them to the logged in table and give them an access token.
+//redirect them to the landing page from the email.
+// webserver.post("/api/UserProfile",(request,response)=>{
+//     db.connect(()=>{
+//         const {name, email, password} = request.body;
+//         const query = 'SELECT * FROM `accounts` AS a WHERE a.email = "'+email+'"'; //should check for the email and password already being in the accounts table.
+//         db.query(query, (err, data) => {
+//             console.log("this is how many user have the same email and password", data);
+//             if(!data.length) { //if there is no account with that email and password then continue else send back info already taken.
+//                 const query = ''; //this query will add a user to the accounts table with the email and password, token and the
+//             } else {
+//                 response.send("Username or password has been denied");
+//             }
+//         })
+//     })
+// });
 
 
 
