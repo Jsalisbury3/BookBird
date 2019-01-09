@@ -12,11 +12,14 @@ export default class UserProfile extends Component {
     }
     render(){
         return(
-
             <div className='profile-main-container'>
             <div className='user-image-container circleBase'>
-            {/* <img className='circle responsive-img' src={this.state.userImageUrl}/> */}
+            
+            <img className='circle responsive-img' src={this.state.userImageUrl}/>
+            <div className='opacitySlip' />
+            <div><i className='materialize-icons'>add_a_photo</i></div>
             </div>
+            
             <div className='signOut'>
             <button className='btn btn-small'>Log Out</button>
             </div>
