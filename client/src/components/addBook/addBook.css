@@ -11,9 +11,9 @@
     top:6px
 
 }
-.post-book-container{
+.addBook-container{
     height: 100vh;
-    width: 100vw;
+    width: 100%;
     background-color: #C2E5F9;
 }
 .isbn-container {

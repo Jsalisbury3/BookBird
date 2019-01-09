@@ -224,7 +224,7 @@ class AddBook extends Component {
 
     render() {
         return (
-            <div className="post-book-container">
+            <div className="addBook-container">
                 <div id="modal1" className="modalIsbn">
                     <div className="modal-content">
                         <form onSubmit={this.getBooks}className='form-isbn'>
@@ -298,11 +298,11 @@ class AddBook extends Component {
 
                     {/*<div className={"photo material-icons"}>add_a_photo*/}
                         {/*<input id="photo" className='upload-image' type="file" name='photo' capture="camera" accept="image/*" onChange={this.fileSelectedHandler}/>*/}
-                    {/*/!*</div>*!/*/}
-                    {/*<div className="upload-image-container">*/}
-                     {/*<p>Tap to delete</p>*/}
-                        {/*{this.state.imgTagArray}*/}
                     {/*</div>*/}
+                    <div className="upload-image-container">
+                     <p>Tap to delete</p>
+                        {this.state.imgTagArray}
+                    </div>
                     <button className={"POST"}>Post</button>
                 </form>
             </div>

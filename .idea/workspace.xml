@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="95440fba-7bd2-4cb3-b12c-ec482b3d4c06" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/BookInfo/images/51pw4Y1-iJL._SX388_BO1,204,203,200_ (1).jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/BookInfo/images/image_data.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/BookInfo/images/image_data.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/addBook/addBook.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/addBook/addBook.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/addBook/addBook.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/addBook/addBook.js" afterDir="false" />
     </list>
@@ -18,19 +16,20 @@
     <session id="-755815518">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="7" />
+          <entry key="project.closed" value="8" />
           <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.22" value="1" />
+          <entry key="project.open.time.23" value="1" />
           <entry key="project.open.time.33" value="1" />
           <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="7" />
+          <entry key="project.opened" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts">
         <counts>
-          <entry key="ESLintLanguageService" value="7" />
+          <entry key="ESLintLanguageService" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -53,25 +52,25 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="css" value="1028" />
-          <entry key="js" value="1832" />
+          <entry key="css" value="1037" />
+          <entry key="js" value="1849" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="CSS" value="1028" />
-          <entry key="JavaScript" value="1832" />
+          <entry key="CSS" value="1037" />
+          <entry key="JavaScript" value="1849" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/components/addBook/addBook.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="298">
-              <caret line="272" column="62" lean-forward="true" selection-start-line="272" selection-start-column="62" selection-end-line="272" selection-end-column="62" />
+            <state relative-caret-position="214">
+              <caret line="238" column="18" lean-forward="true" selection-start-line="238" selection-start-column="18" selection-end-line="238" selection-end-column="18" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -96,11 +95,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/src/components/addBook/addBook.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="226">
-              <caret line="74" column="17" selection-start-line="74" selection-start-column="17" selection-end-line="74" selection-end-column="17" />
+            <state relative-caret-position="115">
+              <caret line="15" column="16" lean-forward="true" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -108,7 +107,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/components/BookInfo/images/image_data.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
+            <state relative-caret-position="150">
               <caret line="11" column="1" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
               <folding>
                 <element signature="e#0#74#0" expanded="true" />
@@ -138,7 +137,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/components/addBook/modal.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
+            <state relative-caret-position="180">
               <caret line="15" selection-start-line="15" selection-end-line="15" />
               <folding>
                 <element signature="e#74#95#0" expanded="true" />
@@ -165,6 +164,13 @@
       <find>comment-box</find>
       <find>form</find>
       <find>#my</find>
+      <find>.search</find>
+      <find>isbn</find>
+      <find>image</find>
+      <find>searcg</find>
+      <find>post</find>
+      <find>post-book</find>
+      <find>container</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -205,10 +211,10 @@
   <component name="PhpServers">
     <servers />
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="x" value="1280" />
-    <option name="width" value="1920" />
-    <option name="height" value="1080" />
+  <component name="ProjectFrameBounds">
+    <option name="y" value="23" />
+    <option name="width" value="1280" />
+    <option name="height" value="723" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -317,19 +323,20 @@
       <workItem from="1546726055540" duration="19703000" />
       <workItem from="1546823469241" duration="5373000" />
       <workItem from="1546927150868" duration="3318000" />
-      <workItem from="1547001296356" duration="5187000" />
+      <workItem from="1547001296356" duration="6807000" />
+      <workItem from="1547011900276" duration="315000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42693000" />
+    <option name="totallyTimeSpent" value="44628000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1280" y="0" width="1920" height="1080" extended-state="0" />
+    <frame x="0" y="23" width="1280" height="723" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23003195" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4954683" visible="true" weight="0.3546042" />
+      <window_info id="Structure" order="1" sideWeight="0.50453174" side_tool="true" visible="true" weight="0.3546042" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -341,7 +348,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.2970297" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.47543582" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -389,12 +396,25 @@
     <entry file="file://$PROJECT_DIR$/client/src/components/addBook/images/x3KMH.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/BookInfo/image.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/BookInfo/images.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="5" column="5" selection-start-line="5" selection-start-column="5" selection-end-line="7" selection-end-column="10" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/BookInfo/images/image_data.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="11" column="1" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+          <folding>
+            <element signature="e#0#74#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -415,7 +435,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/addBook/modal.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
+        <state relative-caret-position="180">
           <caret line="15" selection-start-line="15" selection-end-line="15" />
           <folding>
             <element signature="e#74#95#0" expanded="true" />
@@ -430,33 +450,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/BookInfo/image.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/BookInfo/images/image_data.js">
+    <entry file="file://$PROJECT_DIR$/client/src/components/addBook/addBook.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="1" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+        <state relative-caret-position="214">
+          <caret line="238" column="18" lean-forward="true" selection-start-line="238" selection-start-column="18" selection-end-line="238" selection-end-column="18" />
           <folding>
-            <element signature="e#0#74#0" expanded="true" />
+            <element signature="e#0#39#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/addBook/addBook.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="74" column="17" selection-start-line="74" selection-start-column="17" selection-end-line="74" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/addBook/addBook.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="272" column="62" lean-forward="true" selection-start-line="272" selection-start-column="62" selection-end-line="272" selection-end-column="62" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="115">
+          <caret line="15" column="16" lean-forward="true" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
         </state>
       </provider>
     </entry>
