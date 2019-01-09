@@ -10,9 +10,7 @@ import 'materialize-css/dist/css/materialize.min.css'
 import M from 'materialize-css/dist/js/materialize.min.js'
 import {BASE_URL_GOOGLE_BOOKS, API_KEY} from '../../../../config/api';
 import SearchInput from './isbn_search'
-import image2 from './images/488.jpg';
-
-
+import image2 from './images/488.jpg
 class AddBook extends Component {
     constructor(props) {
         super(props);
@@ -33,6 +31,7 @@ class AddBook extends Component {
             imgTagArray:[],
         }
     }
+    //comment
 
     componentDidMount = async() => {
         document.getElementsByClassName('modalIsbn')[0].style.display = "block";
