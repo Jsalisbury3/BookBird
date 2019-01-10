@@ -14,6 +14,7 @@ import Header from './universal/header';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import Modal from './addBook/modal';
 import 'materialize-css/dist/css/materialize.min.css';
+import 'materialize-css/dist/js/materialize.min';
 import {BASE_URL_GOOGLE_BOOKS, API_KEY} from '../../../config/api'
 
 
