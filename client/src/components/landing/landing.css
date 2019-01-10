@@ -4,6 +4,7 @@
 .search-results-container{
     height:69vh;
     overflow:auto;
+    background-color: #C2E5F9;
 }
 .listItem{
     height:17.25vh;
@@ -42,9 +43,12 @@
     display:inline-block;
     height:100%;
     width:25%;
+    position: relative;
+    right: 2%;
 }
 .itemPrice>h3{
     margin:4%;
+    font-size: 2.3rem;
 }
 .itemPrice>h1 {
     margin: 8% 0;

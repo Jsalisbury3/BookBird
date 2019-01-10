@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import './sign.css'
+import 'materialize-css/dist/css/materialize.min.css'
+import 'materialize-css'
 
 
 class Signin extends Component{
@@ -92,12 +94,14 @@ class Signin extends Component{
                 <p className="signin_footer">Dont have an account? <Link to={"/SignUp"}>Sign up now! </Link> </p>
                 <h1 className="sign_in">Sign in</h1>
                 <form className="sign_in_form" onSubmit={this.getIdForToken}>
+                    <div input_label input-field>
                     <label htmlFor="email">email</label>
                     <input className="input" name = "email" placeholder="Email" type="text"  onChange={this.handleInputs}/>
-                    <div className="error"></div>
+                    </div>
+                    <div className="error">must be a valid email</div>
                     <label htmlFor="password">password</label>
-                    <input className="input" name = "password" placeholder="Password" type="password" onChange={this.handleInputs} />
-                    <div className="error"></div>
+                    <input className="input"  name = "password" placeholder="Password" type="password" onChange={this.handleInputs} />
+                    <div className="error">must be a valid password</div>
                     <button onClick={this.getIdForToken} className="sign_in_button">Sign in</button>
                 </form>
             </div>
