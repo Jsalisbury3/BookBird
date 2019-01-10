@@ -4,6 +4,7 @@ const jwt = require('jwt-simple');
 const mysql_creds = require('./config/mysql_creds.js');
 const mysql = require('mysql');
 const db = mysql.createConnection(mysql_creds);
+const hash = require('./config/token-hash');
 
 webserver.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -114,69 +115,57 @@ webserver.get('/api/BookInfoIndex/:bookId', (request, response) => {
     })
 });
 
-//sign-in endpoint to grab the users id.
-webserver.post('/api/SignIn', (request, response) => {
-    const {email, password} = request.body;
-    db.connect(() => {
-        const query = "SELECT a.ID from `accounts` AS a WHERE a.email = '" + email + "' AND a.password = '" + password + "'";
-        db.query(query, (err, data) => {
-            var userToken = jwt.encode(email + password + Date.now(), 'HS256');
-            if (!err) {
-                const query = "INSERT INTO `loggedin` SET loggedin.account_id = " + data[0].ID + ", loggedin.token = '" + userToken + "'";
-                db.query(query, (err, data) => {
-                });
-                let output = {
-                    success: true,
-                    data: userToken,
-                };
-                response.send(output);
-            } else {
-                console.log("Error sign-in", err);
-            }
-        })
-    })
-});
 
-// sign-in give user token add them to the logged in table
+//profile listings
 webserver.get('/api/UserProfile', (request, response) => {
     const userIDToken = request.headers['token'];
     db.connect(() => {
         const query = 'SELECT lg.account_id FROM `loggedin` AS lg WHERE lg.token = "' + userIDToken + '"';
         db.query(query, (err, data) => {
             if (!err) {
-                const query = "SELECT a.ID, l.book_condition, l.ID, l.price, l.comments, l.book_id, b.title, b.ISBN, b.author, b.edition FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id WHERE a.ID = '" + data[0].account_id + "'";
-                db.query(query, (err, data) => {
-                    if (!err) {
-                        const output = {
-                            success: true,
-                            data: data,
-                        };
-                        response.send(output);
-                    } else {
-                        console.log("Profile error: ", err);
-                    }
-                })
+                if (data.length !== 1) {
+                    const outputNoMatch = {
+                        success: false,
+                        message: "no match found for token given"
+                    };
+                    response.send(outputNoMatch);
+                } else {
+                    console.log("Data: ", data)
+                    const query = "SELECT a.ID, l.book_condition, l.ID, l.price, l.comments, l.book_id, b.title, b.ISBN, b.author, b.edition FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id WHERE a.ID = '" + data[0].account_id + "'";
+                    db.query(query, (err, data) => {
+                        if (!err) {
+                            const output = {
+                                success: true,
+                                data: data,
+                            };
+                            response.send(output);
+                        } else {
+                            console.log("Profile error: ", err);
+                        }
+                    })
+                }
             } else {
                 console.log("query error getting account id from token: ", err);
             }
+
         })
     })
 });
 
 //delete user postings
-webserver.delete("/api/UserProfile",(request,response)=>{
+webserver.delete("/api/UserProfile", (request, response) => {
     const userIDToken = request.headers['token'];
     const listingID = request.body.ID;
-    db.connect(()=>{
-        const query = "SELECT lg.account_id FROM `loggedin` AS lg WHERE lg.token = '"+userIDToken+"'";
-        db.query(query,(err, data)=>{
+    db.connect(() => {
+        const query = "SELECT lg.account_id FROM `loggedin` AS lg WHERE lg.token = '" + userIDToken + "'";
+        db.query(query, (err, data) => {
             console.log("query valid deletePost");
-            if(!err){
-                const query = "DELETE FROM `listing` WHERE accounts_id = '"+data[0].account_id+"' AND ID = '"+listingID+"'";
+            if (!err) {
+                const query = "DELETE FROM `listing` WHERE accounts_id = '" + data[0].account_id + "' AND ID = '" + listingID + "'";
                 console.log("delete query: ", query);
                 db.query(query, (err, data) => {
                     console.log("DATA: ", data);
-                    if(!err) {
+                    if (!err) {
                         const output = {
                             data: data
                         }
@@ -185,12 +174,68 @@ webserver.delete("/api/UserProfile",(request,response)=>{
                         console.log("error deleting post: ", err);
                     }
                 })
-            }else{
-                console.log("Delete error:",err);
+            } else {
+                console.log("Delete error:", err);
             }
         })
     })
 });
+
+//sign-in endpoint to grab the users id.
+webserver.post('/api/SignIn', (request, response) => {
+    const {email, password} = request.body;
+    console.log("headers: ", typeof request.headers['token'], request.headers['token']);
+    if(request.headers['token'] !== "undefined" && request.headers['token'] !== "null") {
+        console.log("headers: ", typeof request.headers['token'], request.headers['token']);
+        const outputAlreadySignedIn = {
+            success: false,
+            message: "You are already signed in"
+        };
+        response.send(outputAlreadySignedIn)
+    } else {
+        db.connect(() => {
+            const getAccountQuery = "SELECT a.ID from `accounts` AS a WHERE a.email = '" + email + "' AND a.password = '" + password + "'";
+            db.query(getAccountQuery, (err, data) => {
+                if (!err) {
+                    if (data.length === 1) {
+                        var userToken = jwt.encode(email + password + Date.now(), hash);
+                        if (!err) {
+                            const query = "INSERT INTO `loggedin` SET loggedin.account_id = " + data[0].ID + ", loggedin.token = '" + userToken + "'";
+                            db.query(query, (err) => {
+                                if (!err) {
+                                    let output = {
+                                        success: true,
+                                        data: userToken,
+                                    };
+                                    response.send(output);
+                                } else {
+                                    const outputErr = {
+                                        success: false,
+                                        message: `error inserting account to records: ${err}`
+                                    }
+                                    response.send(outputErr);
+                                }
+                            })
+                        }
+                    } else {
+                        const outputNoAccount = {
+                            success: false,
+                            message: "no record of an account with specified credentials"
+                        };
+                        response.send(outputNoAccount)
+                    }
+                } else {
+                    const outputErr = {
+                        success: false,
+                        message: `error with loggin: ${err}`
+                    };
+                    response.send(outputErr)
+                }
+            })
+        })
+    }
+});
+
 
 //sign-up query.
 // validate the user doesn't have the same email or password
@@ -199,7 +244,7 @@ webserver.delete("/api/UserProfile",(request,response)=>{
 //send email to the user to verify the account.
 //once verified, use the sign-in query to add them to the logged in table and give them an access token.
 //redirect them to the landing page from the email.
-// webserver.post("/api/UserProfile",(request,response)=>{
+// webserver.post("/api/SignUp",(request,response)=>{
 //     db.connect(()=>{
 //         const {name, email, password} = request.body;
 //         const query = 'SELECT * FROM `accounts` AS a WHERE a.email = "'+email+'"'; //should check for the email and password already being in the accounts table.
@@ -215,7 +260,36 @@ webserver.delete("/api/UserProfile",(request,response)=>{
 // });
 
 
-
+webserver.get('/api/SignOut', (request, response) => {
+    const userIDToken = request.headers['token'];
+    if(userIDToken === "undefined" || userIDToken === "null") {
+        const outputNotSignedIn = {
+            success: false,
+            message: "You are already signed out"
+        };
+        response.send(outputNotSignedIn)
+    } else {
+        db.connect(() => {
+            const getIdFromTokenQuery = "DELETE FROM `loggedin` WHERE token = '" + userIDToken + "'";
+            console.log(getIdFromTokenQuery);
+            db.query(getIdFromTokenQuery, (err) => {
+                if(!err) {
+                    const outputSuccess = {
+                        success: true,
+                        message: "You are now signed out",
+                    };
+                    response.send(outputSuccess);
+                } else {
+                    const output = {
+                        success: false,
+                        message: `error signing you out: ${err}`,
+                    };
+                    response.send(output);
+                }
+            })
+        })
+    }
+});
 
 
 
