@@ -57,7 +57,7 @@ img {
     width: 100vw;
 }
 .upload-image {
-    background-color: yellow;
+
     width: 0%;
 }
 .upload-image-container {
@@ -68,12 +68,12 @@ img {
     margin: left;
     margin-left: 37%;
 }
-.searchButtonContainer{
+.searchButtonContainer {
     padding-left: 35%;
     margin-top: 0%;
     position: relative;
     right: 15%;
-    /*comment*/
+}
 
 
 .input_label{

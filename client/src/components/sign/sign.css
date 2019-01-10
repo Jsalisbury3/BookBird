@@ -1,3 +1,7 @@
+.sign_in_form {
+    margin-right: 34%;
+}
+
 .sign_up, .sign_in{
     text-align: center;
     display: grid;
@@ -41,7 +45,10 @@ label{
     width:23vw;
     height:9vh;
     border-radius:31px;
+    margin-left: 8%;
 }
+
+
 
 .error{
     color:red;

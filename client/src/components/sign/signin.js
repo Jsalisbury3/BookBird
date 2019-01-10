@@ -94,6 +94,7 @@ class Signin extends Component{
                 <form className="sign_in_form" onSubmit={this.getIdForToken}>
                     <label htmlFor="email">email</label>
                     <input className="input" name = "email" placeholder="Email" type="text"  onChange={this.handleInputs}/>
+
                     <div className="error"></div>
                     <label htmlFor="password">password</label>
                     <input className="input" name = "password" placeholder="Password" type="password" onChange={this.handleInputs} />
