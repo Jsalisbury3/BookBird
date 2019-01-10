@@ -182,7 +182,6 @@ class AddBook extends Component {
             photoArray: newPhotoArray,
             imgTagArray: newImgTagArray
         });
-        
     }
     addBook = async (e) => {
         event.preventDefault();
@@ -240,7 +239,7 @@ class AddBook extends Component {
         document.getElementsByClassName("modal-footer")[0].style.display = "none"
         document.getElementsByClassName("modal-body")[0].style.display = "none"
         document.getElementsByName("ModalISBN")[0].value = " "
-        setState({
+        this.setState({
             ISBN: '',
             author: '',
             title:''
@@ -288,6 +287,7 @@ class AddBook extends Component {
                         </div>
                     </div>
                 </div>
+
                 <form className={'form-container '} onSubmit={this.validateInputsFields} encType="multipart/form-data">
                     <div className=' title-container row'>
                         <div id={"conditionError"} className={"error"}></div>

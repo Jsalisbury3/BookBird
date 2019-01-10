@@ -63,9 +63,7 @@ class Signin extends Component{
     storeToken = (token) => {
         console.log("TOKEN: ", token);
         const Token = token.data.data;
-        if (typeof(Storage) !== "undefined") {
-            localStorage.setItem("Token", Token);
-        }
+        localStorage.setItem("Token", Token);
     }
 
     getIdForToken = (event) => {
@@ -75,8 +73,12 @@ class Signin extends Component{
             method: 'post',
             url: '/api/SignIn',
             data: request,
+            headers : {token: localStorage.getItem('Token')}
         }).then((response) => {
-            this.storeToken(response);
+            console.log("resposne: ", response);
+            if(response.data.success) {
+                this.storeToken(response);
+            }
         });
     };
 
