@@ -64,13 +64,13 @@ class Signup extends Component{
                 <div>
                     <label htmlFor="Email">Email</label>
                     <input className="input"name = "Email" placeholder="Email"type="text"/>
-                    <div className="error">error message</div>
+                    <div className="error">must be a valid email</div>
                     <label htmlFor="password">Password</label>
                     <input className="input"name = "password" placeholder="Password"type="password"/>
-                    <div className="error">error message</div>
+                    <div className="error">must be a valid password</div>
                     <label htmlFor="Name">Name</label>
                     <input className="input"name = "Name" placeholder="Name"type="text"/>
-                    <div className="error">error message</div>
+                    <div className="error">must be a valid name</div>
                     <button className="sign_up_button">Sign up</button>
                 </div>
             </form>
