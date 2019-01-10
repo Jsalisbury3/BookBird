@@ -23,6 +23,10 @@
 
 .google_book_image{
     margin-top: 9px;
+    position: relative;
+    left: 25%;
+    max-height: 8%;
+    max-width: 50%;
 }
 .isbnModalHeader{
     font-size: 16px;
