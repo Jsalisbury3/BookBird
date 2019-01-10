@@ -18,6 +18,7 @@ export default class UserProfile extends Component {
             headers: {token: localStorage.getItem('Token')},
         }).then((response) => {
             localStorage.clear();
+
         })
     };
 
