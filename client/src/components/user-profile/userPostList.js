@@ -11,14 +11,18 @@ export default class UserPostList extends Component {
     };
 
     getUserProfileListings = async (results) => {
-        let listItems = results.data.data.map((item, index) => {
-            return (
-                <UserPost delete={this.deletePost(item.ID)} key={index} about={item}/>
-            )
-        });
-        await this.setState({
-            data: listItems,
-        });
+        if(!results.data.success) {
+            console.log("no matches found");
+        } else {
+            let listItems = results.data.data.map((item, index) => {
+                return (
+                    <UserPost delete={this.deletePost(item.ID)} key={index} about={item}/>
+                )
+            });
+            await this.setState({
+                data: listItems,
+            });
+        }
     };
 
     getUserPosts = () => {
@@ -37,7 +41,7 @@ export default class UserPostList extends Component {
             method:"delete",
             data:{ID: id},
             headers: {token: localStorage.getItem('Token')},
-        }).then( () => {
+        }).then((response) => {
             this.getUserPosts();
         })
     };

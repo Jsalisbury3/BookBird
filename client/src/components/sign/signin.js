@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import './sign.css'
+import 'materialize-css/dist/css/materialize.min.css'
+import 'materialize-css'
 
 
 class Signin extends Component{
@@ -18,14 +20,12 @@ class Signin extends Component{
     //     const test= [
     //         {
     //             element: "input[name=Email]",
-    //             pattern: /[a-zA-Z0-9]{4,140}/,
-    //                 // /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/,
+    //             pattern: /[a-zA-Z0-9]{4,140}(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/,
     //             errorMessage: 'must be a valid email address'
     //         },
     //         {
     //             element: "input[name=password]",
-    //             pattern: /[a-zA-Z0-9]{4,140}/,
-    //                 // /^(?=.*\d).{4,8}$/,
+    //             pattern: /[a-zA-Z0-9]{4,140}^(?=.*\d).{4,8}$/,
     //             errorMessage: "Password must be between 4 and 8 digits long and include at least one numeric digit"
     //         }
     //     ]
@@ -47,7 +47,7 @@ class Signin extends Component{
     //     } else {
     //         document.querySelector(element).nextSibling.innerHTML = errorMessage;
     //     }
-    //
+    
     //     return result;
     // }
 
@@ -63,9 +63,7 @@ class Signin extends Component{
     storeToken = (token) => {
         console.log("TOKEN: ", token);
         const Token = token.data.data;
-        if (typeof(Storage) !== "undefined") {
-            localStorage.setItem("Token", Token);
-        }
+        localStorage.setItem("Token", Token);
     }
 
     getIdForToken = (event) => {
@@ -75,8 +73,12 @@ class Signin extends Component{
             method: 'post',
             url: '/api/SignIn',
             data: request,
+            headers : {token: localStorage.getItem('Token')}
         }).then((response) => {
-            this.storeToken(response);
+            console.log("resposne: ", response);
+            if(response.data.success) {
+                this.storeToken(response);
+            }
         });
     };
 
@@ -92,12 +94,14 @@ class Signin extends Component{
                 <p className="signin_footer">Dont have an account? <Link to={"/SignUp"}>Sign up now! </Link> </p>
                 <h1 className="sign_in">Sign in</h1>
                 <form className="sign_in_form" onSubmit={this.getIdForToken}>
-                    <label htmlFor="email">email</label>
-                    <input className="input" name = "email" placeholder="Email" type="text"  onChange={this.handleInputs}/>
-                    <div className="error"></div>
+                    <div input_label input-field>
+                      <label htmlFor="email">email</label>
+                      <input className="input" name = "email" placeholder="Email" type="text"  onChange={this.handleInputs}/>
+                    </div>
+                    <div className="error">must be a valid email</div>
                     <label htmlFor="password">password</label>
-                    <input className="input" name = "password" placeholder="Password" type="password" onChange={this.handleInputs} />
-                    <div className="error"></div>
+                    <input className="input"  name = "password" placeholder="Password" type="password" onChange={this.handleInputs} />
+                    <div className="error">must be a valid password</div>
                     <button onClick={this.getIdForToken} className="sign_in_button">Sign in</button>
                 </form>
             </div>

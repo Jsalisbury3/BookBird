@@ -6,10 +6,10 @@ import Modal from './modal';
 import axios from 'axios';
 import 'materialize-css';
 import 'material-icons';
-import 'materialize-css/dist/css/materialize.min.css'
-import M from 'materialize-css/dist/js/materialize.min.js'
 import {BASE_URL_GOOGLE_BOOKS, API_KEY} from '../../../../config/api';
 import SearchInput from './isbn_search'
+import image2 from './images/488.jpg'
+
 
 
 class AddBook extends Component {
@@ -29,15 +29,23 @@ class AddBook extends Component {
             photoArray:[],
             loaded:0,
             imgTagArray:[],
-            hideIsbnSearchBar: false
+            hideIsbnSearchBar: false,
+            showToolTip: false
         }
     }
+    //comment
 
     componentDidMount = async() => {
         document.getElementsByClassName('modalIsbn')[0].style.display = "block";
         document.getElementsByClassName("modal-footer")[0].style.display = "none"
         document.getElementsByClassName("modal-body")[0].style.display = "none"
         await this.addPhotoToMultiPhotoContainer();
+
+        console.log('Tooltip:', this.tooltip);
+
+        this.instances = M.Tooltip.init(this.tooltip);
+      
+        
 
 
 
@@ -174,10 +182,9 @@ class AddBook extends Component {
             photoArray: newPhotoArray,
             imgTagArray: newImgTagArray
         });
-        
     }
-    addBook = async () => {
-        // event.preventDefault();
+    addBook = async (e) => {
+        event.preventDefault();
         console.log("state:", this.state);
         let request = {...this.state};
         axios({
@@ -186,7 +193,7 @@ class AddBook extends Component {
             headers: {token: localStorage.getItem('Token')},
             data: request,
         });
-        // document.getElementsByClassName('modalPageContainer')[0].style.display = "block";
+        document.getElementsByClassName('modalPageContainer')[0].style.display = "block";
     };
     getBooks=(event)=>{
         event.preventDefault();
@@ -223,7 +230,7 @@ class AddBook extends Component {
         document.getElementsByClassName('modalIsbn')[0].style.display = "none"
         document.getElementsByName("author")[0].value=`${this.state.author}`
         document.getElementsByName("title")[0].value=`${this.state.title}`
-        document.getElementsByName("ISBN")[0].value=`${this.state.ISBN}`
+        // document.getElementsByName("ISBN")[0].value=`${this.state.ISBN}`
     }
 
     clearData=(event)=>{
@@ -232,17 +239,19 @@ class AddBook extends Component {
         document.getElementsByClassName("modal-footer")[0].style.display = "none"
         document.getElementsByClassName("modal-body")[0].style.display = "none"
         document.getElementsByName("ModalISBN")[0].value = " "
-        setState({
+        this.setState({
             ISBN: '',
             author: '',
             title:''
         })
     }
+
+    
     render() {
         const hideISBN = this.state.hideIsbnSearchBar ? {display: 'none'} : {display: 'block'};
         
         return (
-            <div className={"container"}>
+            <div className={"addBook-container"}>
                 <div className="isbnModalContainer">
                     <div id="modal1" className="modalIsbn">
                         <div className="modal-content">
@@ -251,6 +260,7 @@ class AddBook extends Component {
                                 <form onSubmit={this.getBooks}className='form-isbn'>
                                     <div className = "input_label input-field">
                                         <input autoComplete="off" type="text" onChange={this.handleIsbnChange.bind(this)} name={"ModalISBN"} value={this.state.ISBN}/>
+                                        <p>ISBN is required <a ref={e => this.tooltip = e} className="tooltipped" data-position="top" data-tooltip="We require ISBN number to ensure accuracy of book postings">why?</a></p>
                                         <label className="enterIsbnLabel"htmlFor="ISBN">ISBN</label>
                                     </div>
                                     <div className='search_button_container'>
@@ -277,42 +287,61 @@ class AddBook extends Component {
                         </div>
                     </div>
                 </div>
-                <form className={'form-container'} onSubmit={this.validateInputsFields} encType="multipart/form-data" >
-                    <input name={"ISBN"} placeholder={"*ISBN"} className={"inputs"} onChange={this.handleInput}/>
+
+                <form className={'form-container '} onSubmit={this.validateInputsFields} encType="multipart/form-data">
+                    <div className=' title-container row'>
+                        <div id={"conditionError"} className={"error"}></div>
+                        <div id={"conditionCheckMArk input-field "} className={"checkMark markCondition material-icons"}>check_circle_outline</div>
+                        <input name={"title"} placeholder={"*Title"} id={'input-field'} className={"inputs col s10 push-s1"} onChange={this.handleInput}/>
+                    </div>
+                    <div className='row'>
+                        <div className={"error"}></div>
+                        <div className={"checkMark markTitle material-icons"}>check_circle_outline</div>
+                        <input name={"author"} placeholder={"*Author"} id={'input-field'} className={"inputs col s10 push-s1"} onChange={this.handleInput}/>
+                    </div>
+                    <div className='row'>
+                        <div className={"error"}></div>
+                        <div className={"checkMark markEdition material-icons"}>check_circle_outline</div>
+                        <input name={"price"} placeholder={"*Price $$$$"} id={'input-field'} className={"inputs col s10 push-s1"} onChange={this.handleInput}/>
+                    </div>
+                    <div className='row'>
+                        <select name={"condition"} onChange={this.handleInput} id={"mySelect"} className={"condition  col s6 push-s3"}>
+                            <option value="" disabled selected>*Select Condition:</option>
+                            <option value="New">New</option>
+                            <option value="Like New">Like New</option>
+                            <option value="Good">Good</option>
+                            <option value="Worn">Worn</option>
+                            <option value="Thrashed">Thrashed</option>
+                        </select>
+                    </div>
+                    <div className={"error"}></div>
+                    <div className={"checkMark markPrice material-icons"}>check_circle_outline</div>
+                    <div className={'comment-text-area'}>
+                        <textarea name={"comments"} placeholder={"Seller's Comments"}  id={"input-field"} className={"inputs last "} onChange={this.handleInput}/>
+                    </div>
+
+                    {this.state.showToolTip && <Tooltip></Tooltip>}
+
+                    {/*<div className="row">*/}
+                        {/*<input name={"ISBN"} placeholder={"*ISBN"} className={"inputs isbn-container col s6 offset-s6"} onChange={this.handleInput}/>*/}
+                    {/*</div>*/}
                     {/* <input name={"ISBN"} placeholder={"*ISBN"} className={"inputs"} onChange={this.handleInput}/>
                     <div className={"error"}></div>
                     <div className={"checkMark markISBN material-icons"}>check_circle_outline</div> */}
-                    <select name={"condition"} onChange={this.handleInput} id={"mySelect"} className={"condition"}>
-                        <option value="" disabled selected>*Select Condition:</option>
-                        <option value="New">New</option>
-                        <option value="Like New">Like New</option>
-                        <option value="Good">Good</option>
-                        <option value="Worn">Worn</option>
-                        <option value="Thrashed">Thrashed</option>
-                    </select>
-                    <div id={"conditionError"} className={"error"}></div>
-                    <div id={"conditionCheckMArk input-field "} className={"checkMark markCondition material-icons"}>check_circle_outline</div>
-                    <input name={"title"} placeholder={"*Title"} className={"inputs"} onChange={this.handleInput}/>
-                    <div className={"error"}></div>
-                    <div className={"checkMark markTitle material-icons"}>check_circle_outline</div>
-                    <input name="author" placeholder={"*Author"} className={"inputs"} onChange={this.handleInput}/>
-                    <div className={"error"}></div>
-                    <div className={"checkMark markAuthor material-icons"}>check_circle_outline</div>
-                    <input name={"edition"} placeholder={"*Edition"} className={"inputs"} onChange={this.handleInput}/>
-                    <div className={"error"}></div>
-                    <div className={"checkMark markEdition material-icons"}>check_circle_outline</div>
-                    <input name={"price"} placeholder={"*Price $$$$"} className={"inputs"} onChange={this.handleInput}/>
-                    <div className={"error"}></div>
-                    <div className={"checkMark markPrice material-icons"}>check_circle_outline</div>
-                    <textarea name={"comments"} placeholder={"Seller's Comments"} className={"inputs last"} onChange={this.handleInput}/>
-                    <label className="btn waves-effect waves-light" htmlFor="photoInput"><i className={"material-icons"}>add_a_photo</i></label>
-                    <input id="photoInput" type="file" name="photo" capture="camera" accept="image/*" onChange={this.fileSelectedHandler}/>
-                    
-                    <div className="multi-photo-container">
-                    {/* <p>Tap to delete</p> */}
+                    {/*<div className={"error"}></div>*/}
+                    {/*<div className={"checkMark markAuthor material-icons"}>check_circle_outline</div>*/}
+                    {/*<input name={"edition"} placeholder={"*Edition"} className={"inputs"} onChange={this.handleInput}/>*/}
+
+
+                    {/*<div className={"photo material-icons"}>add_a_photo*/}
+                        {/*<input id="photo" className='upload-image' type="file" name='photo' capture="camera" accept="image/*" onChange={this.fileSelectedHandler}/>*/}
+                    {/*</div>*/}
+                    <div className="upload-image-container">
+                     <p>Tap to delete</p>
+
                         {this.state.imgTagArray}
                     </div>
-                    <button className={"POST"}>Post</button>
+                    <button type = "button" className={"POST"}>Post</button>
                 </form>
             </div>
         )
