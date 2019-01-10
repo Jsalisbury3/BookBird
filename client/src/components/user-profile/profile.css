@@ -12,7 +12,7 @@
     display:inline-block;
     height:76vh;
     width:100vw;
-    background-color:aqua;
+    background-color:#C2E5F9;
 }
 .user-image-container{
     display:inline-block;
@@ -21,10 +21,11 @@
     margin-top:6%;
     margin-left:32%;
     background-color:brown;
+    overflow:hidden;
 }
 .user-image-container>img{
-    height:100%;
-    width:100%;
+    height:150px;
+    width:170px;
 }
 .signOut{
     display:inline-block;
