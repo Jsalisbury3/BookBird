@@ -6,11 +6,12 @@ import Modal from './modal';
 import axios from 'axios';
 import 'materialize-css';
 import 'material-icons';
-import 'materialize-css/dist/css/materialize.min.css'
-import M from 'materialize-css/dist/js/materialize.min.js'
 import {BASE_URL_GOOGLE_BOOKS, API_KEY} from '../../../../config/api';
 import SearchInput from './isbn_search'
 import image2 from './images/488.jpg'
+
+
+
 class AddBook extends Component {
     constructor(props) {
         super(props);
@@ -28,7 +29,8 @@ class AddBook extends Component {
             photoArray:[],
             loaded:0,
             imgTagArray:[],
-            hideIsbnSearchBar: false
+            hideIsbnSearchBar: false,
+            showToolTip: false
         }
     }
     //comment
@@ -38,6 +40,12 @@ class AddBook extends Component {
         document.getElementsByClassName("modal-footer")[0].style.display = "none"
         document.getElementsByClassName("modal-body")[0].style.display = "none"
         await this.addPhotoToMultiPhotoContainer();
+
+        console.log('Tooltip:', this.tooltip);
+
+        this.instances = M.Tooltip.init(this.tooltip);
+      
+        
 
 
 
@@ -176,8 +184,8 @@ class AddBook extends Component {
         });
         
     }
-    addBook = async () => {
-        // event.preventDefault();
+    addBook = async (e) => {
+        event.preventDefault();
         console.log("state:", this.state);
         let request = {...this.state};
         axios({
@@ -186,7 +194,7 @@ class AddBook extends Component {
             headers: {token: localStorage.getItem('Token')},
             data: request,
         });
-        // document.getElementsByClassName('modalPageContainer')[0].style.display = "block";
+        document.getElementsByClassName('modalPageContainer')[0].style.display = "block";
     };
     getBooks=(event)=>{
         event.preventDefault();
@@ -223,7 +231,7 @@ class AddBook extends Component {
         document.getElementsByClassName('modalIsbn')[0].style.display = "none"
         document.getElementsByName("author")[0].value=`${this.state.author}`
         document.getElementsByName("title")[0].value=`${this.state.title}`
-        document.getElementsByName("ISBN")[0].value=`${this.state.ISBN}`
+        // document.getElementsByName("ISBN")[0].value=`${this.state.ISBN}`
     }
 
     clearData=(event)=>{
@@ -238,6 +246,8 @@ class AddBook extends Component {
             title:''
         })
     }
+
+    
     render() {
         const hideISBN = this.state.hideIsbnSearchBar ? {display: 'none'} : {display: 'block'};
         
@@ -251,6 +261,7 @@ class AddBook extends Component {
                                 <form onSubmit={this.getBooks}className='form-isbn'>
                                     <div className = "input_label input-field">
                                         <input autoComplete="off" type="text" onChange={this.handleIsbnChange.bind(this)} name={"ModalISBN"} value={this.state.ISBN}/>
+                                        <p>ISBN is required <a ref={e => this.tooltip = e} className="tooltipped" data-position="top" data-tooltip="We require ISBN number to ensure accuracy of book postings">why?</a></p>
                                         <label className="enterIsbnLabel"htmlFor="ISBN">ISBN</label>
                                     </div>
                                     <div className='search_button_container'>
@@ -309,7 +320,7 @@ class AddBook extends Component {
                         <textarea name={"comments"} placeholder={"Seller's Comments"}  id={"input-field"} className={"inputs last "} onChange={this.handleInput}/>
                     </div>
 
-
+                    {this.state.showToolTip && <Tooltip></Tooltip>}
 
                     {/*<div className="row">*/}
                         {/*<input name={"ISBN"} placeholder={"*ISBN"} className={"inputs isbn-container col s6 offset-s6"} onChange={this.handleInput}/>*/}
@@ -330,7 +341,7 @@ class AddBook extends Component {
 
                         {this.state.imgTagArray}
                     </div>
-                    <button className={"POST"}>Post</button>
+                    <button type = "button" className={"POST"}>Post</button>
                 </form>
             </div>
         )

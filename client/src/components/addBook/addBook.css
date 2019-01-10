@@ -10,6 +10,13 @@
 }
 .submit_clear_buttons{
 }
+
+.material-tooltip{
+   left: 23% !important;
+   width: 55%;
+   right: 38%
+}
+
 .isbnModalBookDescription{
     bottom: 47%;
     left: 21%; 
@@ -74,7 +81,7 @@ img {
     position: relative;
     right: 15%;
     /*comment*/
-
+}
 
 .input_label{
     position: relative;
