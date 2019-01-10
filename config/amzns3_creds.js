@@ -1,6 +1,6 @@
 const amazon_creds = {
-    accessKeyId: 'AKIAJK56TJ7BH4BSTPUA',
-    secretAccessKey: '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',
+    accessKeyId: 'AKIAJLIQOMTQ5OAI4GOQ',
+    secretAccessKey: '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',
     region: 'us-east-2'
 }
 

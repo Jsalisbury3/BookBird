@@ -1,3 +1,6 @@
+const axios = require('axios');
+const bodyParser = require('body-parser');
+const multer = require('multer');
 const express = require('express');
 const webserver = express();
 const jwt = require('jwt-simple');
@@ -5,15 +8,38 @@ const mysql_creds = require('./config/mysql_creds.js');
 const mysql = require('mysql');
 const db = mysql.createConnection(mysql_creds);
 
-const upload = require('./services/file-upload');
-console.log('UPLOAD: ', upload)
 
-const imageUpload = upload.single('image');
+const awsUpload = require('./services/file-upload');
+
+
+
+webserver.post('/api/photo',function(req,res){
+    let storage = multer.diskStorage({
+        destination: function (req, file, callback) {
+          callback(null, './uploads');
+        },
+        filename: function (req, file, callback) {
+          callback(null, file.fieldname + '-' + Date.now());
+        }
+      });
+    
+    let fsUpload = multer({ storage : storage }).array('userPhoto',2);
+
+    var response = fsUpload(req,res,function(err) {
+        console.log('Request: ', req);
+    
+        if(err) {
+            return res.end("Error uploading file.");
+        }
+        res.end("File is uploaded", );
+    });
+});
+
 
 webserver.post('/api/file-upload', function ( req, res ) {
-
-    imageUpload(req, res, function(err) {
-          return res.json({ 'imageUrl: ': req.file.location });
+    console.log('File UPload Req')
+    awsUpload(req, res, function(err) {
+          return res.json({ 'imageUrl: ': req.file });
     })
 
 });
@@ -27,6 +53,7 @@ webserver.use(function(req, res, next) {
 webserver.use(express.static(__dirname + '/client/dist/html'));
 webserver.use(express.urlencoded({extended : false}));
 webserver.use(express.json());
+webserver.use(bodyParser.json())
 
 webserver.get('/api/listings', (request, response) => {
     console.log("listing running");
@@ -50,43 +77,69 @@ webserver.get('/api/listings', (request, response) => {
 
 
 webserver.post('/api/addListing', (request, response) => {
-    const {title, condition, ISBN, author, edition, price, comments, images} = request.body;
-    const userIDToken = request.headers['token'];
-    console.log("THIS IS THE USER ID TOKEN: ", userIDToken);
-    db.connect(() => {
-        console.log("connected posting");
-        const query = "SELECT b.ID FROM `books` AS b WHERE b.ISBN = '"+ ISBN +"'";
-        db.query(query, (err, data) => {
-            if(!data.length) {
-                const query = "INSERT INTO `books` SET title = '" + title + "', ISBN = '" + ISBN + "', author = '" + author + "', edition = " + edition + "";
-                db.query(query, (err, data) => {
-                    if(!err) {
-                        const query = "INSERT INTO `listing` SET listing.book_id = '" +data.insertId+"', price = '"+ price +"', book_condition = '"+condition+"', comments = '"+comments+"', accounts_id = '1', public_id='21'";
-                        db.query(query, (err, response) => {
-                            if(!err) {
-                                console.log("all queries are good")
-                            } else {
-                                console.log("error", err);
-                            }
-                        })
-                    } else {
-                        console.log("error", err);
-                    }
-                })
-            } else {
-                console.log("data: ", data);
-            }
+    const {title, condition, ISBN, author, edition, price, comments, images, photoArray,files} = request.body;
+    console.log("ADD LISTING IS RUNNING");
+    console.log('REQUEST BODY', request.body);
+    const output = {
+        data: photoArray
+    }
 
-            if(!err) {
-                let output = {
-                    success: true,
-                    data: data,
-                };
-            } else {
-                console.log("error", err);
-            }
-        });
-    })
+    // axios({
+    //     method: 'post',
+    //     url: 'http://localhost:3000/api/file-upload',
+    //     image: request.body.fileString[0]
+    // }).then( (response)=> {
+
+    //     const output={
+    //         success: true,
+    //         data: response
+    //     }
+    //     response.send(output);
+    //     // console.log("WORKED!", response)
+        
+    // })
+    response.send(output);
+   
+    // const userIDToken = request.headers['token'];
+    // db.connect(() => {
+    //     console.log("connected posting");
+    //     const query = "SELECT b.ID FROM `books` AS b WHERE b.ISBN = '"+ ISBN +"'";
+    //     db.query(query, (err, data) => {
+    //         if(!data.length) {
+    //             const query = "INSERT INTO `books` SET title = '" + title + "', ISBN = '" + ISBN + "', author = '" + author + "', edition = " + edition + "";
+    //             db.query(query, (err, data) => {
+    //                 if(!err) {
+    //                     const query = "INSERT INTO `listing` SET listing.book_id = '" +data.insertId+"', price = '"+ price +"', book_condition = '"+condition+"', comments = '"+comments+"', accounts_id = '1', public_id='21'";
+    //                     db.query(query, (err, response) => {
+    //                         if(!err) {
+    //                             console.log("all queries are good")
+                                
+    //                         } else {
+    //                             console.log("error", err);
+    //                         }
+    //                     })
+    //                 } else {
+    //                     console.log("error", err);
+    //                 }
+    //             })
+    //         } else {
+    //             console.log("data: ", data);
+    //         }
+
+    //         if(!err) {
+    //             let output = {
+    //                 photoArray: photoArray,
+    //                 success: true,
+    //                 data: data,
+    //             };
+
+    //             response.send(output);
+                
+    //         } else {
+    //             console.log("error", err);
+    //         }
+    //     });
+    // })
 });
 
 webserver.post('/api/filter', (request, response) => {
@@ -121,7 +174,7 @@ webserver.listen(7000, () => {
 
 webserver.get('/api/BookInfoIndex/:bookId', (request, response) => {
     console.log("listing running");
-    console.log("HEYYYYYOOO", request);
+    console.log("HEYYYYYOOO", request.body);
     db.connect(() => {
         console.log("connected to database");
         console.log("LLOOOOKIE HERE: ", request.params.bookId);
@@ -144,27 +197,23 @@ webserver.get('/api/BookInfoIndex/:bookId', (request, response) => {
 
 //sign-in endpoint to grab the users id.
 webserver.post('/api/SignIn', (request, response) => {
-    console.log("sign-in running");
     const {email, password} = request.body;
-    console.log("BODYYYYYYY: ", request.body);
-    console.log("email and password: ", email, password);
+    
     db.connect(() => {
-        console.log("connected to db sign-in");
+        
         const query = "SELECT a.ID from `accounts` AS a WHERE a.email = '"+email+"' ";
         db.query(query, (err, data) => {
-            console.log("sign-in query valid");
-            console.log("THE QUERYYYYYYY: ", query);
-            console.log("SIGN IN ID FROM QUERY: ", data);
+        
             if(!err) {
                 const userToken = jwt.encode(data, 'HS256');
                 let output = {
                     success: true,
                     data: userToken,
                 };
-                console.log("THIS IS THE TOKEN I MADEEEEE: ", userToken);
+               
                 response.send(output);
             } else {
-                console.log("Error sign-in", err);
+                
             }
         })
     })
