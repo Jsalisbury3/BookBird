@@ -4,6 +4,7 @@ import 'materialize-css';
 import 'material-icons';
 import userphoto from './images/professor.jpg';
 import axios from "axios/index";
+import logout24 from './images/logout-24.png'
 
 export default class UserProfile extends Component {
     constructor(props) {
@@ -28,17 +29,12 @@ export default class UserProfile extends Component {
     render(){
         return(
             <div className='profile-main-container'>
-            <div className='user-image-container circleBase'>
-            
-            <img className='circle responsive-img' src={userphoto}/>
-            <div className='opacitySlip' />
-            <div><i className='materialize-icons'>add_a_photo</i></div>
-            </div>
-            
-            <div className='signOut'>
-            <button onClick={this.signOut} className='btn btn-small'>Log Out</button>
-            </div>
-            <UserPostList/>
+                <button onClick={this.signOut} className='logOut btn btn-small right'>Log Out<img src={logout24}/></button>
+                <div className='user-image-container circleBase'>
+                    <img src={userphoto}/>               
+                    <div className='opacitySlip'><i className='material-icons center'>add_a_photo</i></div>
+                </div>
+                <UserPostList/>
             </div>
         );
     }

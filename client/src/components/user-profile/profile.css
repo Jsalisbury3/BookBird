@@ -9,12 +9,14 @@
     /* behavior: url(PIE.htc); */
 }
 .profile-main-container{
+    position:relative;
     display:inline-block;
     height:76vh;
     width:100vw;
     background-color:#C2E5F9;
 }
 .user-image-container{
+    position:relative;
     display:inline-block;
     height:28%;
     width:36%;
@@ -24,17 +26,41 @@
     overflow:hidden;
 }
 .user-image-container>img{
+    position:relative;
     height:150px;
     width:170px;
+    right:18px;
 }
-.signOut{
+.opacitySlip{
+    bottom: 50px;
+    position: relative;
+    display: inline-block;
+    height: 38px;
+    width: 135px;
+}
+.opacitySlip>i{
+    height:100%;
+    width:100%;
+    padding-top:5px;
+    background-color:rgb(245, 245, 245,0.4);
+    color:rgb(104, 101, 106);
+}
+.logOut{
+    position:relative;
     display:inline-block;
-    margin-left:12%;
-    margin-top:3%;
     vertical-align: top;
     height:8%;
-    width:20%;
-    /* background-color:red; */
+    width:100px;
+    text-align: center;
+    top:5px;
+    padding:0;
+}
+
+.logOut>img{
+    height: 24px;
+    width: 24px;
+    margin-top: 4px;
+    margin-left: 3px;
 }
 .user-posts-container{
     display:inline-block;

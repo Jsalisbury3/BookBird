@@ -333,11 +333,12 @@ class AddBook extends Component {
                     {/*<input name={"edition"} placeholder={"*Edition"} className={"inputs"} onChange={this.handleInput}/>*/}
 
 
-                    {/*<div className={"photo material-icons"}>add_a_photo*/}
-                        {/*<input id="photo" className='upload-image' type="file" name='photo' capture="camera" accept="image/*" onChange={this.fileSelectedHandler}/>*/}
-                    {/*</div>*/}
+                    <label className="btn waves-effect waves-light" htmlFor="photoInput"><i className={"material-icons"}>add_a_photo</i></label>
+                    <input id="photoInput" type="file" name="photo" capture="camera" accept="image/*" onChange={this.fileSelectedHandler}/>
+                        
+                    
                     <div className="upload-image-container">
-                     <p>Tap to delete</p>
+                    
 
                         {this.state.imgTagArray}
                     </div>
