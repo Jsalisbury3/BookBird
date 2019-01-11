@@ -31,7 +31,7 @@ class AddBook extends Component {
             photoArray:[],
             loaded:0,
             imgTagArray:[],
-            fileString: []
+            imageSource: ''
         }
     }
 
@@ -142,25 +142,39 @@ class AddBook extends Component {
     
     fileSelectedHandler = event => {
         debugger;
-        console.log(event.target.files[0])
-        const newImage = event.target.files;
-
         let reader = new FileReader();
-        reader.readAsDataURL(newImage[0])
+        console.log('file handler: ',event.target.files[0])
+        const newImage = event.target.files[0];
 
-        let formData = new FormData();
-        formData.append('userPhoto', event.target.files[0]);
+        reader.onload = (event) => {
+            this.setState({
+                imageSource: event.target.result
+            })
+                
+            
+        }
 
-        axios({
-            method: 'post',
-            url: '/api/photo', 
-            data: formData,
-            config: {
-                'headers': {
-                    'Content-Type': 'multipart/form-data'
-                }
-            }
+        reader.readAsDataURL(newImage)
+
+        this.setState({
+            photoArray: [newImage,...this.state.photoArray]
         })
+        this.addPhotoToMultiPhotoContainer();
+        
+
+        // let formData = new FormData();
+        // formData.append('userPhoto', event.target.files[0]);
+
+        // axios({
+        //     method: 'post',
+        //     url: '/api/photo', 
+        //     data: formData,
+        //     config: {
+        //         'headers': {
+        //             'Content-Type': 'multipart/form-data'
+        //         }
+        //     }
+        // })
 
         // reader.onload= (e)=> {
         //     console.log('image target results', e.target)
@@ -175,12 +189,7 @@ class AddBook extends Component {
         //         userPhoto: e.target.result
         //     })
 
-        //     await this.setState({
-        //         fileString: [e.target.result, ...this.state.fileString]
-        //     })
-                
-        //         this.addPhotoToMultiPhotoContainer();
-        // }
+            
         
     }
 
@@ -189,6 +198,7 @@ class AddBook extends Component {
     }
     
     addPhotoToMultiPhotoContainer = () => {
+        debugger;
         const imgTagArray = this.state.photoArray.map((item, index) => {
             return (
                 <SingleBookPhoto delete={this.deletePhotoFromStateAndContainer(index)} key={index} index={index} about={item}/>
@@ -213,19 +223,24 @@ class AddBook extends Component {
         
     }
     addBook = async (event) => {
-        debugger;
+        
         console.log('ADD BOOK RUNNING!');
         // event.preventDefault();
         // let data = new FormData(this.refs.bookPost);
         // console.log('this forms', this.forms);
         // console.log('this refs', this.refs);
+        const test = await axios({
+            method: 'get',
+            url: `/api/prep-upload?fileType=${this.state.photoArray[0]}`
+        }).then( (response) => {
+            console.log('Add Book Response: ', response);
+        })
+        // const formInfo = new FormData(this.forms)
+        // formInfo.append('images', this.forms[7].files[0], 'image1')
 
-        const formInfo = new FormData(this.forms)
-        formInfo.append('images', this.forms[7].files[0], 'image1')
-
-        let request = {...this.state};
-        request.files = formInfo;
-        console.log('Request: ', request);
+        // let request = {...this.state};
+        // request.files = formInfo;
+        // console.log('Request: ', request);
 
         // console.log('request files:', request.files)
         // console.log("state:", this.state);
@@ -234,19 +249,19 @@ class AddBook extends Component {
         // console.log('FORM DATA AFTER APPEND', data);
         console.log('Add Book: ', this.state);
         // 'content-type': 'multipart/form-data'
-        axios({
-            method: 'post',
-            url: '/api/addListing',
-            headers: {
-                token: localStorage.getItem('Token'),
+        // axios({
+        //     method: 'post',
+        //     url: '/api/addListing',
+        //     headers: {
+        //         token: localStorage.getItem('Token'),
                 
-            },
-            data: request,
-        }).then( ()=> {
-            console.log('addbook')
-        }
+        //     },
+        //     data: request,
+        // }).then( ()=> {
+        //     console.log('addbook')
+        // }
 
-        );
+        // );
         // document.getElementsByClassName('modalPageContainer')[0].style.display = "block";
     };
     getBooks=(event)=>{
@@ -283,6 +298,7 @@ class AddBook extends Component {
     }
 
     render() {
+        console.log('Add Book: ', this.state);
         return (
             <div className={"container"}>
                 <div id="modal1" className="modalIsbn">
@@ -340,7 +356,7 @@ class AddBook extends Component {
                     <textarea name={"comments"} placeholder={"Seller's Comments"} className={"inputs last"} onChange={this.handleInput} value="test"/>
                     <div className={"photo material-icons"}>add_a_photo
                         <input id="photo" type="file" name='photo' capture="camera" accept="image/*" onChange={this.fileSelectedHandler}/>
-                        {/* <input id="photo" type="file" name='photo[]' capture="camera" accept="image/*" multiple/> */}
+            
                     </div>
                     <div className="multi-photo-container">
                     {/* <p>Tap to delete</p> */}

@@ -1,3 +1,6 @@
+const s3creds = require('./config/amzns3_creds');
+const AWS = require('aws-sdk');
+const uuid = require('uuid/v4');
 const axios = require('axios');
 const bodyParser = require('body-parser');
 const multer = require('multer');
@@ -8,10 +11,24 @@ const mysql_creds = require('./config/mysql_creds.js');
 const mysql = require('mysql');
 const db = mysql.createConnection(mysql_creds);
 
+AWS.config.update( s3creds );
+const s3 = new AWS.S3();
 
-const awsUpload = require('./services/file-upload');
+// const awsUpload = require('./services/file-upload');
 
+webserver.get('/api/prep-upload', function(request, response) {
 
+    const { query: {fileType}} = request;
+    
+    const key = `testing/${uuid()}`
+
+    s3.getSignedUrl('putObject', {
+        Bucket: 'book-bird-image-bucket-1',
+        ContentType: fileType,
+        Key: key
+    }, (err, url) => response.send({success: true, key, url}))
+
+})
 
 webserver.post('/api/photo',function(req,res){
     let storage = multer.diskStorage({
