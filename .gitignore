@@ -3,3 +3,4 @@ mysql_creds.js
 amzns3_creds.js
 .DS_Store
 .idea
+token-hash.js

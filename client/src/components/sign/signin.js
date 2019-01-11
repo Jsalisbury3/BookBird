@@ -92,7 +92,7 @@ class Signin extends Component{
                 <p className="signin_footer">Dont have an account? <Link to={"/SignUp"}>Sign up now! </Link> </p>
                 <h1 className="sign_in">Sign in</h1>
                 <form className="sign_in_form" onSubmit={this.getIdForToken}>
-                    <div input_label input-field>
+                    <div className='input-field'>
                       <label htmlFor="email">email</label>
                       <input className="input" name = "email" placeholder="Email" type="text"  onChange={this.handleInputs}/>
                     </div>
