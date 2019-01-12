@@ -9,6 +9,8 @@ import 'material-icons';
 import {BASE_URL_GOOGLE_BOOKS, API_KEY} from '../../../../config/api';
 import SearchInput from './isbn_search';
 import image2 from './images/488.jpg';
+import success from './images/successlogo.png';
+import {Link} from 'react-router-dom';
 
 
 
@@ -39,6 +41,7 @@ class AddBook extends Component {
         document.getElementsByClassName('modalIsbn')[0].style.display = "block";
         document.getElementsByClassName("modal-footer")[0].style.display = "none"
         document.getElementsByClassName("modal-body")[0].style.display = "none"
+        document.getElementsByClassName("bookSuccessInfo")[0].style.display = "none"
         await this.addPhotoToMultiPhotoContainer();
 
         console.log('Tooltip:', this.tooltip);
@@ -241,7 +244,7 @@ class AddBook extends Component {
         document.getElementsByClassName("modal-footer")[0].style.display = "none"
         document.getElementsByClassName("modal-body")[0].style.display = "none"
         document.getElementsByName("ModalISBN")[0].value = " "
-        setState({
+        this.setState({
             ISBN: '',
             author: '',
             title:''
@@ -251,12 +254,21 @@ class AddBook extends Component {
     bookPostedModal=(event)=>{
         event.preventDefault();
         document.getElementsByClassName("modalIsbn")[0].style.display = "block"
+        document.getElementsByClassName("google_book_image")[0].style.display = "none"
+        document.getElementsByClassName("isbnModalBookDescription")[0].style.display = "none"
+        document.getElementsByClassName("submit_clear_buttons")[0].style.display = "none"
+        document.getElementsByClassName("bookSuccessInfo")[0].style.display = "block"
         // document.getElementsByClassName("isbnModalContainer")[0].style.display = "block"
         // document.getElementsByClassName("modal-body")[0].style.display = "none"
         // document.getElementsByClassName("modal-footer")[0].style.display = "none"
     }
 
-    
+
+    acceptBookPosted=(event)=>{
+        event.preventDefault();
+
+    }
+  
     render() {
         const hideISBN = this.state.hideIsbnSearchBar ? {display: 'none'} : {display: 'block'};
         
@@ -269,23 +281,33 @@ class AddBook extends Component {
                                 <p className="isbnModalHeader">Post your book by ISBN</p>
                                 <form onSubmit={this.getBooks}className='form-isbn'>
                                     <div className = "input_label input-field">
-                                        <input autoComplete="off" type="text" onChange={this.handleIsbnChange.bind(this)} name={"ModalISBN"} value={this.state.ISBN}/>
+                                         <input id="isbnInput" autoComplete="off" type="text" onChange={this.handleIsbnChange.bind(this)} name={"ModalISBN"} value={this.state.ISBN}/>
                                         <p>ISBN is required <a ref={e => this.tooltip = e} className="tooltipped" data-position="top" data-tooltip="We require ISBN number to ensure accuracy of book postings">why?</a></p>
-                                        <label className="enterIsbnLabel"htmlFor="ISBN">ISBN</label>
+                                        <label htmlFor="isbnInput" className="enterIsbnLabel"htmlFor="ISBN">ISBN</label>
                                     </div>
                                     <div className='search_button_container'>
                                             <button onClick={this.getBooks} type="button" className='isbnSearchButton btn btn-small waves-effect'>Search</button>
                                     </div>
                                 </form>
                             </div>
-                                <div className="modal-body">
+                            <div className="modal-body">
                                     <img className="google_book_image" src={this.state.bookImage} alt=""/>
                                     <div className="isbnModalBookDescription">
                                         <p name="ModalISBN">ISBN: {this.state.ISBN}</p>
                                         <p name="ModalAuthor">Author: {this.state.author}</p>
                                         <p name="ModalTitle">Title: {this.state.title}</p>
                                     </div>
-                                </div>
+                                    <div className="bookSuccessInfo">
+                                        <p className="successModalText">Success!</p>
+                                        <div className="successImage">
+                                            <img src={success}/>
+                                        </div>
+                                        <div className="successModalButtons">
+                                            <button onClick={this.clearData}type="button"className= "btn-small btn waves-effect postAgainButton">Post Again</button>
+                                            <p className="btn-small btn waves-effect white"><Link to={"/"}>Accept</Link> </p>
+                                        </div>  
+                                    </div>
+                            </div>
                             <div className="modal-footer">
                                 <form>
                                         <div className="submit_clear_buttons">
@@ -310,7 +332,7 @@ class AddBook extends Component {
                     </div>
                     <div className='row'>
                         <div className={"error"}></div>
-                        <div className={"checkMark markEdition material-icons"}>check_circle_outline</div>
+                      <div className={"checkMark markEdition material-icons"}>check_circle_outline</div>
                         <input name={"price"} placeholder={"*Price $$$$"} id={'input-field'} className={"inputs col s10 push-s1"} onChange={this.handleInput}/>
                     </div>
                     <div className='row'>

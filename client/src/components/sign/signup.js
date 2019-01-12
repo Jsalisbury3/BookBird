@@ -62,7 +62,7 @@ class Signup extends Component{
             <h1 className="sign_in">Sign Up</h1>
             <form onSubmit={this.validateContactForm} className="sign_up_form">
                 <div>
-                    <label htmlFor="Email">Email</label>
+                    {/* <label htmlFor="Email">Email</label> */}
                     <input className="input"name = "Email" placeholder="Email"type="text"/>
                     <div className="error">must be a valid email</div>
                     <label htmlFor="password">Password</label>
