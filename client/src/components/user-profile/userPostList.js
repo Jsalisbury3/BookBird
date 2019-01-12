@@ -35,6 +35,7 @@ export default class UserPostList extends Component {
             this.getUserProfileListings(results);
         });
     };
+
     deletePost=(id)=>()=>{
         axios({
             url:"/api/UserProfile",
