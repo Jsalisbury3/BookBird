@@ -274,16 +274,12 @@ webserver.post("/api/SignUp",(request,response)=>{
     const {Email, Password, Name} = request.body;
     db.connect(()=>{
         const {Name, EmailSignUp, PasswordSignUp} = request.body;
-        console.log("email, password: ", EmailSignUp, PasswordSignUp);
         const query = "SELECT a.ID from `accounts` AS a WHERE a.email = '" + EmailSignUp + "' AND a.password = '" + PasswordSignUp + "'";
         db.query(query, (err, data) => {
-            console.log("account info number: ", data);
             if(!data.length) { //if there is no account with that email and password then continue else send back info already taken.
-                console.log("made it the second query");
                 const queryAddUser = 'INSERT INTO `accounts` SET name = "'+Name+'", password = "'+PasswordSignUp+'", email = "'+EmailSignUp+'", college_id = "3"'; //this query will add a user to the accounts table with the email and password, token and the
                 db.query(queryAddUser, (err, data) => {
                     if(!err) {
-                        console.log("DATA FROM INSERT QUERY: ", data);
                         let userToken = jwt.encode(Email + Password + Date.now(), hash);
                         const queryLoggedIn = "INSERT INTO `loggedin` SET loggedin.account_id = " + data.insertId + ", loggedin.token = '" + userToken + "'";
                         db.query(queryLoggedIn, (err, data) => {
@@ -292,14 +288,12 @@ webserver.post("/api/SignUp",(request,response)=>{
                                     success: true,
                                     data: userToken
                                 }
-                                console.log("made it the true outpit!!!!!!!!");
                                 response.send(outputSuccess);
                             } else {
                                 const outputLoggedInFailed = {
                                     success: false,
                                     message: "couldn't login user"
                                 }
-                                console.log("made it the last query but failed");
                                 response.send(outputLoggedInFailed)
                             }
                         })
