@@ -183,7 +183,8 @@ webserver.delete("/api/UserProfile", (request, response) => {
 
 //sign-in endpoint to grab the users id.
 webserver.post('/api/SignIn', (request, response) => {
-    const {email, password} = request.body;
+    debugger;
+    const {Email, Password} = request.body;
     console.log("headers: ", typeof request.headers['token'], request.headers['token']);
     if(request.headers['token'] !== "undefined" && request.headers['token'] !== "null") {
         console.log("headers: ", typeof request.headers['token'], request.headers['token']);
@@ -191,14 +192,14 @@ webserver.post('/api/SignIn', (request, response) => {
             success: false,
             message: "You are already signed in"
         };
-        response.send(outputAlreadySignedIn)
+        response.send(outputAlreadySignedIn);
     } else {
         db.connect(() => {
-            const getAccountQuery = "SELECT a.ID from `accounts` AS a WHERE a.email = '" + email + "' AND a.password = '" + password + "'";
+            const getAccountQuery = "SELECT a.ID from `accounts` AS a WHERE a.email = '" + Email + "' AND a.password = '" + Password + "'";
             db.query(getAccountQuery, (err, data) => {
                 if (!err) {
                     if (data.length === 1) {
-                        var userToken = jwt.encode(email + password + Date.now(), hash);
+                        var userToken = jwt.encode(Email + Password + Date.now(), hash);
                         if (!err) {
                             const query = "INSERT INTO `loggedin` SET loggedin.account_id = " + data[0].ID + ", loggedin.token = '" + userToken + "'";
                             db.query(query, (err) => {
@@ -236,30 +237,6 @@ webserver.post('/api/SignIn', (request, response) => {
     }
 });
 
-
-//sign-up query.
-// validate the user doesn't have the same email or password
-// make a new table with the user info
-//make a new column that has the verification token and the status of the user.
-//send email to the user to verify the account.
-//once verified, use the sign-in query to add them to the logged in table and give them an access token.
-//redirect them to the landing page from the email.
-// webserver.post("/api/SignUp",(request,response)=>{
-//     db.connect(()=>{
-//         const {name, email, password} = request.body;
-//         const query = 'SELECT * FROM `accounts` AS a WHERE a.email = "'+email+'"'; //should check for the email and password already being in the accounts table.
-//         db.query(query, (err, data) => {
-//             console.log("this is how many user have the same email and password", data);
-//             if(!data.length) { //if there is no account with that email and password then continue else send back info already taken.
-//                 const query = ''; //this query will add a user to the accounts table with the email and password, token and the
-//             } else {
-//                 response.send("Username or password has been denied");
-//             }
-//         })
-//     })
-// });
-
-
 webserver.get('/api/SignOut', (request, response) => {
     const userIDToken = request.headers['token'];
     if(userIDToken === "undefined" || userIDToken === "null") {
@@ -291,7 +268,60 @@ webserver.get('/api/SignOut', (request, response) => {
     }
 });
 
-
+// sign-up query.
+// validate the user doesn't have the same email or password
+// make a new table with the user info
+// make a new column that has the verification token and the status of the user.
+// send email to the user to verify the account.
+// once verified, use the sign-in query to add them to the logged in table and give them an access token.
+// redirect them to the landing page from the email.
+webserver.post("/api/SignUp",(request,response)=>{
+    const {Email, Password, Name} = request.body;
+    db.connect(()=>{
+        const {Name, EmailSignUp, PasswordSignUp} = request.body;
+        console.log("email, password: ", EmailSignUp, PasswordSignUp);
+        const query = "SELECT a.ID from `accounts` AS a WHERE a.email = '" + EmailSignUp + "' AND a.password = '" + PasswordSignUp + "'";
+        db.query(query, (err, data) => {
+            console.log("account info number: ", data);
+            if(!data.length) { //if there is no account with that email and password then continue else send back info already taken.
+                console.log("made it the second query");
+                const queryAddUser = 'INSERT INTO `accounts` SET name = "'+Name+'", password = "'+PasswordSignUp+'", email = "'+EmailSignUp+'", college_id = "3"'; //this query will add a user to the accounts table with the email and password, token and the
+                db.query(queryAddUser, (err, data) => {
+                    if(!err) {
+                        console.log("DATA FROM INSERT QUERY: ", data);
+                        let userToken = jwt.encode(Email + Password + Date.now(), hash);
+                        const queryLoggedIn = "INSERT INTO `loggedin` SET loggedin.account_id = " + data.insertId + ", loggedin.token = '" + userToken + "'";
+                        db.query(queryLoggedIn, (err, data) => {
+                            if(!err) {
+                                const outputSuccess = {
+                                    success: true,
+                                    data: userToken
+                                }
+                                console.log("made it the true outpit!!!!!!!!");
+                                response.send(outputSuccess);
+                            } else {
+                                const outputLoggedInFailed = {
+                                    success: false,
+                                    message: "couldn't login user"
+                                }
+                                console.log("made it the last query but failed");
+                                response.send(outputLoggedInFailed)
+                            }
+                        })
+                    } else {
+                        const outputAddError = {
+                            success: false,
+                            message: "Couldn't add account"
+                        };
+                        response.send(outputAddError)
+                    }
+                })
+            } else {
+                response.send("Username or password has been denied");
+            }
+        })
+    })
+});
 
 
 

@@ -9,6 +9,12 @@ import signUpReducer from "../../reducers/sign_up_reducer";
 
 class SignInValidation extends Component {
 
+    componentDidUpdate() {
+        if (this.props.signUpResults.success) {
+            this.storeTokenSignUp(this.props.signUpResults);
+        }
+    }
+
     renderInput = (props) => {
         return (
             <div className={`col ${props.size || 's12'}`}>
@@ -22,22 +28,19 @@ class SignInValidation extends Component {
     };
 
     storeTokenSignUp = () => {
-        debugger;
         if (this.props.signUpResults.success) {
             const Token = this.props.signUpResults.data;
             localStorage.setItem("Token", Token);
             this.props.reset();
-            this.props.history.push("/UserProfile");
+            this.props.history.push("/");
         } else {
             console.log("didnt make it through: ", this.props.signUpResults)
         }
     }
 
 
-    handleAddItem =  (values) => {
-        this.props.loginUser(values).then()
-        this.storeTokenSignUp(this.props.signUpResults);
-        console.log("MEMEMEMEMME", this.props.signUpResults);
+    handleAddItem =  async (values) => {
+        await this.props.loginUser(values);
     };
 
     render() {
