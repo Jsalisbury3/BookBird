@@ -93,11 +93,6 @@ webserver.post('/api/filter', (request, response) => {
 })
 
 
-webserver.listen(7000, () => {
-    console.log("listening on port 7000");
-});
-
-
 webserver.get('/api/BookInfoIndex/:bookId', (request, response) => {
     db.connect(() => {
         const query = "SELECT l.ID, l.accounts_id, l.book_condition, l.price, l.comments, l.book_id, b.ID, b.title, b.author, b.edition, b.ISBN, a.email, a.ID FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id WHERE l.`id` = " + request.params.bookId + "";
@@ -323,7 +318,13 @@ webserver.post("/api/SignUp",(request,response)=>{
     })
 });
 
+webserver.get('*', (request, response) => {
+    response.sendFile(__dirname + '/client/dist/index.html');
+});
 
+webserver.listen(7000, () => {
+    console.log("listening on port 7000");
+});
 
 
 
