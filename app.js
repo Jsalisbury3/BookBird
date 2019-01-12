@@ -12,7 +12,7 @@ webserver.use(function (req, res, next) {
     next();
 });
 
-webserver.use(express.static(__dirname + '/client/dist/html'));
+webserver.use(express.static(__dirname + '/client/dist'));
 webserver.use(express.urlencoded({extended: false}));
 webserver.use(express.json());
 
