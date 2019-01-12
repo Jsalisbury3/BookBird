@@ -28,8 +28,8 @@
 .user-image-container>img{
     position:relative;
     height:150px;
-    width:170px;
-    right:18px;
+    /* width:170px;
+    right:18px; */
 }
 .opacitySlip{
     bottom: 50px;
@@ -50,12 +50,20 @@
     display:inline-block;
     vertical-align: top;
     height:8%;
-    width:100px;
+    /* width:100px; */
     text-align: center;
     top:5px;
     padding:0;
 }
-
+#profilePhotoInput{
+    width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+    z-index: -5;
+    display:none;
+}
 .logOut>img{
     height: 24px;
     width: 24px;
