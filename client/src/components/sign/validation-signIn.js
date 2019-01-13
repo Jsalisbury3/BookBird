@@ -8,6 +8,12 @@ import signInReducer from "../../reducers/sign_in_reducer";
 
 class SignInValidation extends Component {
 
+    componentDidUpdate() {
+        if (this.props.signInResults.success) {
+            this.storeToken(this.props.signInResults);
+        }
+    }
+
     storeToken = () => {
         if (this.props.signInResults.success) {
             const Token = this.props.signInResults.data;

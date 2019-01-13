@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './book-data.css';
 
 function IndividualBookData(props) {
+    console.log("PROOOOOOOOOOOOOPS: ", props);
     return (
         <div className='Container'>
             <div className='BookInfo'>

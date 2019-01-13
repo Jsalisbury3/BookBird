@@ -2,12 +2,12 @@ import types from './types';
 import axios from "axios/index";
 
 export const getDataForBookClicked = (bookId) => {
-    console.log('BOOK ID: ', bookId)
+    console.log('BOOK ID: ', bookId);
     return (dispatch) => {
         axios({
             method: "get",
             url: `/api/BookInfoIndex/${bookId}`,
-            // data : this.state.bookId
+            data : bookId
         }).then( (bookInfo) => {
             console.log("BOOKINFO YO: ", bookInfo);
             dispatch({
