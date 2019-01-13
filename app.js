@@ -94,10 +94,12 @@ webserver.post('/api/filter', (request, response) => {
 
 
 webserver.get('/api/BookInfoIndex/:bookId', (request, response) => {
+    console.log(request.params);
     db.connect(() => {
-        const query = "SELECT l.ID, l.accounts_id, l.book_condition, l.price, l.comments, l.book_id, b.ID, b.title, b.author, b.edition, b.ISBN, a.email, a.ID FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id WHERE l.`id` = " + request.params.bookId + "";
+        const query = "SELECT l.ID, l.accounts_id, l.book_condition, l.price, l.comments, l.book_id, b.ID, b.title, b.author, b.edition, b.ISBN, a.email, a.ID FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id WHERE l.`book_id` = " + request.params.bookId + "";
         db.query(query, (err, data) => {
             if (!err) {
+                console.log("bookidData: ", data);
                 let output = {
                     success: true,
                     data: data,
