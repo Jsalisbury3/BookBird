@@ -37,6 +37,7 @@ class UserProfile extends Component {
     render() {
         return (
             <div className='profile-main-container'>
+
                 <button onClick={this.callActionSignOut} className='logOut btn btn-small right'>Log Out<img src={logout24}/>
                 </button>
                 <div className='user-image-container circleBase'>
