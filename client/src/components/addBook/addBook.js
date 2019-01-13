@@ -11,6 +11,7 @@ import M from 'materialize-css/dist/js/materialize.min.js'
 import {BASE_URL_GOOGLE_BOOKS, API_KEY} from '../../../../config/api';
 import SearchInput from './isbn_search';
 import FormData from 'form-data';
+import { accessKeyId, secretAccessKey } from '../../../../config/amzns3_creds';
 
 
 class AddBook extends Component {
@@ -19,7 +20,7 @@ class AddBook extends Component {
         this.state = {
             course: 'test',
             ISBN: '3231434543432',
-            condition: 'Excellent',
+            condition: 'New',
             title: 'test',
             author: 'test',
             edition: '4',
@@ -225,29 +226,48 @@ class AddBook extends Component {
     addBook = async (event) => {
         debugger;
         console.log('ADD BOOK RUNNING!');
+
+        let request = {...this.state};
+        console.log('Request: ', request);
+
+        await axios({
+            method: 'post',
+            url: '/api/addListing',
+            headers: {
+                token: localStorage.getItem('Token'),
+            },
+            data: request,
+        })
+
         console.log('photo type: ', this.state.photoArray[0].type );
         // event.preventDefault();
         // let data = new FormData(this.refs.bookPost);
         // console.log('this forms', this.forms);
         // console.log('this refs', this.refs);
         const prep = await axios({
+            Authorization: `AWS ${accessKeyId}: ${secretAccessKey}`,
             method: 'get',
-            url: '/api/prep-upload'
+            url: `/api/prepUpload?fileType=${this.state.photoArray[0].type}`,
+            ContentType: this.state.photoArray[0].type
+            
         })
 
-        const { url } = prep.data;
+        const { getUrl } = prep.data;
 
-        await axios(url, this.state.photoArray[0], {
+        await axios(getUrl, this.state.photoArray[0], {
             headers: {
-                'Content-Type': image.type
+                'Content-Type': this.state.photoArray[0].type
             }
+        })
+
+        axios({
+            method: 'post',
+            url: '/api/save-image',
         })
         // const formInfo = new FormData(this.forms)
         // formInfo.append('images', this.forms[7].files[0], 'image1')
-
-        // let request = {...this.state};
         // request.files = formInfo;
-        // console.log('Request: ', request);
+        
 
         // console.log('request files:', request.files)
         // console.log("state:", this.state);
@@ -256,17 +276,7 @@ class AddBook extends Component {
         // console.log('FORM DATA AFTER APPEND', data);
         console.log('Add Book: ', this.state);
         // 'content-type': 'multipart/form-data'
-        // axios({
-        //     method: 'post',
-        //     url: '/api/addListing',
-        //     headers: {
-        //         token: localStorage.getItem('Token'),
-                
-        //     },
-        //     data: request,
-        // }).then( ()=> {
-        //     console.log('addbook')
-        // }
+       
 
         // );
         // document.getElementsByClassName('modalPageContainer')[0].style.display = "block";

@@ -18,23 +18,33 @@ AWS.config.update( {
     region 
 });
 
-const s3 = new AWS.S3();
+const s3 = new AWS.S3({
+    signatureVersion: 'v4'
+  });
 
-// const awsUpload = require('./services/file-upload');
+const awsUpload = require('./services/file-upload');
 
 webserver.get('/api/prepUpload', function(request, response) {
 
     const { query: {fileType}} = request;
     console.log(fileType);
-    const key = `testing`
+    const key = `testing/jhgkghjg/${uuid()}`;
 
     s3.getSignedUrl('putObject', {
-        Bucket: 'book-bird-image-bucket-1',        
-        ContentType: fileType,
-        Key: key
-    }, (err, url) => response.send({success: true, key, url}))
+        Bucket: 'book-bird-test-bucket',  
+        Key: key,      
+        ContentType: fileType.type,
+        Expires: 500,
+        
+    }, (err, url) => response.send({
+            success: true, 
+            key, 
+            url,
+            getUrl: url.split("?")[0],
+    
+    }));
 
-})
+});
 
 webserver.post('/api/photo',function(req,res){
     let storage = multer.diskStorage({
@@ -60,7 +70,7 @@ webserver.post('/api/photo',function(req,res){
 
 
 webserver.post('/api/file-upload', function ( req, res ) {
-    const awsUpload = require('./services/file-upload');
+    // const awsUpload = require('./services/file-upload');
     console.log('File UPload Req')
     awsUpload(req, res, function(err) {
           return res.json({ 'imageUrl: ': req.file });
@@ -108,9 +118,6 @@ webserver.post('/api/addListing', (request, response) => {
     const {title, condition, ISBN, author, edition, price, comments, images, photoArray,files} = request.body;
     console.log("ADD LISTING IS RUNNING");
     console.log('REQUEST BODY', request.body);
-    const output = {
-        data: photoArray
-    }
 
     // axios({
     //     method: 'post',
@@ -126,48 +133,62 @@ webserver.post('/api/addListing', (request, response) => {
     //     // console.log("WORKED!", response)
         
     // })
-    response.send(output);
    
-    // const userIDToken = request.headers['token'];
-    // db.connect(() => {
-    //     console.log("connected posting");
-    //     const query = "SELECT b.ID FROM `books` AS b WHERE b.ISBN = '"+ ISBN +"'";
-    //     db.query(query, (err, data) => {
-    //         if(!data.length) {
-    //             const query = "INSERT INTO `books` SET title = '" + title + "', ISBN = '" + ISBN + "', author = '" + author + "', edition = " + edition + "";
-    //             db.query(query, (err, data) => {
-    //                 if(!err) {
-    //                     const query = "INSERT INTO `listing` SET listing.book_id = '" +data.insertId+"', price = '"+ price +"', book_condition = '"+condition+"', comments = '"+comments+"', accounts_id = '1', public_id='21'";
-    //                     db.query(query, (err, response) => {
-    //                         if(!err) {
-    //                             console.log("all queries are good")
+    const userIDToken = request.headers['token'];
+    db.connect(() => {
+        console.log("connected posting");
+        const query = "SELECT b.ID FROM `books` AS b WHERE b.ISBN = '"+ ISBN +"'";
+        db.query(query, (err, data) => {
+            if(!data.length) {
+                const query = "INSERT INTO `books` SET title = '" + title + "', ISBN = '" + ISBN + "', author = '" + author + "', edition = " + edition + "";
+                db.query(query, (err, data) => {
+                    if(!err) {
+                        console.log('INSERT INTO LISTINGS')
+                        console.log('Listings Data: ', data)
+                        const query = "INSERT INTO `listing` SET listing.book_id = '" +data.insertId+"', price = '"+ price +"', book_condition = '"+condition+"', comments = '"+comments+"', accounts_id = '1', public_id='21'";
+                        db.query(query, (err, response) => {
+                            if(!err) {
+                                console.log("all queries are good")
                                 
-    //                         } else {
-    //                             console.log("error", err);
-    //                         }
-    //                     })
-    //                 } else {
-    //                     console.log("error", err);
-    //                 }
-    //             })
-    //         } else {
-    //             console.log("data: ", data);
-    //         }
+                            } else {
+                                console.log("error", err);
+                            }
+                        })
+                    } else {
+                        console.log("error", err);
+                    }
+                })
+            } else {
 
-    //         if(!err) {
-    //             let output = {
-    //                 photoArray: photoArray,
-    //                 success: true,
-    //                 data: data,
-    //             };
+                console.log('INSERT INTO LISTINGS')
+                console.log('Listings Data: ', data)
+                const query = "INSERT INTO `listing` SET listing.book_id = "+data[0].ID+", price = '"+ price +"', book_condition = '"+condition+"', comments = '"+comments+"', accounts_id = '1', public_id='21'";
+                db.query(query, (err, response) => {
+                        if(!err) {
+                            console.log("all queries are good")
+                            
+                        } else {
+                            console.log("error", err);
+                        }
+                })
+                    
+            }
+        })
 
-    //             response.send(output);
-                
-    //         } else {
-    //             console.log("error", err);
-    //         }
-    //     });
-    // })
+        //         if(!err) {
+        //             let output = {
+        //                 success: true,
+        //                 data: data,
+        //             };
+
+        //             response.send(output);
+                    
+        //         } else {
+        //             console.log("error", err);
+        //         }
+        //     });
+        // })
+    });
 });
 
 webserver.post('/api/filter', (request, response) => {
@@ -273,22 +294,3 @@ webserver.get('/api/UserProfile', (request, response) => {
         })
     })
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
