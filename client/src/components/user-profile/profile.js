@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import UserPostList from './userPostList';
+import {withRouter} from 'react-router-dom';
 import 'materialize-css';
 import 'material-icons';
 import userphoto from './images/doublebirds.jpg';
 import axios from "axios/index";
 import logout24 from './images/logout-24.png'
 
-export default class UserProfile extends Component {
+class UserProfile extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -22,7 +23,7 @@ export default class UserProfile extends Component {
             headers: {token: localStorage.getItem('Token')},
         }).then((response) => {
             localStorage.clear();
-
+            this.props.history.push('/SignIn');
         })
     };
     fileSelectedHandler = async event => {
@@ -52,3 +53,5 @@ export default class UserProfile extends Component {
         );
     }
 }
+
+export default withRouter(UserProfile);
