@@ -5,7 +5,7 @@ import './landing/package';
 import AddBook from './addBook';
 import './addBook/package';
 import BookInfo from './BookInfo';
-import UserProfile from './user-profile';
+import UserProfile from './user-profile/profile';
 import './user-profile/package';
 import SignIn from './sign/signin';
 import SignUp from './sign/signup';
