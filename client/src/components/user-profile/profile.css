@@ -1,9 +1,18 @@
-.delete-button-container{
+.delete-btn-container{
     vertical-align: top;
     display:inline-block;
     height:100%;
     width:25%;
 }
+.delete-btn-container>button{
+    height:44px;
+    /* font-size:25px; */
+    padding-top:7px
+}
+/* .delete-btn-container>i{
+    font-size:2.2rem;
+    margin-top:7px
+} */
 .circleBase {
     border-radius: 50%;
     /* behavior: url(PIE.htc); */
@@ -74,9 +83,9 @@
     display:inline-block;
     height:57%;
     width: 90%;
-    margin-top:10%;
+    margin-top:7%;
     margin-left:5vw;
-    background-color: blue;
+    background-color:white;
     overflow:auto;
 }
 .samplePost{
@@ -84,3 +93,4 @@
     height:17.8%;
     background-color: bisque;
 }
+
