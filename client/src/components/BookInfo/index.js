@@ -42,17 +42,18 @@ class Index extends Component {
 
     render() {
         // console.log("yoyoyoyoyooyo", this.state.data);
-        console.log("Book INFO index: ", this.props);
+        console.log("Book INFO index: ", this.props.bookInfo[0]);
+        const bookInfo = {...this.props.bookInfo[0]};
         return (
             <div className='main-container'>
-                <BookData title={this.props.bookInfo.title}
-                          ISBN={this.props.bookInfo.ISBN}
-                          edition ={this.props.bookInfo.edition}
-                          author={this.props.bookInfo.author}
-                          condition={this.props.bookInfo.book_condition}
-                          sellersComment={this.props.bookInfo.comments}
-                          price={this.props.bookInfo.price}
-                          sellersEmail={this.props.bookInfo.email}
+                <BookData title={bookInfo.title}
+                          ISBN={bookInfo.ISBN}
+                          edition ={bookInfo.edition}
+                          author={bookInfo.author}
+                          condition={bookInfo.book_condition}
+                          sellersComment={bookInfo.comments}
+                          price={bookInfo.price}
+                          sellersEmail={bookInfo.email}
                 />
             </div>
         )
@@ -62,7 +63,7 @@ class Index extends Component {
 function mapStateToProps(state) {
     console.log('book index state: ', state);
     return {
-        bookInfo: state.bookIdReducer
+        bookInfo: state.bookIdReducer.bookIdInfo
     }
 }
 

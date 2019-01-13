@@ -14,9 +14,9 @@ export default class UserPost extends Component{
         console.log("about props: ", this.props.about);
         const { title, edition, author, condition, course, price, ID, listingID } = this.props.about;
         return (
-            <div>
+            <div className='listItem'>
                 <Link to={`/BookInfoIndex/${this.ID}`}>
-                    <div className='listItem'>
+                    
                         <div className='itemImageContainer'>
                             <img className='itemImage' src="" />
                         </div>
@@ -25,13 +25,14 @@ export default class UserPost extends Component{
                             <p>Edition: {edition}</p>
                             <p>Author: {author}</p>
                             <p>Condition: {condition}</p>
-                            <p>Price: ${price}</p>
+                            
                         </div>
     
-                    </div>
+                    
                 </Link>
                 <div className='delete-btn-container'>
-                    <button className='delete-button waves-effect btn-small danger' onClick={this.props.delete}>Delete <i className='material-icons right'>delete_outline</i></button>
+                    <p>Price: ${price}</p>
+                    <button className='waves-effect btn red center' onClick={this.props.delete}><i className='large material-icons center'>delete_outline</i></button>
                 </div>
             </div>
     

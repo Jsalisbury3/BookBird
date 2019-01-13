@@ -20,7 +20,6 @@ class ResultList extends Component {
 
     getRowData = (results) => {
         console.log('GET row data: ',results)
-        
         const listItems = results.map((item, index) => {
             return (
                 <ListItem key={index} about={item}/>
