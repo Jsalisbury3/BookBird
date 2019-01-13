@@ -281,12 +281,12 @@ class AddBook extends Component {
                                 <p className="isbnModalHeader">Post your book by ISBN</p>
                                 <form onSubmit={this.getBooks}className='form-isbn'>
                                     <div className = "input_label input-field">
-                                         <input id="isbnInput" autoComplete="off" type="text" onChange={this.handleIsbnChange.bind(this)} name={"ModalISBN"} value={this.state.ISBN}/>
+                                        <input id="isbnInput" autoComplete="off" type="text" onChange={this.handleIsbnChange.bind(this)} name={"ModalISBN"} value={this.state.ISBN}/>
                                         <p>ISBN is required <a ref={e => this.tooltip = e} className="tooltipped" data-position="top" data-tooltip="We require ISBN number to ensure accuracy of book postings">why?</a></p>
                                         <label htmlFor="isbnInput" className="enterIsbnLabel"htmlFor="ISBN">ISBN</label>
                                     </div>
                                     <div className='search_button_container'>
-                                            <button onClick={this.getBooks} type="button" className='isbnSearchButton btn btn-small waves-effect'>Search</button>
+                                        <button onClick={this.getBooks} type="button" className='isbnSearchButton btn btn-small waves-effect'>Search</button>
                                     </div>
                                 </form>
                             </div>
@@ -310,10 +310,10 @@ class AddBook extends Component {
                             </div>
                             <div className="modal-footer">
                                 <form>
-                                        <div className="submit_clear_buttons">
-                                            <button className="accept_button btn-small btn waves-effect" type="button" onClick={this.populateData}> Accept </button>
-                                            <button onClick={this.clearData} className="clear_button btn-small btn waves-effect" type="button">Try Again</button>
-                                        </div>
+                                    <div className="submit_clear_buttons">
+                                        <button className="accept_button btn-small btn waves-effect" type="button" onClick={this.populateData}> Accept </button>
+                                        <button onClick={this.clearData} className="clear_button btn-small btn waves-effect" type="button">Try Again</button>
+                                    </div>
                                 </form>
                             </div>    
                         </div>

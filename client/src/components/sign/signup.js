@@ -59,20 +59,27 @@ class Signup extends Component{
         return(
         <div className="signup_container">
             <p className="signup_footer">Already have an account? <Link to={"/SignIn"}> Sign In </Link></p>
-            <h1 className="sign_in">Sign Up</h1>
+            <h1 className="signUpHeader">Sign Up</h1>
             <form onSubmit={this.validateContactForm} className="sign_up_form">
-                <div>
-                    {/* <label htmlFor="Email">Email</label> */}
-                    <input className="input"name = "Email" placeholder="Email"type="text"/>
-                    <div className="error">must be a valid email</div>
-                    <label htmlFor="password">Password</label>
-                    <input className="input"name = "password" placeholder="Password"type="password"/>
-                    <div className="error">must be a valid password</div>
-                    <label htmlFor="Name">Name</label>
-                    <input className="input"name = "Name" placeholder="Name"type="text"/>
-                    <div className="error">must be a valid name</div>
-                    <button className="sign_up_button">Sign up</button>
+                <div className="input-field">
+                    
+                    <input className="signUpInput"name = "Email"type="text"/>
+                    <label className="signUpLabel" htmlFor="Email">Email</label>
+                    <div className="signUpError"></div>
                 </div>
+                <div className="input-field">
+                    <input className="signUpInput"name = "password"type="password"/>
+                    <label className="signUpLabel" htmlFor="password">Password</label>
+                    <div className="signUpError"></div>
+
+                </div> 
+                <div className="input-field">
+                    <input className="signUpInput"name = "Name"type="text"/>
+                    <label className="signUpLabel"htmlFor="Name">Name</label>
+                    <div className="signUpError"></div>
+                </div>
+               
+                <button className=" btn-large button sign-up-button" type="button">Sign up</button>
             </form>
         </div>
         )

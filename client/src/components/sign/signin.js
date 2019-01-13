@@ -89,17 +89,20 @@ class Signin extends Component{
         console.log("SIGN IN PASSWORD STATE: ", this.state.password);
         return(
             <div className="signin_container">
-                <h1 className="sign_in">Sign in</h1>
+                <h1 className="signInHeader">Sign in</h1>
                 <form className="sign_in_form" onSubmit={this.getIdForToken}>
-                    <div className='input-field'>
-                        <label htmlFor="email">email</label>
-                        <input className="input" name = "email" type="text" onChange={this.handleInputs}/>
-                        <div className="error">must be a valid email</div>
-                        <label htmlFor="password">password</label>
-                        <input className="input"  name = "password" placeholder="Password" type="password" onChange={this.handleInputs} />
-                        <div className="error">must be a valid password</div>
+                    <div className='input-field'>                      
+                        <input className="signInInput" name = "email" type="text" onChange={this.handleInputs}/>
+                        <label className="signInLabel"htmlFor="email">Email</label>
+                        <div className="signInError"></div>
                     </div>
-                    <button onClick={this.getIdForToken} className=" btn button sign_in_button">Sign in</button>
+                    <div className="input-field">
+                        <input className="signInInput"  name = "password"  type="password" onChange={this.handleInputs} />
+                        <label className="signInLabel"htmlFor="password">Password</label>
+                        <div className="signInError"></div>
+                    </div>
+                    
+                    <button type="button" onClick={this.getIdForToken} className=" btn-large button sign-in-button">Sign in</button>
                     <p className="signin_footer">Dont have an account? <Link to={"/SignUp"}>Sign up now! </Link> </p>
                 </form>
             </div>
