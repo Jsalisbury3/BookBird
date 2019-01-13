@@ -223,17 +223,24 @@ class AddBook extends Component {
         
     }
     addBook = async (event) => {
-        
+        debugger;
         console.log('ADD BOOK RUNNING!');
+        console.log('photo type: ', this.state.photoArray[0].type );
         // event.preventDefault();
         // let data = new FormData(this.refs.bookPost);
         // console.log('this forms', this.forms);
         // console.log('this refs', this.refs);
-        const test = await axios({
+        const prep = await axios({
             method: 'get',
-            url: `/api/prep-upload?fileType=${this.state.photoArray[0]}`
-        }).then( (response) => {
-            console.log('Add Book Response: ', response);
+            url: '/api/prep-upload'
+        })
+
+        const { url } = prep.data;
+
+        await axios(url, this.state.photoArray[0], {
+            headers: {
+                'Content-Type': image.type
+            }
         })
         // const formInfo = new FormData(this.forms)
         // formInfo.append('images', this.forms[7].files[0], 'image1')

@@ -1,7 +1,8 @@
-const s3creds = require('./config/amzns3_creds');
+const { accessKeyId, secretAccessKey,region } = require('./config/amzns3_creds');
 const AWS = require('aws-sdk');
 const uuid = require('uuid/v4');
 const axios = require('axios');
+var cors = require('cors')
 const bodyParser = require('body-parser');
 const multer = require('multer');
 const express = require('express');
@@ -11,19 +12,24 @@ const mysql_creds = require('./config/mysql_creds.js');
 const mysql = require('mysql');
 const db = mysql.createConnection(mysql_creds);
 
-AWS.config.update( s3creds );
+AWS.config.update( {
+    accessKeyId, 
+    secretAccessKey,
+    region 
+});
+
 const s3 = new AWS.S3();
 
 // const awsUpload = require('./services/file-upload');
 
-webserver.get('/api/prep-upload', function(request, response) {
+webserver.get('/api/prepUpload', function(request, response) {
 
     const { query: {fileType}} = request;
-    
-    const key = `testing/${uuid()}`
+    console.log(fileType);
+    const key = `testing`
 
     s3.getSignedUrl('putObject', {
-        Bucket: 'book-bird-image-bucket-1',
+        Bucket: 'book-bird-image-bucket-1',        
         ContentType: fileType,
         Key: key
     }, (err, url) => response.send({success: true, key, url}))
@@ -54,6 +60,7 @@ webserver.post('/api/photo',function(req,res){
 
 
 webserver.post('/api/file-upload', function ( req, res ) {
+    const awsUpload = require('./services/file-upload');
     console.log('File UPload Req')
     awsUpload(req, res, function(err) {
           return res.json({ 'imageUrl: ': req.file });
@@ -61,6 +68,9 @@ webserver.post('/api/file-upload', function ( req, res ) {
 
 });
 
+webserver.post('/api/save-image', (request, response) => {
+    console.log('hello save image')
+})
 webserver.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -71,6 +81,7 @@ webserver.use(express.static(__dirname + '/client/dist/html'));
 webserver.use(express.urlencoded({extended : false}));
 webserver.use(express.json());
 webserver.use(bodyParser.json())
+webserver.use(cors());
 
 webserver.get('/api/listings', (request, response) => {
     console.log("listing running");

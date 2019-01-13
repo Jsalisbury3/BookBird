@@ -7,7 +7,7 @@ AWS.config.update( s3creds );
 
 const s3 = new AWS.S3();
 
-const upload = multer({
+const awsUpload = multer({
     storage: multers3({
         s3: s3,
         bucket: 'book-bird-image-bucket-1',
@@ -20,4 +20,4 @@ const upload = multer({
     })
 })
 
-module.exports = upload;
+module.exports = awsUpload;
