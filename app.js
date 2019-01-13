@@ -127,7 +127,7 @@ webserver.get('/api/UserProfile', (request, response) => {
                     };
                     response.send(outputNoMatch);
                 } else {
-                    console.log("Data: ", data)
+                    console.log("Data: ", data);
                     const query = "SELECT a.ID, l.book_condition, l.ID, l.price, l.comments, l.book_id, b.title, b.ISBN, b.author, b.edition FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id WHERE a.ID = '" + data[0].account_id + "'";
                     db.query(query, (err, data) => {
                         if (!err) {
@@ -249,7 +249,7 @@ webserver.get('/api/SignOut', (request, response) => {
             db.query(getIdFromTokenQuery, (err) => {
                 if(!err) {
                     const outputSuccess = {
-                        success: true,
+                        success: false,
                         message: "You are now signed out",
                     };
                     response.send(outputSuccess);
