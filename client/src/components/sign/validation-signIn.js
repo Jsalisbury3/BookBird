@@ -5,6 +5,7 @@ import {withRouter} from 'react-router-dom';
 import {getIdForToken} from '../../actions/sign_in';
 import {bindActionCreators} from "redux";
 import signInReducer from "../../reducers/sign_in_reducer";
+import {Link} from 'react-router-dom';
 
 class SignInValidation extends Component {
 
@@ -25,10 +26,10 @@ class SignInValidation extends Component {
 
     renderInput = (props) => {
         return (
-            <div className={`col ${props.size || 's12'}`}>
+            <div className={`col ${props.size || 's9'}`}>
                 <div className="input-field">
-                    <input {...props.input} id={props.id} type="text" autoComplete={"off"}/>
-                    <label htmlFor={props.id}>{props.label}</label>
+                    <input className="signInInput" {...props.input} id={props.id} type="text" autoComplete={"off"}/>
+                    <label className="signInLabel" htmlFor={props.id}>{props.label}</label>
                 </div>
                 <p className={"red-text text-darken-2"}>{props.meta.touched && props.meta.error}</p>
             </div>
@@ -46,11 +47,11 @@ class SignInValidation extends Component {
         return (
             <form onSubmit={handleSubmit(this.handleAddItem)}>
                 <div className="row">
-                    <Field name={"Email"} size={"s12 m8 offset-m2"} component={this.renderInput} id="Email"
+                    <Field name={"Email"} size={"s9 m8 offset-m2"} component={this.renderInput} id="Email"
                            label={"Email"}/>
                 </div>
                 <div className="row">
-                    <Field name={"Password"} size={"s12 m8 offset-m2"} component={this.renderInput} id={"Password"}
+                    <Field name={"Password"} size={"s9 m8 offset-m2"} component={this.renderInput} id={"Password"}
                            label={"Password"}/>
                 </div>
                 <div className="row">
@@ -61,6 +62,7 @@ class SignInValidation extends Component {
                         <button className="btn grey darken-2">Sign In</button>
                     </div>
                 </div>
+                
             </form>
         );
     }
