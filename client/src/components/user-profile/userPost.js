@@ -32,7 +32,7 @@ export default class UserPost extends Component{
                 </Link>
                 <div className='delete-btn-container'>
                     <p>Price: ${price}</p>
-                    <button className='waves-effect btn red center' onClick={this.props.delete}><i className='medium material-icons center'>delete_outline</i></button>
+                    <button className='waves-effect btn red center' onClick={this.props.delete}><i className='large material-icons center'>delete_outline</i></button>
                 </div>
             </div>
     
