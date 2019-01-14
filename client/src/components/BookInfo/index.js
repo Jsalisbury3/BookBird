@@ -42,8 +42,8 @@ class Index extends Component {
 
     render() {
         // console.log("yoyoyoyoyooyo", this.state.data);
-        console.log("Book INFO index: ", this.props.bookInfo[0]);
-        const bookInfo = {...this.props.bookInfo[0]};
+        console.log("Book INFO index: ", this.props.bookInfo);
+        const bookInfo = {...this.props.bookInfo};
         return (
             <div className='main-container'>
                 <BookData title={bookInfo.title}

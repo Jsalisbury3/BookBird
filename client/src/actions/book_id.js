@@ -2,7 +2,6 @@ import types from './types';
 import axios from "axios/index";
 
 export const getDataForBookClicked = (bookId) => {
-    console.log('BOOK ID: ', bookId);
     return (dispatch) => {
         axios({
             method: "get",

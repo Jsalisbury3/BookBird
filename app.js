@@ -5,6 +5,9 @@ const mysql_creds = require('./config/mysql_creds.js');
 const mysql = require('mysql');
 const db = mysql.createConnection(mysql_creds);
 const hash = require('./config/token-hash');
+// const Tnumber = require('twilioNumber');
+// const client = require('twilio');
+// const cientT = client('sid', 'key');
 
 webserver.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -15,6 +18,18 @@ webserver.use(function (req, res, next) {
 webserver.use(express.static(__dirname + '/client/dist'));
 webserver.use(express.urlencoded({extended: false}));
 webserver.use(express.json());
+
+
+
+// webserver.post('/twilio', (request, reponse) => {
+//     // const {number, message} = request.body;
+//     console.log("TNUMMMM: ", tnum);
+//     clientT.sendMesssage({
+//         to: `+1${number}`,
+//         from: `+1${Tnumber}`,
+//         body: message,
+//     })
+// });
 
 webserver.get('/api/listings', (request, response) => {
     db.connect(() => {
