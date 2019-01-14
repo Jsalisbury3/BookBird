@@ -31,7 +31,8 @@
     "nodemon": "^1.18.9",
     "npm-run-all": "^4.1.5",
     "react-materialize": "^2.6.0",
-    "redux-thunk": "^2.3.0",
+    "redux-form": "^8.1.0",
+    "redux-thunk": "^2.3.0"
     "uuid": "^3.3.2"
   }
 }
