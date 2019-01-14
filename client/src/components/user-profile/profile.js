@@ -38,7 +38,7 @@ class UserProfile extends Component {
         return (
             <div className='profile-main-container'>
 
-                <button onClick={this.callActionSignOut} className='logOut btn btn-small right'>Log Out<img src={logout24}/>
+                <button onClick={this.callActionSignOut} className='logOut btn btn-small right'><img src={logout24}/>
                 </button>
                 <div className='user-image-container circleBase'>
                     <img src={!this.state.photo ? defaultPhoto : URL.createObjectURL(this.state.photo)}/>                      
