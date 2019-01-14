@@ -8,16 +8,18 @@ import 'materialize-css';
 import 'material-icons';
 import {BASE_URL_GOOGLE_BOOKS, API_KEY} from '../../../../config/api';
 import SearchInput from './isbn_search';
+import FormData from 'form-data';
+import { accessKeyId, secretAccessKey } from '../../../../config/amzns3_creds';
 import image2 from './images/488.jpg';
 import success from './images/successlogo.png';
 import {Link} from 'react-router-dom';
-
 
 
 class AddBook extends Component {
     constructor(props) {
         super(props);
         this.state = {
+
             course: '',
             ISBN: '',
             condition: 'Excellent',
@@ -31,6 +33,7 @@ class AddBook extends Component {
             photoArray:[],
             loaded:0,
             imgTagArray:[],
+            imageSource: ''
             hideIsbnSearchBar: false,
             showToolTip: false
         }
@@ -154,17 +157,61 @@ class AddBook extends Component {
     fileSelectedHandler = async event => {
         console.log(event.target.files[0])
         const newImage = event.target.files[0];
-        await this.setState({
-            photoArray: [newImage, ...this.state.photoArray]
+
+        reader.onload = (event) => {
+            this.setState({
+                imageSource: event.target.result
+            })
+                
+            
+        }
+
+        reader.readAsDataURL(newImage)
+
+        this.setState({
+            photoArray: [newImage,...this.state.photoArray]
         })
-            console.log(this.state.photoArray);
-            this.addPhotoToMultiPhotoContainer();
-    }
-    photoUploadHandler = async()=>{
+
+        this.addPhotoToMultiPhotoContainer();
+        
+
+        // let formData = new FormData();
+        // formData.append('userPhoto', event.target.files[0]);
+
+        // axios({
+        //     method: 'post',
+        //     url: '/api/photo', 
+        //     data: formData,
+        //     config: {
+        //         'headers': {
+        //             'Content-Type': 'multipart/form-data'
+        //         }
+        //     }
+        // })
+
+        // reader.onload= (e)=> {
+        //     console.log('image target results', e.target)
+        //     console.log('Image data', e.target.result)
+        //     const formData = {
+        //         file: e.target.result
+        //     }
+
+        //     axios({
+        //         method: 'post',
+        //         url: '/api/photo', 
+        //         userPhoto: e.target.result
+        //     })
+
+            
         
     }
 
+    photoUploadHandler = ()=>{
+        this.setState({multiplePhoto: event.target.value});
+    }
+   
     addPhotoToMultiPhotoContainer = () => {
+        debugger;
         const imgTagArray = this.state.photoArray.map((item, index) => {
             return (
                 <SingleBookPhoto delete={this.deletePhotoFromStateAndContainer(index)} key={index} index={index} about={item}/>
@@ -187,15 +234,78 @@ class AddBook extends Component {
             imgTagArray: newImgTagArray
         });
     }
-    addBook = async (e) => {
+
+    addBook = async (event) => {
+        console.log('ADD BOOK RUNNING!');
         event.preventDefault();
         console.log("state:", this.state);
         let request = {...this.state};
-        axios({
+        console.log('Request: ', request);
+
+        const listing = await axios({
             method: 'post',
             url: '/api/addListing',
-            headers: {token: localStorage.getItem('Token')},
+            headers: {
+                token: localStorage.getItem('Token'),
+            },
             data: request,
+        })
+
+        const { insertId } = listing.data.data
+
+        console.log('insert id:', listing)
+        console.log('photo type: ', this.state.photoArray[0].type );
+        // event.preventDefault();
+        // let data = new FormData(this.refs.bookPost);
+        // console.log('this forms', this.forms);
+        // console.log('this refs', this.refs);
+        const prep = await axios({
+            Authorization: `AWS ${accessKeyId}: ${secretAccessKey}`,
+            method: 'get',
+            url: `/api/prepUpload?fileType=${this.state.photoArray[0].type}`,
+            ContentType: this.state.photoArray[0].type
+            
+        })
+
+        const { getUrl, key } = prep.data;
+
+        console.log('add book key: ', key, insertId);
+
+        // await axios(getUrl, this.state.photoArray[0], {
+        //     headers: {
+        //         'Content-Type': this.state.photoArray[0].type
+        //     }
+        // })
+        let saveImageParams = {
+            key,
+            insertId,
+            fileType: this.state.photoArray[0].type,
+        }
+        
+        console.log('saveImage Params: ', saveImageParams);
+
+        await axios({
+            method: 'post',
+            url: `/api/save-image?key=${key}&listingId=${insertId}&fileType=${this.state.photoArray[0].type}`,
+            'Content-Type': 'application/json',
+            headers: {
+                token: localStorage.getItem('Token'),
+            },
+            body: saveImageParams
+        })
+        // const formInfo = new FormData(this.forms)
+        // formInfo.append('images', this.forms[7].files[0], 'image1')
+        // request.files = formInfo;
+        
+
+        // console.log('request files:', request.files)
+        // console.log("state:", this.state);
+        // console.log('FORM DATA: ', data);
+        // data.append('data', request );
+        // console.log('FORM DATA AFTER APPEND', data);
+        console.log('Add Book: ', this.state);
+        // 'content-type': 'multipart/form-data'
+      
         });
         document.getElementsByClassName('modalPageContainer')[0].style.display = "block";
     };
@@ -269,8 +379,9 @@ class AddBook extends Component {
     }
   
     render() {
+        console.log('Add Book: ', this.state);
         const hideISBN = this.state.hideIsbnSearchBar ? {display: 'none'} : {display: 'block'};
-        
+
         return (
             <div className={"addBook-container"}>
                 <div className="isbnModalContainer">
