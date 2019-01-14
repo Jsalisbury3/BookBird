@@ -160,6 +160,7 @@ class AddBook extends Component {
         this.setState({
             photoArray: [newImage,...this.state.photoArray]
         })
+
         this.addPhotoToMultiPhotoContainer();
         
 
@@ -230,7 +231,7 @@ class AddBook extends Component {
         let request = {...this.state};
         console.log('Request: ', request);
 
-        await axios({
+        const listing = await axios({
             method: 'post',
             url: '/api/addListing',
             headers: {
@@ -239,6 +240,9 @@ class AddBook extends Component {
             data: request,
         })
 
+        const { insertId } = listing.data.data
+
+        console.log('insert id:', listing)
         console.log('photo type: ', this.state.photoArray[0].type );
         // event.preventDefault();
         // let data = new FormData(this.refs.bookPost);
@@ -252,17 +256,31 @@ class AddBook extends Component {
             
         })
 
-        const { getUrl } = prep.data;
+        const { getUrl, key } = prep.data;
 
-        await axios(getUrl, this.state.photoArray[0], {
-            headers: {
-                'Content-Type': this.state.photoArray[0].type
-            }
-        })
+        console.log('add book key: ', key, insertId);
 
-        axios({
+        // await axios(getUrl, this.state.photoArray[0], {
+        //     headers: {
+        //         'Content-Type': this.state.photoArray[0].type
+        //     }
+        // })
+        let saveImageParams = {
+            key,
+            insertId,
+            fileType: this.state.photoArray[0].type,
+        }
+        
+        console.log('saveImage Params: ', saveImageParams);
+
+        await axios({
             method: 'post',
-            url: '/api/save-image',
+            url: `/api/save-image?key=${key}&listingId=${insertId}&fileType=${this.state.photoArray[0].type}`,
+            'Content-Type': 'application/json',
+            headers: {
+                token: localStorage.getItem('Token'),
+            },
+            body: saveImageParams
         })
         // const formInfo = new FormData(this.forms)
         // formInfo.append('images', this.forms[7].files[0], 'image1')

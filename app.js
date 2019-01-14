@@ -78,9 +78,30 @@ webserver.post('/api/file-upload', function ( req, res ) {
 
 });
 
-webserver.post('/api/save-image', (request, response) => {
+webserver.post('/api/save-image', function (request, response) {
+    console.log('request: ', request.query)
+    const { key, listingId, fileType } = request.query;
     console.log('hello save image')
-})
+    // console.log('KEEY: ', key);
+    // console.log('Listing ID: ', insertId);
+    db.connect( () => {
+        console.log('Save Item')
+        const query = "INSERT INTO `images` SET url='"+key+"',listing_id="+listingId+",imageType='"+fileType+"'";
+
+        db.query(query, (err, data) => {
+            if (!err) {
+                let output = {
+                    success: true,
+                    data: data
+                }
+                response.send(output);
+            } else {
+                console.log('save image to database did not work');
+            }
+        })
+    })
+});
+
 webserver.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -118,6 +139,15 @@ webserver.post('/api/addListing', (request, response) => {
     const {title, condition, ISBN, author, edition, price, comments, images, photoArray,files} = request.body;
     console.log("ADD LISTING IS RUNNING");
     console.log('REQUEST BODY', request.body);
+    console.log('Photo Array: ', photoArray);
+
+    // const output={
+    //     success: true,
+    //     data: response,
+    // }
+    // response.send(output);
+
+    
 
     // axios({
     //     method: 'post',
@@ -145,7 +175,7 @@ webserver.post('/api/addListing', (request, response) => {
                     if(!err) {
                         console.log('INSERT INTO LISTINGS')
                         console.log('Listings Data: ', data)
-                        const query = "INSERT INTO `listing` SET listing.book_id = '" +data.insertId+"', price = '"+ price +"', book_condition = '"+condition+"', comments = '"+comments+"', accounts_id = '1', public_id='21'";
+                        const query = "INSERT INTO `listing` SET listing.book_id = "+data[0].ID+", price = '"+ price +"', book_condition = '"+condition+"', comments = '"+comments+"', accounts_id = '1', public_id='21'";
                         db.query(query, (err, response) => {
                             if(!err) {
                                 console.log("all queries are good")
@@ -163,10 +193,14 @@ webserver.post('/api/addListing', (request, response) => {
                 console.log('INSERT INTO LISTINGS')
                 console.log('Listings Data: ', data)
                 const query = "INSERT INTO `listing` SET listing.book_id = "+data[0].ID+", price = '"+ price +"', book_condition = '"+condition+"', comments = '"+comments+"', accounts_id = '1', public_id='21'";
-                db.query(query, (err, response) => {
+                db.query(query, async (err, data) => {
                         if(!err) {
                             console.log("all queries are good")
-                            
+                            let output = {
+                                success: true,
+                                data: data,
+                            };
+                            response.send(output);
                         } else {
                             console.log("error", err);
                         }
