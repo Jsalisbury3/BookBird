@@ -3,9 +3,9 @@ import UserPostList from './userPostList';
 import {withRouter} from 'react-router-dom';
 import 'materialize-css';
 import 'material-icons';
+import defaultPhoto from './images/default-user-profile-image.png';
 import {connect} from 'react-redux';
 import {removeTokenAndRow} from '../../actions/sign_out'
-import userphoto from './images/doublebirds.jpg';
 import logout24 from './images/logout-24.png'
 import {bindActionCreators} from "redux";
 
@@ -41,12 +41,10 @@ class UserProfile extends Component {
                 <button onClick={this.callActionSignOut} className='logOut btn btn-small right'>Log Out<img src={logout24}/>
                 </button>
                 <div className='user-image-container circleBase'>
-                    <img src={!this.state.photo ? userphoto : URL.createObjectURL(this.state.photo)}/>
-
-                    <label className="opacitySlip" htmlFor="profilePhotoInput"><i
-                        className='material-icons center'>add_a_photo</i></label>
-                    <input id="profilePhotoInput" type="file" name="photo" capture="camera" accept="image/*"
-                           onChange={this.fileSelectedHandler}/>
+                    <img src={!this.state.photo ? defaultPhoto : URL.createObjectURL(this.state.photo)}/>                      
+                    <label className="opacitySlip" htmlFor="profilePhotoInput"><i className='material-icons center'>add_a_photo</i></label>
+                    <input id="profilePhotoInput" type="file" name="photo" capture="camera" accept="image/*" onChange={this.fileSelectedHandler}/>
+                    
 
                 </div>
                 <UserPostList/>
