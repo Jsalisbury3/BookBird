@@ -3,7 +3,7 @@ import UserPostList from './userPostList';
 import {withRouter} from 'react-router-dom';
 import 'materialize-css';
 import 'material-icons';
-import userphoto from './images/doublebirds.jpg';
+import defaultPhoto from './images/default-user-profile-image.png';
 import axios from "axios/index";
 import logout24 from './images/logout-24.png'
 
@@ -42,7 +42,7 @@ class UserProfile extends Component {
             <div className='profile-main-container'>
                 <button onClick={this.signOut} className='logOut btn btn-small right'><img src={logout24}/></button>
                 <div className='user-image-container circleBase'>
-                    <img src={!this.state.photo ? userphoto : URL.createObjectURL(this.state.photo)}/>     
+                    <img src={!this.state.photo ? defaultPhoto : URL.createObjectURL(this.state.photo)}/>     
                     
                     <label className="opacitySlip" htmlFor="profilePhotoInput"><i className='material-icons center'>add_a_photo</i></label>
                     <input id="profilePhotoInput" type="file" name="photo" capture="camera" accept="image/*" onChange={this.fileSelectedHandler}/>
