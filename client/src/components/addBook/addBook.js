@@ -300,8 +300,6 @@ class AddBook extends Component {
         // console.log('FORM DATA AFTER APPEND', data);
         console.log('Add Book: ', this.state);
         // 'content-type': 'multipart/form-data'
-      
-        
         document.getElementsByClassName('modalPageContainer')[0].style.display = "block";
     };
     getBooks = (event) => {
