@@ -7,14 +7,18 @@ import axios from 'axios';
 import 'materialize-css';
 import 'material-icons';
 import {BASE_URL_GOOGLE_BOOKS, API_KEY} from '../../../../config/api';
-import SearchInput from './isbn_search'
-import image2 from './images/488.jpg'
-
+import SearchInput from './isbn_search';
+import FormData from 'form-data';
+import { accessKeyId, secretAccessKey } from '../../../../config/amzns3_creds';
+import image2 from './images/488.jpg';
+import success from './images/successlogo.png';
+import {Link} from 'react-router-dom';
 
 class AddBook extends Component {
     constructor(props) {
         super(props);
         this.state = {
+
             course: '',
             ISBN: '',
             condition: 'Excellent',
@@ -24,10 +28,11 @@ class AddBook extends Component {
             price: '',
             comments: '',
             bookImage: undefined,
-            books: [],
-            photoArray: [],
-            loaded: 0,
-            imgTagArray: [],
+            books:[],
+            photoArray:[],
+            loaded:0,
+            imgTagArray:[],
+            imageSource: ''
             hideIsbnSearchBar: false,
             showToolTip: false
         }
@@ -39,6 +44,7 @@ class AddBook extends Component {
         document.getElementsByClassName('modalIsbn')[0].style.display = "block";
         document.getElementsByClassName("modal-footer")[0].style.display = "none"
         document.getElementsByClassName("modal-body")[0].style.display = "none"
+        document.getElementsByClassName("bookSuccessInfo")[0].style.display = "none"
         await this.addPhotoToMultiPhotoContainer();
 
         console.log('Tooltip:', this.tooltip);
@@ -58,88 +64,88 @@ class AddBook extends Component {
         })
     };
 
-    // validateInputsFields = (event) => {
-    //     event.preventDefault();
-    //     const test = [
-    //         {
-    //             element: 'input[name=ISBN]',
-    //             pattern: /[0-9]{13,}/,
-    //             errorMessage: "Invalid ISBN number",
-    //             index: 0
-    //         },
-    //         {
-    //             element: 'input[name=condition]',
-    //             pattern: /^(New|Like New|Good|Worn|Thrashed)$/,
-    //             errorMessage: "Invalid Condition Selection",
-    //             index: 1
-    //         },
-    //         {
-    //             element: 'input[name=title]',
-    //             pattern: /[a-zA-Z0-9]{4,140}/,
-    //             errorMessage: "Invalid Title",
-    //             index: 2
-    //         },
-    //         {
-    //             element: 'input[name=author]',
-    //             pattern: /[a-zA-Z0-9]{4,140}/,
-    //             errorMessage: "Invalid Author",
-    //             index: 3
-    //         },
-    //         {
-    //             element: 'input[name=edition]',
-    //             pattern: /[0-9]{1,99}/,
-    //             errorMessage: "Whole Numbers Only",
-    //             index: 4
-    //         },
-    //         {
-    //             element: 'input[name=price]',
-    //             pattern: /[0-9]{1,4}/,
-    //             errorMessage: "Whole Numbers Only",
-    //             index: 5
-    //         },
-    //     ];
-    //
-    //     if(test.length === test.filter(this.validateInputAndDisplayError).length) {
-    //         this.addBook();
-    //     }
-    // };
-    //
-    // validateInputAndDisplayError = (test) => {
-    //     let element = test.element;
-    //     if(element === "input[name=condition]") {
-    //         var selected = document.getElementById("mySelect").selectedIndex;
-    //         var options = document.getElementById("mySelect").options;
-    //         var elementVal = options[selected].value;
-    //     } else {
-    //         var elementVal = document.querySelector(element).value;
-    //     }
-    //     console.log(elementVal);
-    //     let pattern = test.pattern;
-    //     let errorMessage = test.errorMessage;
-    //     let index = test.index;
-    //     const result = pattern.test( elementVal );
-    //     if( !result ){
-    //         if(element !== "input[name=condition]") {
-    //             document.getElementsByClassName("error")[index].nextElementSibling.classList.remove("visible");
-    //             document.querySelector(element).nextSibling.innerHTML = errorMessage;
-    //         } else {
-    //             document.getElementById("conditionError").innerHTML = errorMessage;
-    //             document.getElementById("conditionCheckMArk").classList.remove("visible");
-    //         }
-    //     } else {
-    //         if(element !== "input[name=condition]") {
-    //             document.getElementsByClassName("error")[index].nextElementSibling.classList.add("visible");
-    //             document.querySelector(element).nextSibling.innerHTML = '';
-    //         } else {
-    //             document.getElementById("conditionError").innerHTML = '';
-    //             document.getElementById("conditionCheckMArk").classList.add("visible");
-    //         }
-    //
-    //     }
-    //
-    //     document.getElementsByClassName('modalPageContainer')[0].style.display = "block";
-    //     return result;
-    // };
+    validateInputsFields = (event) => {
+        event.preventDefault();
+        const test = [
+            {
+                element: 'input[name=ISBN]',
+                pattern: /[0-9]{13,}/,
+                errorMessage: "Invalid ISBN number",
+                index: 0
+            },
+            {
+                element: 'input[name=condition]',
+                pattern: /^(New|Like New|Good|Worn|Thrashed)$/,
+                errorMessage: "Invalid Condition Selection",
+                index: 1
+            },
+            {
+                element: 'input[name=title]',
+                pattern: /[a-zA-Z0-9]{4,140}/,
+                errorMessage: "Invalid Title",
+                index: 2
+            },
+            {
+                element: 'input[name=author]',
+                pattern: /[a-zA-Z0-9]{4,140}/,
+                errorMessage: "Invalid Author",
+                index: 3
+            },
+            {
+                element: 'input[name=edition]',
+                pattern: /[0-9]{1,99}/,
+                errorMessage: "Whole Numbers Only",
+                index: 4
+            },
+            {
+                element: 'input[name=price]',
+                pattern: /[0-9]{1,4}/,
+                errorMessage: "Whole Numbers Only",
+                index: 5
+            },
+        ];
+    
+        if(test.length === test.filter(this.validateInputAndDisplayError).length) {
+            this.addBook();
+        }
+    };
+    
+    validateInputAndDisplayError = (test) => {
+        let element = test.element;
+        if(element === "input[name=condition]") {
+            var selected = document.getElementById("mySelect").selectedIndex;
+            var options = document.getElementById("mySelect").options;
+            var elementVal = options[selected].value;
+        } else {
+            var elementVal = document.querySelector(element).value;
+        }
+        console.log(elementVal);
+        let pattern = test.pattern;
+        let errorMessage = test.errorMessage;
+        let index = test.index;
+        const result = pattern.test( elementVal );
+        if( !result ){
+            if(element !== "input[name=condition]") {
+                document.getElementsByClassName("error")[index].nextElementSibling.classList.remove("visible");
+                document.querySelector(element).nextSibling.innerHTML = errorMessage;
+            } else {
+                document.getElementById("conditionError").innerHTML = errorMessage;
+                document.getElementById("conditionCheckMArk").classList.remove("visible");
+            }
+        } else {
+            if(element !== "input[name=condition]") {
+                document.getElementsByClassName("error")[index].nextElementSibling.classList.add("visible");
+                document.querySelector(element).nextSibling.innerHTML = '';
+            } else {
+                document.getElementById("conditionError").innerHTML = '';
+                document.getElementById("conditionCheckMArk").classList.add("visible");
+            }
+    
+        }
+    
+        document.getElementsByClassName('modalPageContainer')[0].style.display = "block";
+        return result;
+    };
 
     addBook = async (event) => {
         document.getElementsByClassName('modalPageContainer')[0].style.display = "block";
@@ -148,16 +154,60 @@ class AddBook extends Component {
     fileSelectedHandler = async event => {
         console.log(event.target.files[0])
         const newImage = event.target.files[0];
-        await this.setState({
-            photoArray: [newImage, ...this.state.photoArray]
-        })
-        console.log(this.state.photoArray);
-        this.addPhotoToMultiPhotoContainer();
-    }
-    photoUploadHandler = async () => {
 
+        reader.onload = (event) => {
+            this.setState({
+                imageSource: event.target.result
+            })
+                
+            
+        }
+
+        reader.readAsDataURL(newImage)
+
+        this.setState({
+            photoArray: [newImage,...this.state.photoArray]
+        })
+        this.addPhotoToMultiPhotoContainer();
+        
+
+        // let formData = new FormData();
+        // formData.append('userPhoto', event.target.files[0]);
+
+        // axios({
+        //     method: 'post',
+        //     url: '/api/photo', 
+        //     data: formData,
+        //     config: {
+        //         'headers': {
+        //             'Content-Type': 'multipart/form-data'
+        //         }
+        //     }
+        // })
+
+        // reader.onload= (e)=> {
+        //     console.log('image target results', e.target)
+        //     console.log('Image data', e.target.result)
+        //     const formData = {
+        //         file: e.target.result
+        //     }
+
+        //     axios({
+        //         method: 'post',
+        //         url: '/api/photo', 
+        //         userPhoto: e.target.result
+        //     })
+
+            
+        
     }
+
+    photoUploadHandler = ()=>{
+        this.setState({multiplePhoto: event.target.value});
+    }
+   
     addPhotoToMultiPhotoContainer = () => {
+        debugger;
         const imgTagArray = this.state.photoArray.map((item, index) => {
             return (
                 <SingleBookPhoto delete={this.deletePhotoFromStateAndContainer(index)} key={index} index={index}
@@ -181,15 +231,78 @@ class AddBook extends Component {
             imgTagArray: newImgTagArray
         });
     }
-    addBook = async (e) => {
+
+    addBook = async (event) => {
+        console.log('ADD BOOK RUNNING!');
         event.preventDefault();
         console.log("state:", this.state);
         let request = {...this.state};
-        axios({
+        console.log('Request: ', request);
+
+        const listing = await axios({
             method: 'post',
             url: '/api/addListing',
-            headers: {token: localStorage.getItem('Token')},
+            headers: {
+                token: localStorage.getItem('Token'),
+            },
             data: request,
+        })
+
+        const { insertId } = listing.data.data
+
+        console.log('insert id:', listing)
+        console.log('photo type: ', this.state.photoArray[0].type );
+        // event.preventDefault();
+        // let data = new FormData(this.refs.bookPost);
+        // console.log('this forms', this.forms);
+        // console.log('this refs', this.refs);
+        const prep = await axios({
+            Authorization: `AWS ${accessKeyId}: ${secretAccessKey}`,
+            method: 'get',
+            url: `/api/prepUpload?fileType=${this.state.photoArray[0].type}`,
+            ContentType: this.state.photoArray[0].type
+            
+        })
+
+        const { getUrl, key } = prep.data;
+
+        console.log('add book key: ', key, insertId);
+
+        // await axios(getUrl, this.state.photoArray[0], {
+        //     headers: {
+        //         'Content-Type': this.state.photoArray[0].type
+        //     }
+        // })
+        let saveImageParams = {
+            key,
+            insertId,
+            fileType: this.state.photoArray[0].type,
+        }
+        
+        console.log('saveImage Params: ', saveImageParams);
+
+        await axios({
+            method: 'post',
+            url: `/api/save-image?key=${key}&listingId=${insertId}&fileType=${this.state.photoArray[0].type}`,
+            'Content-Type': 'application/json',
+            headers: {
+                token: localStorage.getItem('Token'),
+            },
+            body: saveImageParams
+        })
+        // const formInfo = new FormData(this.forms)
+        // formInfo.append('images', this.forms[7].files[0], 'image1')
+        // request.files = formInfo;
+        
+
+        // console.log('request files:', request.files)
+        // console.log("state:", this.state);
+        // console.log('FORM DATA: ', data);
+        // data.append('data', request );
+        // console.log('FORM DATA AFTER APPEND', data);
+        console.log('Add Book: ', this.state);
+        // 'content-type': 'multipart/form-data'
+      
         });
         document.getElementsByClassName('modalPageContainer')[0].style.display = "block";
     };
@@ -246,8 +359,26 @@ class AddBook extends Component {
         })
     }
 
+    bookPostedModal=(event)=>{
+        event.preventDefault();
+        document.getElementsByClassName("modalIsbn")[0].style.display = "block"
+        document.getElementsByClassName("google_book_image")[0].style.display = "none"
+        document.getElementsByClassName("isbnModalBookDescription")[0].style.display = "none"
+        document.getElementsByClassName("submit_clear_buttons")[0].style.display = "none"
+        document.getElementsByClassName("bookSuccessInfo")[0].style.display = "block"
+        // document.getElementsByClassName("isbnModalContainer")[0].style.display = "block"
+        // document.getElementsByClassName("modal-body")[0].style.display = "none"
+        // document.getElementsByClassName("modal-footer")[0].style.display = "none"
+    }
+
+
+    acceptBookPosted=(event)=>{
+        event.preventDefault();
+
+    }
 
     render() {
+        console.log('Add Book: ', this.state);
         const hideISBN = this.state.hideIsbnSearchBar ? {display: 'none'} : {display: 'block'};
 
         return (
@@ -257,42 +388,41 @@ class AddBook extends Component {
                         <div className="modal-content">
                             <div style={hideISBN} className="isbnModalHeader">
                                 <p className="isbnModalHeader">Post your book by ISBN</p>
-                                <form onSubmit={this.getBooks} className='form-isbn'>
-                                    <div className="input_label input-field">
-                                        <input autoComplete="off" type="text"
-                                               onChange={this.handleIsbnChange.bind(this)} name={"ModalISBN"}
-                                               value={this.state.ISBN}/>
-                                        <p>ISBN is required <a ref={e => this.tooltip = e} className="tooltipped"
-                                                               data-position="top"
-                                                               data-tooltip="We require ISBN number to ensure accuracy of book postings">why?</a>
-                                        </p>
-                                        <label className="enterIsbnLabel" htmlFor="ISBN">ISBN</label>
+
+                                <form onSubmit={this.getBooks}className='form-isbn'>
+                                    <div className = "input_label input-field">
+                                        <input id="isbnInput" autoComplete="off" type="text" onChange={this.handleIsbnChange.bind(this)} name={"ModalISBN"} value={this.state.ISBN}/>
+                                        <p>ISBN is required <a ref={e => this.tooltip = e} className="tooltipped" data-position="top" data-tooltip="We require ISBN number to ensure accuracy of book postings">why?</a></p>
+                                        <label htmlFor="isbnInput" className="enterIsbnLabel"htmlFor="ISBN">ISBN</label>
                                     </div>
                                     <div className='search_button_container'>
-                                        <button onClick={this.getBooks} type="button"
-                                                className='isbnSearchButton btn btn-small waves-effect'>Search
-                                        </button>
+                                        <button onClick={this.getBooks} type="button" className='isbnSearchButton btn btn-small waves-effect'>Search</button>
                                     </div>
                                 </form>
                             </div>
                             <div className="modal-body">
-                                <img className="google_book_image" src={this.state.bookImage} alt=""/>
-                                <div className="isbnModalBookDescription">
-                                    <p name="ModalISBN">ISBN: {this.state.ISBN}</p>
-                                    <p name="ModalAuthor">Author: {this.state.author}</p>
-                                    <p name="ModalTitle">Title: {this.state.title}</p>
-                                </div>
+                                    <img className="google_book_image" src={this.state.bookImage} alt=""/>
+                                    <div className="isbnModalBookDescription">
+                                        <p name="ModalISBN">ISBN: {this.state.ISBN}</p>
+                                        <p name="ModalAuthor">Author: {this.state.author}</p>
+                                        <p name="ModalTitle">Title: {this.state.title}</p>
+                                    </div>
+                                    <div className="bookSuccessInfo">
+                                        <p className="successModalText">Success!</p>
+                                        <div className="successImage">
+                                            <img src={success}/>
+                                        </div>
+                                        <div className="successModalButtons">
+                                            <button onClick={this.clearData}type="button"className= "btn-small btn waves-effect postAgainButton">Post Again</button>
+                                            <p className="btn-small btn waves-effect white"><Link to={"/"}>Accept</Link> </p>
+                                        </div>  
+                                    </div>
                             </div>
                             <div className="modal-footer">
                                 <form>
                                     <div className="submit_clear_buttons">
-                                        <button className="accept_button btn-small btn waves-effect" type="button"
-                                                onClick={this.populateData}> Accept
-                                        </button>
-                                        <button onClick={this.clearData}
-                                                className="clear_button btn-small btn waves-effect" type="button">Try
-                                            Again
-                                        </button>
+                                        <button className="accept_button btn-small btn waves-effect" type="button" onClick={this.populateData}> Accept </button>
+                                        <button onClick={this.clearData} className="clear_button btn-small btn waves-effect" type="button">Try Again</button>
                                     </div>
                                 </form>
                             </div>
@@ -304,20 +434,15 @@ class AddBook extends Component {
                     <div id='input-container' className=' title-container row'>
                         <div id={"conditionError"} className={"error"}></div>
                         <div id={"conditionCheckMArk"} className={"checkMark markCondition material-icons"}>check_circle_outline</div>
-
                         <div className='input-field '>
-
                             <input name={"title"}  type='text' className={"inputs col s10 push-s1"} onChange={this.handleInput}/>
                             <label id='label-title' >*Title</label>
-
                         </div>
                     </div>
                     <div id='input-container' className=' title-container row'>
                         <div className={"error"}></div>
                         <div className={"checkMark markTitle material-icons"}>check_circle_outline</div>
-
                         <div className='input-field'>
-
                             <input name={"author"} type='text' className={"inputs col s10 push-s1"}  onChange={this.handleInput}/>
                             <label id='label-title' htmlFor={'author'}>*Author</label>
 
@@ -374,7 +499,7 @@ class AddBook extends Component {
                         {this.state.imgTagArray}
                     </div>
                     <div className='button-container'>
-                    <button type="button" className={"POST"}>Post</button>
+                    <button onClick={this.bookPostedModal} type = "button" className={"POST"}>Post</button>
                     </div>
                 </form>
             </div>

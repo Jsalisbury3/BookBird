@@ -5,14 +5,14 @@ import './landing/package';
 import AddBook from './addBook';
 import './addBook/package';
 import BookInfo from './BookInfo';
-import UserProfile from './user-profile';
+import UserProfile from './user-profile/profile';
 import './user-profile/package';
 import SignIn from './sign/signin';
 import SignUp from './sign/signup';
 import Nav from './universal/nav';
 import Header from './universal/header';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
-import Modal from './addBook/modal';
+// import Modal from './addBook/modal';
 import 'materialize-css/dist/css/materialize.min.css';
 import 'materialize-css/dist/js/materialize.min';
 import {BASE_URL_GOOGLE_BOOKS, API_KEY} from '../../../config/api'
@@ -35,7 +35,7 @@ class App extends Component {
                         <Route path={"/SignUp"} component={SignUp}/>
                         <Nav/>
                     </div>
-                    <Modal/>
+                    {/* <Modal/> */}
                 </div>
             </Router>
         );

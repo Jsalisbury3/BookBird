@@ -4,7 +4,7 @@
     width: 100vw;
     height: 76vh;
     left: 0;
-    background-color: rgba(0,0,0,0.87);
+    background-color: rgba(0,0,0,0.75);
 }
 .isbnModalContainer{   
 }
@@ -17,6 +17,21 @@
    right: 38%
 }
 
+.successModalButtons{
+    padding: 10px;
+}
+.successModalText{
+    justify-content: center;
+    display: flex;
+}
+
+
+
+.postAgainButton{
+    margin-right: 30px;
+    left: 6%;
+}
+
 .isbnModalBookDescription{
     bottom: 47%;
     left: 21%; 
@@ -25,7 +40,7 @@
 }
 
 .isbnSearchButton{
-    left: 28px;
+    left: 18%;
 }
 
 .google_book_image{
@@ -425,4 +440,25 @@ select option {
         height: 5vh;
         width: 20vw;
     }
+}
+
+
+
+
+
+
+
+.successImage {
+    display: inline-block;
+    position: relative;
+    width: 80%;
+    top: 5%;
+}
+.successImage > img {
+    display: inline-block;
+    position: relative;
+    left: 50%;
+    top: 20%;
+    height: 5%;
+    width: 25%;
 }

@@ -1,18 +1,25 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import axios from 'axios';
 import SignInValidation from './validation-signIn';
-import { getIdForToken} from '../../actions/sign_in';
+import {withRouter} from 'react-router-dom';
 import './sign.css'
 import 'materialize-css/dist/css/materialize.min.css'
 import 'materialize-css'
+import axios from "axios/index";
 
 
 class Signin extends Component{
+
+    componentDidMount = () => {
+        if(localStorage.Token) {
+            this.props.history.push('/UserProfile');
+        }
+    }
+
     render(){
         return(
-            <div>
-                <h1 className="sign_in">Sign in</h1>
+            <div className="signin_container">
+                <h1 className="signInHeader">Sign in</h1>
                 <SignInValidation/>
                 <p className="signin_footer">Dont have an account? <Link to={"/SignUp"}>Sign up now! </Link> </p>
             </div>
@@ -20,4 +27,4 @@ class Signin extends Component{
     }
 }
 
-export default Signin
+export default withRouter(Signin);
