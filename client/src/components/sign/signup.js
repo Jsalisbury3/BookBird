@@ -6,8 +6,8 @@ import './sign.css'
 class Signup extends Component{
     render(){
         return(
-        <div>
-            <h1 className="sign_in">Sign Up</h1>
+        <div className="signup_container">
+            <h1 className="signUpHeader">Sign Up</h1>
             <SignUpValidation />
             <p className="signup_footer">Already have an account? <Link to={"/SignIn"}> Sign In </Link></p>
         </div>

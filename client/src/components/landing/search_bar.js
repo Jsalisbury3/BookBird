@@ -79,7 +79,7 @@ class SearchBar extends Component{
             <div className="search-bar-container">
                 <form className="searchForm" onSubmit={this.handleSubmit}>
                     <input name="ISBN" className="search-text" placeholder="Search by ISBN" onChange={this.handleInputs}></input>
-                    <button className="searchInputButton"><img src={searchIcon} className="search-bar-icon"/></button>
+                    {/* <button className="searchInputButton"><img src={searchIcon} className="search-bar-icon"/></button> */}
                 </form>
             </div>
         )
