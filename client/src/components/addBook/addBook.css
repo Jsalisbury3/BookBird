@@ -5,6 +5,8 @@
     height: 76vh;
     left: 0;
     background-color: rgba(0,0,0,0.87);
+    display: none;
+    opacity: 0;
 }
 .isbnModalContainer{   
 }
@@ -73,11 +75,10 @@ img {
 }
 .upload-image-container {
     position: relative;
-    background-color: yellow;
-    height: 8vh;
-    width: 13vw;
-    margin: left;
-    margin-left: 37%;
+    height: 12vh;
+    width: 35vw;
+    margin-left: 28%;
+    bottom: 19%;
 }
 .searchButtonContainer {
     padding-left: 35%;
@@ -112,25 +113,29 @@ img {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    display: flex;
+    /*display: flex;*/
     align-items: center;
     justify-content: center;
     flex-flow: column nowrap;
+    display: none;
+;
 }
 .modal-footer{
     margin-bottom: 11px;
 }
-.avvept_button, .clear_button{
+.accept_button, .clear_button{
     margin:8px;
 }
 .row {
     margin-left: auto;
     margin-right: auto;
     position: relative;
+    margin-bottom: 0%;
 
 }
 #mySelect {
-    margin-top: 4%;
+    position: absolute;
+    right: 30%;
 }
 /*:root {*/
     /*--moveRight: 91%;*/
@@ -138,8 +143,32 @@ img {
     /*--marktop: 7.8vh;*/
     /*--markbase: 4.2vh;*/
 /*}*/
-title-container {
-    height: 0%;
+.title-container {
+    height: 18%;
+}
+#input-container {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0px;
+    bottom: 10%;
+}
+.button-container  {
+    margin-left: 27%;
+    position: relative;
+    bottom: 9%;
+}
+.submit-photo-container {
+    position: relative;
+    margin-top: 25%;
+    margin-left: 13%;
+}
+
+
+
+#label-title {
+    left: 8%;
+    margin-top: 6%;
+    font-size: 1.5rem;
 }
 
 .tempContainer {
@@ -164,9 +193,7 @@ title-container {
     background-color: #5bc0de;
     color: white;
 }
-#input-field {
-    background-color: #FFFFFF;
-}
+
 
 .inputs {
     position: relative;
@@ -196,9 +223,12 @@ title-container {
 }
 
 .comment-text-area {
-    position: relative;
-    /* bottom: 54%; */
-    top: 55%;
+    position: absolute;
+    display: inline;
+    bottom: 43%;
+    width: 90%;
+    margin-left: 4%;
+    height: 11%;
 }
 
 
@@ -228,9 +258,9 @@ title-container {
     justify-content: space-around;
 }
 .single-photo-container{
-    display:inline-flex;
-    height:96px;
-    width:23%;
+    display: inline-flex;
+    height: 94px;
+    width: 72px;
 }
 .single-photo-container>img{
     height:100%;
@@ -239,9 +269,9 @@ title-container {
 .POST {
     position: absolute;
     display: inline-block;
-    height: 6.7vh;
+    height: 8.0vh;
     width: 50%;
-    margin-left: 24.5%;
+    margin-left: 0%;
     border-radius: 40px;
     border: none;
     font-size: 1.5em;;
