@@ -4,10 +4,12 @@ body{
 
 }
 .uni-header{
+    z-index:2;
     height: 12vh;
     width: 100vw;
     background-color: #5bc0de;
     color: white;
+    
 }
 .birdLogo, .universityLogo{
     display:inline-block;
@@ -19,6 +21,7 @@ body{
 }
 .universityLogo{
     width: 78%;
+
 }
 .uni-footer {
     position: absolute;
@@ -27,6 +30,7 @@ body{
     width: 100%;
     background-color: #F2C94C;
     color: white;
+    z-index:2
 }
 
 .SearchIcon {

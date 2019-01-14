@@ -1,4 +1,4 @@
-.modalPageContainer {
+/* .modalPageContainer {
     display: none;
     position: absolute;
     background-color: rgba(0, 0, 0, 0.13);
@@ -13,7 +13,6 @@
     background-color: rgb(255, 240, 240);
     position: relative;
     border-radius: 2%;
-    /* border: 1px solid black; */
     top: 20%;
     left: 10%;
     height: 40%;
@@ -26,7 +25,6 @@
     box-sizing: border-box;
     height: 20%;
     width: 100%;
-    /* border: 1px solid black; */
 }
 
 .headerTextContainer {
@@ -49,7 +47,6 @@
     box-sizing: border-box;
     height: 50%;
     width: 100%;
-    /* border: 1px solid black; */
     
 }
 
@@ -67,7 +64,6 @@
     position: relative;
     top: 30%;
     left: 7%;
-    
 }
 
 .successImage {
@@ -89,7 +85,6 @@
     box-sizing: border-box;
     height: 30%;
     width: 100%;
-    /* border: 1px solid black; */
 }
 
 .searchButtonContainer {
@@ -109,7 +104,6 @@
     width: 80%;
     background-color: rgb(6, 179, 12);
     color: white;
-    
 }
 
 .searchButtonModal > div {
@@ -141,4 +135,4 @@
     position: relative;
     display: inline-block;
     top: 35%;
-}
+} */

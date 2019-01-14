@@ -1,7 +1,69 @@
-.sign_up, .sign_in{
+.signUpHeader, .signInHeader{
     text-align: center;
     display: grid;
     top: 9%;
+}
+
+.signup_footer, .signin_footer{
+    justify-content: center;
+    align-items: center;
+    left: 19%;
+    top: 78%;
+    position: absolute;
+}
+
+.signInError, .signUpError{
+    color: red;
+}
+
+.signin_container, .signup_container{
+    background-color: #C2E5F9;
+    height: 76vh;
+    overflow: auto;
+}
+
+.sign_in_form, .sign_up_form {
+    margin-right: 34%;
+}
+
+.signInInput, .signUpInput {
+    /* width: 55%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 4px; */
+    left: 24%;
+    position: relative;
+}
+
+.signInError, .signUpError{
+    display: flex;
+    left: 23%;
+    position: relative;
+    justify-content: center;
+
+}
+.signInEmailLabel, .signInPasswordLabel{
+    left:24%
+}
+
+.signInLabel, .signUpLabel{
+    left:23% !important
+}
+
+.sign-in-button{
+    left: 33%;
+    position: absolute;
+    bottom: 27%;
+}
+.sign-up-button{
+    position: absolute;
+    left: 33%;
+}
+
+/* .sign_in_form {
+    margin-right: 34%;
 }
 
 .signin_container, .signup_container{
@@ -29,21 +91,26 @@
 }
 
 label{
-    text-align: center;
+  text-align: center;
     display: block;
     position: relative;
 }
+    
 
-.sign_in_button, .sign_up_button{
-    position: relative;
+
+.sign_in_button, .sign_up_button{}
+     position: relative;
     left:41%;
     background-color:green;
     width:23vw;
     height:9vh;
     border-radius:31px;
-}
+    margin-left: 8%; */
+ 
 
-.error{
+
+
+/* .error{
     color:red;
     text-align: center;
-}
+}  */

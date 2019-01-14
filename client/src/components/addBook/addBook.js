@@ -6,39 +6,53 @@ import Modal from './modal';
 import axios from 'axios';
 import 'materialize-css';
 import 'material-icons';
-import 'materialize-css/dist/css/materialize.min.css'
-import M from 'materialize-css/dist/js/materialize.min.js'
 import {BASE_URL_GOOGLE_BOOKS, API_KEY} from '../../../../config/api';
 import SearchInput from './isbn_search';
 import FormData from 'form-data';
 import { accessKeyId, secretAccessKey } from '../../../../config/amzns3_creds';
+import image2 from './images/488.jpg';
+import success from './images/successlogo.png';
+import {Link} from 'react-router-dom';
 
 
 class AddBook extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            course: 'test',
-            ISBN: '3231434543432',
-            condition: 'New',
-            title: 'test',
-            author: 'test',
-            edition: '4',
-            price: '43',
-            comments: 'test',
-            subtitle:'',
+
+            course: '',
+            ISBN: '',
+            condition: 'Excellent',
+            title: '',
+            author: '',
+            edition: '',
+            price: '',
+            comments: '',
             bookImage: undefined,
             books:[],
             photoArray:[],
             loaded:0,
             imgTagArray:[],
             imageSource: ''
+            hideIsbnSearchBar: false,
+            showToolTip: false
         }
     }
+    //comment
 
     componentDidMount = async() => {
         document.getElementsByClassName('modalIsbn')[0].style.display = "block";
+        document.getElementsByClassName("modal-footer")[0].style.display = "none"
+        document.getElementsByClassName("modal-body")[0].style.display = "none"
+        document.getElementsByClassName("bookSuccessInfo")[0].style.display = "none"
         await this.addPhotoToMultiPhotoContainer();
+
+        console.log('Tooltip:', this.tooltip);
+
+        this.instances = M.Tooltip.init(this.tooltip);
+      
+        
+
 
 
     };
@@ -53,98 +67,95 @@ class AddBook extends Component {
         })
     };
 
-    // validateInputsFields = (event) => {
-    //     event.preventDefault();
-    //     const test = [
-    //         {
-    //             element: 'input[name=ISBN]',
-    //             pattern: /[0-9]{13,}/,
-    //             errorMessage: "Invalid ISBN number",
-    //             index: 0
-    //         },
-    //         {
-    //             element: 'input[name=condition]',
-    //             pattern: /^(New|Like New|Good|Worn|Thrashed)$/,
-    //             errorMessage: "Invalid Condition Selection",
-    //             index: 1
-    //         },
-    //         {
-    //             element: 'input[name=title]',
-    //             pattern: /[a-zA-Z0-9]{4,140}/,
-    //             errorMessage: "Invalid Title",
-    //             index: 2
-    //         },
-    //         {
-    //             element: 'input[name=author]',
-    //             pattern: /[a-zA-Z0-9]{4,140}/,
-    //             errorMessage: "Invalid Author",
-    //             index: 3
-    //         },
-    //         {
-    //             element: 'input[name=edition]',
-    //             pattern: /[0-9]{1,99}/,
-    //             errorMessage: "Whole Numbers Only",
-    //             index: 4
-    //         },
-    //         {
-    //             element: 'input[name=price]',
-    //             pattern: /[0-9]{1,4}/,
-    //             errorMessage: "Whole Numbers Only",
-    //             index: 5
-    //         },
-    //     ];
+    validateInputsFields = (event) => {
+        event.preventDefault();
+        const test = [
+            {
+                element: 'input[name=ISBN]',
+                pattern: /[0-9]{13,}/,
+                errorMessage: "Invalid ISBN number",
+                index: 0
+            },
+            {
+                element: 'input[name=condition]',
+                pattern: /^(New|Like New|Good|Worn|Thrashed)$/,
+                errorMessage: "Invalid Condition Selection",
+                index: 1
+            },
+            {
+                element: 'input[name=title]',
+                pattern: /[a-zA-Z0-9]{4,140}/,
+                errorMessage: "Invalid Title",
+                index: 2
+            },
+            {
+                element: 'input[name=author]',
+                pattern: /[a-zA-Z0-9]{4,140}/,
+                errorMessage: "Invalid Author",
+                index: 3
+            },
+            {
+                element: 'input[name=edition]',
+                pattern: /[0-9]{1,99}/,
+                errorMessage: "Whole Numbers Only",
+                index: 4
+            },
+            {
+                element: 'input[name=price]',
+                pattern: /[0-9]{1,4}/,
+                errorMessage: "Whole Numbers Only",
+                index: 5
+            },
+        ];
     
-    //     if(test.length === test.filter(this.validateInputAndDisplayError).length) {
-    //         this.addBook();
-    //     }
-    // };
-    //
-    // validateInputAndDisplayError = (test) => {
-    //     let element = test.element;
-    //     if(element === "input[name=condition]") {
-    //         var selected = document.getElementById("mySelect").selectedIndex;
-    //         var options = document.getElementById("mySelect").options;
-    //         var elementVal = options[selected].value;
-    //     } else {
-    //         var elementVal = document.querySelector(element).value;
-    //     }
-    //     console.log(elementVal);
-    //     let pattern = test.pattern;
-    //     let errorMessage = test.errorMessage;
-    //     let index = test.index;
-    //     const result = pattern.test( elementVal );
-    //     if( !result ){
-    //         if(element !== "input[name=condition]") {
-    //             document.getElementsByClassName("error")[index].nextElementSibling.classList.remove("visible");
-    //             document.querySelector(element).nextSibling.innerHTML = errorMessage;
-    //         } else {
-    //             document.getElementById("conditionError").innerHTML = errorMessage;
-    //             document.getElementById("conditionCheckMArk").classList.remove("visible");
-    //         }
-    //     } else {
-    //         if(element !== "input[name=condition]") {
-    //             document.getElementsByClassName("error")[index].nextElementSibling.classList.add("visible");
-    //             document.querySelector(element).nextSibling.innerHTML = '';
-    //         } else {
-    //             document.getElementById("conditionError").innerHTML = '';
-    //             document.getElementById("conditionCheckMArk").classList.add("visible");
-    //         }
-    //
-    //     }
-    //
-    //     document.getElementsByClassName('modalPageContainer')[0].style.display = "block";
-    //     return result;
-    // };
+        if(test.length === test.filter(this.validateInputAndDisplayError).length) {
+            this.addBook();
+        }
+    };
+    
+    validateInputAndDisplayError = (test) => {
+        let element = test.element;
+        if(element === "input[name=condition]") {
+            var selected = document.getElementById("mySelect").selectedIndex;
+            var options = document.getElementById("mySelect").options;
+            var elementVal = options[selected].value;
+        } else {
+            var elementVal = document.querySelector(element).value;
+        }
+        console.log(elementVal);
+        let pattern = test.pattern;
+        let errorMessage = test.errorMessage;
+        let index = test.index;
+        const result = pattern.test( elementVal );
+        if( !result ){
+            if(element !== "input[name=condition]") {
+                document.getElementsByClassName("error")[index].nextElementSibling.classList.remove("visible");
+                document.querySelector(element).nextSibling.innerHTML = errorMessage;
+            } else {
+                document.getElementById("conditionError").innerHTML = errorMessage;
+                document.getElementById("conditionCheckMArk").classList.remove("visible");
+            }
+        } else {
+            if(element !== "input[name=condition]") {
+                document.getElementsByClassName("error")[index].nextElementSibling.classList.add("visible");
+                document.querySelector(element).nextSibling.innerHTML = '';
+            } else {
+                document.getElementById("conditionError").innerHTML = '';
+                document.getElementById("conditionCheckMArk").classList.add("visible");
+            }
+    
+        }
+    
+        document.getElementsByClassName('modalPageContainer')[0].style.display = "block";
+        return result;
+    };
 
-    // addBook = async (event) => {
-    //     document.getElementsByClassName('modalPageContainer')[0].style.display = "block";
-    //     return result;
-    // };
-    
-    fileSelectedHandler = event => {
-        debugger;
-        let reader = new FileReader();
-        console.log('file handler: ',event.target.files[0])
+    addBook = async (event) => {
+        document.getElementsByClassName('modalPageContainer')[0].style.display = "block";
+        return result;
+    };
+    fileSelectedHandler = async event => {
+        console.log(event.target.files[0])
         const newImage = event.target.files[0];
 
         reader.onload = (event) => {
@@ -198,7 +209,7 @@ class AddBook extends Component {
     photoUploadHandler = ()=>{
         this.setState({multiplePhoto: event.target.value});
     }
-    
+   
     addPhotoToMultiPhotoContainer = () => {
         debugger;
         const imgTagArray = this.state.photoArray.map((item, index) => {
@@ -222,12 +233,12 @@ class AddBook extends Component {
             photoArray: newPhotoArray,
             imgTagArray: newImgTagArray
         });
-        
     }
-    addBook = async (event) => {
-        debugger;
-        console.log('ADD BOOK RUNNING!');
 
+    addBook = async (event) => {
+        console.log('ADD BOOK RUNNING!');
+        event.preventDefault();
+        console.log("state:", this.state);
         let request = {...this.state};
         console.log('Request: ', request);
 
@@ -294,110 +305,186 @@ class AddBook extends Component {
         // console.log('FORM DATA AFTER APPEND', data);
         console.log('Add Book: ', this.state);
         // 'content-type': 'multipart/form-data'
-       
-
-        // );
-        // document.getElementsByClassName('modalPageContainer')[0].style.display = "block";
+      
+        });
+        document.getElementsByClassName('modalPageContainer')[0].style.display = "block";
     };
     getBooks=(event)=>{
         event.preventDefault();
+        this.setState({hideIsbnSearchBar: true});
         axios.request({
             method: 'get',
             url: BASE_URL_GOOGLE_BOOKS +this.state.ISBN + API_KEY,
             
         }).then((response)=>{
-            console.log('URL: ', BASE_URL_GOOGLE_BOOKS +"isbn:"+this.state.ISBN + API_KEY)
             this.setState({
+
                 books: response.data.items,
                 author: response.data.items[0].volumeInfo.authors[0],
                 title: response.data.items[0].volumeInfo.title,
-                subtitle: response.data.items[0].volumeInfo.subtitle,
-                publisher: response.data.items[0].volumeInfo.publisher,
                 bookImage: response.data.items[0].volumeInfo.imageLinks.smallThumbnail
             },()=>{
-                console.log(this.state.books)
-                console.log(`Author: ${this.state.author}`)
-                console.log(`Title: ${this.state.title}`)
-                console.log(`Publisher: ${this.state.publisher}`)
-                console.log(`Book Image Url: ${this.state.bookImage}`)
-             
-
+                document.getElementsByClassName("modal-footer")[0].style.display = "block"
+                document.getElementsByClassName("modal-body")[0].style.display = "block"
             })
         }).catch((error)=>{
             console.log('Error occured', error);
         })
     }
-
     handleIsbnChange(event){
         this.setState({ISBN: event.target.value});
     }
+    populateData=(event)=>{
+        event.preventDefault();
+        this.setState({
+            ISBN: document.getElementsByName("ModalISBN").value=`${this.state.ISBN}`,
+            title: document.getElementsByName("ModalTitle").value=`${this.state.title}`,
+            author: document.getElementsByName("ModalAuthor").value=`${this.state.author}`,
+        })
+        document.getElementsByClassName('modalIsbn')[0].style.display = "none"
+        document.getElementsByName("author")[0].value=`${this.state.author}`
+        document.getElementsByName("title")[0].value=`${this.state.title}`
+        // document.getElementsByName("ISBN")[0].value=`${this.state.ISBN}`
+    }
 
+    clearData=(event)=>{
+        event.preventDefault();
+        this.setState({hideIsbnSearchBar: false});
+        document.getElementsByClassName("modal-footer")[0].style.display = "none"
+        document.getElementsByClassName("modal-body")[0].style.display = "none"
+        document.getElementsByName("ModalISBN")[0].value = " "
+        this.setState({
+            ISBN: '',
+            author: '',
+            title:''
+        })
+    }
+
+    bookPostedModal=(event)=>{
+        event.preventDefault();
+        document.getElementsByClassName("modalIsbn")[0].style.display = "block"
+        document.getElementsByClassName("google_book_image")[0].style.display = "none"
+        document.getElementsByClassName("isbnModalBookDescription")[0].style.display = "none"
+        document.getElementsByClassName("submit_clear_buttons")[0].style.display = "none"
+        document.getElementsByClassName("bookSuccessInfo")[0].style.display = "block"
+        // document.getElementsByClassName("isbnModalContainer")[0].style.display = "block"
+        // document.getElementsByClassName("modal-body")[0].style.display = "none"
+        // document.getElementsByClassName("modal-footer")[0].style.display = "none"
+    }
+
+
+    acceptBookPosted=(event)=>{
+        event.preventDefault();
+
+    }
+  
     render() {
         console.log('Add Book: ', this.state);
+        const hideISBN = this.state.hideIsbnSearchBar ? {display: 'none'} : {display: 'block'};
+
         return (
-            <div className={"container"}>
-                <div id="modal1" className="modalIsbn">
-                    <div className="modal-content">
-                        <form onSubmit={this.getBooks}className='form-isbn'>
-                            <div className = "input-field">
-                                <input  className=""type="text" onChange={this.handleIsbnChange.bind(this)} name={"ISBN"} placeholder={" Enter ISBN"} value={this.state.ISBN}/>
+            <div className={"addBook-container"}>
+                <div className="isbnModalContainer">
+                    <div id="modal1" className="modalIsbn">
+                        <div className="modal-content">
+                            <div style = {hideISBN}className="isbnModalHeader">
+                                <p className="isbnModalHeader">Post your book by ISBN</p>
+                                <form onSubmit={this.getBooks}className='form-isbn'>
+                                    <div className = "input_label input-field">
+                                        <input id="isbnInput" autoComplete="off" type="text" onChange={this.handleIsbnChange.bind(this)} name={"ModalISBN"} value={this.state.ISBN}/>
+                                        <p>ISBN is required <a ref={e => this.tooltip = e} className="tooltipped" data-position="top" data-tooltip="We require ISBN number to ensure accuracy of book postings">why?</a></p>
+                                        <label htmlFor="isbnInput" className="enterIsbnLabel"htmlFor="ISBN">ISBN</label>
+                                    </div>
+                                    <div className='search_button_container'>
+                                        <button onClick={this.getBooks} type="button" className='isbnSearchButton btn btn-small waves-effect'>Search</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div className="modal-body">
+                                    <img className="google_book_image" src={this.state.bookImage} alt=""/>
+                                    <div className="isbnModalBookDescription">
+                                        <p name="ModalISBN">ISBN: {this.state.ISBN}</p>
+                                        <p name="ModalAuthor">Author: {this.state.author}</p>
+                                        <p name="ModalTitle">Title: {this.state.title}</p>
+                                    </div>
+                                    <div className="bookSuccessInfo">
+                                        <p className="successModalText">Success!</p>
+                                        <div className="successImage">
+                                            <img src={success}/>
+                                        </div>
+                                        <div className="successModalButtons">
+                                            <button onClick={this.clearData}type="button"className= "btn-small btn waves-effect postAgainButton">Post Again</button>
+                                            <p className="btn-small btn waves-effect white"><Link to={"/"}>Accept</Link> </p>
+                                        </div>  
+                                    </div>
                             </div>
                             <div className="modal-footer">
-                                <div className='searchButtonContainer'>
-                                    <button onClick={this.getBooks} type="button" className=' btn btn-large'>Search</button>
-                                    <button onClick={this.closeModalIsbn} type="button" className=' btn btn-large'>Close</button>
-                                </div>
-                            <p>ISBN: {this.state.ISBN}</p>
-                            <p>Author: {this.state.author}</p>
-                            <p>Title: {this.state.title}</p>
-                            <p>SubTitle: {this.state.subtitle}</p>
-                            <p>Publisher: {this.state.publisher}</p>
-                            {/* <p>BookImage: {this.state.bookImage}</p> */}
-                            <img src={this.state.bookImage} alt=""/>
-
-                            </div>
-                        </form>
-                    
+                                <form>
+                                    <div className="submit_clear_buttons">
+                                        <button className="accept_button btn-small btn waves-effect" type="button" onClick={this.populateData}> Accept </button>
+                                        <button onClick={this.clearData} className="clear_button btn-small btn waves-effect" type="button">Try Again</button>
+                                    </div>
+                                </form>
+                            </div>    
+                        </div>
                     </div>
                 </div>
-                <form className={'form-container'} action="http://localhost:3000/api/upload" encType="multipart/form-data" ref={uploadForm => this.forms = uploadForm}>
-                    <input name={"ISBN"} placeholder={"*ISBN"} className={"inputs"} onChange={this.handleInput} value="1234567890123" />
+
+                <form className={'form-container '} onSubmit={this.validateInputsFields} encType="multipart/form-data">
+                    <div className=' title-container row'>
+                        <div id={"conditionError"} className={"error"}></div>
+                        <div id={"conditionCheckMArk input-field "} className={"checkMark markCondition material-icons"}>check_circle_outline</div>
+                        <input disabled name={"title"} placeholder={"*Title"} id={'input-field'} className={"inputs col s10 push-s1"} onChange={this.handleInput}/>
+                    </div>
+                    <div className='row'>
+                        <div className={"error"}></div>
+                        <div className={"checkMark markTitle material-icons"}>check_circle_outline</div>
+                        <input disabled name={"author"} placeholder={"*Author"} id={'input-field'} className={"inputs col s10 push-s1"} onChange={this.handleInput}/>
+                    </div>
+                    <div className='row'>
+                        <div className={"error"}></div>
+                      <div className={"checkMark markEdition material-icons"}>check_circle_outline</div>
+                        <input name={"price"} placeholder={"*Price $$$$"} id={'input-field'} className={"inputs col s10 push-s1"} onChange={this.handleInput}/>
+                    </div>
+                    <div className='row'>
+                        <select name={"condition"} onChange={this.handleInput} id={"mySelect"} className={"condition  col s6 push-s3"}>
+                            <option value="" disabled selected>*Select Condition:</option>
+                            <option value="New">New</option>
+                            <option value="Like New">Like New</option>
+                            <option value="Good">Good</option>
+                            <option value="Worn">Worn</option>
+                            <option value="Thrashed">Thrashed</option>
+                        </select>
+                    </div>
+                    <div className={"error"}></div>
+                    <div className={"checkMark markPrice material-icons"}>check_circle_outline</div>
+                    <div className={'comment-text-area'}>
+                        <textarea name={"comments"} placeholder={"Seller's Comments"}  id={"input-field"} className={"inputs last "} onChange={this.handleInput}/>
+                    </div>
+
+                    {this.state.showToolTip && <Tooltip></Tooltip>}
+
+                    {/*<div className="row">*/}
+                        {/*<input name={"ISBN"} placeholder={"*ISBN"} className={"inputs isbn-container col s6 offset-s6"} onChange={this.handleInput}/>*/}
+                    {/*</div>*/}
                     {/* <input name={"ISBN"} placeholder={"*ISBN"} className={"inputs"} onChange={this.handleInput}/>
                     <div className={"error"}></div>
                     <div className={"checkMark markISBN material-icons"}>check_circle_outline</div> */}
-                    <select value="New" name={"condition"} onChange={this.handleInput} id={"mySelect"} className={"condition"}>
-                        <option value="New" disabled selected>*Select Condition:</option>
-                        <option value="New">New</option>
-                        <option value="Like New">Like New</option>
-                        <option value="Good">Good</option>
-                        <option value="Worn">Worn</option>
-                        <option value="Thrashed">Thrashed</option>
-                    </select>
-                    <div id={"conditionError"} className={"error"}></div>
-                    <div id={"conditionCheckMArk input-field "} className={"checkMark markCondition material-icons"}>check_circle_outline</div>
-                    <input name={"title"} placeholder={"*Title"} className={"inputs"} onChange={this.handleInput} value="test"/>
+                    {/*<div className={"error"}></div>*/}
+                    {/*<div className={"checkMark markAuthor material-icons"}>check_circle_outline</div>*/}
+                    {/*<input name={"edition"} placeholder={"*Edition"} className={"inputs"} onChange={this.handleInput}/>*/}
 
-                    <div className={"error"}></div>
-                    <div className={"checkMark markTitle material-icons"}>check_circle_outline</div>
-                    <input name={"author"} placeholder={"*Author"} className={"inputs"} onChange={this.handleInput} value="test"/>
-                    <div className={"error"}></div>
-                    <div className={"checkMark markAuthor material-icons"}>check_circle_outline</div>
-                    <input name={"edition"} placeholder={"*Edition"} className={"inputs"} onChange={this.handleInput} value="4"/>
-                    <div className={"error"}></div>
-                    <div className={"checkMark markEdition material-icons"}>check_circle_outline</div>
-                    <input name={"price"} placeholder={"*Price $$$$"} className={"inputs"} onChange={this.handleInput} value="54"/>
-                    <div className={"error"}></div>
-                    <div className={"checkMark markPrice material-icons"}>check_circle_outline</div>
-                    <textarea name={"comments"} placeholder={"Seller's Comments"} className={"inputs last"} onChange={this.handleInput} value="test"/>
-                    <div className={"photo material-icons"}>add_a_photo
-                        <input id="photo" type="file" name='photo' capture="camera" accept="image/*" onChange={this.fileSelectedHandler}/>
-            
-                    </div>
-                    <div className="multi-photo-container">
-                    {/* <p>Tap to delete</p> */}
+
+                    <label className="btn waves-effect waves-light" htmlFor="photoInput"><i className={"material-icons"}>add_a_photo</i></label>
+                    <input id="photoInput" type="file" name="photo" capture="camera" accept="image/*" onChange={this.fileSelectedHandler}/>
+                        
+                    
+                    <div className="upload-image-container">
+                    
+
                         {this.state.imgTagArray}
                     </div>
-                    <button type="button" className={"POST"} onClick={this.addBook}>Post</button>
+                    <button onClick={this.bookPostedModal} type = "button" className={"POST"}>Post</button>
                 </form>
             </div>
         )
