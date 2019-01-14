@@ -38,8 +38,6 @@ class AddBook extends Component {
         }
     }
 
-    //comment
-
     componentDidMount = async () => {
         document.getElementsByClassName('modalIsbn')[0].style.display = "block";
         document.getElementsByClassName("modal-footer")[0].style.display = "none"
@@ -152,6 +150,7 @@ class AddBook extends Component {
         return result;
     };
     fileSelectedHandler = async event => {
+        const reader = new FileReader();
         console.log(event.target.files[0])
         const newImage = event.target.files[0];
 
@@ -165,7 +164,7 @@ class AddBook extends Component {
 
         reader.readAsDataURL(newImage)
 
-        this.setState({
+        await this.setState({
             photoArray: [newImage,...this.state.photoArray]
         })
         this.addPhotoToMultiPhotoContainer();
@@ -206,15 +205,14 @@ class AddBook extends Component {
         this.setState({multiplePhoto: event.target.value});
     }
    
-    addPhotoToMultiPhotoContainer = () => {
-        debugger;
+    addPhotoToMultiPhotoContainer = async () => {
         const imgTagArray = this.state.photoArray.map((item, index) => {
             return (
                 <SingleBookPhoto delete={this.deletePhotoFromStateAndContainer(index)} key={index} index={index}
                                  about={item}/>
             )
         });
-        this.setState({
+        await this.setState({
             imgTagArray
         });
         console.log(this.state.imgTagArray);
@@ -302,7 +300,6 @@ class AddBook extends Component {
         // console.log('FORM DATA AFTER APPEND', data);
         console.log('Add Book: ', this.state);
         // 'content-type': 'multipart/form-data'
-      
         document.getElementsByClassName('modalPageContainer')[0].style.display = "block";
     };
     getBooks = (event) => {
