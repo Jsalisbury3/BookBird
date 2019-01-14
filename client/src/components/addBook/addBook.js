@@ -32,7 +32,7 @@ class AddBook extends Component {
             photoArray:[],
             loaded:0,
             imgTagArray:[],
-            imageSource: ''
+            imageSource: '',
             hideIsbnSearchBar: false,
             showToolTip: false
         }
@@ -303,7 +303,6 @@ class AddBook extends Component {
         console.log('Add Book: ', this.state);
         // 'content-type': 'multipart/form-data'
       
-        });
         document.getElementsByClassName('modalPageContainer')[0].style.display = "block";
     };
     getBooks = (event) => {

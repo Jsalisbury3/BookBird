@@ -1,7 +1,7 @@
 node_modules
 mysql_creds.js
 token-hash.js
-config/*
+./config/*
 amzns3_creds.js
 ./uploads/*
 .DS_Store
