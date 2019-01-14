@@ -334,7 +334,7 @@ class AddBook extends Component {
 
                         </div>
                     </div>
-                    <div id='input-container className' className='title-container row'>
+                    <div id='input-container condition-container' className='title-container row'>
                         <select name={"condition"} onChange={this.handleInput} id={"mySelect"}
                                 className={"condition  col s6 push-s3"}>
                             <option value="" disabled selected>*Select Condition:</option>
@@ -365,16 +365,12 @@ class AddBook extends Component {
                     {/*<input name={"edition"} placeholder={"*Edition"} className={"inputs"} onChange={this.handleInput}/>*/}
 
                     <div className='submit-photo-container'>
-                    <label className="btn waves-effect waves-light" htmlFor="photoInput"><i
+                    <label  id='add-photo-icon' className="  btn waves-effect waves-light" htmlFor="photoInput"><i
                         className={"material-icons"}>add_a_photo</i></label>
                     <input id="photoInput" type="file" name="photo" capture="camera" accept="image/*"
                            onChange={this.fileSelectedHandler}/>
                     </div>
-
-
                     <div className="upload-image-container">
-
-
                         {this.state.imgTagArray}
                     </div>
                     <div className='button-container'>

@@ -5,8 +5,6 @@
     height: 76vh;
     left: 0;
     background-color: rgba(0,0,0,0.87);
-    display: none;
-    opacity: 0;
 }
 .isbnModalContainer{   
 }
@@ -113,11 +111,11 @@ img {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /*display: flex;*/
+    display: flex;
     align-items: center;
     justify-content: center;
     flex-flow: column nowrap;
-    display: none;
+
 ;
 }
 .modal-footer{
@@ -136,6 +134,7 @@ img {
 #mySelect {
     position: absolute;
     right: 30%;
+    background-color: aliceblue;
 }
 /*:root {*/
     /*--moveRight: 91%;*/
@@ -155,13 +154,16 @@ img {
 .button-container  {
     margin-left: 27%;
     position: relative;
-    bottom: 9%;
+    bottom: 10%;
 }
 .submit-photo-container {
     position: relative;
     margin-top: 25%;
     margin-left: 13%;
+    z-index: 0;
 }
+
+
 
 
 
@@ -185,6 +187,9 @@ img {
     width: 100vw;
     background-color: #C2E5F9;
     overflow: scroll;
+}
+#add-photo-icon {
+    z-index: 0;
 }
 
 .header {
@@ -269,13 +274,13 @@ img {
 .POST {
     position: absolute;
     display: inline-block;
-    height: 8.0vh;
+    height: 8vh;
     width: 50%;
     margin-left: 0%;
     border-radius: 40px;
     border: none;
-    font-size: 1.5em;;
-    background-color: #FFFFFF;
+    font-size: 1.5em;
+    background-color: #26a69a;
 }
 
 .condition {
@@ -354,7 +359,7 @@ select option {
     margin-top: 6%;
     transform: translate(-50%, -50%);
     font-size: 50px !important;
-    background-color: red;
+
 }
 
 @media screen and (max-width: 600px) {
