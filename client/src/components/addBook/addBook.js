@@ -502,10 +502,10 @@ class AddBook extends Component {
                         {this.state.imgTagArray}
                     </div>
 
-                    <div className='button-container'>
+                    <div className='post-button-container'>
                     <button className={"POST"}>Post</button>
-//                  <div className='post-button-container'>
-//                  <button onClick={this.bookPostedModal} type = "button" className={"POST"}>Post</button>
+                    {/* <div className='post-button-container'>
+                    <button onClick={this.bookPostedModal} type = "button" className={"POST"}>Post</button> */}
 
                     </div>
                 </form>
