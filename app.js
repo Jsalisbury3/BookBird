@@ -117,7 +117,7 @@ webserver.use(cors());
 
 webserver.get('/api/listings', (request, response) => {
     db.connect(() => {
-        const query = "SELECT l.book_condition, l.price, l.comments, l.book_id, b.title, b.ISBN, b.author, b.edition FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.id";
+        const query = "SELECT l.book_condition, l.price, l.comments, l.book_id, b.title, b.ISBN, b.author FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.id";
         db.query(query, (err, data) => {
             if (!err) {
                 let output = {
@@ -168,12 +168,13 @@ webserver.post('/api/addListing', (request, response) => {
         console.log(query)
         db.query(query, (err, data) => {
             if (!data.length) {
-                const query = "INSERT INTO `books` SET title = '" + title + "', ISBN = '" + ISBN + "', author = '" + author + "', edition = " + edition + "";
+                const query = "INSERT INTO `books` SET title = '" + title + "', ISBN = '" + ISBN + "', author = '" + author + "'";
+                console.log(query)
                 db.query(query, (err, data) => {
                     if(!err) {
                         console.log('INSERT INTO LISTINGS')
                         console.log('Listings Data: ', data)
-                        const query = "INSERT INTO `listing` SET listing.book_id = "+data[0].ID+", price = '"+ price +"', book_condition = '"+condition+"', comments = '"+comments+"', accounts_id = '1', public_id='21'";
+                        const query = "INSERT INTO `listing` SET listing.book_id = "+data.insertId+", price = '"+ price +"', book_condition = '"+condition+"', comments = '"+comments+"', accounts_id = '1', public_id='21'";
                         db.query(query, (err, response) => {
                             if (!err) {
                                 console.log("all queries are good")
