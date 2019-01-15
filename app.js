@@ -12,6 +12,9 @@ const mysql_creds = require('./config/mysql_creds.js');
 const mysql = require('mysql');
 const db = mysql.createConnection(mysql_creds);
 const hash = require('./config/token-hash');
+// const Tnumber = require('twilioNumber');
+// const client = require('twilio');
+// const cientT = client('sid', 'key');
 
 AWS.config.update( {
     accessKeyId, 
@@ -114,6 +117,18 @@ webserver.use(express.urlencoded({extended: false}));
 webserver.use(express.json());
 webserver.use(bodyParser.json())
 webserver.use(cors());
+
+
+
+// webserver.post('/twilio', (request, reponse) => {
+//     // const {number, message} = request.body;
+//     console.log("TNUMMMM: ", tnum);
+//     clientT.sendMesssage({
+//         to: `+1${number}`,
+//         from: `+1${Tnumber}`,
+//         body: message,
+//     })
+// });
 
 webserver.get('/api/listings', (request, response) => {
     db.connect(() => {
@@ -427,6 +442,7 @@ webserver.post("/api/SignUp",(request,response)=>{
         const {Name, EmailSignUp, PasswordSignUp} = request.body;
         const query = "SELECT a.ID from `accounts` AS a WHERE a.email = '" + EmailSignUp + "' AND a.password = '" + PasswordSignUp + "'";
         db.query(query, (err, data) => {
+            console.log("DATA FOR BAD CONDITIONAL: ", data);
             if(!data.length) { //if there is no account with that email and password then continue else send back info already taken.
                 const queryAddUser = 'INSERT INTO `accounts` SET name = "'+Name+'", password = "'+PasswordSignUp+'", email = "'+EmailSignUp+'", college_id = "3"'; //this query will add a user to the accounts table with the email and password, token and the
                 db.query(queryAddUser, (err, data) => {

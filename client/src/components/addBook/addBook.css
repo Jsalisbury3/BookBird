@@ -88,9 +88,9 @@ img {
 }
 .upload-image-container {
     position: relative;
-    height: 12vh;
-    width: 35vw;
-    margin-left: 28%;
+    height: 100px;
+    width: 220px;
+    margin-left: 85px;
     bottom: 19%;
 }
 .searchButtonContainer {
@@ -252,7 +252,7 @@ label {
 .submit-photo-container {
     position: relative;
     margin-top: 25%;
-    margin-left: 13%;
+    margin-left: 20px;
     z-index: 0;
 }
 
@@ -359,6 +359,7 @@ label {
     display: inline-flex;
     height: 94px;
     width: 72px;
+    margin:3px;
 }
 .single-photo-container>img{
     height:100%;

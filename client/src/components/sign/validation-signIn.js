@@ -6,6 +6,7 @@ import {getIdForToken} from '../../actions/sign_in';
 import {bindActionCreators} from "redux";
 import signInReducer from "../../reducers/sign_in_reducer";
 import {Link} from 'react-router-dom';
+import UserAuth from "../../HOC/UserAuth";
 
 class SignInValidation extends Component {
 
@@ -71,14 +72,15 @@ class SignInValidation extends Component {
 
 function validate(values) {
     const {Email, Password} = values;
+    console.log("emaillllllllllllllll: ", Email);
     const errors = {};
-    const emailRegex = /"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"/;
-    const passwordRegex = /(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"/;
-    if (emailRegex.test(Email)) {
+    const emailRegex = /[a-z]{4,12}/; //"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+    const passwordRegex = /[a-z]{4,12}/; //(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+    if (!emailRegex.test(Email)) {
         errors.Email = 'please enter a valid email';
     }
 
-    if (passwordRegex.test(Password)) {
+    if (!passwordRegex.test(Password)) {
         errors.Password = "please enter a valid password";
     }
     return errors;
