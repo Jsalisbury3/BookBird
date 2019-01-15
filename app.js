@@ -442,6 +442,7 @@ webserver.post("/api/SignUp",(request,response)=>{
         const {Name, EmailSignUp, PasswordSignUp} = request.body;
         const query = "SELECT a.ID from `accounts` AS a WHERE a.email = '" + EmailSignUp + "' AND a.password = '" + PasswordSignUp + "'";
         db.query(query, (err, data) => {
+            console.log("DATA FOR BAD CONDITIONAL: ", data);
             if(!data.length) { //if there is no account with that email and password then continue else send back info already taken.
                 const queryAddUser = 'INSERT INTO `accounts` SET name = "'+Name+'", password = "'+PasswordSignUp+'", email = "'+EmailSignUp+'", college_id = "3"'; //this query will add a user to the accounts table with the email and password, token and the
                 db.query(queryAddUser, (err, data) => {
