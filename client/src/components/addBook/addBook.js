@@ -206,7 +206,6 @@ class AddBook extends Component {
    
 
     addPhotoToMultiPhotoContainer = async () => {
-
         const imgTagArray = this.state.photoArray.map((item, index) => {
             return (
                 <SingleBookPhoto delete={this.deletePhotoFromStateAndContainer(index)} key={index} index={index}
@@ -432,27 +431,24 @@ class AddBook extends Component {
                         <div id={"conditionError"} className={"error"}></div>
                         <div id={"conditionCheckMArk"} className={"checkMark markCondition material-icons"}>check_circle_outline</div>
                         <div className='input-field '>
-                            <input name={"title"}  type='text' className={"inputs col s10 push-s1"} onChange={this.handleInput}/>
-                            <label id='label-title' >*Title</label>
+                            <input name="title"  id='title' type='text' className="inputs col s10 push-s1" onChange={this.handleInput}/>
+                            <label className='label-placeholder' htmlFor='title' >Title</label>
                         </div>
                     </div>
                     <div id='input-container' className=' title-container row'>
                         <div className={"error"}></div>
                         <div className={"checkMark markTitle material-icons"}>check_circle_outline</div>
                         <div className='input-field'>
-                            <input name={"author"} type='text' className={"inputs col s10 push-s1"}  onChange={this.handleInput}/>
-                            <label id='label-title' htmlFor={'author'}>*Author</label>
-
+                            <input name="author" id='author' type='text' className="inputs col s10 push-s1"  onChange={this.handleInput}/>
+                            <label className='label-placeholder'  htmlFor={'author'}>Author</label>
                         </div>
                     </div>
                     <div  id='input-container' className='title-container row'>
                         <div className={"error"}></div>
                         <div className={"checkMark markEdition material-icons"}>check_circle_outline</div>
-
                         <div className='input-field'>
-
-                            <input name={"price"}   type='text' className={"inputs col s10 push-s1"} onChange={this.handleInput}/>
-                            <label id='label-title' htmlFor={'price'}>*Price</label>
+                        <input name="price"  id='price' type='text' className="inputs col s10 push-s1" onChange={this.handleInput}/>
+                        <label className='label-placeholder'  htmlFor={'price'}>Price *</label>
 
                         </div>
                     </div>
@@ -469,9 +465,14 @@ class AddBook extends Component {
                     </div>
                     <div className={"error"}></div>
                     <div className={"checkMark markPrice material-icons"}>check_circle_outline</div>
+                    <h5 className='sellers-comments-tag'> Sellers Comments</h5>
                     <div className={'comment-text-area'}>
-                        <textarea name={"comments"} placeholder={"Seller's Comments"}
-                                  className={"inputs last "} onChange={this.handleInput}/>
+                        <div  className='row'>
+                        <div className='input-field'>
+                        <textarea name={"comments"} id='comment-box' className={"inputs last "} onChange={this.handleInput}/>
+                            <h5 className='optional-tag'>*Optional</h5>
+                    </div>
+                    </div>
                     </div>
 
                     {this.state.showToolTip && <Tooltip></Tooltip>}
@@ -495,7 +496,7 @@ class AddBook extends Component {
                     <div className="upload-image-container">
                         {this.state.imgTagArray}
                     </div>
-                    <div className='button-container'>
+                    <div className='post-button-container'>
                     <button onClick={this.bookPostedModal} type = "button" className={"POST"}>Post</button>
                     </div>
                 </form>
