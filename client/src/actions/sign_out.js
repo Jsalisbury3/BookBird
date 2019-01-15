@@ -8,7 +8,6 @@ export const removeTokenAndRow = () => {
             url: '/api/SignOut',
             headers: {token: localStorage.getItem('Token')},
         }).then((signOutResults) => {
-            debugger;
             dispatch({
                 type: types.SIGN_IN_ACTION,
                 payload: signOutResults.data
