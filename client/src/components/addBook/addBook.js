@@ -152,6 +152,7 @@ class AddBook extends Component {
         return result;
     };
     fileSelectedHandler = async event => {
+        const reader = new FileReader();
         console.log(event.target.files[0])
         const newImage = event.target.files[0];
 
@@ -159,8 +160,7 @@ class AddBook extends Component {
             this.setState({
                 imageSource: event.target.result
             })
-                
-            
+
         }
 
         reader.readAsDataURL(newImage)
@@ -207,7 +207,6 @@ class AddBook extends Component {
     }
    
     addPhotoToMultiPhotoContainer = () => {
-        debugger;
         const imgTagArray = this.state.photoArray.map((item, index) => {
             return (
                 <SingleBookPhoto delete={this.deletePhotoFromStateAndContainer(index)} key={index} index={index}
