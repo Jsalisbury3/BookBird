@@ -57,49 +57,51 @@ class AddBook extends Component {
     }
 
     handleInput = (event) => {
+        console.log('handle input called');
         this.setState({
             [event.target.name]: event.target.value,
         })
     };
 
     validateInputsFields = (event) => {
+        
         event.preventDefault();
         const test = [
-            {
-                element: 'input[name=ISBN]',
-                pattern: /[0-9]{13,}/,
-                errorMessage: "Invalid ISBN number",
-                index: 0
-            },
+            // {
+            //     element: 'input[name=ISBN]',
+            //     pattern: /[0-9]{13,}/,
+            //     errorMessage: "Invalid ISBN number",
+            //     index: 0
+            // },
             {
                 element: 'input[name=condition]',
                 pattern: /^(New|Like New|Good|Worn|Thrashed)$/,
                 errorMessage: "Invalid Condition Selection",
-                index: 1
+                index: 0
             },
-            {
-                element: 'input[name=title]',
-                pattern: /[a-zA-Z0-9]{4,140}/,
-                errorMessage: "Invalid Title",
-                index: 2
-            },
-            {
-                element: 'input[name=author]',
-                pattern: /[a-zA-Z0-9]{4,140}/,
-                errorMessage: "Invalid Author",
-                index: 3
-            },
-            {
-                element: 'input[name=edition]',
-                pattern: /[0-9]{1,99}/,
-                errorMessage: "Whole Numbers Only",
-                index: 4
-            },
+            // {
+            //     element: 'input[name=title]',
+            //     pattern: /[a-zA-Z0-9]{4,140}/,
+            //     errorMessage: "Invalid Title",
+            //     index: 2
+            // },
+            // {
+            //     element: 'input[name=author]',
+            //     pattern: /[a-zA-Z0-9]{4,140}/,
+            //     errorMessage: "Invalid Author",
+            //     index: 3
+            // },
+            // {
+            //     element: 'input[name=edition]',
+            //     pattern: /[0-9]{1,99}/,
+            //     errorMessage: "Whole Numbers Only",
+            //     index: 4
+            // },
             {
                 element: 'input[name=price]',
                 pattern: /[0-9]{1,4}/,
                 errorMessage: "Whole Numbers Only",
-                index: 5
+                index: 1
             },
         ];
     
@@ -109,6 +111,7 @@ class AddBook extends Component {
     };
     
     validateInputAndDisplayError = (test) => {
+        
         let element = test.element;
         if(element === "input[name=condition]") {
             var selected = document.getElementById("mySelect").selectedIndex;
@@ -141,15 +144,16 @@ class AddBook extends Component {
     
         }
     
-        document.getElementsByClassName('modalPageContainer')[0].style.display = "block";
+        // document.getElementsByClassName('modalPageContainer')[0].style.display = "block";
         return result;
     };
 
-    addBook = async (event) => {
-        document.getElementsByClassName('modalPageContainer')[0].style.display = "block";
-        return result;
-    };
+    // addBook = async (event) => {
+    //     document.getElementsByClassName('modalPageContainer')[0].style.display = "block";
+    //     return result;
+    // };
     fileSelectedHandler = async event => {
+    
         const reader = new FileReader();
         console.log(event.target.files[0])
         const newImage = event.target.files[0];
@@ -232,7 +236,7 @@ class AddBook extends Component {
 
     addBook = async (event) => {
         console.log('ADD BOOK RUNNING!');
-        event.preventDefault();
+        
         console.log("state:", this.state);
         let request = {...this.state};
         console.log('Request: ', request);
@@ -298,9 +302,11 @@ class AddBook extends Component {
         // console.log('FORM DATA: ', data);
         // data.append('data', request );
         // console.log('FORM DATA AFTER APPEND', data);
+
         console.log('Add Book: ', this.state);
         // 'content-type': 'multipart/form-data'
-        document.getElementsByClassName('modalPageContainer')[0].style.display = "block";
+        // document.getElementsByClassName('modalPageContainer')[0].style.display = "block";
+        this.bookPostedModal();
     };
     getBooks = (event) => {
         event.preventDefault();
@@ -356,7 +362,7 @@ class AddBook extends Component {
     }
 
     bookPostedModal=(event)=>{
-        event.preventDefault();
+        debugger;
         document.getElementsByClassName("modalIsbn")[0].style.display = "block"
         document.getElementsByClassName("google_book_image")[0].style.display = "none"
         document.getElementsByClassName("isbnModalBookDescription")[0].style.display = "none"
@@ -447,9 +453,8 @@ class AddBook extends Component {
                         <div className={"error"}></div>
                         <div className={"checkMark markEdition material-icons"}>check_circle_outline</div>
                         <div className='input-field'>
-                        <input name="price"  id='price' type='text' className="inputs col s10 push-s1" onChange={this.handleInput}/>
-                        <label className='label-placeholder'  htmlFor={'price'}>Price *</label>
-
+                            <input name={"price"} id={'price'}  type='text' className={"inputs col s10 push-s1"} onChange={this.handleInput}/>
+                            <label id='label-title' htmlFor={'price'}>*Price</label>
                         </div>
                     </div>
                     <div id='input-container condition-container' className='title-container row'>
@@ -496,8 +501,12 @@ class AddBook extends Component {
                     <div className="upload-image-container">
                         {this.state.imgTagArray}
                     </div>
-                    <div className='post-button-container'>
-                    <button onClick={this.bookPostedModal} type = "button" className={"POST"}>Post</button>
+
+                    <div className='button-container'>
+                    <button className={"POST"}>Post</button>
+//                  <div className='post-button-container'>
+//                  <button onClick={this.bookPostedModal} type = "button" className={"POST"}>Post</button>
+
                     </div>
                 </form>
             </div>
