@@ -210,7 +210,6 @@ class AddBook extends Component {
    
 
     addPhotoToMultiPhotoContainer = async () => {
-
         const imgTagArray = this.state.photoArray.map((item, index) => {
             return (
                 <SingleBookPhoto delete={this.deletePhotoFromStateAndContainer(index)} key={index} index={index}
@@ -454,13 +453,8 @@ class AddBook extends Component {
                         <div className={"error"}></div>
                         <div className={"checkMark markEdition material-icons"}>check_circle_outline</div>
                         <div className='input-field'>
-
-
                             <input name={"price"} id={'price'}  type='text' className={"inputs col s10 push-s1"} onChange={this.handleInput}/>
                             <label id='label-title' htmlFor={'price'}>*Price</label>
-
-
-
                         </div>
                     </div>
                     <div id='input-container condition-container' className='title-container row'>
