@@ -12,6 +12,9 @@ const mysql_creds = require('./config/mysql_creds.js');
 const mysql = require('mysql');
 const db = mysql.createConnection(mysql_creds);
 const hash = require('./config/token-hash');
+// const Tnumber = require('twilioNumber');
+// const client = require('twilio');
+// const cientT = client('sid', 'key');
 
 AWS.config.update( {
     accessKeyId, 
@@ -115,9 +118,21 @@ webserver.use(express.json());
 webserver.use(bodyParser.json())
 webserver.use(cors());
 
+
+
+// webserver.post('/twilio', (request, reponse) => {
+//     // const {number, message} = request.body;
+//     console.log("TNUMMMM: ", tnum);
+//     clientT.sendMesssage({
+//         to: `+1${number}`,
+//         from: `+1${Tnumber}`,
+//         body: message,
+//     })
+// });
+
 webserver.get('/api/listings', (request, response) => {
     db.connect(() => {
-        const query = "SELECT l.book_condition, l.price, l.comments, l.book_id, b.title, b.ISBN, b.author FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.id";
+        const query = "SELECT l.ID, l.book_condition, l.price, l.comments, l.book_id, b.title, b.ISBN, b.author FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.id";
         db.query(query, (err, data) => {
             if (!err) {
                 let output = {
@@ -241,13 +256,15 @@ webserver.post('/api/filter', (request, response) => {
 })
 
 
-webserver.get('/api/BookInfoIndex/:bookId', (request, response) => {
+webserver.get('/api/BookInfoIndex/:ID', (request, response) => {
     console.log("listing running");
     console.log("HEYYYYYOOO", request.body);
     console.log(request.params);
 
     db.connect(() => {
-        const query = "SELECT l.ID, l.accounts_id, l.book_condition, l.price, l.comments, l.book_id, b.ID, b.title, b.author, b.edition, b.ISBN, a.email, a.ID FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id WHERE l.`book_id` = " + request.params.bookId + "";
+        // const query = "SELECT l.ID, l.accounts_id, l.book_condition, l.price, l.comments, l.book_id, b.ID, b.title, b.author, b.ISBN, a.email, a.ID FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id WHERE l.`book_id` = " + request.params.bookId + "";
+        const query = "SELECT l.ID AS listingID, l.accounts_id, l.book_condition, l.price, l.comments, l.book_id, b.ID AS bookID, b.title, b.author, b.ISBN, a.email, a.ID FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id WHERE l.ID = "+request.params.ID+"";
+        console.log(query);
         db.query(query, (err, data) => {
             if (!err) {
                 console.log("bookidData: ", data);
@@ -428,6 +445,7 @@ webserver.post("/api/SignUp",(request,response)=>{
         const {Name, EmailSignUp, PasswordSignUp} = request.body;
         const query = "SELECT a.ID from `accounts` AS a WHERE a.email = '" + EmailSignUp + "' AND a.password = '" + PasswordSignUp + "'";
         db.query(query, (err, data) => {
+            console.log("DATA FOR BAD CONDITIONAL: ", data);
             if(!data.length) { //if there is no account with that email and password then continue else send back info already taken.
                 const queryAddUser = 'INSERT INTO `accounts` SET name = "'+Name+'", password = "'+PasswordSignUp+'", email = "'+EmailSignUp+'", college_id = "3"'; //this query will add a user to the accounts table with the email and password, token and the
                 db.query(queryAddUser, (err, data) => {

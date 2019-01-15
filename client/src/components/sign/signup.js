@@ -4,6 +4,13 @@ import SignUpValidation from './validation-signUp'
 import './sign.css'
 // import 'materialize-css'
 class Signup extends Component{
+
+    componentDidMount = () => {
+        if(localStorage.Token) {
+            this.props.history.push('/UserProfile');
+        }
+    }
+
     render(){
         return(
         <div className="signup_container">
