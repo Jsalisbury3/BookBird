@@ -6,7 +6,7 @@ import {getIdForToken} from '../../actions/sign_in';
 import {bindActionCreators} from "redux";
 import signInReducer from "../../reducers/sign_in_reducer";
 import {Link} from 'react-router-dom';
-import UserAuth from "../../HOC/UserAuth";
+
 
 class SignInValidation extends Component {
 
