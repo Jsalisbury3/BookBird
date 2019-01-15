@@ -119,6 +119,59 @@ img {
 .modal-body{
     left:9%
 }
+.label-placeholder {
+    margin-left: 9%;
+}
+
+.input-field > label {
+    color: #9e9e9e;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 1rem;
+    cursor: text;
+    -webkit-transition: color .2s ease-out, -webkit-transform .2s ease-out;
+    transition: color .2s ease-out, -webkit-transform .2s ease-out;
+    transition: transform .2s ease-out, color .2s ease-out;
+    transition: transform .2s ease-out, color .2s ease-out, -webkit-transform .2s ease-out;
+    -webkit-transform-origin: 0% 100%;
+    transform-origin: 0% 100%;
+    text-align: initial;
+    -webkit-transform: translateY(12px);
+    transform: translateY(12px);
+}
+
+<style>…</style>
+          .input-field > label {
+          }
+<style>…</style>
+          .label-placeholder {
+              left: 8%;
+              margin-top: 6%;
+              font-size: 1.5rem;
+          }
+<style>…</style>
+          label {
+              font-size: .8rem;
+              color: #9e9e9e;
+          }
+<style>…</style>
+          *, *:before, *:after {
+              -webkit-box-sizing: inherit;
+              box-sizing: inherit;
+          }
+<style>…</style>
+          * {
+              box-sizing: border-box;
+          }
+user agent stylesheet
+label {
+    cursor: default;
+}
+@media only screen and (min-width: 0){
+
+
+}
 .modal-content {
     width: 72%;
     background-color: white;
@@ -130,8 +183,14 @@ img {
     align-items: center;
     justify-content: center;
     flex-flow: column nowrap;
-
-;
+}
+.input-field > label {
+    color: #9e9e9e;
+    position: absolute;
+    top: 0;
+    left: 10%;
+    font-size: 1rem;
+    cursor: text;
 }
 .modal-footer{
     margin-bottom: 11px;
@@ -146,10 +205,29 @@ img {
     margin-bottom: 0%;
 
 }
+#comment-box {
+    top: 54%;
+    left: 8%;
+    position: fixed;
+
+}
+.sellers-comments-tag {
+    position: relative;
+    bottom: 7%;
+    font-size: 1.1rem;
+    margin-left: 7%;
+}
+.optional-tag {
+    position: relative;
+    margin-top: 35%;
+    margin-left: 79%;
+    font-size: 1rem;
+}
 #mySelect {
-    position: absolute;
-    right: 30%;
+    position: static;
+    margin-top: 2%;
     background-color: aliceblue;
+    margin-left: 8%;
 }
 /*:root {*/
     /*--moveRight: 91%;*/
@@ -166,7 +244,7 @@ img {
     margin-bottom: 0px;
     bottom: 10%;
 }
-.button-container  {
+.post-button-container  {
     margin-left: 27%;
     position: relative;
     bottom: 17%;
@@ -182,7 +260,7 @@ img {
 
 
 
-#label-title {
+.label-placeholder {
     left: 8%;
     margin-top: 6%;
     font-size: 1.5rem;
@@ -247,7 +325,7 @@ img {
     display: inline;
     bottom: 43%;
     width: 90%;
-    margin-left: 4%;
+    margin-left: 0%;
     height: 11%;
 }
 

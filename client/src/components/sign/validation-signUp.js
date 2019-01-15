@@ -10,8 +10,8 @@ import signUpReducer from "../../reducers/sign_up_reducer";
 class SignInValidation extends Component {
 
     componentDidUpdate() {
-        if (this.props.signUpResults.success) {
-            this.storeTokenSignUp(this.props.signUpResults);
+        if (this.props.signInResults.success) {
+            this.storeTokenSignUp(this.props.signInResults);
         }
     }
 
@@ -28,13 +28,13 @@ class SignInValidation extends Component {
     };
 
     storeTokenSignUp = () => {
-        if (this.props.signUpResults.success) {
-            const Token = this.props.signUpResults.data;
+        if (this.props.signInResults.success) {
+            const Token = this.props.signInResults.data;
             localStorage.setItem("Token", Token);
             this.props.reset();
             this.props.history.push("/");
         } else {
-            console.log("didnt make it through: ", this.props.signUpResults)
+            console.log("didnt make it through: ", this.props.signInResults)
         }
     }
 
@@ -94,7 +94,7 @@ function validate(values) {
 function mapStateToProps(state) {
     console.log("state: ", state);
     return {
-        signUpResults : state.signUpReducer.signUpInfo
+        signInResults : state.signInReducer.signInId
     }
 }
 
