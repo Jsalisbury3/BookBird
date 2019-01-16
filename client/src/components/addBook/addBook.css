@@ -12,6 +12,9 @@
 .submit_clear_buttons{
 }
 
+#errorISBN{
+    color:red;
+}
 .signInRequiredButtons {
     margin: 14px;
 }
