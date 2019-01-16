@@ -40,9 +40,10 @@ class AddBook extends Component {
 
     componentDidMount = async () => {
         document.getElementsByClassName('modalIsbn')[0].style.display = "block";
-        document.getElementsByClassName("modal-footer")[0].style.display = "none"
-        document.getElementsByClassName("modal-body")[0].style.display = "none"
-        document.getElementsByClassName("bookSuccessInfo")[0].style.display = "none"
+        document.getElementsByClassName("modal-footer")[0].style.display = "none";
+        document.getElementsByClassName("modal-body")[0].style.display = "none";
+        document.getElementsByClassName("bookSuccessInfo")[0].style.display = "none";
+        document.getElementsByClassName("signInRequiredModal")[0].style.display = "none";
         await this.addPhotoToMultiPhotoContainer();
 
         console.log('Tooltip:', this.tooltip);
@@ -373,6 +374,15 @@ class AddBook extends Component {
         // document.getElementsByClassName("modal-footer")[0].style.display = "none"
     }
 
+    signInRequiredModal = (event)=>{
+        event.preventDefault();
+        document.getElementsByClassName("modalIsbn")[0].style.display = "block"
+        document.getElementsByClassName("google_book_image")[0].style.display = "none"
+        document.getElementsByClassName("isbnModalBookDescription")[0].style.display = "none"
+        document.getElementsByClassName("submit_clear_buttons")[0].style.display = "none"
+        document.getElementsByClassName("signInRequiredModal")[0].style.display = "block"
+    }
+
 
     acceptBookPosted=(event)=>{
         event.preventDefault();
@@ -419,6 +429,11 @@ class AddBook extends Component {
                                             <p className="btn-small btn waves-effect white"><Link to={"/"}>Accept</Link> </p>
                                         </div>  
                                     </div>
+                                    <div className="signInRequiredModal">
+                                        <p>You must be signed in to post a book</p>                                       
+                                        <Link to={"/SignIn"}><p className="btn-small btn waves-effect signInRequiredButtons"> Sign in </p></Link>
+                                    </div>
+
                             </div>
                             <div className="modal-footer">
                                 <form>
