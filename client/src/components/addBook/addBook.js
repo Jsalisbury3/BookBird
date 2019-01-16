@@ -167,42 +167,12 @@ class AddBook extends Component {
         }
 
         reader.readAsDataURL(newImage)
-
+        debugger;
         await this.setState({
             photoArray: [newImage,...this.state.photoArray]
         })
         this.addPhotoToMultiPhotoContainer();
-        
 
-        // let formData = new FormData();
-        // formData.append('userPhoto', event.target.files[0]);
-
-        // axios({
-        //     method: 'post',
-        //     url: '/api/photo', 
-        //     data: formData,
-        //     config: {
-        //         'headers': {
-        //             'Content-Type': 'multipart/form-data'
-        //         }
-        //     }
-        // })
-
-        // reader.onload= (e)=> {
-        //     console.log('image target results', e.target)
-        //     console.log('Image data', e.target.result)
-        //     const formData = {
-        //         file: e.target.result
-        //     }
-
-        //     axios({
-        //         method: 'post',
-        //         url: '/api/photo', 
-        //         userPhoto: e.target.result
-        //     })
-
-            
-        
     }
 
     photoUploadHandler = ()=>{
@@ -251,14 +221,11 @@ class AddBook extends Component {
             data: request,
         })
 
-        const { insertId } = listing.data.data
+        const { insertId } = listing.data.data;
 
         console.log('insert id:', listing)
         console.log('photo type: ', this.state.photoArray[0].type );
-        // event.preventDefault();
-        // let data = new FormData(this.refs.bookPost);
-        // console.log('this forms', this.forms);
-        // console.log('this refs', this.refs);
+        
         const prep = await axios({
             Authorization: `AWS ${accessKeyId}: ${secretAccessKey}`,
             method: 'get',
@@ -271,11 +238,11 @@ class AddBook extends Component {
 
         console.log('add book key: ', key, insertId);
 
-        // await axios(getUrl, this.state.photoArray[0], {
-        //     headers: {
-        //         'Content-Type': this.state.photoArray[0].type
-        //     }
-        // })
+        await axios.put(getUrl, this.state.photoArray[0], {
+            headers: {
+                'Content-Type': this.state.photoArray[0].type
+            }
+        })
         let saveImageParams = {
             key,
             insertId,
@@ -291,22 +258,11 @@ class AddBook extends Component {
             headers: {
                 token: localStorage.getItem('Token'),
             },
-            body: saveImageParams
+            data: saveImageParams
         })
-        // const formInfo = new FormData(this.forms)
-        // formInfo.append('images', this.forms[7].files[0], 'image1')
-        // request.files = formInfo;
-        
-
-        // console.log('request files:', request.files)
-        // console.log("state:", this.state);
-        // console.log('FORM DATA: ', data);
-        // data.append('data', request );
-        // console.log('FORM DATA AFTER APPEND', data);
 
         console.log('Add Book: ', this.state);
-        // 'content-type': 'multipart/form-data'
-        // document.getElementsByClassName('modalPageContainer')[0].style.display = "block";
+        
         this.bookPostedModal();
     };
     getBooks = (event) => {
