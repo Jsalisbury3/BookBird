@@ -1,3 +1,10 @@
+const { accessKeyId, secretAccessKey,region } = require('./config/amzns3_creds');
+const AWS = require('aws-sdk');
+const uuid = require('uuid/v4');
+const axios = require('axios');
+var cors = require('cors')
+const bodyParser = require('body-parser');
+const multer = require('multer');
 const express = require('express');
 const webserver = express();
 const jwt = require('jwt-simple');
@@ -5,11 +12,102 @@ const mysql_creds = require('./config/mysql_creds.js');
 const mysql = require('mysql');
 const db = mysql.createConnection(mysql_creds);
 const hash = require('./config/token-hash');
+
 const  accountSid = require('./config/twilio.sdi');
 const authToken = require('./config/twilio_token');
 const twilio = require('twilio')(accountSid, authToken);
 
-webserver.use(function (req, res, next) {
+AWS.config.update( {
+    accessKeyId, 
+    secretAccessKey,
+    region 
+});
+
+const s3 = new AWS.S3({
+    signatureVersion: 'v4'
+  });
+
+const awsUpload = require('./services/file-upload');
+
+webserver.get('/api/prepUpload', function(request, response) {
+
+    const { query: {fileType}} = request;
+    console.log(fileType);
+    const key = `testing/jhgkghjg/${uuid()}`;
+
+    s3.getSignedUrl('putObject', {
+        Bucket: 'book-bird-test-bucket',  
+        Key: key,      
+        ContentType: fileType.type,
+        Expires: 500,
+        
+    }, (err, url) => response.send({
+            success: true, 
+            key, 
+            url,
+            getUrl: url.split("?")[0],
+    
+    }));
+
+});
+
+webserver.post('/api/photo',function(req,res){
+    let storage = multer.diskStorage({
+        destination: function (req, file, callback) {
+          callback(null, './uploads');
+        },
+        filename: function (req, file, callback) {
+          callback(null, file.fieldname + '-' + Date.now());
+        }
+      });
+    
+    let fsUpload = multer({ storage : storage }).array('userPhoto',2);
+
+    var response = fsUpload(req,res,function(err) {
+        console.log('Request: ', req);
+    
+        if(err) {
+            return res.end("Error uploading file.");
+        }
+        res.end("File is uploaded", );
+    });
+});
+
+
+webserver.post('/api/file-upload', function ( req, res ) {
+    // const awsUpload = require('./services/file-upload');
+    console.log('File UPload Req')
+    awsUpload(req, res, function(err) {
+          return res.json({ 'imageUrl: ': req.file });
+    })
+
+});
+
+webserver.post('/api/save-image', function (request, response) {
+    console.log('request: ', request.query)
+    const { key, listingId, fileType } = request.query;
+    console.log('hello save image')
+    // console.log('KEEY: ', key);
+    // console.log('Listing ID: ', insertId);
+    db.connect( () => {
+        console.log('Save Item')
+        const query = "INSERT INTO `images` SET url='"+key+"',listing_id="+listingId+",imageType='"+fileType+"'";
+
+        db.query(query, (err, data) => {
+            if (!err) {
+                let output = {
+                    success: true,
+                    data: data
+                }
+                response.send(output);
+            } else {
+                console.log('save image to database did not work');
+            }
+        })
+    })
+});
+
+webserver.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
@@ -18,6 +116,20 @@ webserver.use(function (req, res, next) {
 webserver.use(express.static(__dirname + '/client/dist'));
 webserver.use(express.urlencoded({extended: false}));
 webserver.use(express.json());
+webserver.use(bodyParser.json())
+webserver.use(cors());
+
+
+
+// webserver.post('/twilio', (request, reponse) => {
+//     // const {number, message} = request.body;
+//     console.log("TNUMMMM: ", tnum);
+//     clientT.sendMesssage({
+//         to: `+1${number}`,
+//         from: `+1${Tnumber}`,
+//         body: message,
+//     })
+// });
 
 webserver.get('/api/testTwilio', (request, response) => {
     twilio.messages.create({
@@ -48,7 +160,7 @@ webserver.get('/api/testTwilio', (request, response) => {
 
 webserver.get('/api/listings', (request, response) => {
     db.connect(() => {
-        const query = "SELECT l.book_condition, l.price, l.comments, l.book_id, b.title, b.ISBN, b.author FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.id";
+        const query = "SELECT l.ID, l.book_condition, l.price, l.comments, l.book_id, b.title, b.ISBN, b.author FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.id";
         db.query(query, (err, data) => {
             if (!err) {
                 let output = {
@@ -65,21 +177,51 @@ webserver.get('/api/listings', (request, response) => {
 
 
 webserver.post('/api/addListing', (request, response) => {
-    const {title, condition, ISBN, author, edition, price, comments, images} = request.body;
+    const {title, condition, ISBN, author, edition, price, comments, images, photoArray,files} = request.body;
+    console.log("ADD LISTING IS RUNNING");
+    console.log('REQUEST BODY', request.body);
+    console.log('Photo Array: ', photoArray);
+
+    // const output={
+    //     success: true,
+    //     data: response,
+    // }
+    // response.send(output);
+
+    
+
+    // axios({
+    //     method: 'post',
+    //     url: 'http://localhost:3000/api/file-upload',
+    //     image: request.body.fileString[0]
+    // }).then( (response)=> {
+
+    //     const output={
+    //         success: true,
+    //         data: response
+    //     }
+    //     response.send(output);
+    //     // console.log("WORKED!", response)
+        
+    // })
+   
     const userIDToken = request.headers['token'];
     db.connect(() => {
         const query = "SELECT b.ID FROM `books` AS b WHERE b.ISBN = '" + ISBN + "'";
         console.log(query)
         db.query(query, (err, data) => {
             if (!data.length) {
-                const query = "INSERT INTO `books` SET title = '" + title + "', ISBN = '" + ISBN + "', author = '" + author + "', edition = " + edition + "";
+                const query = "INSERT INTO `books` SET title = '" + title + "', ISBN = '" + ISBN + "', author = '" + author + "'";
+                console.log(query)
                 db.query(query, (err, data) => {
-                    if (!err) {
-                        const query = "INSERT INTO `listing` SET listing.book_id = '" + data.insertId + "', price = '" + price + "', book_condition = '" + condition + "', comments = '" + comments + "', accounts_id = '1', public_id='21'";
-                        console.log(query);
+                    if(!err) {
+                        console.log('INSERT INTO LISTINGS')
+                        console.log('Listings Data: ', data)
+                        const query = "INSERT INTO `listing` SET listing.book_id = "+data.insertId+", price = '"+ price +"', book_condition = '"+condition+"', comments = '"+comments+"', accounts_id = '1', public_id='21'";
                         db.query(query, (err, response) => {
                             if (!err) {
                                 console.log("all queries are good")
+                                
                             } else {
                                 console.log("error", err);
                             }
@@ -89,19 +231,38 @@ webserver.post('/api/addListing', (request, response) => {
                     }
                 })
             } else {
-                console.log("data: ", data);
+                console.log('INSERT INTO LISTINGS')
+                console.log('Listings Data: ', data)
+                const query = "INSERT INTO `listing` SET listing.book_id = "+data[0].ID+", price = '"+ price +"', book_condition = '"+condition+"', comments = '"+comments+"', accounts_id = '1', public_id='21'";
+                db.query(query, async (err, data) => {
+                        if(!err) {
+                            console.log("all queries are good")
+                            let output = {
+                                success: true,
+                                data: data,
+                            };
+                            response.send(output);
+                        } else {
+                            console.log("error", err);
+                        }
+                })                    
             }
+        })
 
-            if (!err) {
-                let output = {
-                    success: true,
-                    data: data,
-                };
-            } else {
-                console.log("error", err);
-            }
-        });
-    })
+        //         if(!err) {
+        //             let output = {
+        //                 success: true,
+        //                 data: data,
+        //             };
+
+        //             response.send(output);
+                    
+        //         } else {
+        //             console.log("error", err);
+        //         }
+        //     });
+        // })
+    });
 });
 
 webserver.post('/api/filter', (request, response) => {
@@ -123,11 +284,18 @@ webserver.post('/api/filter', (request, response) => {
 })
 
 
-webserver.get('/api/BookInfoIndex/:bookId', (request, response) => {
+webserver.get('/api/BookInfoIndex/:ID', (request, response) => {
+    console.log("listing running");
+    console.log("HEYYYYYOOO", request.body);
+    console.log(request.params);
+
     db.connect(() => {
-        const query = "SELECT l.ID, l.accounts_id, l.book_condition, l.price, l.comments, l.book_id, b.ID, b.title, b.author, b.edition, b.ISBN, a.email, a.ID FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id WHERE l.`id` = " + request.params.bookId + "";
+        // const query = "SELECT l.ID, l.accounts_id, l.book_condition, l.price, l.comments, l.book_id, b.ID, b.title, b.author, b.ISBN, a.email, a.ID FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id WHERE l.`book_id` = " + request.params.bookId + "";
+        const query = "SELECT l.ID AS listingID, l.accounts_id, l.book_condition, l.price, l.comments, l.book_id, b.ID AS bookID, b.title, b.author, b.ISBN, a.email, a.ID FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id WHERE l.ID = "+request.params.ID+"";
+        console.log(query);
         db.query(query, (err, data) => {
             if (!err) {
+                console.log("bookidData: ", data);
                 let output = {
                     success: true,
                     data: data,
@@ -139,7 +307,6 @@ webserver.get('/api/BookInfoIndex/:bookId', (request, response) => {
         })
     })
 });
-
 
 //profile listings
 webserver.get('/api/UserProfile', (request, response) => {
@@ -155,7 +322,7 @@ webserver.get('/api/UserProfile', (request, response) => {
                     };
                     response.send(outputNoMatch);
                 } else {
-                    console.log("Data: ", data)
+                    console.log("Data: ", data);
                     const query = "SELECT a.ID, l.book_condition, l.ID, l.price, l.comments, l.book_id, b.title, b.ISBN, b.author, b.edition FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id WHERE a.ID = '" + data[0].account_id + "'";
                     db.query(query, (err, data) => {
                         if (!err) {
@@ -277,7 +444,7 @@ webserver.get('/api/SignOut', (request, response) => {
             db.query(getIdFromTokenQuery, (err) => {
                 if(!err) {
                     const outputSuccess = {
-                        success: true,
+                        success: false,
                         message: "You are now signed out",
                     };
                     response.send(outputSuccess);
@@ -306,6 +473,7 @@ webserver.post("/api/SignUp",(request,response)=>{
         const {Name, EmailSignUp, PasswordSignUp} = request.body;
         const query = "SELECT a.ID from `accounts` AS a WHERE a.email = '" + EmailSignUp + "' AND a.password = '" + PasswordSignUp + "'";
         db.query(query, (err, data) => {
+            console.log("DATA FOR BAD CONDITIONAL: ", data);
             if(!data.length) { //if there is no account with that email and password then continue else send back info already taken.
                 const queryAddUser = 'INSERT INTO `accounts` SET name = "'+Name+'", password = "'+PasswordSignUp+'", email = "'+EmailSignUp+'", college_id = "3"'; //this query will add a user to the accounts table with the email and password, token and the
                 db.query(queryAddUser, (err, data) => {
@@ -349,12 +517,5 @@ webserver.get('*', (request, response) => {
 webserver.listen(7000, () => {
     console.log("listening on port 7000");
 });
-
-
-
-
-
-
-
 
 

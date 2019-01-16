@@ -10,8 +10,8 @@ import signUpReducer from "../../reducers/sign_up_reducer";
 class SignInValidation extends Component {
 
     componentDidUpdate() {
-        if (this.props.signUpResults.success) {
-            this.storeTokenSignUp(this.props.signUpResults);
+        if (this.props.signInResults.success) {
+            this.storeTokenSignUp(this.props.signInResults);
         }
     }
 
@@ -19,8 +19,8 @@ class SignInValidation extends Component {
         return (
             <div className={`col ${props.size || 's12'}`}>
                 <div className="input-field">
-                    <input {...props.input} id={props.id} type="text" autoComplete={"off"}/>
-                    <label htmlFor={props.id}>{props.label}</label>
+                    <input className="signUpInput" {...props.input} id={props.id} type="text" autoComplete={"off"}/>
+                    <label className="signUpLabel" htmlFor={props.id}>{props.label}</label>
                 </div>
                 <p className={"red-text text-darken-2"}>{props.meta.touched && props.meta.error}</p>
             </div>
@@ -28,13 +28,13 @@ class SignInValidation extends Component {
     };
 
     storeTokenSignUp = () => {
-        if (this.props.signUpResults.success) {
-            const Token = this.props.signUpResults.data;
+        if (this.props.signInResults.success) {
+            const Token = this.props.signInResults.data;
             localStorage.setItem("Token", Token);
             this.props.reset();
             this.props.history.push("/");
         } else {
-            console.log("didnt make it through: ", this.props.signUpResults)
+            console.log("didnt make it through: ", this.props.signInResults)
         }
     }
 
@@ -49,13 +49,13 @@ class SignInValidation extends Component {
         return (
             <form onSubmit={handleSubmit(this.handleAddItem)}>
                 <div className="row">
-                    <Field name={"EmailSignUp"} size={"s12 m8 offset-m2"} component={this.renderInput} id="EmailSignUp" label={"Email"}/>
+                    <Field name={"EmailSignUp"} size={"s9 m8 offset-m2"} component={this.renderInput} id="EmailSignUp" label={"Email"}/>
                 </div>
                 <div className="row">
-                    <Field name={"PasswordSignUp"} size={"s12 m8 offset-m2"} component={this.renderInput} id={"PasswordSignUp"} label={"Password"}/>
+                    <Field name={"PasswordSignUp"} size={"s9 m8 offset-m2"} component={this.renderInput} id={"PasswordSignUp"} label={"Password"}/>
                 </div>
                 <div className="row">
-                    <Field name={"Name"} size={"s12 m8 offset-m2"} component={this.renderInput} id="Name" label={"Name"}/>
+                    <Field name={"Name"} size={"s9 m8 offset-m2"} component={this.renderInput} id="Name" label={"Name"}/>
                 </div>
                 <div className="row">
                     <div className="col s6 center">
@@ -94,7 +94,7 @@ function validate(values) {
 function mapStateToProps(state) {
     console.log("state: ", state);
     return {
-        signUpResults : state.signUpReducer.signUpInfo
+        signInResults : state.signInReducer.signInId
     }
 }
 

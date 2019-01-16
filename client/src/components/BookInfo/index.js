@@ -8,7 +8,7 @@ import axios from 'axios'
 
 class Index extends Component {
     state = {
-        bookId : this.props.match.params.bookId,
+        listId : this.props.match.params.bookId,
         data: ''
     };
 
@@ -32,7 +32,7 @@ class Index extends Component {
     // };
 
     componentDidMount = () => {
-        this.props.getDataForBookClicked(this.state.bookId);
+        this.props.getDataForBookClicked(this.state.listId);
 
         // this.setState({
         //     ...this.state,
@@ -42,17 +42,20 @@ class Index extends Component {
 
     render() {
         // console.log("yoyoyoyoyooyo", this.state.data);
-        console.log("Book INFO index: ", this.props);
+        console.log('BOOK DATA STATE,', this.state)
+        console.log("Book INFO index: ", this.props.listId);
+        const listingInfo = {...this.props.listId};
+        console.log('LISTING INFO!:', listingInfo)
         return (
             <div className='main-container'>
-                <BookData title={this.props.bookInfo.title}
-                          ISBN={this.props.bookInfo.ISBN}
-                          edition ={this.props.bookInfo.edition}
-                          author={this.props.bookInfo.author}
-                          condition={this.props.bookInfo.book_condition}
-                          sellersComment={this.props.bookInfo.comments}
-                          price={this.props.bookInfo.price}
-                          sellersEmail={this.props.bookInfo.email}
+                <BookData title={listingInfo.title}
+                          ISBN={listingInfo.ISBN}
+                          edition ={listingInfo.edition}
+                          author={listingInfo.author}
+                          condition={listingInfo.book_condition}
+                          sellersComment={listingInfo.comments}
+                          price={listingInfo.price}
+                          sellersEmail={listingInfo.email}
                 />
             </div>
         )
@@ -62,7 +65,7 @@ class Index extends Component {
 function mapStateToProps(state) {
     console.log('book index state: ', state);
     return {
-        bookInfo: state.bookIdReducer
+        listId: state.bookIdReducer.listingInfo[0]
     }
 }
 

@@ -15,11 +15,11 @@ class Signin extends Component{
             this.props.history.push('/UserProfile');
         }
     }
-    
+
     render(){
         return(
-            <div>
-                <h1 className="sign_in">Sign in</h1>
+            <div className="signin_container">
+                <h1 className="signInHeader">Sign in</h1>
                 <SignInValidation/>
                 <p className="signin_footer">Dont have an account? <Link to={"/SignUp"}>Sign up now! </Link> </p>
             </div>
@@ -27,4 +27,4 @@ class Signin extends Component{
     }
 }
 
-export default withRouter(Signin);
+export default withRouter(Signin); //withRouter(Signin)
