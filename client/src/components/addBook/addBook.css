@@ -141,29 +141,27 @@ img {
     transform: translateY(12px);
 }
 
-<style>…</style>
-          .input-field > label {
-          }
-<style>…</style>
-          .label-placeholder {
-              left: 8%;
-              margin-top: 6%;
-              font-size: 1.5rem;
-          }
-<style>…</style>
-          label {
-              font-size: .8rem;
-              color: #9e9e9e;
-          }
-<style>…</style>
-          *, *:before, *:after {
-              -webkit-box-sizing: inherit;
-              box-sizing: inherit;
-          }
-<style>…</style>
-          * {
-              box-sizing: border-box;
-          }
+.input-field > label {
+}
+
+.label-placeholder {
+    left: 8%;
+    margin-top: 6%;
+    font-size: 1.5rem;
+}
+
+label {
+    font-size: .8rem;
+    color: #9e9e9e;
+}
+*, *:before, *:after {
+    -webkit-box-sizing: inherit;
+    box-sizing: inherit;
+}
+
+* {
+    box-sizing: border-box;
+}
 user agent stylesheet
 label {
     cursor: default;

@@ -27,6 +27,17 @@ const s3 = new AWS.S3({
   });
 
 const awsUpload = require('./services/file-upload');
+webserver.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
+webserver.use(express.static(__dirname + '/client/dist'));
+webserver.use(express.urlencoded({extended: false}));
+webserver.use(express.json());
+webserver.use(bodyParser.json())
+webserver.use(cors());
 
 webserver.get('/api/prepUpload', function(request, response) {
 
@@ -86,8 +97,7 @@ webserver.post('/api/save-image', function (request, response) {
     console.log('request: ', request.query)
     const { key, listingId, fileType } = request.query;
     console.log('hello save image')
-    // console.log('KEEY: ', key);
-    // console.log('Listing ID: ', insertId);
+    
     db.connect( () => {
         console.log('Save Item')
         const query = "INSERT INTO `images` SET url='"+key+"',listing_id="+listingId+",imageType='"+fileType+"'";
@@ -105,18 +115,6 @@ webserver.post('/api/save-image', function (request, response) {
         })
     })
 });
-
-webserver.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
-
-webserver.use(express.static(__dirname + '/client/dist'));
-webserver.use(express.urlencoded({extended: false}));
-webserver.use(express.json());
-webserver.use(bodyParser.json())
-webserver.use(cors());
 
 
 
@@ -149,33 +147,9 @@ webserver.get('/api/listings', (request, response) => {
 
 
 webserver.post('/api/addListing', (request, response) => {
-    const {title, condition, ISBN, author, edition, price, comments, images, photoArray,files} = request.body;
+    const {title, condition, ISBN, author, price, comments } = request.body;
     console.log("ADD LISTING IS RUNNING");
     console.log('REQUEST BODY', request.body);
-    console.log('Photo Array: ', photoArray);
-
-    // const output={
-    //     success: true,
-    //     data: response,
-    // }
-    // response.send(output);
-
-    
-
-    // axios({
-    //     method: 'post',
-    //     url: 'http://localhost:3000/api/file-upload',
-    //     image: request.body.fileString[0]
-    // }).then( (response)=> {
-
-    //     const output={
-    //         success: true,
-    //         data: response
-    //     }
-    //     response.send(output);
-    //     // console.log("WORKED!", response)
-        
-    // })
    
     const userIDToken = request.headers['token'];
     db.connect(() => {
@@ -220,20 +194,6 @@ webserver.post('/api/addListing', (request, response) => {
                 })                    
             }
         })
-
-        //         if(!err) {
-        //             let output = {
-        //                 success: true,
-        //                 data: data,
-        //             };
-
-        //             response.send(output);
-                    
-        //         } else {
-        //             console.log("error", err);
-        //         }
-        //     });
-        // })
     });
 });
 
