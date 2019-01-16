@@ -132,7 +132,7 @@ webserver.use(cors());
 
 webserver.get('/api/listings', (request, response) => {
     db.connect(() => {
-        const query = "SELECT l.book_condition, l.price, l.comments, l.book_id, b.title, b.ISBN, b.author FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.id";
+        const query = "SELECT l.ID, l.book_condition, l.price, l.comments, l.book_id, b.title, b.ISBN, b.author FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.id";
         db.query(query, (err, data) => {
             if (!err) {
                 let output = {
@@ -256,13 +256,15 @@ webserver.post('/api/filter', (request, response) => {
 })
 
 
-webserver.get('/api/BookInfoIndex/:bookId', (request, response) => {
+webserver.get('/api/BookInfoIndex/:ID', (request, response) => {
     console.log("listing running");
     console.log("HEYYYYYOOO", request.body);
     console.log(request.params);
 
     db.connect(() => {
-        const query = "SELECT l.ID, l.accounts_id, l.book_condition, l.price, l.comments, l.book_id, b.ID, b.title, b.author, b.edition, b.ISBN, a.email, a.ID FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id WHERE l.`book_id` = " + request.params.bookId + "";
+        // const query = "SELECT l.ID, l.accounts_id, l.book_condition, l.price, l.comments, l.book_id, b.ID, b.title, b.author, b.ISBN, a.email, a.ID FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id WHERE l.`book_id` = " + request.params.bookId + "";
+        const query = "SELECT l.ID AS listingID, l.accounts_id, l.book_condition, l.price, l.comments, l.book_id, b.ID AS bookID, b.title, b.author, b.ISBN, a.email, a.ID FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id WHERE l.ID = "+request.params.ID+"";
+        console.log(query);
         db.query(query, (err, data) => {
             if (!err) {
                 console.log("bookidData: ", data);
