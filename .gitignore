@@ -5,3 +5,4 @@ amzns3_creds.js
 .idea
 token-hash.js
 twilio_token.js
+twilio.sdi.js
