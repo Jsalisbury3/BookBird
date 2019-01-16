@@ -5,6 +5,9 @@ const mysql_creds = require('./config/mysql_creds.js');
 const mysql = require('mysql');
 const db = mysql.createConnection(mysql_creds);
 const hash = require('./config/token-hash');
+const  accountSid = require('./config/twilio.sdi');
+const authToken = require('./config/twilio_token');
+const twilio = require('twilio')(accountSid, authToken);
 
 webserver.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -16,9 +19,36 @@ webserver.use(express.static(__dirname + '/client/dist'));
 webserver.use(express.urlencoded({extended: false}));
 webserver.use(express.json());
 
+webserver.get('/api/testTwilio', (request, response) => {
+    twilio.messages.create({
+        body: 'Hello from Node',
+        to: '+19499226065',  // Text this number
+        from: '+15108226645' // From a valid Twilio number
+    })
+        .then((message) => console.log(message.sid));
+});
+
+
+
+
+
+
+    //     twilio.sendMessage({
+//         to: '+19499226065',
+//         from : '+15108226645',
+//         body: 'message from twillio'
+//     }, (err, data) => {
+//         if(!err) {
+//             console.log('twilio success data', data);
+//         } else {
+//             console.log("twilio err", err);
+//         }
+//     })
+// })
+
 webserver.get('/api/listings', (request, response) => {
     db.connect(() => {
-        const query = "SELECT l.book_condition, l.price, l.comments, l.book_id, b.title, b.ISBN, b.author, b.edition FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.id";
+        const query = "SELECT l.book_condition, l.price, l.comments, l.book_id, b.title, b.ISBN, b.author FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.id";
         db.query(query, (err, data) => {
             if (!err) {
                 let output = {

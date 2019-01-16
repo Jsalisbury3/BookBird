@@ -4,3 +4,4 @@ amzns3_creds.js
 .DS_Store
 .idea
 token-hash.js
+twilio_token.js
