@@ -437,16 +437,16 @@ class AddBook extends Component {
                         <div id={"conditionError"} className={"error"}></div>
                         <div id={"conditionCheckMArk"} className={"checkMark markCondition material-icons"}>check_circle_outline</div>
                         <div className='input-field '>
+                            <h6 className='input-header'>Title</h6>
                             <input name="title"  id='title' type='text' className="inputs col s10 push-s1" onChange={this.handleInput}/>
-                            <label className='label-placeholder' htmlFor='title' >Title</label>
                         </div>
                     </div>
                     <div id='input-container' className=' title-container row'>
                         <div className={"error"}></div>
                         <div className={"checkMark markTitle material-icons"}>check_circle_outline</div>
                         <div className='input-field'>
+                            <h6 className='input-header'>Author</h6>
                             <input name="author" id='author' type='text' className="inputs col s10 push-s1"  onChange={this.handleInput}/>
-                            <label className='label-placeholder'  htmlFor={'author'}>Author</label>
                         </div>
                     </div>
                     <div  id='input-container' className='title-container row'>
@@ -454,7 +454,7 @@ class AddBook extends Component {
                         <div className={"checkMark markEdition material-icons"}>check_circle_outline</div>
                         <div className='input-field'>
                             <input name={"price"} id={'price'}  type='text' className={"inputs col s10 push-s1"} onChange={this.handleInput}/>
-                            <label id='label-title' htmlFor={'price'}>*Price</label>
+                            <label className='label-placeholder' htmlFor={'price'}>Price</label>
                         </div>
                     </div>
                     <div id='input-container condition-container' className='title-container row'>
