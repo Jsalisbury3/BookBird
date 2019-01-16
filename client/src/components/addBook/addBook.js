@@ -40,9 +40,10 @@ class AddBook extends Component {
 
     componentDidMount = async () => {
         document.getElementsByClassName('modalIsbn')[0].style.display = "block";
-        document.getElementsByClassName("modal-footer")[0].style.display = "none"
-        document.getElementsByClassName("modal-body")[0].style.display = "none"
-        document.getElementsByClassName("bookSuccessInfo")[0].style.display = "none"
+        document.getElementsByClassName("modal-footer")[0].style.display = "none";
+        document.getElementsByClassName("modal-body")[0].style.display = "none";
+        document.getElementsByClassName("bookSuccessInfo")[0].style.display = "none";
+        document.getElementsByClassName("signInRequiredModal")[0].style.display = "none";
         await this.addPhotoToMultiPhotoContainer();
 
         console.log('Tooltip:', this.tooltip);
@@ -329,6 +330,15 @@ class AddBook extends Component {
         // document.getElementsByClassName("modal-footer")[0].style.display = "none"
     }
 
+    signInRequiredModal = (event)=>{
+        event.preventDefault();
+        document.getElementsByClassName("modalIsbn")[0].style.display = "block"
+        document.getElementsByClassName("google_book_image")[0].style.display = "none"
+        document.getElementsByClassName("isbnModalBookDescription")[0].style.display = "none"
+        document.getElementsByClassName("submit_clear_buttons")[0].style.display = "none"
+        document.getElementsByClassName("signInRequiredModal")[0].style.display = "block"
+    }
+
 
     acceptBookPosted=(event)=>{
         event.preventDefault();
@@ -375,6 +385,11 @@ class AddBook extends Component {
                                             <p className="btn-small btn waves-effect white"><Link to={"/"}>Accept</Link> </p>
                                         </div>  
                                     </div>
+                                    <div className="signInRequiredModal">
+                                        <p>You must be signed in to post a book</p>                                       
+                                        <Link to={"/SignIn"}><p className="btn-small btn waves-effect signInRequiredButtons"> Sign in </p></Link>
+                                    </div>
+
                             </div>
                             <div className="modal-footer">
                                 <form>
@@ -393,16 +408,16 @@ class AddBook extends Component {
                         <div id={"conditionError"} className={"error"}></div>
                         <div id={"conditionCheckMArk"} className={"checkMark markCondition material-icons"}>check_circle_outline</div>
                         <div className='input-field '>
+                            <h6 className='input-header'>Title</h6>
                             <input name="title"  id='title' type='text' className="inputs col s10 push-s1" onChange={this.handleInput}/>
-                            <label className='label-placeholder' htmlFor='title' >Title</label>
                         </div>
                     </div>
                     <div id='input-container' className=' title-container row'>
                         <div className={"error"}></div>
                         <div className={"checkMark markTitle material-icons"}>check_circle_outline</div>
                         <div className='input-field'>
+                            <h6 className='input-header'>Author</h6>
                             <input name="author" id='author' type='text' className="inputs col s10 push-s1"  onChange={this.handleInput}/>
-                            <label className='label-placeholder'  htmlFor={'author'}>Author</label>
                         </div>
                     </div>
                     <div  id='input-container' className='title-container row'>
@@ -410,7 +425,7 @@ class AddBook extends Component {
                         <div className={"checkMark markEdition material-icons"}>check_circle_outline</div>
                         <div className='input-field'>
                             <input name={"price"} id={'price'}  type='text' className={"inputs col s10 push-s1"} onChange={this.handleInput}/>
-                            <label id='label-title' htmlFor={'price'}>*Price</label>
+                            <label className='label-placeholder' htmlFor={'price'}>Price</label>
                         </div>
                     </div>
                     <div id='input-container condition-container' className='title-container row'>

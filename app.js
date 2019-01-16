@@ -12,9 +12,10 @@ const mysql_creds = require('./config/mysql_creds.js');
 const mysql = require('mysql');
 const db = mysql.createConnection(mysql_creds);
 const hash = require('./config/token-hash');
-// const Tnumber = require('twilioNumber');
-// const client = require('twilio');
-// const cientT = client('sid', 'key');
+
+const  accountSid = require('./config/twilio.sdi');
+const authToken = require('./config/twilio_token');
+const twilio = require('twilio')(accountSid, authToken);
 
 AWS.config.update( {
     accessKeyId, 
@@ -127,6 +128,33 @@ webserver.post('/api/save-image', function (request, response) {
 //         body: message,
 //     })
 // });
+
+webserver.get('/api/testTwilio', (request, response) => {
+    twilio.messages.create({
+        body: 'Hello from Node',
+        to: '+19499226065',  // Text this number
+        from: '+15108226645' // From a valid Twilio number
+    })
+        .then((message) => console.log(message.sid));
+});
+
+
+
+
+
+
+    //     twilio.sendMessage({
+//         to: '+19499226065',
+//         from : '+15108226645',
+//         body: 'message from twillio'
+//     }, (err, data) => {
+//         if(!err) {
+//             console.log('twilio success data', data);
+//         } else {
+//             console.log("twilio err", err);
+//         }
+//     })
+// })
 
 webserver.get('/api/listings', (request, response) => {
     db.connect(() => {
