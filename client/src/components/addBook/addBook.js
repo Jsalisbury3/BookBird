@@ -13,6 +13,7 @@ import { accessKeyId, secretAccessKey } from '../../../../config/amzns3_creds';
 import image2 from './images/488.jpg';
 import success from './images/successlogo.png';
 import {Link} from 'react-router-dom';
+import { debug } from 'util';
 
 class AddBook extends Component {
     constructor(props) {
@@ -64,8 +65,36 @@ class AddBook extends Component {
         })
     };
 
-    validateInputsFields = (event) => {
+    validateIsbn=()=>{
+        const element = 'input[name=ModalISBN]'
+        var elementVal = document.querySelector(element).value;
+        const pattern = /[0-9]{10,13}/
+        // const errorMessage = "Invalid ISBN number"
         
+        if(!pattern.test(elementVal)){
+            document.getElementById("errorISBN").innerHTML = "Invalid ISBN number"
+            return false
+        }else{
+            return true
+        }
+       
+
+        const isbnTest = [
+             {
+                element: 'input[name=ISBN]',
+                pattern: /[0-9]{13,}/,
+                errorMessage: "Invalid ISBN number",
+                index: 0
+            },
+        ]
+
+
+
+
+    }
+
+    validateInputsFields = (event) => {
+        console.log('HELLO THERE')
         event.preventDefault();
         const test = [
             // {
@@ -105,14 +134,17 @@ class AddBook extends Component {
                 index: 1
             },
         ];
-    
         if(test.length === test.filter(this.validateInputAndDisplayError).length) {
-            this.addBook();
+            if(localStorage.Token) {
+                this.addBook();
+            } else {
+                this.signInRequiredModal();
+a            }
+            
         }
     };
     
     validateInputAndDisplayError = (test) => {
-        
         let element = test.element;
         if(element === "input[name=condition]") {
             var selected = document.getElementById("mySelect").selectedIndex;
@@ -206,8 +238,8 @@ class AddBook extends Component {
     }
 
     addBook = async (event) => {
-        console.log('ADD BOOK RUNNING!');
-        
+        this.bookPostedModal();
+
         console.log("state:", this.state);
         let request = {...this.state};
         console.log('Request: ', request);
@@ -261,12 +293,23 @@ class AddBook extends Component {
             data: saveImageParams
         })
 
+        // const formInfo = new FormData(this.forms)
+        // formInfo.append('images', this.forms[7].files[0], 'image1')
+        // request.files = formInfo;      
+        // console.log('request files:', request.files)
+        // console.log("state:", this.state);
+        // console.log('FORM DATA: ', data);
+        // data.append('data', request );
+        // console.log('FORM DATA AFTER APPEND', data);
+        // 'content-type': 'multipart/form-data'
+        // document.getElementsByClassName('modalPageContainer')[0].style.display = "block";        
         console.log('Add Book: ', this.state);
-        
-        this.bookPostedModal();
     };
     getBooks = (event) => {
         event.preventDefault();
+        if(!this.validateIsbn()){
+            return
+        }
         this.setState({hideIsbnSearchBar: true});
         axios.request({
             method: 'get',
@@ -305,11 +348,11 @@ class AddBook extends Component {
         // document.getElementsByName("ISBN")[0].value=`${this.state.ISBN}`
     }
 
-    clearData = (event) => {
-        event.preventDefault();
+    clearData = () => {
         this.setState({hideIsbnSearchBar: false});
         document.getElementsByClassName("modal-footer")[0].style.display = "none"
         document.getElementsByClassName("modal-body")[0].style.display = "none"
+        document.getElementById("errorISBN")[0].style.display = "none"
         document.getElementsByName("ModalISBN")[0].value = " "
         this.setState({
             ISBN: '',
@@ -318,8 +361,7 @@ class AddBook extends Component {
         })
     }
 
-    bookPostedModal=(event)=>{
-        debugger;
+    bookPostedModal=()=>{
         document.getElementsByClassName("modalIsbn")[0].style.display = "block"
         document.getElementsByClassName("google_book_image")[0].style.display = "none"
         document.getElementsByClassName("isbnModalBookDescription")[0].style.display = "none"
@@ -330,8 +372,7 @@ class AddBook extends Component {
         // document.getElementsByClassName("modal-footer")[0].style.display = "none"
     }
 
-    signInRequiredModal = (event)=>{
-        event.preventDefault();
+    signInRequiredModal = () =>{
         document.getElementsByClassName("modalIsbn")[0].style.display = "block"
         document.getElementsByClassName("google_book_image")[0].style.display = "none"
         document.getElementsByClassName("isbnModalBookDescription")[0].style.display = "none"
@@ -360,6 +401,7 @@ class AddBook extends Component {
                                 <form onSubmit={this.getBooks}className='form-isbn'>
                                     <div className = "input_label input-field">
                                         <input id="isbnInput" autoComplete="off" type="text" onChange={this.handleIsbnChange.bind(this)} name={"ModalISBN"} value={this.state.ISBN}/>
+                                        <div id="errorISBN"></div>
                                         <p>ISBN is required <a ref={e => this.tooltip = e} className="tooltipped" data-position="top" data-tooltip="We require ISBN number to ensure accuracy of book postings">why?</a></p>
                                         <label htmlFor="isbnInput" className="enterIsbnLabel"htmlFor="ISBN">ISBN</label>
                                     </div>
@@ -387,7 +429,8 @@ class AddBook extends Component {
                                     </div>
                                     <div className="signInRequiredModal">
                                         <p>You must be signed in to post a book</p>                                       
-                                        <Link to={"/SignIn"}><p className="btn-small btn waves-effect signInRequiredButtons"> Sign in </p></Link>
+                                        <Link to={"/SignIn"}><p className="btn-small btn waves-effect signInRequiredButtons"> Sign In </p></Link>
+                                        <Link to={"/SignUp"}><p className="btn-small btn waves-effect signInRequiredButtons"> Sign Up </p></Link>
                                     </div>
 
                             </div>
@@ -402,6 +445,15 @@ class AddBook extends Component {
                         </div>
                     </div>
                 </div>
+
+
+
+
+
+
+
+
+
 
                 <form className={'form-container '} onSubmit={this.validateInputsFields} encType="multipart/form-data">
                     <div id='input-container' className=' title-container row'>
