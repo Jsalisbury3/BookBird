@@ -325,15 +325,10 @@ a            }
             },
             body: saveImageParams
         })
-
-
-
-
         // const formInfo = new FormData(this.forms)
         // formInfo.append('images', this.forms[7].files[0], 'image1')
         // request.files = formInfo;
         
-
         // console.log('request files:', request.files)
         // console.log("state:", this.state);
         // console.log('FORM DATA: ', data);
