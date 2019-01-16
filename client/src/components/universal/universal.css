@@ -35,6 +35,7 @@ body{
     position: relative;
     left: 81%;
     height: 48px;
+    display: none;
 }
 /* .birdLogo{
     width:22%;
