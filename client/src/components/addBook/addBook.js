@@ -464,7 +464,8 @@ a            }
                                     </div>
                                     <div className="signInRequiredModal">
                                         <p>You must be signed in to post a book</p>                                       
-                                        <Link to={"/SignIn"}><p className="btn-small btn waves-effect signInRequiredButtons"> Sign in </p></Link>
+                                        <Link to={"/SignIn"}><p className="btn-small btn waves-effect signInRequiredButtons"> Sign In </p></Link>
+                                        <Link to={"/SignUp"}><p className="btn-small btn waves-effect signInRequiredButtons"> Sign Up </p></Link>
                                     </div>
 
                             </div>
