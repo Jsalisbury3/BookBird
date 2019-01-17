@@ -135,11 +135,12 @@ class AddBook extends Component {
             },
         ];
         if(test.length === test.filter(this.validateInputAndDisplayError).length) {
-            if(localStorage.Token) {
-                this.addBook();
-            } else {
-                this.signInRequiredModal();
-a            }
+            this.addBook();
+            // if(localStorage.Token) {
+             
+//             } else {
+//                 this.signInRequiredModal();
+// a            }
             
         }
     };
@@ -238,6 +239,7 @@ a            }
     }
 
     addBook = async (event) => {
+        
         this.bookPostedModal();
 
         console.log("state:", this.state);

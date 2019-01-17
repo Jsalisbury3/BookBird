@@ -175,7 +175,7 @@ webserver.get('/api/listings', (request, response) => {
 
 
 webserver.post('/api/addListing', (request, response) => {
-    const {title, condition, ISBN, author, price, comments } = request.body;
+    const {title, condition, ISBN, author, price, comments, bookImage } = request.body;
     console.log("ADD LISTING IS RUNNING");
     console.log('REQUEST BODY', request.body);
    
@@ -185,7 +185,7 @@ webserver.post('/api/addListing', (request, response) => {
         console.log(query)
         db.query(query, (err, data) => {
             if (!data.length) {
-                const query = "INSERT INTO `books` SET title = '" + title + "', ISBN = '" + ISBN + "', author = '" + author + "'";
+                const query = "INSERT INTO `books` SET title = '" + title + "', ISBN = '" + ISBN + "', author = '" + author + "', bookImage = '"+bookImage+"'";
                 console.log(query)
                 db.query(query, (err, data) => {
                     if(!err) {

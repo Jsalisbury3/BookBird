@@ -5,20 +5,42 @@ body{
 }
 .uni-header{
     z-index:2;
-    height: 12vh;
+    height: 8vh;
     width: 100vw;
     background-color: #5bc0de;
     color: white;
     
 }
-.birdLogo, .universityLogo{
+/* .birdLogo, .universityLogo{
     display:inline-block;
     height:100%;
-}
+} */
+
 .birdLogo{
+    width: 25%;
+    height: 91px;
+    position: relative;
+    bottom: 35%;
+}
+.birdLogoText{
+    width: 75%;
+    position: relative;
+    bottom: 61%;
+    height: 123%;
+    left: -11%;
+}
+.sfSymbol{
+    width: 16%;
+    bottom: 211%;
+    position: relative;
+    left: 81%;
+    height: 48px;
+    display: none;
+}
+/* .birdLogo{
     width:22%;
     background-color:#C2E5F9;
-}
+} */
 .universityLogo{
     width: 78%;
 
