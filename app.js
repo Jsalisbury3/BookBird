@@ -158,7 +158,7 @@ webserver.get('/api/testTwilio', (request, response) => {
 
 webserver.get('/api/listings', (request, response) => {
     db.connect(() => {
-        const query = "SELECT l.ID, l.book_condition, l.price, l.comments, l.book_id, b.title, b.ISBN, b.author FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.id";
+        const query = "SELECT l.ID, l.book_condition, l.price, l.comments, l.book_id, b.title, b.ISBN, b.author, b.bookImage FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.id";
         db.query(query, (err, data) => {
             if (!err) {
                 let output = {
