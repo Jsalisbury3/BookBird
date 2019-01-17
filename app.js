@@ -164,17 +164,9 @@ webserver.get('/api/listings', (request, response) => {
 
 
 webserver.post('/api/addListing', (request, response) => {
-<<<<<<< HEAD
     const {title, condition, ISBN, author, price, comments } = request.body;
     console.log("ADD LISTING IS RUNNING");
     console.log('REQUEST BODY', request.body);
-   
-=======
-    const {title, condition, ISBN, author, edition, price, comments, bookImage, photoArray,files} = request.body;
-    console.log("ADD LISTING IS RUNNING");
-    console.log('REQUEST BODY', request.body);
-    console.log('Photo Array: ', photoArray);
->>>>>>> 65b97de31fa3a2b7aaab360d78adeb47d5cac963
     const userIDToken = request.headers['token'];
     db.connect(() => {
         const query = "SELECT b.ID FROM `books` AS b WHERE b.ISBN = '" + ISBN + "'";
