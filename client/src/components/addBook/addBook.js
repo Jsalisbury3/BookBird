@@ -9,10 +9,11 @@ import 'material-icons';
 import {BASE_URL_GOOGLE_BOOKS, API_KEY} from '../../../../config/api';
 import SearchInput from './isbn_search';
 import FormData from 'form-data';
-import { accessKeyId, secretAccessKey } from '../../../../config/amzns3_creds';
+import {accessKeyId, secretAccessKey} from '../../../../config/amzns3_creds';
 import image2 from './images/488.jpg';
 import success from './images/successlogo.png';
 import {Link} from 'react-router-dom';
+import { debug } from 'util';
 
 class AddBook extends Component {
     constructor(props) {
@@ -28,10 +29,10 @@ class AddBook extends Component {
             price: '',
             comments: '',
             bookImage: undefined,
-            books:[],
-            photoArray:[],
-            loaded:0,
-            imgTagArray:[],
+            books: [],
+            photoArray: [],
+            loaded: 0,
+            imgTagArray: [],
             imageSource: '',
             hideIsbnSearchBar: false,
             showToolTip: false
@@ -40,9 +41,10 @@ class AddBook extends Component {
 
     componentDidMount = async () => {
         document.getElementsByClassName('modalIsbn')[0].style.display = "block";
-        document.getElementsByClassName("modal-footer")[0].style.display = "none"
-        document.getElementsByClassName("modal-body")[0].style.display = "none"
-        document.getElementsByClassName("bookSuccessInfo")[0].style.display = "none"
+        document.getElementsByClassName("modal-footer")[0].style.display = "none";
+        document.getElementsByClassName("modal-body")[0].style.display = "none";
+        document.getElementsByClassName("bookSuccessInfo")[0].style.display = "none";
+        document.getElementsByClassName("signInRequiredModal")[0].style.display = "none";
         await this.addPhotoToMultiPhotoContainer();
 
         console.log('Tooltip:', this.tooltip);
@@ -57,60 +59,94 @@ class AddBook extends Component {
     }
 
     handleInput = (event) => {
+        console.log('handle input called');
         this.setState({
             [event.target.name]: event.target.value,
         })
     };
 
-    validateInputsFields = (event) => {
-        event.preventDefault();
-        const test = [
-            {
+    validateIsbn=()=>{
+        const element = 'input[name=ModalISBN]'
+        var elementVal = document.querySelector(element).value;
+        const pattern = /[0-9]{10,13}/
+        // const errorMessage = "Invalid ISBN number"
+        
+        if(!pattern.test(elementVal)){
+            document.getElementById("errorISBN").innerHTML = "Invalid ISBN number"
+            return false
+        }else{
+            return true
+        }
+       
+
+        const isbnTest = [
+             {
                 element: 'input[name=ISBN]',
                 pattern: /[0-9]{13,}/,
                 errorMessage: "Invalid ISBN number",
                 index: 0
             },
+        ]
+
+
+
+
+    }
+
+    validateInputsFields = (event) => {
+        console.log('HELLO THERE')
+        event.preventDefault();
+        const test = [
+            // {
+            //     element: 'input[name=ISBN]',
+            //     pattern: /[0-9]{13,}/,
+            //     errorMessage: "Invalid ISBN number",
+            //     index: 0
+            // },
             {
                 element: 'input[name=condition]',
                 pattern: /^(New|Like New|Good|Worn|Thrashed)$/,
                 errorMessage: "Invalid Condition Selection",
-                index: 1
+                index: 0
             },
-            {
-                element: 'input[name=title]',
-                pattern: /[a-zA-Z0-9]{4,140}/,
-                errorMessage: "Invalid Title",
-                index: 2
-            },
-            {
-                element: 'input[name=author]',
-                pattern: /[a-zA-Z0-9]{4,140}/,
-                errorMessage: "Invalid Author",
-                index: 3
-            },
-            {
-                element: 'input[name=edition]',
-                pattern: /[0-9]{1,99}/,
-                errorMessage: "Whole Numbers Only",
-                index: 4
-            },
+            // {
+            //     element: 'input[name=title]',
+            //     pattern: /[a-zA-Z0-9]{4,140}/,
+            //     errorMessage: "Invalid Title",
+            //     index: 2
+            // },
+            // {
+            //     element: 'input[name=author]',
+            //     pattern: /[a-zA-Z0-9]{4,140}/,
+            //     errorMessage: "Invalid Author",
+            //     index: 3
+            // },
+            // {
+            //     element: 'input[name=edition]',
+            //     pattern: /[0-9]{1,99}/,
+            //     errorMessage: "Whole Numbers Only",
+            //     index: 4
+            // },
             {
                 element: 'input[name=price]',
                 pattern: /[0-9]{1,4}/,
                 errorMessage: "Whole Numbers Only",
-                index: 5
+                index: 1
             },
         ];
-    
         if(test.length === test.filter(this.validateInputAndDisplayError).length) {
-            this.addBook();
+            if(localStorage.Token) {
+                this.addBook();
+            } else {
+                this.signInRequiredModal();
+            }
+            
         }
     };
-    
+
     validateInputAndDisplayError = (test) => {
         let element = test.element;
-        if(element === "input[name=condition]") {
+        if (element === "input[name=condition]") {
             var selected = document.getElementById("mySelect").selectedIndex;
             var options = document.getElementById("mySelect").options;
             var elementVal = options[selected].value;
@@ -121,9 +157,9 @@ class AddBook extends Component {
         let pattern = test.pattern;
         let errorMessage = test.errorMessage;
         let index = test.index;
-        const result = pattern.test( elementVal );
-        if( !result ){
-            if(element !== "input[name=condition]") {
+        const result = pattern.test(elementVal);
+        if (!result) {
+            if (element !== "input[name=condition]") {
                 document.getElementsByClassName("error")[index].nextElementSibling.classList.remove("visible");
                 document.querySelector(element).nextSibling.innerHTML = errorMessage;
             } else {
@@ -131,25 +167,26 @@ class AddBook extends Component {
                 document.getElementById("conditionCheckMArk").classList.remove("visible");
             }
         } else {
-            if(element !== "input[name=condition]") {
+            if (element !== "input[name=condition]") {
                 document.getElementsByClassName("error")[index].nextElementSibling.classList.add("visible");
                 document.querySelector(element).nextSibling.innerHTML = '';
             } else {
                 document.getElementById("conditionError").innerHTML = '';
                 document.getElementById("conditionCheckMArk").classList.add("visible");
             }
-    
+
         }
-    
-        document.getElementsByClassName('modalPageContainer')[0].style.display = "block";
+
+        // document.getElementsByClassName('modalPageContainer')[0].style.display = "block";
         return result;
     };
 
-    addBook = async (event) => {
-        document.getElementsByClassName('modalPageContainer')[0].style.display = "block";
-        return result;
-    };
+    // addBook = async (event) => {
+    //     document.getElementsByClassName('modalPageContainer')[0].style.display = "block";
+    //     return result;
+    // };
     fileSelectedHandler = async event => {
+
         const reader = new FileReader();
         console.log(event.target.files[0])
         const newImage = event.target.files[0];
@@ -162,48 +199,17 @@ class AddBook extends Component {
         }
 
         reader.readAsDataURL(newImage)
-
+        debugger;
         await this.setState({
-            photoArray: [newImage,...this.state.photoArray]
+            photoArray: [newImage, ...this.state.photoArray]
         })
         this.addPhotoToMultiPhotoContainer();
-        
-
-        // let formData = new FormData();
-        // formData.append('userPhoto', event.target.files[0]);
-
-        // axios({
-        //     method: 'post',
-        //     url: '/api/photo', 
-        //     data: formData,
-        //     config: {
-        //         'headers': {
-        //             'Content-Type': 'multipart/form-data'
-        //         }
-        //     }
-        // })
-
-        // reader.onload= (e)=> {
-        //     console.log('image target results', e.target)
-        //     console.log('Image data', e.target.result)
-        //     const formData = {
-        //         file: e.target.result
-        //     }
-
-        //     axios({
-        //         method: 'post',
-        //         url: '/api/photo', 
-        //         userPhoto: e.target.result
-        //     })
-
-            
-        
     }
 
-    photoUploadHandler = ()=>{
+    photoUploadHandler = () => {
         this.setState({multiplePhoto: event.target.value});
     }
-   
+
 
     addPhotoToMultiPhotoContainer = async () => {
         const imgTagArray = this.state.photoArray.map((item, index) => {
@@ -231,8 +237,8 @@ class AddBook extends Component {
     }
 
     addBook = async (event) => {
-        console.log('ADD BOOK RUNNING!');
-        event.preventDefault();
+        this.bookPostedModal();
+
         console.log("state:", this.state);
         let request = {...this.state};
         console.log('Request: ', request);
@@ -245,11 +251,9 @@ class AddBook extends Component {
             },
             data: request,
         })
-
-        const { insertId } = listing.data.data
-
-        console.log('insert id:', listing)
-        console.log('photo type: ', this.state.photoArray[0].type );
+        try {
+        const {insertId} = listing.data.data;
+        console.log('insert id:', listing);
         // event.preventDefault();
         // let data = new FormData(this.refs.bookPost);
         // console.log('this forms', this.forms);
@@ -259,24 +263,24 @@ class AddBook extends Component {
             method: 'get',
             url: `/api/prepUpload?fileType=${this.state.photoArray[0].type}`,
             ContentType: this.state.photoArray[0].type
-            
+
         })
 
-        const { getUrl, key } = prep.data;
+        const {getUrl, key} = prep.data;
 
         console.log('add book key: ', key, insertId);
 
-        // await axios(getUrl, this.state.photoArray[0], {
-        //     headers: {
-        //         'Content-Type': this.state.photoArray[0].type
-        //     }
-        // })
+        await axios.put(getUrl, this.state.photoArray[0], {
+            headers: {
+                'Content-Type': this.state.photoArray[0].type
+            }
+        })
         let saveImageParams = {
             key,
             insertId,
             fileType: this.state.photoArray[0].type,
         }
-        
+
         console.log('saveImage Params: ', saveImageParams);
 
         await axios({
@@ -286,13 +290,12 @@ class AddBook extends Component {
             headers: {
                 token: localStorage.getItem('Token'),
             },
-            body: saveImageParams
+            data: saveImageParams
         })
+
         // const formInfo = new FormData(this.forms)
         // formInfo.append('images', this.forms[7].files[0], 'image1')
-        // request.files = formInfo;
-        
-
+        // request.files = formInfo;      
         // console.log('request files:', request.files)
         // console.log("state:", this.state);
         // console.log('FORM DATA: ', data);
@@ -300,18 +303,25 @@ class AddBook extends Component {
         // console.log('FORM DATA AFTER APPEND', data);
         console.log('Add Book: ', this.state);
         // 'content-type': 'multipart/form-data'
-        document.getElementsByClassName('modalPageContainer')[0].style.display = "block";
+        // document.getElementsByClassName('modalPageContainer')[0].style.display = "block";
+        this.bookPostedModal();
+    } catch {
+            console.log("Error posting book")
+        }
     };
     getBooks = (event) => {
         event.preventDefault();
+        if(!this.validateIsbn()){
+            return
+        }
         this.setState({hideIsbnSearchBar: true});
         axios.request({
             method: 'get',
             url: BASE_URL_GOOGLE_BOOKS + this.state.ISBN + API_KEY,
-
         }).then((response) => {
+            try {
+            console.log("response from getbooks api: ", response);
             this.setState({
-
                 books: response.data.items,
                 author: response.data.items[0].volumeInfo.authors[0],
                 title: response.data.items[0].volumeInfo.title,
@@ -320,9 +330,11 @@ class AddBook extends Component {
                 document.getElementsByClassName("modal-footer")[0].style.display = "block"
                 document.getElementsByClassName("modal-body")[0].style.display = "block"
             })
-        }).catch((error) => {
-            console.log('Error occured', error);
-        })
+        } catch {
+                console.log("error finding book info");
+                //add the modal back to find another book here
+            }
+        });
     }
 
     handleIsbnChange(event) {
@@ -342,11 +354,11 @@ class AddBook extends Component {
         // document.getElementsByName("ISBN")[0].value=`${this.state.ISBN}`
     }
 
-    clearData = (event) => {
-        event.preventDefault();
+    clearData = () => {
         this.setState({hideIsbnSearchBar: false});
         document.getElementsByClassName("modal-footer")[0].style.display = "none"
         document.getElementsByClassName("modal-body")[0].style.display = "none"
+        document.getElementById("errorISBN")[0].style.display = "none"
         document.getElementsByName("ModalISBN")[0].value = " "
         this.setState({
             ISBN: '',
@@ -355,20 +367,28 @@ class AddBook extends Component {
         })
     }
 
-    bookPostedModal=(event)=>{
-        event.preventDefault();
-        document.getElementsByClassName("modalIsbn")[0].style.display = "block"
-        document.getElementsByClassName("google_book_image")[0].style.display = "none"
-        document.getElementsByClassName("isbnModalBookDescription")[0].style.display = "none"
-        document.getElementsByClassName("submit_clear_buttons")[0].style.display = "none"
-        document.getElementsByClassName("bookSuccessInfo")[0].style.display = "block"
+    bookPostedModal = () => {
+        debugger;
+        document.getElementsByClassName("modalIsbn")[0].style.display = "block";
+        document.getElementsByClassName("google_book_image")[0].style.display = "none";
+        document.getElementsByClassName("isbnModalBookDescription")[0].style.display = "none";
+        document.getElementsByClassName("submit_clear_buttons")[0].style.display = "none";
+        document.getElementsByClassName("bookSuccessInfo")[0].style.display = "block";
         // document.getElementsByClassName("isbnModalContainer")[0].style.display = "block"
         // document.getElementsByClassName("modal-body")[0].style.display = "none"
         // document.getElementsByClassName("modal-footer")[0].style.display = "none"
     }
 
+    signInRequiredModal = () =>{
+        document.getElementsByClassName("modalIsbn")[0].style.display = "block"
+        document.getElementsByClassName("google_book_image")[0].style.display = "none"
+        document.getElementsByClassName("isbnModalBookDescription")[0].style.display = "none"
+        document.getElementsByClassName("submit_clear_buttons")[0].style.display = "none"
+        document.getElementsByClassName("signInRequiredModal")[0].style.display = "block"
+    }
 
-    acceptBookPosted=(event)=>{
+
+    acceptBookPosted = (event) => {
         event.preventDefault();
 
     }
@@ -388,20 +408,28 @@ class AddBook extends Component {
                                 <form onSubmit={this.getBooks}className='form-isbn'>
                                     <div className = "input_label input-field">
                                         <input id="isbnInput" autoComplete="off" type="text" onChange={this.handleIsbnChange.bind(this)} name={"ModalISBN"} value={this.state.ISBN}/>
+                                        <div id="errorISBN"></div>
                                         <p>ISBN is required <a ref={e => this.tooltip = e} className="tooltipped" data-position="top" data-tooltip="We require ISBN number to ensure accuracy of book postings">why?</a></p>
                                         <label htmlFor="isbnInput" className="enterIsbnLabel"htmlFor="ISBN">ISBN</label>
                                     </div>
                                     <div className='search_button_container'>
-                                        <button onClick={this.getBooks} type="button" className='isbnSearchButton btn btn-small waves-effect'>Search</button>
+                                        <button onClick={this.getBooks} type="button"
+                                                className='isbnSearchButton btn btn-small waves-effect'>Search
+                                        </button>
                                     </div>
                                 </form>
                             </div>
                             <div className="modal-body">
-                                    <img className="google_book_image" src={this.state.bookImage} alt=""/>
-                                    <div className="isbnModalBookDescription">
-                                        <p name="ModalISBN">ISBN: {this.state.ISBN}</p>
-                                        <p name="ModalAuthor">Author: {this.state.author}</p>
-                                        <p name="ModalTitle">Title: {this.state.title}</p>
+                                <img className="google_book_image" src={this.state.bookImage} alt=""/>
+                                <div className="isbnModalBookDescription">
+                                    <p name="ModalISBN">ISBN: {this.state.ISBN}</p>
+                                    <p name="ModalAuthor">Author: {this.state.author}</p>
+                                    <p name="ModalTitle">Title: {this.state.title}</p>
+                                </div>
+                                <div className="bookSuccessInfo">
+                                    <p className="successModalText">Success!</p>
+                                    <div className="successImage">
+                                        <img src={success}/>
                                     </div>
                                     <div className="bookSuccessInfo">
                                         <p className="successModalText">Success!</p>
@@ -413,12 +441,30 @@ class AddBook extends Component {
                                             <p className="btn-small btn waves-effect white"><Link to={"/"}>Accept</Link> </p>
                                         </div>  
                                     </div>
+                                    <div className="signInRequiredModal">
+                                        <p>You must be signed in to post a book</p>                                       
+                                        <Link to={"/SignIn"}><p className="btn-small btn waves-effect signInRequiredButtons"> Sign In </p></Link>
+                                        <Link to={"/SignUp"}><p className="btn-small btn waves-effect signInRequiredButtons"> Sign Up </p></Link>
+                                    </div>
+                                </div>
+                                <div className="signInRequiredModal">
+                                    <p>You must be signed in to post a book</p>
+                                    <Link to={"/SignIn"}><p
+                                        className="btn-small btn waves-effect signInRequiredButtons"> Sign in </p>
+                                    </Link>
+                                </div>
+
                             </div>
                             <div className="modal-footer">
                                 <form>
                                     <div className="submit_clear_buttons">
-                                        <button className="accept_button btn-small btn waves-effect" type="button" onClick={this.populateData}> Accept </button>
-                                        <button onClick={this.clearData} className="clear_button btn-small btn waves-effect" type="button">Try Again</button>
+                                        <button className="accept_button btn-small btn waves-effect" type="button"
+                                                onClick={this.populateData}> Accept
+                                        </button>
+                                        <button onClick={this.clearData}
+                                                className="clear_button btn-small btn waves-effect" type="button">Try
+                                            Again
+                                        </button>
                                     </div>
                                 </form>
                             </div>
@@ -426,30 +472,43 @@ class AddBook extends Component {
                     </div>
                 </div>
 
+
+
+
+
+
+
+
+
+
                 <form className={'form-container '} onSubmit={this.validateInputsFields} encType="multipart/form-data">
                     <div id='input-container' className=' title-container row'>
                         <div id={"conditionError"} className={"error"}></div>
-                        <div id={"conditionCheckMArk"} className={"checkMark markCondition material-icons"}>check_circle_outline</div>
+                        <div id={"conditionCheckMArk"}
+                             className={"checkMark markCondition material-icons"}>check_circle_outline
+                        </div>
                         <div className='input-field '>
-                            <input name="title"  id='title' type='text' className="inputs col s10 push-s1" onChange={this.handleInput}/>
-                            <label className='label-placeholder' htmlFor='title' >Title</label>
+                            <h6 className='input-header'>Title</h6>
+                            <input name="title" id='title' type='text' className="inputs col s10 push-s1"
+                                   onChange={this.handleInput}/>
                         </div>
                     </div>
                     <div id='input-container' className=' title-container row'>
                         <div className={"error"}></div>
                         <div className={"checkMark markTitle material-icons"}>check_circle_outline</div>
                         <div className='input-field'>
-                            <input name="author" id='author' type='text' className="inputs col s10 push-s1"  onChange={this.handleInput}/>
-                            <label className='label-placeholder'  htmlFor={'author'}>Author</label>
+                            <h6 className='input-header'>Author</h6>
+                            <input name="author" id='author' type='text' className="inputs col s10 push-s1"
+                                   onChange={this.handleInput}/>
                         </div>
                     </div>
-                    <div  id='input-container' className='title-container row'>
+                    <div id='input-container' className='title-container row'>
                         <div className={"error"}></div>
                         <div className={"checkMark markEdition material-icons"}>check_circle_outline</div>
                         <div className='input-field'>
-                        <input name="price"  id='price' type='text' className="inputs col s10 push-s1" onChange={this.handleInput}/>
-                        <label className='label-placeholder'  htmlFor={'price'}>Price *</label>
-
+                            <input name={"price"} id={'price'} type='text' className={"inputs col s10 push-s1"}
+                                   onChange={this.handleInput}/>
+                            <label className='label-placeholder' htmlFor={'price'}>Price</label>
                         </div>
                     </div>
                     <div id='input-container condition-container' className='title-container row'>
@@ -467,12 +526,13 @@ class AddBook extends Component {
                     <div className={"checkMark markPrice material-icons"}>check_circle_outline</div>
                     <h5 className='sellers-comments-tag'> Sellers Comments</h5>
                     <div className={'comment-text-area'}>
-                        <div  className='row'>
-                        <div className='input-field'>
-                        <textarea name={"comments"} id='comment-box' className={"inputs last "} onChange={this.handleInput}/>
-                            <h5 className='optional-tag'>*Optional</h5>
-                    </div>
-                    </div>
+                        <div className='row'>
+                            <div className='input-field'>
+                                <textarea name={"comments"} id='comment-box' className={"inputs last "}
+                                          onChange={this.handleInput}/>
+                                <h5 className='optional-tag'>*Optional</h5>
+                            </div>
+                        </div>
                     </div>
 
                     {this.state.showToolTip && <Tooltip></Tooltip>}
@@ -488,16 +548,16 @@ class AddBook extends Component {
                     {/*<input name={"edition"} placeholder={"*Edition"} className={"inputs"} onChange={this.handleInput}/>*/}
 
                     <div className='submit-photo-container'>
-                    <label  id='add-photo-icon' className="  btn waves-effect waves-light" htmlFor="photoInput"><i
-                        className={"material-icons"}>add_a_photo</i></label>
-                    <input id="photoInput" type="file" name="photo" capture="camera" accept="image/*"
-                           onChange={this.fileSelectedHandler}/>
+                        <label id='add-photo-icon' className="  btn waves-effect waves-light" htmlFor="photoInput"><i
+                            className={"material-icons"}>add_a_photo</i></label>
+                        <input id="photoInput" type="file" name="photo" capture="camera" accept="image/*"
+                               onChange={this.fileSelectedHandler}/>
                     </div>
                     <div className="upload-image-container">
                         {this.state.imgTagArray}
                     </div>
                     <div className='post-button-container'>
-                    <button onClick={this.bookPostedModal} type = "button" className={"POST"}>Post</button>
+                        <button className={"POST"}>Post</button>
                     </div>
                 </form>
             </div>
