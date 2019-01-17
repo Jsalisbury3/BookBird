@@ -5,7 +5,6 @@ import {withRouter} from 'react-router-dom';
 import './sign.css'
 import 'materialize-css/dist/css/materialize.min.css'
 import 'materialize-css'
-import UserAuth from '../../HOC/UserAuth'
 import axios from "axios/index";
 
 
@@ -28,4 +27,4 @@ class Signin extends Component{
     }
 }
 
-export default withRouter(Signin); //withRouter(Signin)
+export default withRouter(Signin);
