@@ -7,4 +7,8 @@ amzns3_creds.js
 .DS_Store
 .idea
 token-hash.js
+twilio_token.js
+twilio.sdi.js
 .idea/workspace.xml
+.vscode
+
