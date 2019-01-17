@@ -1,7 +1,7 @@
 import types from '../actions/types';
 
 const DEFAULT_STATE = {
-    bookIdInfo: [],
+    listingInfo: [],
 };
 
 function bookIdReducer(state = DEFAULT_STATE, action) {
@@ -11,7 +11,7 @@ function bookIdReducer(state = DEFAULT_STATE, action) {
             console.log("book_Id Reducer Action: ", action);
             return {
                 ...state,
-                bookIdInfo: {...action.payload},
+                listingInfo: {...action.payload},
             }
         default:
             return state;

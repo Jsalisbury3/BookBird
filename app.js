@@ -12,9 +12,10 @@ const mysql_creds = require('./config/mysql_creds.js');
 const mysql = require('mysql');
 const db = mysql.createConnection(mysql_creds);
 const hash = require('./config/token-hash');
-// const Tnumber = require('twilioNumber');
-// const client = require('twilio');
-// const cientT = client('sid', 'key');
+
+const  accountSid = require('./config/twilio.sdi');
+const authToken = require('./config/twilio_token');
+const twilio = require('twilio')(accountSid, authToken);
 
 AWS.config.update( {
     accessKeyId, 
@@ -27,6 +28,17 @@ const s3 = new AWS.S3({
   });
 
 const awsUpload = require('./services/file-upload');
+webserver.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
+webserver.use(express.static(__dirname + '/client/dist'));
+webserver.use(express.urlencoded({extended: false}));
+webserver.use(express.json());
+webserver.use(bodyParser.json())
+webserver.use(cors());
 
 webserver.get('/api/prepUpload', function(request, response) {
 
@@ -86,8 +98,7 @@ webserver.post('/api/save-image', function (request, response) {
     console.log('request: ', request.query)
     const { key, listingId, fileType } = request.query;
     console.log('hello save image')
-    // console.log('KEEY: ', key);
-    // console.log('Listing ID: ', insertId);
+    
     db.connect( () => {
         console.log('Save Item')
         const query = "INSERT INTO `images` SET url='"+key+"',listing_id="+listingId+",imageType='"+fileType+"'";
@@ -106,18 +117,6 @@ webserver.post('/api/save-image', function (request, response) {
     })
 });
 
-webserver.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
-
-webserver.use(express.static(__dirname + '/client/dist'));
-webserver.use(express.urlencoded({extended: false}));
-webserver.use(express.json());
-webserver.use(bodyParser.json())
-webserver.use(cors());
-
 
 
 // webserver.post('/twilio', (request, reponse) => {
@@ -130,9 +129,36 @@ webserver.use(cors());
 //     })
 // });
 
+webserver.get('/api/testTwilio', (request, response) => {
+    twilio.messages.create({
+        body: 'Hello from Node',
+        to: '+19499226065',  // Text this number
+        from: '+15108226645' // From a valid Twilio number
+    })
+        .then((message) => console.log(message.sid));
+});
+
+
+
+
+
+
+    //     twilio.sendMessage({
+//         to: '+19499226065',
+//         from : '+15108226645',
+//         body: 'message from twillio'
+//     }, (err, data) => {
+//         if(!err) {
+//             console.log('twilio success data', data);
+//         } else {
+//             console.log("twilio err", err);
+//         }
+//     })
+// })
+
 webserver.get('/api/listings', (request, response) => {
     db.connect(() => {
-        const query = "SELECT l.book_condition, l.price, l.comments, l.book_id, b.title, b.ISBN, b.author, b.edition FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.id";
+        const query = "SELECT l.ID, l.book_condition, l.price, l.comments, l.book_id, b.title, b.ISBN, b.author FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.id";
         db.query(query, (err, data) => {
             if (!err) {
                 let output = {
@@ -149,33 +175,9 @@ webserver.get('/api/listings', (request, response) => {
 
 
 webserver.post('/api/addListing', (request, response) => {
-    const {title, condition, ISBN, author, edition, price, comments, images, photoArray,files} = request.body;
+    const {title, condition, ISBN, author, price, comments } = request.body;
     console.log("ADD LISTING IS RUNNING");
     console.log('REQUEST BODY', request.body);
-    console.log('Photo Array: ', photoArray);
-
-    // const output={
-    //     success: true,
-    //     data: response,
-    // }
-    // response.send(output);
-
-    
-
-    // axios({
-    //     method: 'post',
-    //     url: 'http://localhost:3000/api/file-upload',
-    //     image: request.body.fileString[0]
-    // }).then( (response)=> {
-
-    //     const output={
-    //         success: true,
-    //         data: response
-    //     }
-    //     response.send(output);
-    //     // console.log("WORKED!", response)
-        
-    // })
    
     const userIDToken = request.headers['token'];
     db.connect(() => {
@@ -183,12 +185,13 @@ webserver.post('/api/addListing', (request, response) => {
         console.log(query)
         db.query(query, (err, data) => {
             if (!data.length) {
-                const query = "INSERT INTO `books` SET title = '" + title + "', ISBN = '" + ISBN + "', author = '" + author + "', edition = " + edition + "";
+                const query = "INSERT INTO `books` SET title = '" + title + "', ISBN = '" + ISBN + "', author = '" + author + "'";
+                console.log(query)
                 db.query(query, (err, data) => {
                     if(!err) {
                         console.log('INSERT INTO LISTINGS')
                         console.log('Listings Data: ', data)
-                        const query = "INSERT INTO `listing` SET listing.book_id = "+data[0].ID+", price = '"+ price +"', book_condition = '"+condition+"', comments = '"+comments+"', accounts_id = '1', public_id='21'";
+                        const query = "INSERT INTO `listing` SET listing.book_id = "+data.insertId+", price = '"+ price +"', book_condition = '"+condition+"', comments = '"+comments+"', accounts_id = '1', public_id='21'";
                         db.query(query, (err, response) => {
                             if (!err) {
                                 console.log("all queries are good")
@@ -219,20 +222,6 @@ webserver.post('/api/addListing', (request, response) => {
                 })                    
             }
         })
-
-        //         if(!err) {
-        //             let output = {
-        //                 success: true,
-        //                 data: data,
-        //             };
-
-        //             response.send(output);
-                    
-        //         } else {
-        //             console.log("error", err);
-        //         }
-        //     });
-        // })
     });
 });
 
@@ -255,13 +244,15 @@ webserver.post('/api/filter', (request, response) => {
 })
 
 
-webserver.get('/api/BookInfoIndex/:bookId', (request, response) => {
+webserver.get('/api/BookInfoIndex/:ID', (request, response) => {
     console.log("listing running");
     console.log("HEYYYYYOOO", request.body);
     console.log(request.params);
 
     db.connect(() => {
-        const query = "SELECT l.ID, l.accounts_id, l.book_condition, l.price, l.comments, l.book_id, b.ID, b.title, b.author, b.edition, b.ISBN, a.email, a.ID FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id WHERE l.`book_id` = " + request.params.bookId + "";
+        // const query = "SELECT l.ID, l.accounts_id, l.book_condition, l.price, l.comments, l.book_id, b.ID, b.title, b.author, b.ISBN, a.email, a.ID FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id WHERE l.`book_id` = " + request.params.bookId + "";
+        const query = "SELECT l.ID AS listingID, l.accounts_id, l.book_condition, l.price, l.comments, l.book_id, b.ID AS bookID, b.title, b.author, b.ISBN, a.email, a.ID FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id WHERE l.ID = "+request.params.ID+"";
+        console.log(query);
         db.query(query, (err, data) => {
             if (!err) {
                 console.log("bookidData: ", data);
