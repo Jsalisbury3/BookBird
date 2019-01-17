@@ -7,7 +7,6 @@ import {bindActionCreators} from "redux";
 import signInReducer from "../../reducers/sign_in_reducer";
 import {Link} from 'react-router-dom';
 
-
 class SignInValidation extends Component {
 
     componentDidUpdate() {
