@@ -7,3 +7,4 @@ amzns3_creds.js
 .DS_Store
 .idea
 token-hash.js
+.idea/workspace.xml
