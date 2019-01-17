@@ -4,14 +4,13 @@ import {Link} from 'react-router-dom';
 
 
 export default props => {
-    const {title, edition, author, book_condition, ID, price, book_id, book_image} = props.about;
-    const bucket = 'https://s3-us-west-2.amazonaws.com/book-bird-test-bucket/';
+    const {title, edition, author, book_condition, ID, price, book_id, bookImage} = props.about;
     console.log("PROPS ABOUTTTTT: ", props.about);
     return (
         <Link to={`/BookInfoIndex/${ID}`}>
             <div className='listItem'>
                 <div className='itemImageContainer'>
-                    <img className='itemImage' src={`${bucket}${book_image}`}/>
+                    <img className='itemImage' src={bookImage}/>
                 </div>
                 <div className='itemDetails'>
                     <p>Title: {title}</p>

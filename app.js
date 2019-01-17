@@ -144,10 +144,7 @@ webserver.post('/api/testTwilio', (request, response) => {
 webserver.get('/api/listings', (request, response) => {
     console.log("IM RUUUUUNNNIIINNNNGGGG");
     db.connect(() => {
-        // const query = "SELECT l.ID, l.book_condition, l.price, l.comments, l.book_id, b.title, b.ISBN, b.author, i.url AS book_image FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.id JOIN `images` AS i ON i.listing_id = l.ID";
-        let query = "SELECT l.ID, l.book_condition, l.price, l.comments, l.book_id, b.title, b.ISBN, b.author AS book_image FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.id";
-        query = escape_quotes(query);
-        console.log(query);
+        const query = "SELECT l.ID, l.book_condition, l.price, l.comments, l.book_id, b.title, b.ISBN, b.author, b.bookImage FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.id";
         db.query(query, (err, data) => {
             if (!err) {
                 let output = {
@@ -164,7 +161,7 @@ webserver.get('/api/listings', (request, response) => {
 
 
 webserver.post('/api/addListing', (request, response) => {
-    const {title, condition, ISBN, author, price, comments } = request.body;
+    const {title, condition, ISBN, author, price, comments, bookImage } = request.body;
     console.log("ADD LISTING IS RUNNING");
     console.log('REQUEST BODY', request.body);
     const userIDToken = request.headers['token'];
@@ -174,9 +171,8 @@ webserver.post('/api/addListing', (request, response) => {
         console.log(query);
         db.query(query, (err, data) => {
             if (!data.length) {
-                const query = "INSERT INTO `books` SET title = '" + title + "', ISBN = '" + ISBN + "', author = '" + author + "'";
-                // escape_quotes(query);
-                console.log(query);
+                const query = "INSERT INTO `books` SET title = '" + title + "', ISBN = '" + ISBN + "', author = '" + author + "', bookImage = '"+bookImage+"'";
+                console.log(query)
                 db.query(query, (err, data) => {
                     if(!err) {
                         console.log('INSERT INTO LISTINGS');

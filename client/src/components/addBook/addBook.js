@@ -237,6 +237,7 @@ class AddBook extends Component {
     }
 
     addBook = async (event) => {
+        
         this.bookPostedModal();
 
         console.log("state:", this.state);
