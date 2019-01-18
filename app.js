@@ -12,8 +12,9 @@ const mysql_creds = require('./config/mysql_creds.js');
 const mysql = require('mysql');
 const db = mysql.createConnection(mysql_creds);
 const hash = require('./config/token-hash');
-const escape_quotes = require('escape-quotes');
+// const escape_quotes = require('escape-quotes');
 const passwordHash = require('sha256');
+const MessagingResponse = require('twilio').twiml.MessagingResponse;
 
 const  accountSid = require('./config/twilio.sdi');
 const authToken = require('./config/twilio_token');
@@ -120,24 +121,36 @@ webserver.post('/api/save-image', function (request, response) {
 });
 
 
-webserver.get('/api/testTwilio', (request, response) => {
+webserver.post('/api/testTwilio', (request, response) => {
     twilio.messages.create({
         body: 'Hello from Node',
         to: '+19499226065',  // Text this number
         from: '+15108226645' // From a valid Twilio number
-    })
-        .then((message) => console.log(message.sid));
+    }).then((message) => console.log(message.sid));
 });
 
-webserver.post('/api/testTwilio', (request, response) => {
+webserver.post('/api/', (request, response) => {
     const MessagingResponse = require('twilio').twiml.MessagingResponse;
     const Userresponse = new MessagingResponse();
     const message = Userresponse.message();
     message.body('Hello World!');
     response.redirect('http://localhost:3000/api/testTwilio');
-
     console.log(response.toString());
+});
 
+webserver.post('/api/userResponse', (request, response) => {
+    const twiml = new MessagingResponse();
+    if (request.body.Body == 'hello') {
+        twiml.message('Hi!');
+    } else if (request.body.Body == 'bye') {
+        twiml.message('Goodbye');
+    } else {
+        twiml.message(
+            'No Body param match, Twilio sends this in the request to your server.'
+        );
+    }
+    response.writeHead(200, { 'Content-Type': 'text/xml' });
+    response.end(twiml.toString());
 });
 
 
@@ -228,8 +241,7 @@ webserver.post('/api/addListing', (request, response) => {
 webserver.post('/api/filter', (request, response) => {
     const {ISBN} = request.body;
     db.connect(() => {
-        let query = "SELECT b.title, b.ISBN, b.author, l.price, l.book_condition FROM `books` AS b JOIN `listing` AS l ON l.book_id = b.ID WHERE b.title LIKE '%" + ISBN + "%' OR b.ISBN LIKE '%" + ISBN + "%' OR b.author LIKE '%" + ISBN + "%' "
-        // query = escape_quotes(query);
+        let query = "SELECT b.bookImage, b.title, b.ISBN, b.author, l.price, l.book_condition FROM `books` AS b JOIN `listing` AS l ON l.book_id = b.ID WHERE b.title LIKE '%" + ISBN + "%' OR b.ISBN LIKE '%" + ISBN + "%' OR b.author LIKE '%" + ISBN + "%' ";
         db.query(query, (err, data) => {
             if (!err) {
                 let output = {
