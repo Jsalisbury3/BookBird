@@ -14,6 +14,7 @@ import image2 from './images/488.jpg';
 import success from './images/successlogo.png';
 import {Link} from 'react-router-dom';
 import { debug } from 'util';
+import loadingGif from './images/loadingGif.gif'
 
 class AddBook extends Component {
     constructor(props) {
@@ -45,6 +46,7 @@ class AddBook extends Component {
         document.getElementsByClassName("modal-body")[0].style.display = "none";
         document.getElementsByClassName("bookSuccessInfo")[0].style.display = "none";
         document.getElementsByClassName("signInRequiredModal")[0].style.display = "none";
+        document.getElementById("loadingGif").style.visibility = 'hidden';
         await this.addPhotoToMultiPhotoContainer();
 
         console.log('Tooltip:', this.tooltip);
@@ -253,6 +255,7 @@ class AddBook extends Component {
             data: request,
         })
         try {
+
         const {insertId} = listing.data.data;
         console.log('insert id:', listing);
         // event.preventDefault();
@@ -322,13 +325,16 @@ class AddBook extends Component {
             url: BASE_URL_GOOGLE_BOOKS + this.state.ISBN + API_KEY,
         }).then((response) => {
             try {
+            
             console.log("response from getbooks api: ", response);
+            document.getElementById('loadingGif').style.visibility = 'visible';
             this.setState({
                 books: response.data.items,
                 author: response.data.items[0].volumeInfo.authors[0],
                 title: response.data.items[0].volumeInfo.title,
                 bookImage: response.data.items[0].volumeInfo.imageLinks.smallThumbnail
             }, () => {
+                // document.getElementById('loadingGif').style.visibility = 'hidden';
                 document.getElementsByClassName("modal-footer")[0].style.display = "block"
                 document.getElementsByClassName("modal-body")[0].style.display = "block"
             })
@@ -401,6 +407,7 @@ class AddBook extends Component {
 
         return (
             <div className={"addBook-container"}>
+           
                 <div className="isbnModalContainer">
                     <div id="modal1" className="modalIsbn">
                         <div className="modal-content">
@@ -477,17 +484,8 @@ class AddBook extends Component {
                         </div>
                     </div>
                 </div>
-
-
-
-
-
-
-
-
-
-
                 <form className={'form-container '} onSubmit={this.validateInputsFields} encType="multipart/form-data">
+                    <img src={loadingGif} alt="loadingGif" id="loadingGif"/>
                     <div id='input-container' className=' title-container row'>
                         <div id={"conditionError"} className={"error"}></div>
                         <div id={"conditionCheckMArk"}

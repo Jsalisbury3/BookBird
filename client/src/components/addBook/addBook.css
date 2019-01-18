@@ -6,6 +6,15 @@
     left: 0;
     background-color: rgba(0,0,0,0.75);
 }
+
+#loadingGif{
+    z-index: 5;
+    visibility: visible;
+    position: absolute;
+    /* width: 20%; */
+    height: 33%;
+    top: 28%;
+}
 .isbnModalContainer{
 
 }
