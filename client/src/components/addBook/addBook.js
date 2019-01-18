@@ -59,6 +59,7 @@ class AddBook extends Component {
     }
 
     handleInput = (event) => {
+        debugger;
         console.log('handle input called');
         this.setState({
             [event.target.name]: event.target.value,
@@ -72,7 +73,7 @@ class AddBook extends Component {
         // const errorMessage = "Invalid ISBN number"
         
         if(!pattern.test(elementVal)){
-            document.getElementById("errorISBN").innerHTML = "Invalid ISBN number"
+            document.getElementById("errorISBN").innerHTML = "Invalid ISBN number";
             return false
         }else{
             return true

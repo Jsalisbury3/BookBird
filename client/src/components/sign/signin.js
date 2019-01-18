@@ -15,6 +15,9 @@ class Signin extends Component{
             this.props.history.push('/UserProfile');
         }
     }
+//     handleSignInInput = (event) => {
+//
+// }
 
     render(){
         return(

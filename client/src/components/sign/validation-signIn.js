@@ -73,8 +73,10 @@ function validate(values) {
     const {Email, Password} = values;
     console.log("emaillllllllllllllll: ", Email);
     const errors = {};
-    const emailRegex = /[a-z]{4,12}/; //"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
-    const passwordRegex = /[a-z]{4,12}/; //(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+    const emailRegex =  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+        // /[a-z]{4,12}/; //"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+    const passwordRegex = /(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{8,10})$/;
+        // /[a-z]{4,12}/; //(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
     if (!emailRegex.test(Email)) {
         errors.Email = 'please enter a valid email';
     }
