@@ -14,6 +14,7 @@ import image2 from './images/488.jpg';
 import success from './images/successlogo.png';
 import {Link} from 'react-router-dom';
 import { debug } from 'util';
+import loadingGif from './images/loadingGif.gif'
 
 class AddBook extends Component {
     constructor(props) {
@@ -44,6 +45,7 @@ class AddBook extends Component {
         document.getElementsByClassName("modal-body")[0].style.display = "none";
         document.getElementsByClassName("bookSuccessInfo")[0].style.display = "none";
         document.getElementsByClassName("signInRequiredModal")[0].style.display = "none";
+        document.getElementById("loadingGif").style.visibility = 'hidden';
         await this.addPhotoToMultiPhotoContainer();
         this.instances = M.Tooltip.init(this.tooltip);
     };
@@ -211,7 +213,6 @@ class AddBook extends Component {
         });
     }
     addBook = async (event) => {
-        
         this.bookPostedModal();
 
         console.log("state:", this.state);
@@ -227,6 +228,7 @@ class AddBook extends Component {
             data: request,
         })
         try {
+
         const {insertId} = listing.data.data;
         console.log('insert id:', listing);
         // event.preventDefault();
@@ -275,13 +277,16 @@ class AddBook extends Component {
         console.log('Add Book: ', this.state);
         // 'content-type': 'multipart/form-data'
         // document.getElementsByClassName('modalPageContainer')[0].style.display = "block";
-        this.bookPostedModal();
+
+        // this.bookPostedModal();
     } catch {
             console.log("Error posting book")
+
         }
     };
     getBooks = (event) => {
         event.preventDefault();
+        document.getElementById('loadingGif').style.visibility = 'visible';
         if(!this.validateIsbn()){
             return
         }
@@ -291,6 +296,7 @@ class AddBook extends Component {
             url: BASE_URL_GOOGLE_BOOKS + this.state.ISBN + API_KEY,
         }).then((response) => {
             try {
+            
             console.log("response from getbooks api: ", response);
             this.setState({
                 books: response.data.items,
@@ -298,6 +304,8 @@ class AddBook extends Component {
                 title: response.data.items[0].volumeInfo.title,
                 bookImage: response.data.items[0].volumeInfo.imageLinks.smallThumbnail
             }, () => {
+                // document.getElementById('loadingGif').style.visibility = 'hidden';
+                document.getElementById('loadingGif').style.visibility = 'hidden';
                 document.getElementsByClassName("modal-footer")[0].style.display = "block"
                 document.getElementsByClassName("modal-body")[0].style.display = "block"
             })
@@ -334,6 +342,7 @@ class AddBook extends Component {
         })
     }
     bookPostedModal = () => {
+        document.getElementById('loadingGif').style.visibility = 'hidden';
         document.getElementsByClassName("modalIsbn")[0].style.display = "block";
         document.getElementsByClassName("google_book_image")[0].style.display = "none";
         document.getElementsByClassName("isbnModalBookDescription")[0].style.display = "none";
@@ -372,7 +381,7 @@ class AddBook extends Component {
                                     </div>
                                 </form>
                             </div>
-                            <div className="modal-body">aa
+                            <div className="modal-body">
                                 <img className="google_book_image" src={this.state.bookImage} alt=""/>
                                 <div className="isbnModalBookDescription">
                                     <p name="ModalISBN">ISBN: {this.state.ISBN}</p>
@@ -385,18 +394,14 @@ class AddBook extends Component {
                                         <img src={success}/>
                                     </div>
                                     <div className="successModalButtons">
-                                        <button onClick={this.clearData}type="button"className= "btn-small btn waves-effect postAgainButton">Post Again</button>
-                                        <p className="btn-small btn waves-effect white"><Link to={"/"}>Accept</Link> </p>
-                                    </div>  
-                                    <div className="successModalButtons">
                                             <button onClick={this.clearData}type="button"className= "btn-small btn waves-effect postAgainButton">Post Again</button>
                                             <p className="btn-small btn waves-effect white"><Link to={"/"}>Accept</Link> </p>
-                                    </div> 
-                                </div>                                 
+                                    </div>  
+                                </div>
                                 <div className="signInRequiredModal">
-                                        <p>You must be signed in to post a book</p>                                       
-                                        <Link to={"/SignIn"}><p className="btn-small btn waves-effect signInRequiredButtons"> Sign In </p></Link>
-                                        <Link to={"/SignUp"}><p className="btn-small btn waves-effect signInRequiredButtons"> Sign Up </p></Link>
+                                    <p>You must be signed in to post a book</p>
+                                    <Link to={"/SignIn"}><p className="btn-small btn waves-effect signInRequiredButtons"> Sign In </p> </Link>
+                                    <Link to={"/SignUp"}><p className="btn-small btn waves-effect signInRequiredButtons"> Sign Up </p> </Link>
                                 </div>
                             </div>
                             <div className="modal-footer">
@@ -416,6 +421,7 @@ class AddBook extends Component {
                     </div>
                 </div>
                 <form className={'form-container '} onSubmit={this.validateInputsFields} encType="multipart/form-data">
+                    <img src={loadingGif} alt="loadingGif" id="loadingGif"/>
                     <div id='input-container' className=' title-container row'>
                         <div id={"conditionError"} className={"error"}></div>
                         <div id={"conditionCheckMArk"}
