@@ -199,7 +199,6 @@ webserver.post('/api/addListing', (request, response) => {
                         console.log(query)
                         db.query(query, (err, data) => {
                             if (!err) {
-
                                 console.log('INSERT INTO LISTINGS');
                                 console.log('Listings Data: ', data);
                                 const query = "INSERT INTO `listing` SET listing.book_id = " + data.insertId + ", price = '" + price + "', book_condition = '" + condition + "', comments = '" + comments + "', accounts_id = '"+ userId +"', public_id='21'";
