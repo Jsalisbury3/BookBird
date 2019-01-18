@@ -14,7 +14,6 @@ export default props => {
                 </div>
                 <div className='itemDetails'>
                     <p>Title: {title}</p>
-                    <p>Edition: {edition}</p>
                     <p>Author: {author}</p>
                     <p>Condition: {book_condition}</p>
                 </div>

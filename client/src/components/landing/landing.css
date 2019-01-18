@@ -23,20 +23,20 @@
     width:90%;
 }
 .itemDetails{
-    padding:1%;
+    padding:3% 1% 1% 1%;
     display:inline-block;
     height:100%;
     width:50%;
 }
 .itemDetails>p:first-of-type{
-    height:36px;
+    height:40px;
     overflow:hidden;
     margin:1%;
 }
 .itemDetails>p{
     margin:1%;
     overflow:hidden;
-    height: 18px;
+    height: 20px;
 }
 .itemPrice{
     vertical-align: top;
