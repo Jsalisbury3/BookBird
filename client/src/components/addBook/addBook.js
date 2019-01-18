@@ -239,7 +239,6 @@ class AddBook extends Component {
     }
 
     addBook = async (event) => {
-        
         this.bookPostedModal();
 
         console.log("state:", this.state);
@@ -308,7 +307,8 @@ class AddBook extends Component {
         console.log('Add Book: ', this.state);
         // 'content-type': 'multipart/form-data'
         // document.getElementsByClassName('modalPageContainer')[0].style.display = "block";
-        this.bookPostedModal();
+
+        // this.bookPostedModal();
     } catch {
             console.log("Error posting book")
 
@@ -316,6 +316,7 @@ class AddBook extends Component {
     };
     getBooks = (event) => {
         event.preventDefault();
+        document.getElementById('loadingGif').style.visibility = 'visible';
         if(!this.validateIsbn()){
             return
         }
@@ -327,7 +328,6 @@ class AddBook extends Component {
             try {
             
             console.log("response from getbooks api: ", response);
-            document.getElementById('loadingGif').style.visibility = 'visible';
             this.setState({
                 books: response.data.items,
                 author: response.data.items[0].volumeInfo.authors[0],
@@ -335,6 +335,7 @@ class AddBook extends Component {
                 bookImage: response.data.items[0].volumeInfo.imageLinks.smallThumbnail
             }, () => {
                 // document.getElementById('loadingGif').style.visibility = 'hidden';
+                document.getElementById('loadingGif').style.visibility = 'hidden';
                 document.getElementsByClassName("modal-footer")[0].style.display = "block"
                 document.getElementsByClassName("modal-body")[0].style.display = "block"
             })
@@ -376,7 +377,7 @@ class AddBook extends Component {
     }
 
     bookPostedModal = () => {
-        debugger;
+        document.getElementById('loadingGif').style.visibility = 'hidden';
         document.getElementsByClassName("modalIsbn")[0].style.display = "block";
         document.getElementsByClassName("google_book_image")[0].style.display = "none";
         document.getElementsByClassName("isbnModalBookDescription")[0].style.display = "none";
