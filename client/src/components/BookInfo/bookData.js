@@ -13,10 +13,6 @@ function IndividualBookData(props) {
 
             </div>
             <div>
-                <h1 className="SellersEmail"><strong>Sellers Email:</strong></h1>
-                <h1 className='userEmail'>{props.sellersEmail} </h1>
-            </div>
-            <div>
                 <h1 className='SellerTitle'><strong>Sellers Comments:</strong></h1>
                 <h1 className='SellersComments'>{props.sellersComment} </h1>
             </div>
@@ -24,7 +20,7 @@ function IndividualBookData(props) {
                 <h1 className='priceTitle'> Price:</h1>
                 <h1 className='price'>${props.price}</h1>
             </div>
-
+            <button className={"btn blue center waves-effect"}>Contact Seller</button>
         </div>
 
     )

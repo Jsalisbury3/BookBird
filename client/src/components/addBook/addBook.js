@@ -63,7 +63,7 @@ class AddBook extends Component {
         // const errorMessage = "Invalid ISBN number"
         
         if(!pattern.test(elementVal)){
-            document.getElementById("errorISBN").innerHTML = "Invalid ISBN number"
+            document.getElementById("errorISBN").innerHTML = "Invalid ISBN number";
             return false
         }else{
             return true
@@ -178,7 +178,6 @@ class AddBook extends Component {
             })
         }
         reader.readAsDataURL(newImage)
-        debugger;
         await this.setState({
             photoArray: [newImage, ...this.state.photoArray]
         })
@@ -308,11 +307,9 @@ class AddBook extends Component {
             }
         });
     }
-
     handleIsbnChange(event) {
         this.setState({ISBN: event.target.value});
     }
-
     populateData = (event) => {
         event.preventDefault();
         this.setState({
@@ -323,9 +320,7 @@ class AddBook extends Component {
         document.getElementsByClassName('modalIsbn')[0].style.display = "none"
         document.getElementsByName("author")[0].value = `${this.state.author}`
         document.getElementsByName("title")[0].value = `${this.state.title}`
-        // document.getElementsByName("ISBN")[0].value=`${this.state.ISBN}`
     }
-
     clearData = () => {
         this.setState({hideIsbnSearchBar: false});
         document.getElementsByClassName("modal-footer")[0].style.display = "none"
@@ -338,19 +333,13 @@ class AddBook extends Component {
             title: ''
         })
     }
-
     bookPostedModal = () => {
-      
         document.getElementsByClassName("modalIsbn")[0].style.display = "block";
         document.getElementsByClassName("google_book_image")[0].style.display = "none";
         document.getElementsByClassName("isbnModalBookDescription")[0].style.display = "none";
         document.getElementsByClassName("submit_clear_buttons")[0].style.display = "none";
         document.getElementsByClassName("bookSuccessInfo")[0].style.display = "block";
-        // document.getElementsByClassName("isbnModalContainer")[0].style.display = "block"
-        // document.getElementsByClassName("modal-body")[0].style.display = "none"
-        // document.getElementsByClassName("modal-footer")[0].style.display = "none"
     }
-
     signInRequiredModal = () =>{
         document.getElementsByClassName("modalIsbn")[0].style.display = "block"
         document.getElementsByClassName("google_book_image")[0].style.display = "none"
@@ -358,17 +347,12 @@ class AddBook extends Component {
         document.getElementsByClassName("submit_clear_buttons")[0].style.display = "none"
         document.getElementsByClassName("signInRequiredModal")[0].style.display = "block"
     }
-
-
     acceptBookPosted = (event) => {
         event.preventDefault();
 
     }
-
     render() {
-        console.log('Add Book: ', this.state);
         const hideISBN = this.state.hideIsbnSearchBar ? {display: 'none'} : {display: 'block'};
-
         return (
             <div className={"addBook-container"}>
                 <div className="isbnModalContainer">
@@ -388,7 +372,7 @@ class AddBook extends Component {
                                     </div>
                                 </form>
                             </div>
-                            <div className="modal-body">
+                            <div className="modal-body">aa
                                 <img className="google_book_image" src={this.state.bookImage} alt=""/>
                                 <div className="isbnModalBookDescription">
                                     <p name="ModalISBN">ISBN: {this.state.ISBN}</p>
@@ -404,12 +388,16 @@ class AddBook extends Component {
                                         <button onClick={this.clearData}type="button"className= "btn-small btn waves-effect postAgainButton">Post Again</button>
                                         <p className="btn-small btn waves-effect white"><Link to={"/"}>Accept</Link> </p>
                                     </div>  
-                                </div>
-                                    <div className="signInRequiredModal">
+                                    <div className="successModalButtons">
+                                            <button onClick={this.clearData}type="button"className= "btn-small btn waves-effect postAgainButton">Post Again</button>
+                                            <p className="btn-small btn waves-effect white"><Link to={"/"}>Accept</Link> </p>
+                                    </div> 
+                                </div>                                 
+                                <div className="signInRequiredModal">
                                         <p>You must be signed in to post a book</p>                                       
                                         <Link to={"/SignIn"}><p className="btn-small btn waves-effect signInRequiredButtons"> Sign In </p></Link>
                                         <Link to={"/SignUp"}><p className="btn-small btn waves-effect signInRequiredButtons"> Sign Up </p></Link>
-                                    </div>
+                                </div>
                             </div>
                             <div className="modal-footer">
                                 <form>
