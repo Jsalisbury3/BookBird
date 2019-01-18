@@ -1,7 +1,9 @@
 .signUpHeader, .signInHeader{
     text-align: center;
     display: grid;
-    top: 9%;
+    position: relative;
+    bottom: 5%;
+    font-size: 3.3rem;
 }
 
 .signup_footer, .signin_footer{
@@ -11,6 +13,28 @@
     top: 78%;
     position: absolute;
 }
+.row {
+    margin-bottom: 0$;
+}
+
+.error-message {
+    position: relative;
+    bottom: 20px;
+    margin-left: 33%;
+    font-size: 0.71rem;
+}
+.signup_footer{
+    top: 81%;
+}
+
+.sign_in_form {
+    position: relative;
+    bottom: 2%;
+}
+.sign-up-form {
+    position: relative;
+    bottom: 10%;
+}
 
 .signInError, .signUpError{
     color: red;
@@ -18,7 +42,7 @@
 
 .signin_container, .signup_container{
     background-color: #C2E5F9;
-    height: 76vh;
+    height: 80vh;
     overflow: auto;
 }
 
