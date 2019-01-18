@@ -38,7 +38,6 @@ class AddBook extends Component {
             showToolTip: false
         }
     }
-
     componentDidMount = async () => {
         document.getElementsByClassName('modalIsbn')[0].style.display = "block";
         document.getElementsByClassName("modal-footer")[0].style.display = "none";
@@ -46,25 +45,17 @@ class AddBook extends Component {
         document.getElementsByClassName("bookSuccessInfo")[0].style.display = "none";
         document.getElementsByClassName("signInRequiredModal")[0].style.display = "none";
         await this.addPhotoToMultiPhotoContainer();
-
-        console.log('Tooltip:', this.tooltip);
-
         this.instances = M.Tooltip.init(this.tooltip);
-
-
     };
-
     closeModalIsbn() {
         document.getElementsByClassName('modalIsbn')[0].style.display = "none";
     }
-
     handleInput = (event) => {
         console.log('handle input called');
         this.setState({
             [event.target.name]: event.target.value,
         })
     };
-
     validateIsbn=()=>{
         const element = 'input[name=ModalISBN]'
         var elementVal = document.querySelector(element).value;
@@ -77,8 +68,6 @@ class AddBook extends Component {
         }else{
             return true
         }
-       
-
         const isbnTest = [
              {
                 element: 'input[name=ISBN]',
@@ -87,12 +76,7 @@ class AddBook extends Component {
                 index: 0
             },
         ]
-
-
-
-
     }
-
     validateInputsFields = (event) => {
         console.log('HELLO THERE')
         event.preventDefault();
@@ -143,7 +127,6 @@ class AddBook extends Component {
             
         }
     };
-
     validateInputAndDisplayError = (test) => {
         let element = test.element;
         if (element === "input[name=condition]") {
@@ -176,11 +159,9 @@ class AddBook extends Component {
             }
 
         }
-
         // document.getElementsByClassName('modalPageContainer')[0].style.display = "block";
         return result;
     };
-
     // addBook = async (event) => {
     //     document.getElementsByClassName('modalPageContainer')[0].style.display = "block";
     //     return result;
@@ -195,21 +176,16 @@ class AddBook extends Component {
             this.setState({
                 imageSource: event.target.result
             })
-
         }
-
         reader.readAsDataURL(newImage)
         await this.setState({
             photoArray: [newImage, ...this.state.photoArray]
         })
         this.addPhotoToMultiPhotoContainer();
     }
-
     photoUploadHandler = () => {
         this.setState({multiplePhoto: event.target.value});
     }
-
-
     addPhotoToMultiPhotoContainer = async () => {
         const imgTagArray = this.state.photoArray.map((item, index) => {
             return (
@@ -234,7 +210,6 @@ class AddBook extends Component {
             imgTagArray: newImgTagArray
         });
     }
-
     addBook = async (event) => {
         
         this.bookPostedModal();
@@ -265,7 +240,6 @@ class AddBook extends Component {
             ContentType: this.state.photoArray[0].type
 
         })
-
         const {getUrl, key} = prep.data;
 
         console.log('add book key: ', key, insertId);
@@ -280,9 +254,6 @@ class AddBook extends Component {
             insertId,
             fileType: this.state.photoArray[0].type,
         }
-
-        console.log('saveImage Params: ', saveImageParams);
-
         await axios({
             method: 'post',
             url: `/api/save-image?key=${key}&listingId=${insertId}&fileType=${this.state.photoArray[0].type}`,
@@ -397,9 +368,7 @@ class AddBook extends Component {
                                         <label htmlFor="isbnInput" className="enterIsbnLabel"htmlFor="ISBN">ISBN</label>
                                     </div>
                                     <div className='search_button_container'>
-                                        <button onClick={this.getBooks} type="button"
-                                                className='isbnSearchButton btn btn-small waves-effect'>Search
-                                        </button>
+                                        <button onClick={this.getBooks} type="button"className='isbnSearchButton btn btn-small waves-effect'>Search</button>
                                     </div>
                                 </form>
                             </div>
@@ -416,15 +385,19 @@ class AddBook extends Component {
                                         <img src={success}/>
                                     </div>
                                     <div className="successModalButtons">
+                                        <button onClick={this.clearData}type="button"className= "btn-small btn waves-effect postAgainButton">Post Again</button>
+                                        <p className="btn-small btn waves-effect white"><Link to={"/"}>Accept</Link> </p>
+                                    </div>  
+                                    <div className="successModalButtons">
                                             <button onClick={this.clearData}type="button"className= "btn-small btn waves-effect postAgainButton">Post Again</button>
                                             <p className="btn-small btn waves-effect white"><Link to={"/"}>Accept</Link> </p>
                                     </div> 
                                 </div>                                 
-                                    <div className="signInRequiredModal">
+                                <div className="signInRequiredModal">
                                         <p>You must be signed in to post a book</p>                                       
                                         <Link to={"/SignIn"}><p className="btn-small btn waves-effect signInRequiredButtons"> Sign In </p></Link>
                                         <Link to={"/SignUp"}><p className="btn-small btn waves-effect signInRequiredButtons"> Sign Up </p></Link>
-                                    </div>
+                                </div>
                             </div>
                             <div className="modal-footer">
                                 <form>
