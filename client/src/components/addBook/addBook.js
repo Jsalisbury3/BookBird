@@ -59,7 +59,6 @@ class AddBook extends Component {
     }
 
     handleInput = (event) => {
-        debugger;
         console.log('handle input called');
         this.setState({
             [event.target.name]: event.target.value,
@@ -200,7 +199,6 @@ class AddBook extends Component {
         }
 
         reader.readAsDataURL(newImage)
-        debugger;
         await this.setState({
             photoArray: [newImage, ...this.state.photoArray]
         })
@@ -370,7 +368,6 @@ class AddBook extends Component {
     }
 
     bookPostedModal = () => {
-        debugger;
         document.getElementsByClassName("modalIsbn")[0].style.display = "block";
         document.getElementsByClassName("google_book_image")[0].style.display = "none";
         document.getElementsByClassName("isbnModalBookDescription")[0].style.display = "none";
