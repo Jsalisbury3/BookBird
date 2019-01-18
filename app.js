@@ -155,15 +155,22 @@ webserver.post('/api/save-profile-image', function (request, response) {
 });
 
 webserver.post('/api/testTwilio', (request, response) => {
-    twilio.messages.create({
-        body: 'Hello from Node',
-        to: '+19499226065',  // Text this number
-        from: '+15108226645' // From a valid Twilio number
-    }).then((message) => console.log(message.sid));
+    db.connect(() => {
+        const query = "SELECT a.phoneNumber FROM `accounts` WHERE a.ID = '"+userToken+"'";
+        db.query(query, (err, data) => {
+            if(!err) {
+                const userPhoneNumber = data[0].phoneNumber;
+                twilio.messages.create({
+                    body: 'Someone is interested in buying your book BOOKNAME. respond to this message to contact possible buyer',
+                    to: '+19499226065',  // `+1${userPhoneNumber}`
+                    from: '+15108226645' // From a valid Twilio number up
+                }).then((message) => console.log(message));
+            }
+        })
+    })
 });
 
-webserver.post('/api/', (request, response) => {
-    const MessagingResponse = require('twilio').twiml.MessagingResponse;
+webserver.post('/api/getResponse', (request, response) => {
     const Userresponse = new MessagingResponse();
     const message = Userresponse.message();
     message.body('Hello World!');
@@ -171,20 +178,20 @@ webserver.post('/api/', (request, response) => {
     console.log(response.toString());
 });
 
-webserver.post('/api/userResponse', (request, response) => {
-    const twiml = new MessagingResponse();
-    if (request.body.Body == 'hello') {
-        twiml.message('Hi!');
-    } else if (request.body.Body == 'bye') {
-        twiml.message('Goodbye');
-    } else {
-        twiml.message(
-            'No Body param match, Twilio sends this in the request to your server.'
-        );
-    }
-    response.writeHead(200, { 'Content-Type': 'text/xml' });
-    response.end(twiml.toString());
-});
+// webserver.post('/api/userResponse', (request, response) => {
+//     const Userresponse = new MessagingResponse();
+//     if (request.body.Body == 'hello') {
+//         Userresponse.message('Hi!');
+//     } else if (request.body.Body == 'bye') {
+//         Userresponse.message('Goodbye');
+//     } else {
+//         twiml.message(
+//             'No Body param match, Twilio sends this in the request to your server.'
+//         );
+//     }
+//     response.writeHead(200, { 'Content-Type': 'text/xml' });
+//     response.end(twiml.toString());
+// });
 
 
 webserver.get('/api/listings', (request, response) => {
@@ -331,7 +338,7 @@ webserver.get('/api/UserProfile', (request, response) => {
                     response.send(outputNoMatch);
                 } else {
                     console.log("data[0].account_id: ", data[0].account_id);
-                    let query = "SELECT a.ID, l.book_condition, l.ID, l.price, l.comments, l.book_id, b.title, b.ISBN, b.author FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id WHERE a.ID = '" + data[0].account_id + "'";
+                    let query = "SELECT a.profile_photo_url, a.image_type, b.bookImage, a.ID, l.book_condition, l.ID, l.price, l.comments, l.book_id, b.title, b.ISBN, b.author FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id  WHERE a.ID = '" + data[0].account_id + "'";
                     db.query(query, (err, data) => {
                         if (!err) {
                             const output = {
