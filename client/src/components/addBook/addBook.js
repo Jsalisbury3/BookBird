@@ -308,6 +308,7 @@ class AddBook extends Component {
         this.bookPostedModal();
     } catch {
             console.log("Error posting book")
+
         }
     };
     getBooks = (event) => {
@@ -442,16 +443,20 @@ class AddBook extends Component {
                                             <p className="btn-small btn waves-effect white"><Link to={"/"}>Accept</Link> </p>
                                         </div>  
                                     </div>
-                                    <div className="signInRequiredModal">
+                                    {/* <div className="signInRequiredModal">
                                         <p>You must be signed in to post a book</p>                                       
                                         <Link to={"/SignIn"}><p className="btn-small btn waves-effect signInRequiredButtons"> Sign In </p></Link>
                                         <Link to={"/SignUp"}><p className="btn-small btn waves-effect signInRequiredButtons"> Sign Up </p></Link>
-                                    </div>
+                                    </div> */}
                                 </div>
+
                                 <div className="signInRequiredModal">
                                     <p>You must be signed in to post a book</p>
                                     <Link to={"/SignIn"}><p
-                                        className="btn-small btn waves-effect signInRequiredButtons"> Sign in </p>
+                                        className="btn-small btn waves-effect signInRequiredButtons"> Sign In </p>
+                                    </Link>
+                                    <Link to={"/SignUp"}><p
+                                        className="btn-small btn waves-effect signInRequiredButtons"> Sign Up </p>
                                     </Link>
                                 </div>
 
