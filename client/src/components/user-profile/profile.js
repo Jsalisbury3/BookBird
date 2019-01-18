@@ -18,79 +18,121 @@ class UserProfile extends Component {
         }
     }
 
-    callActionSignOut = () => {
-        this.props.removeTokenAndRow();
-        localStorage.clear();
-        this.props.history.push('/SignIn');
+    componentDidMount = () => {
+        this.getProfileUrl();
     }
 
-    fileSelectedHandler = async event => {
-        console.log(event.target.files[0]);
-        const newImage = event.target.files[0];
+    handleUrlToSetState = async (response) => {
+        console.log("LOOOOK ATTT MEEEE: ", response);
         await this.setState({
-            photo: newImage
-        });
-        const prep = await axios({
-            // Authorization: `AWS ${accessKeyId}: ${secretAccessKey}`,
-            method: 'get',
-            url: `/api/prepUpload?fileType=${this.state.photo.type}`,
-            ContentType: this.state.photo.type
-
+            photo: `https://s3-us-west-2.amazonaws.com/book-bird-test-bucket/${response.data.data[0].profile_photo_url}`
         })
+        console.log("state in profile url: ", this.state.photo);
+    }
 
-        const {getUrl, key} = prep.data;
-        
-        await axios.put(getUrl, this.state.photo, {
-            headers: {
-                'Content-Type': this.state.photo.type
-            }
-        })
-        let saveImageParams = {
-            key,
-            fileType: this.state.photo.type,
+
+        getProfileUrl = () => {
+            axios({
+                method: 'get',
+                url: '/api/UserProfileUrl',
+                headers: {
+                    token: localStorage.getItem('Token'),
+                }
+            }).then((response) => {
+                this.handleUrlToSetState(response);
+            })
         }
-    
-        console.log('saveImage Params: ', saveImageParams);
-    
-        await axios({
-            method: 'post',
-            url: `/api/save-profile-image`,
-            'Content-Type': 'application/json',
-            headers: {
-                token: localStorage.getItem('Token'),
-            },
-            data: saveImageParams
-        })
-    };
-    
 
-    render() {
-        return (
-            <div className='profile-main-container'>
-                <button onClick={this.callActionSignOut} className='logOut btn btn-small right'><img src={logout24}/>
-                </button>
-                <div className='user-image-container circleBase'>
-                    <img src={!this.state.photo ? defaultPhoto : URL.createObjectURL(this.state.photo)}/>                      
-                    <label className="opacitySlip" htmlFor="profilePhotoInput"><i className='material-icons center'>add_a_photo</i></label>
-                    <input id="profilePhotoInput" type="file" name="photo" capture="camera" accept="image/*" onChange={this.fileSelectedHandler}/>
+        callActionSignOut = () => {
+            localStorage.clear();
+            this.props.history.push('/SignIn');
+        }
+
+        fileSelectedHandler = async event => {
+            console.log(event.target.files[0]);
+            const newImage = event.target.files[0];
+            await this.setState({
+                photo: URL.createObjectURL(newImage)
+            });
+            const prep = await axios({
+                // Authorization: `AWS ${accessKeyId}: ${secretAccessKey}`,
+                method: 'get',
+                url: `/api/prepUpload?fileType=${this.state.photo.type}`,
+                ContentType: this.state.photo.type
+
+            })
+
+            const {getUrl, key} = prep.data;
+
+            await axios.put(getUrl, this.state.photo, {
+                headers: {
+                    'Content-Type': this.state.photo.type
+                }
+            })
+            let saveImageParams = {
+                key,
+                fileType: this.state.photo.type,
+            }
+
+            console.log('saveImage Params: ', saveImageParams);
+
+            await axios({
+                method: 'post',
+                url: `/api/save-profile-image`,
+                'Content-Type': 'application/json',
+                headers: {
+                    token: localStorage.getItem('Token'),
+                },
+                data: saveImageParams
+            })
+        };
+
+
+        render()
+        {
+            return (
+                <div className='profile-main-container'>
+                    <button onClick={this.callActionSignOut} className='logOut btn btn-small right'><img
+                        src={logout24}/>
+                    </button>
+                    <div className='user-image-container circleBase'>
+                        <img src={this.state.photo ? this.state.photo : defaultPhoto}/>
+                        <label className="opacitySlip" htmlFor="profilePhotoInput"><i
+                            className='material-icons center'>add_a_photo</i></label>
+                        <input id="profilePhotoInput" type="file" name="photo" capture="camera" accept="image/*"
+                               onChange={this.fileSelectedHandler}/>
+                    </div>
+                    <UserPostList/>
                 </div>
-                <UserPostList/>
-            </div>
-        );
+            );
+        }
     }
-}
 
-function mapStateToProps(state) {
-    console.log("state: ", state);
-    return {
-        signInResults: state.signInReducer.signInId
+    function
+
+    mapStateToProps(state) {
+        console.log("state: ", state);
+        return {
+            signInResults: state.signInReducer.signInId
+        }
     }
-}
 
-function mapDispatchToProps(dispatch) {
-    return {
-        removeTokenAndRow: bindActionCreators(removeTokenAndRow, dispatch),
+    function
+
+    mapDispatchToProps(dispatch) {
+        return {
+            removeTokenAndRow: bindActionCreators(removeTokenAndRow, dispatch),
+        }
     }
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(UserProfile));
+    export
+    default
+
+    connect(mapStateToProps, mapDispatchToProps)
+
+(
+
+    withRouter(UserProfile)
+
+)
+    ;
