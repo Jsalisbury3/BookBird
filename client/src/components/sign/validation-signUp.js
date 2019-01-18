@@ -57,9 +57,9 @@ class SignInValidation extends Component {
                 <div className="row">
                     <Field name={"PasswordSignUp"} size={"s9 m8 offset-m2"} component={this.renderInput} id={"PasswordSignUp"} label={"Password"}/>
                 </div>
-
                 <div className="row">
-                    <Field name={'UserNumber'} size={"s9 m8 offset-m2"} component={this.renderInput} id="UserNumber" label={"Number"}/>
+                    <Field name={"Number"} size={"s9 m8 offset-m2"} component={this.renderInput} id={"Number"}
+                           label={"Enter Number"}/>
                 </div>
                 <div className=" row">
                     <div className="col s6 center">
@@ -76,12 +76,13 @@ class SignInValidation extends Component {
 }
 
 function validate(values) {
-    const {EmailSignUp, PasswordSignUp, Name, UserNumber} = values;
+    const {EmailSignUp, PasswordSignUp, Name, Number} = values;
     const errors = {};
     const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
     const passwordRegex = /(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{8,10})$/;
-    const nameRegex = /^[a-z0-9_-]{3,15}$/;
-    const UserNumberRegex = /^[2-9]\d{2}-\d{3}-\d{4}$/;
+    const numberRegex = /^[2-9]\d{2}-\d{3}-\d{4}$/;
+    // const nameRegex = /^[a-z0-9_-]{3,15}$/;
+
 
     if (!emailRegex.test(EmailSignUp)) {
         console.log('email test');
@@ -92,11 +93,11 @@ function validate(values) {
         errors.PasswordSignUp = "please enter a valid password";
     }
 
-    if (nameRegex.test(Name)) {
-        errors.Password = "please enter a valid password";
-    }
-    if (UserNumberRegex.test(UserNumber)) {
-        errors.Password = "please enter a valid Number";
+    // if (nameRegex.test(Name)) {
+    //     errors.Password = "please enter a valid password";
+    // }
+    if (!numberRegex.test(Number)) {
+        errors.Number = "please enter a valid number ";
     }
     return errors;
 }

@@ -31,7 +31,7 @@ class SignInValidation extends Component {
                     <input className="signInInput" {...props.input} id={props.id} type="text" autoComplete={"off"}/>
                     <label className="signInLabel" htmlFor={props.id}>{props.label}</label>
                 </div>
-                <p className={"red-text text-darken-2"}>{props.meta.touched && props.meta.error}</p>
+                <p className={"sign-in-error red-text text-darken-2"}>{props.meta.touched && props.meta.error}</p>
             </div>
         )
     };
@@ -45,7 +45,7 @@ class SignInValidation extends Component {
         console.log("add item form props: ", this.props);
         const {handleSubmit, reset} = this.props;
         return (
-            <form className='sign-in-form' onSubmit={handleSubmit(this.handleAddItem)}>
+            <form id='#sign-in-container' onSubmit={handleSubmit(this.handleAddItem)}>
                 <div className="row">
                     <Field name={"Email"} size={"s9 m8 offset-m2"} component={this.renderInput} id="Email"
                            label={"Email"}/>
@@ -53,10 +53,6 @@ class SignInValidation extends Component {
                 <div className="row">
                     <Field name={"Password"} size={"s9 m8 offset-m2"} component={this.renderInput} id={"Password"}
                            label={"Password"}/>
-                </div>
-                <div className="row">
-                    <Field name={"Number"} size={"s9 m8 offset-m2"} component={this.renderInput} id={"Number"}
-                           label={"Enter Number"}/>
                 </div>
                 <div className="row">
                     <div className="col s6 center">
@@ -74,12 +70,12 @@ class SignInValidation extends Component {
 }
 
 function validate(values) {
-    const {Email, Password, Number} = values;
+    const {Email, Password} = values;
     console.log("emaillllllllllllllll: ", Email);
     const errors = {};
     const emailRegex =  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
     const passwordRegex = /(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{8,10})$/;
-    const numberRegex = /^[2-9]\d{2}-\d{3}-\d{4}$/;
+
 
 
     if (!emailRegex.test(Email)) {
@@ -88,9 +84,6 @@ function validate(values) {
 
     if (!passwordRegex.test(Password)) {
         errors.Password = "please enter a valid password";
-    }
-    if (!numberRegex.test(Number)) {
-        errors.Password = "please enter a valid number ";
     }
     return errors;
 }
