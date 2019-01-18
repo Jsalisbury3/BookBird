@@ -21,8 +21,8 @@ class SignInValidation extends Component {
                 <div className="input-field">
                     <input className="signUpInput" {...props.input} id={props.id} type="text" autoComplete={"off"}/>
                     <label className="signUpLabel" htmlFor={props.id}>{props.label}</label>
+                    <p className={"error-message red-text text-darken-2"}>{props.meta.touched && props.meta.error}</p>
                 </div>
-                <p className={"red-text text-darken-2"}>{props.meta.touched && props.meta.error}</p>
             </div>
         )
     };
@@ -47,17 +47,21 @@ class SignInValidation extends Component {
         console.log("add item form props: ", this.props);
         const {handleSubmit, reset} = this.props;
         return (
-            <form onSubmit={handleSubmit(this.handleAddItem)}>
+            <form className='sign-up-form' onSubmit={handleSubmit(this.handleAddItem)}>
+                <div className="row">
+                    <Field name={"Name"} size={"s9 m8 offset-m2"} component={this.renderInput} id="Name" label={"Name"}/>
+                </div>
                 <div className="row">
                     <Field name={"EmailSignUp"} size={"s9 m8 offset-m2"} component={this.renderInput} id="EmailSignUp" label={"Email"}/>
                 </div>
                 <div className="row">
                     <Field name={"PasswordSignUp"} size={"s9 m8 offset-m2"} component={this.renderInput} id={"PasswordSignUp"} label={"Password"}/>
                 </div>
+
                 <div className="row">
-                    <Field name={"Name"} size={"s9 m8 offset-m2"} component={this.renderInput} id="Name" label={"Name"}/>
+                    <Field name={'UserNumber'} size={"s9 m8 offset-m2"} component={this.renderInput} id="UserNumber" label={"Number"}/>
                 </div>
-                <div className="row">
+                <div className=" row">
                     <div className="col s6 center">
                         <button onClick={reset} type={"button"} className="btn red darken-2">clear</button>
                     </div>
@@ -72,11 +76,13 @@ class SignInValidation extends Component {
 }
 
 function validate(values) {
-    const {EmailSignUp, PasswordSignUp, Name} = values;
+    const {EmailSignUp, PasswordSignUp, Name, UserNumber} = values;
     const errors = {};
     const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
     const passwordRegex = /(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{8,10})$/;
     const nameRegex = /^[a-z0-9_-]{3,15}$/;
+    const UserNumberRegex = /^[2-9]\d{2}-\d{3}-\d{4}$/;
+
     if (!emailRegex.test(EmailSignUp)) {
         console.log('email test');
         errors.EmailSignUp = 'please enter a valid email';
@@ -88,6 +94,9 @@ function validate(values) {
 
     if (nameRegex.test(Name)) {
         errors.Password = "please enter a valid password";
+    }
+    if (UserNumberRegex.test(UserNumber)) {
+        errors.Password = "please enter a valid Number";
     }
     return errors;
 }
