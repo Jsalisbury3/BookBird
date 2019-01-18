@@ -61,30 +61,23 @@ h2:nth-child(2)  {
 }
 .BookPrice {
     position: relative;
-    width: 32%;
-    left: 62%;
-    bottom: 30%;
+    display: inline-block;
     opacity: 1;
     font-size: 1.56rem;
-    height: 26%;
-    margin-top: 76%;
-
+    top: 10%;
 }
 
 .price {
-    color: green;
-    position: absolute;
-    top: 18%;
+    position: relative;
+    margin: 0;
 }
 
 .SellersComments {
-    position: absolute;
+    position: relative;
+    display: inline-block;
     font-size: 12px;
-    background-color: beige;
-    width: 50%;
     top: 62%;
     height: 18%;
-    margin-left: 3vw;
 }
 
 .image {

@@ -12,19 +12,18 @@ export default class UserPost extends Component{
     
     render(){
         console.log("about props: ", this.props.about);
-        const { title, edition, author, condition, course, price, ID, listingID } = this.props.about;
+        const { title, edition, author, book_condition, course, price, ID, listingID, bookImage } = this.props.about;
         return (
             <div className='listItem'>
                 <Link to={`/BookInfoIndex/${this.ID}`}>
                     
                         <div className='itemImageContainer'>
-                            <img className='itemImage' src="" />
+                            <img className='itemImage' src={bookImage}/>
                         </div>
                         <div className='itemDetails'>
                             <p>Title: {title}</p>
-                            <p>Edition: {edition}</p>
                             <p>Author: {author}</p>
-                            <p>Condition: {condition}</p>
+                            <p>Condition: {book_condition}</p>
                             
                         </div>
     
