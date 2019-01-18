@@ -8,6 +8,7 @@ import {connect} from 'react-redux';
 import {removeTokenAndRow} from '../../actions/sign_out'
 import logout24 from './images/logout-24.png'
 import {bindActionCreators} from "redux";
+import axios from 'axios';
 
 class UserProfile extends Component {
     constructor(props) {
@@ -29,10 +30,39 @@ class UserProfile extends Component {
         await this.setState({
             photo: newImage
         });
-        console.log(this.state.photoArray);
-        this.addPhotoToMultiPhotoContainer();
-    };
+        const prep = await axios({
+            // Authorization: `AWS ${accessKeyId}: ${secretAccessKey}`,
+            method: 'get',
+            url: `/api/prepUpload?fileType=${this.state.photo.type}`,
+            ContentType: this.state.photo.type
 
+        })
+
+        const {getUrl, key} = prep.data;
+        
+        await axios.put(getUrl, this.state.photo, {
+            headers: {
+                'Content-Type': this.state.photo.type
+            }
+        })
+        let saveImageParams = {
+            key,
+            fileType: this.state.photo.type,
+        }
+    
+        console.log('saveImage Params: ', saveImageParams);
+    
+        await axios({
+            method: 'post',
+            url: `/api/save-profile-image`,
+            'Content-Type': 'application/json',
+            headers: {
+                token: localStorage.getItem('Token'),
+            },
+            data: saveImageParams
+        })
+    };
+    
 
     render() {
         return (

@@ -104,8 +104,8 @@ webserver.post('/api/save-image', function (request, response) {
     
     db.connect( () => {
         console.log('Save Item');
+        
         const query = "INSERT INTO `images` SET url='"+key+"',listing_id="+listingId+",imageType='"+fileType+"'";
-
         db.query(query, (err, data) => {
             if (!err) {
                 let output = {
@@ -120,6 +120,39 @@ webserver.post('/api/save-image', function (request, response) {
     })
 });
 
+webserver.post('/api/save-profile-image', function (request, response) {
+    console.log('request: ', request.body);
+    const { key, fileType } = request.body;
+    console.log('headers', request.headers)
+
+    const userToken = request.headers['token'];
+
+
+    // const {account_id}=request.headers.data;
+    console.log('hello save image');
+    
+    db.connect( () => {
+        console.log('Save Item');
+        const query = "SELECT lg.account_id FROM `loggedin` AS lg WHERE lg.token = '"+userToken+"'";
+
+        db.query(query, (err, data ) => {
+            console.log('DATA: ', data)
+            const query = "UPDATE `accounts` SET profile_photo_url='"+key+"', image_type='"+fileType+"' WHERE accounts.id='"+data[0].account_id+"'";
+            console.log('query', query);
+            db.query(query, (err, data) => {
+                if (!err) {
+                    let output = {
+                        success: true,
+                        data: data
+                    }
+                    response.send(output);
+                } else {
+                    console.log('save image to database did not work');
+                }
+            })
+        })
+    });
+});
 
 webserver.post('/api/testTwilio', (request, response) => {
     twilio.messages.create({
