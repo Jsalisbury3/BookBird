@@ -45,7 +45,7 @@ class SignInValidation extends Component {
         console.log("add item form props: ", this.props);
         const {handleSubmit, reset} = this.props;
         return (
-            <form onSubmit={handleSubmit(this.handleAddItem)}>
+            <form className='sign-in-form' onSubmit={handleSubmit(this.handleAddItem)}>
                 <div className="row">
                     <Field name={"Email"} size={"s9 m8 offset-m2"} component={this.renderInput} id="Email"
                            label={"Email"}/>
@@ -53,6 +53,10 @@ class SignInValidation extends Component {
                 <div className="row">
                     <Field name={"Password"} size={"s9 m8 offset-m2"} component={this.renderInput} id={"Password"}
                            label={"Password"}/>
+                </div>
+                <div className="row">
+                    <Field name={"Number"} size={"s9 m8 offset-m2"} component={this.renderInput} id={"Number"}
+                           label={"Enter Number"}/>
                 </div>
                 <div className="row">
                     <div className="col s6 center">
@@ -70,17 +74,23 @@ class SignInValidation extends Component {
 }
 
 function validate(values) {
-    const {Email, Password} = values;
+    const {Email, Password, Number} = values;
     console.log("emaillllllllllllllll: ", Email);
     const errors = {};
-    const emailRegex = /[a-z]{4,12}/; //"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
-    const passwordRegex = /[a-z]{4,12}/; //(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+    const emailRegex =  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+    const passwordRegex = /(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{8,10})$/;
+    const numberRegex = /^[2-9]\d{2}-\d{3}-\d{4}$/;
+
+
     if (!emailRegex.test(Email)) {
         errors.Email = 'please enter a valid email';
     }
 
     if (!passwordRegex.test(Password)) {
         errors.Password = "please enter a valid password";
+    }
+    if (!numberRegex.test(Number)) {
+        errors.Password = "please enter a valid number ";
     }
     return errors;
 }
