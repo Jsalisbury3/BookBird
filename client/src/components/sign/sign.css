@@ -6,30 +6,56 @@
     font-size: 3.3rem;
 }
 
-.signup_footer, .signin_footer{
+.signup_footer{
     justify-content: center;
     align-items: center;
     left: 19%;
-    top: 78%;
+    top: 72%;
     position: absolute;
 }
+.signin_footer {
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    left: 19%;
+
+}
+
 .row {
     margin-bottom: 0$;
 }
 
+#Name {
+    margin-bottom: 0rem;
+}
+
+#EmailSignUp {
+    margin-bottom: 0rem;
+}
+#PasswordSignUp {
+    margin-bottom: 0rem;
+}
+#UserNumber {
+    margin-bottom: 0rem;
+}
+
 .error-message {
     position: relative;
-    bottom: 20px;
+    bottom: 14px;
     margin-left: 33%;
     font-size: 0.71rem;
 }
-.signup_footer{
-    top: 81%;
+.sign-in-error {
+    position: relative;
+    bottom: 14px;
+    margin-left: 33%;
+    font-size: 0.71rem;
 }
 
-.sign_in_form {
+
+#sign-in-container {
     position: relative;
-    bottom: 2%;
+    bottom: 5%;
 }
 .sign-up-form {
     position: relative;
@@ -74,7 +100,10 @@
 
 .signInLabel, .signUpLabel{
     left:23% !important
-}
+}.sign_in_form {
+     position: relative;
+     bottom: 9%;
+ }
 
 .sign-in-button{
     left: 33%;
