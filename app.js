@@ -163,50 +163,63 @@ webserver.get('/api/listings', (request, response) => {
 webserver.post('/api/addListing', (request, response) => {
     const {title, condition, ISBN, author, price, comments, bookImage } = request.body;
     console.log("ADD LISTING IS RUNNING");
-    console.log('REQUEST BODY', request.body);
     const userIDToken = request.headers['token'];
+    console.log("TOKEN: ", userIDToken);
     db.connect(() => {
-        const query = "SELECT b.ID FROM `books` AS b WHERE b.ISBN = '" + ISBN + "'";
-        // escape_quotes(query);
-        console.log(query);
+        const query = "SELECT lg.account_id FROM `loggedin` AS lg WHERE lg.token = '"+userIDToken+"'";
         db.query(query, (err, data) => {
-            if (!data.length) {
-                const query = "INSERT INTO `books` SET title = '" + title + "', ISBN = '" + ISBN + "', author = '" + author + "', bookImage = '"+bookImage+"'";
-                console.log(query)
+            if(!err) {
+                console.log("user id data wanttttt:" , data[0].account_id)
+                const userId = data[0].account_id;
+                const query = "SELECT b.ID FROM `books` AS b WHERE b.ISBN = '" + ISBN + "'";
+                console.log(query);
                 db.query(query, (err, data) => {
-                    if(!err) {
-                        console.log('INSERT INTO LISTINGS');
-                        console.log('Listings Data: ', data);
-                        const query = "INSERT INTO `listing` SET listing.book_id = "+data.insertId+", price = '"+ price +"', book_condition = '"+condition+"', comments = '"+comments+"', accounts_id = '1', public_id='21'";
-                        // escape_quotes(query);
-                        db.query(query, (err, response) => {
+                    if (!data.length) {
+                        const query = "INSERT INTO `books` SET title = '" + title + "', ISBN = '" + ISBN + "', author = '" + author + "', bookImage = '" + bookImage + "'";
+                        console.log(query)
+                        db.query(query, (err, data) => {
                             if (!err) {
-                                console.log("all queries are good")
-                                
+
+                                console.log('INSERT INTO LISTINGS');
+                                console.log('Listings Data: ', data);
+                                const query = "INSERT INTO `listing` SET listing.book_id = " + data.insertId + ", price = '" + price + "', book_condition = '" + condition + "', comments = '" + comments + "', accounts_id = '"+ userId +"', public_id='21'";
+                                // escape_quotes(query);
+                                db.query(query, (err, response) => {
+                                    if (!err) {
+                                        console.log("all queries are good")
+
+                                    } else {
+                                        console.log("error", err);
+                                    }
+                                })
                             } else {
                                 console.log("error", err);
                             }
                         })
                     } else {
-                        console.log("error", err);
+                        console.log('INSERT INTO LISTINGS');
+                        console.log('Listings Data: ', data);
+                        const query = "INSERT INTO `listing` SET listing.book_id = " + data[0].ID + ", price = '" + price + "', book_condition = '" + condition + "', comments = '" + comments + "', accounts_id = '1', public_id='21'";
+                        db.query(query, async (err, data) => {
+                            if (!err) {
+                                console.log("all queries are good");
+                                let output = {
+                                    success: true,
+                                    data: data,
+                                };
+                                response.send(output);
+                            } else {
+                                console.log("error", err);
+                            }
+                        })
                     }
                 })
             } else {
-                console.log('INSERT INTO LISTINGS');
-                console.log('Listings Data: ', data);
-                const query = "INSERT INTO `listing` SET listing.book_id = "+data[0].ID+", price = '"+ price +"', book_condition = '"+condition+"', comments = '"+comments+"', accounts_id = '1', public_id='21'";
-                db.query(query, async (err, data) => {
-                        if(!err) {
-                            console.log("all queries are good");
-                            let output = {
-                                success: true,
-                                data: data,
-                            };
-                            response.send(output);
-                        } else {
-                            console.log("error", err);
-                        }
-                })                    
+                const lookResponse = {
+                    success: false,
+                    message: "couldnt find account with given token"
+                }
+                response.send(lookResponse);
             }
         })
     });
@@ -262,8 +275,8 @@ webserver.get('/api/UserProfile', (request, response) => {
     const userIDToken = request.headers['token'];
     db.connect(() => {
         let query = 'SELECT lg.account_id FROM `loggedin` AS lg WHERE lg.token = "' + userIDToken + '"';
-        // query = escape_quotes(query);
         db.query(query, (err, data) => {
+            console.log("lg accounts: ", data);
             if (!err) {
                 if (data.length !== 1) {
                     const outputNoMatch = {
@@ -272,9 +285,8 @@ webserver.get('/api/UserProfile', (request, response) => {
                     };
                     response.send(outputNoMatch);
                 } else {
-                    console.log("Data: ", data);
+                    console.log("data[0].account_id: ", data[0].account_id);
                     let query = "SELECT a.ID, l.book_condition, l.ID, l.price, l.comments, l.book_id, b.title, b.ISBN, b.author FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id WHERE a.ID = '" + data[0].account_id + "'";
-                    // query = escape_quotes(query);
                     db.query(query, (err, data) => {
                         if (!err) {
                             const output = {
