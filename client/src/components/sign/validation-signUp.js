@@ -74,15 +74,16 @@ class SignInValidation extends Component {
 function validate(values) {
     const {EmailSignUp, PasswordSignUp, Name} = values;
     const errors = {};
-    const emailRegex = /"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"/;
-    const passwordRegex = /^[a-z0-9_-]{3,15}$/;
+    const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+    const passwordRegex = /(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{8,10})$/;
     const nameRegex = /^[a-z0-9_-]{3,15}$/;
-    if (emailRegex.test(EmailSignUp)) {
-        errors.Email = 'please enter a valid email';
+    if (!emailRegex.test(EmailSignUp)) {
+        console.log('email test');
+        errors.EmailSignUp = 'please enter a valid email';
     }
 
-    if (passwordRegex.test(PasswordSignUp)) {
-        errors.Password = "please enter a valid password";
+    if (!passwordRegex.test(PasswordSignUp)) {
+        errors.PasswordSignUp = "please enter a valid password";
     }
 
     if (nameRegex.test(Name)) {
