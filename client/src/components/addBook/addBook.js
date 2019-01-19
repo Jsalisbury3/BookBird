@@ -43,7 +43,6 @@ class AddBook extends Component {
         document.getElementsByClassName("modal-footer")[0].style.display = "none";
         document.getElementsByClassName("modal-body")[0].style.display = "none";
         document.getElementsByClassName("bookSuccessInfo")[0].style.display = "none";
-        document.getElementsByClassName("signInRequiredModal")[0].style.display = "none";
         document.getElementsByClassName("isbnSearchErrorMessage")[0].style.display = "none";
         document.getElementById("loadingGif").style.visibility = 'hidden';
         await this.addPhotoToMultiPhotoContainer();
@@ -241,8 +240,8 @@ class AddBook extends Component {
                 document.getElementsByClassName("modal-footer")[0].style.display = "block"
                 document.getElementsByClassName("modal-body")[0].style.display = "block"
                 document.getElementsByClassName("google_book_image")[0].style.display = "block";
-        document.getElementsByClassName("isbnModalBookDescription")[0].style.display = "block";
-        document.getElementsByClassName("submit_clear_buttons")[0].style.display = "block";
+                document.getElementsByClassName("isbnModalBookDescription")[0].style.display = "block";
+                document.getElementsByClassName("submit_clear_buttons")[0].style.display = "block";
             })
         } catch {
                 console.log("error finding book info");
@@ -270,11 +269,8 @@ class AddBook extends Component {
         this.setState({hideIsbnSearchBar: false});
         document.getElementsByClassName("modal-footer")[0].style.display = "none"
         document.getElementsByClassName("modal-body")[0].style.display = "none"
-        // document.getElementsByClassName('isbnSearchErrorMessage')[0].style.display = "none"; 
-        // document.getElementById("errorISBN")[0].style.display = "none"
         document.getElementById("errorISBN")[0].value = ""
         document.getElementsByName("ModalISBN")[0].value = " "
-
         this.setState({
             ISBN: '',
             author: '',
@@ -307,10 +303,6 @@ class AddBook extends Component {
         document.getElementsByName("author")[0].value = ``;
         document.getElementsByName("title")[0].value = ``;
         document.getElementsByName("price")[0].value = ``;
-        // document.getElementsByName("comments")[0].value = ``;
-        // document.getElementsByName("comments")[0].style.display = `none`;
-        // document.getElementsByClassName('isbnSearchErrorMessage')[0].style.display = "none"; 
-        // document.getElementById("errorISBN")[0].style.display = 'none'
         document.getElementsByClassName('checkMark')[0].style.display = "none"; 
 
         this.setState({
@@ -331,7 +323,6 @@ class AddBook extends Component {
                             <div style={hideISBN} className="isbnModalHeader">
                                
                                 <p className="isbnModalHeader">Post your book by ISBN</p>
-                                {/* <p>ISBN lets us fill all the book information for you while ensuring accuracy.</p> */}
                                 <form onSubmit={this.getBooks}className='form-isbn'>
                                     <div className = "input_label input-field">
                                         <input id="isbnInput" autoComplete="off" type="text" onChange={this.handleIsbnChange.bind(this)} name={"ModalISBN"} value={this.state.ISBN}/>
@@ -358,7 +349,6 @@ class AddBook extends Component {
                                         <img src={success}/>
                                     </div>
                                     <div className="successModalButtons">
-                                            {/* <button onClick={this.clearData}type="button"className= "btn-small btn waves-effect postAgainButton">Post Again</button> */}
                                             <button onClick={this.cancelButton}type="button"className= "btn-small btn waves-effect postAgainButton">Post Again</button>
                                             <p className="btn-small btn waves-effect white"><Link to={"/"}>Accept</Link> </p>
                                     </div>  
@@ -366,7 +356,7 @@ class AddBook extends Component {
                                 <div className="signInRequiredModal">
                                     <p>You must be signed in to post a book</p>
                                     <Link to={"/SignIn"}><p className="btn-small btn waves-effect signInRequiredButtons"> Sign In </p> </Link>
-                                    <Link to={"/SignUp"}><p className="btn-small btn waves-effect signInRequiredButtons"> Sign Up </p> </Link>
+                                    <Link to={"/SignUp"}><p className="btn-small btn waves-effect uiresignInReqdButtons"> Sign Up </p> </Link>
                                 </div>
                             </div>
                             <div className="modal-footer">
