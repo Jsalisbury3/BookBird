@@ -46,7 +46,8 @@ body{
 
 }
 .uni-footer {
-    position: absolute;
+    position: fixed;
+    /* position: absolute; */
     bottom: 0vh;
     height: 8vh;
     width: 100%;

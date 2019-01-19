@@ -2,9 +2,40 @@
     position: absolute;
     z-index: 1;
     width: 100vw;
-    height: 76vh;
+    height: 84vh;
     left: 0;
     background-color: rgba(0,0,0,0.75);
+}
+
+.POST{
+    position: relative;
+    /* display: inline-block;
+    height: 8vh; */
+    width: 50%;
+    margin-left: 0%;
+    /* border-radius: 40px;
+    border: none;
+    font-size: 1.5em; */
+    top: 0vh;
+    right: 11%;
+    /* height: 5vh; */
+    /* width: 29vw; */
+}
+.cancelButton {
+    position: relative;
+    /* display: inline-block; */
+    /* height: 8vh; */
+    width: 50%;
+    /* margin-left: -8%; */
+    /* border-radius: 40px;
+    border: none;
+    font-size: 1.5em; */
+    right: 25%;
+}
+
+.isbnSearchErrorMessage{
+    /* display:'none'; */
+    color: red;
 }
 
 #loadingGif{
@@ -27,6 +58,13 @@
 .signInRequiredButtons {
     margin: 14px;
 }
+
+.signInRequiredModal{
+    display:none;
+}
+
+
+
 
 .material-tooltip{
    left: 23% !important;
@@ -390,18 +428,6 @@ label {
     height:100%;
     width:100%;
 }
-.POST {
-    position: absolute;
-    display: inline-block;
-    height: 8vh;
-    width: 50%;
-    margin-left: 0%;
-    border-radius: 40px;
-    border: none;
-    font-size: 1.5em;
-    background-color: #26a69a;
-}
-
 .condition {
     position: relative;
     display: inline-block;
@@ -536,13 +562,6 @@ select option {
 
     .last::placeholder {
         font-size: 1.5em;
-    }
-    
-    .POST {
-        top: 12vh;
-        left: 5.2vw;
-        height: 5vh;
-        width: 20vw;
     }
 }
 
