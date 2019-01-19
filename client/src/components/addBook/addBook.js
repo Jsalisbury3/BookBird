@@ -396,7 +396,7 @@ class AddBook extends Component {
                                     <div className="successModalButtons">
                                             <button onClick={this.clearData}type="button"className= "btn-small btn waves-effect postAgainButton">Post Again</button>
                                             <p className="btn-small btn waves-effect white"><Link to={"/"}>Accept</Link> </p>
-                                    </div>  
+                                    </div>
                                 </div>
                                 <div className="signInRequiredModal">
                                     <p>You must be signed in to post a book</p>
@@ -422,27 +422,29 @@ class AddBook extends Component {
                 </div>
                 <form className={'form-container '} onSubmit={this.validateInputsFields} encType="multipart/form-data">
                     <img src={loadingGif} alt="loadingGif" id="loadingGif"/>
-                    <div id='input-container' className=' title-container row'>
+                    <h3 className={"pageHeader"}>Add Book</h3>
+                    <p className={"pageDescription"}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam asperiores blanditiis consectetur debitis dolorum earum enim illum magnam molestiae odit omnis</p>
+                    <div id='input-container1' className=' title-container row'>
                         <div id={"conditionError"} className={"error"}></div>
                         <div id={"conditionCheckMArk"}
                              className={"checkMark markCondition material-icons"}>check_circle_outline
                         </div>
                         <div className='input-field '>
-                            <h6 className='input-header'>Title</h6>
+                            <h6 className='input-header first'>Title</h6>
                             <input name="title" id='title' type='text' className="inputs col s10 push-s1"
                                    onChange={this.handleInput}/>
                         </div>
                     </div>
-                    <div id='input-container' className=' title-container row'>
+                    <div id='input-container2' className=' title-container row'>
                         <div className={"error"}></div>
                         <div className={"checkMark markTitle material-icons"}>check_circle_outline</div>
                         <div className='input-field'>
-                            <h6 className='input-header'>Author</h6>
+                            <h6 className='input-header second'>Author</h6>
                             <input name="author" id='author' type='text' className="inputs col s10 push-s1"
                                    onChange={this.handleInput}/>
                         </div>
                     </div>
-                    <div id='input-container' className='title-container row'>
+                    <div id='input-container3' className='title-container row'>
                         <div className={"error"}></div>
                         <div className={"checkMark markEdition material-icons"}>check_circle_outline</div>
                         <div className='input-field'>
@@ -451,7 +453,7 @@ class AddBook extends Component {
                             <label className='label-placeholder' htmlFor={'price'}>Price</label>
                         </div>
                     </div>
-                    <div id='input-container condition-container' className='title-container row'>
+                    <div id='input-container4 condition-container' className='title-container row'>
                         <select name={"condition"} onChange={this.handleInput} id={"mySelect"}
                                 className={"condition  col s6 push-s3"}>
                             <option value="" disabled selected>*Select Condition:</option>

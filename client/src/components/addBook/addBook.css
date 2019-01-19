@@ -229,7 +229,7 @@ label {
 
 }
 #comment-box {
-    top: 51%;
+    top: 72%;
     left: 8%;
     position: fixed;
 
@@ -262,12 +262,34 @@ label {
 .title-container {
     height: 18%;
 }
-#input-container {
+#input-container1 {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0px;
+    bottom: 17%;
+}
+
+#input-container2 {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 0px;
     bottom: 10%;
 }
+
+#input-container3 {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0px;
+    bottom: 10%;
+}
+
+#input-container4 {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0px;
+    bottom: 10%;
+}
+
 .post-button-container  {
     margin-left: 27%;
     position: relative;
@@ -280,9 +302,21 @@ label {
     z-index: 0;
 }
 
+.pageHeader {
+    margin: 0;
+}
 
+.pageDescription {
+    margin: 0.5%;
+}
 
+.first {
+    top: 2vh;
+}
 
+.second {
+    top: 2vh;
+}
 
 .label-placeholder {
     left: 8%;
@@ -435,35 +469,35 @@ select option {
     position: absolute;
     height: 3vh;
     width: 3vh;
-    left: var(--moveRight);
+    /*left: var(--moveRight);*/
     color: green;
     visibility: hidden;
 }
 
-.markISBN {
-    top: var(--markbase)
+/*.markISBN {*/
+    /*top: var(--markbase)*/
 
-}
+/*}*/
 
-.markCondition {
-    top: calc(var(--markbase) + var(--marktop) * 1);
-}
+/*.markCondition {*/
+    /*top: calc(var(--markbase) + var(--marktop) * 1);*/
+/*}*/
 
-.markTitle {
-    top: calc(var(--markbase) + var(--marktop) * 2);
-}
+/*.markTitle {*/
+    /*top: calc(var(--markbase) + var(--marktop) * 2);*/
+/*}*/
 
-.markAuthor {
-    top: calc(var(--markbase) + var(--marktop) * 3);
-}
+/*.markAuthor {*/
+    /*top: calc(var(--markbase) + var(--marktop) * 3);*/
+/*}*/
 
-.markEdition {
-    top: calc(var(--markbase) + var(--marktop) * 4);
-}
+/*.markEdition {*/
+    /*top: calc(var(--markbase) + var(--marktop) * 4);*/
+/*}*/
 
-.markPrice {
-    top: calc(var(--markbase) + var(--marktop) * 5);
-}
+/*.markPrice {*/
+    /*top: calc(var(--markbase) + var(--marktop) * 5);*/
+/*}*/
 
 
 .visible {
