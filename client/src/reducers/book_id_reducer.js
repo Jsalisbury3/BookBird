@@ -1,7 +1,7 @@
 import types from '../actions/types';
 
 const DEFAULT_STATE = {
-    listingInfo: [],
+    listingInfo: '',
 };
 
 function bookIdReducer(state = DEFAULT_STATE, action) {
