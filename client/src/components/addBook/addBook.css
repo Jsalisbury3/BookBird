@@ -225,34 +225,43 @@ label {
     margin-left: auto;
     margin-right: auto;
     position: relative;
-    margin-bottom: 0%;
+    margin-bottom: 0;
 
 }
 #comment-box {
-    top: 72%;
+    top: 63%;
     left: 8%;
     position: fixed;
 
 }
 .sellers-comments-tag {
     position: relative;
-    bottom: 12%;
+    bottom: 5%;
     font-size: .80rem;
-    margin-left: 8%;
     color: #26a69a;
+    left: 8.5vw;
 }
 .optional-tag {
     position: relative;
-    margin-top: 29%;
-    margin-left: 83%;
     font-size: 0.9rem;
+    top: 24.8vh;
+    left: 73vw;
 }
 #mySelect {
-    position: static;
     margin-top: 2%;
     background-color: aliceblue;
     margin-left: 8%;
+    top: -4vh;
+    left: 0;
 }
+
+#picIcon {
+    position: relative;
+    top: 10vh;
+    left: 40vw;
+    display: inline-block;
+}
+
 /*:root {*/
     /*--moveRight: 91%;*/
     /*--moveup: 4.5vh;*/
@@ -273,21 +282,21 @@ label {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 0px;
-    bottom: 10%;
+    bottom: 16%;
 }
 
 #input-container3 {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 0px;
-    bottom: 10%;
+    bottom: 15%;
 }
 
 #input-container4 {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 0px;
-    bottom: 10%;
+    bottom: 15%;
 }
 
 .post-button-container  {
@@ -297,9 +306,10 @@ label {
 }
 .submit-photo-container {
     position: relative;
-    margin-top: 25%;
-    margin-left: 20px;
     z-index: 0;
+    bottom: 13.6vh;
+    left: 78vw;
+    display: inline-block;
 }
 
 .pageHeader {
@@ -379,6 +389,24 @@ label {
     text-align: center;
 }
 
+#titleError {
+    top: 8vh;
+    display: inline-block;
+    left: 16vw;
+}
+
+#authErr {
+    top: 8vh;
+    right: 64vw;
+    display: inline-block;
+}
+
+#priceErr {
+    display: inline-block;
+    top: 9vh;
+    right: 64vw;
+}
+
 .comment-text-area {
     position: absolute;
     display: inline;
@@ -444,7 +472,6 @@ label {
     margin: auto;
     font-size: 1rem;
     left: 10.5%;
-    top: 4vh;
 }
 
 select {
@@ -474,6 +501,7 @@ select option {
     visibility: hidden;
 }
 
+
 /*.markISBN {*/
     /*top: var(--markbase)*/
 
@@ -495,9 +523,10 @@ select option {
     /*top: calc(var(--markbase) + var(--marktop) * 4);*/
 /*}*/
 
-/*.markPrice {*/
-    /*top: calc(var(--markbase) + var(--marktop) * 5);*/
-/*}*/
+.markPrice {
+    top: 53vh;
+    left: 60vw;
+}
 
 
 .visible {
@@ -521,7 +550,7 @@ select option {
     }
 
     .inputs {
-        width: 80%;
+        width: 84%;
         left: 10%;
     }
 

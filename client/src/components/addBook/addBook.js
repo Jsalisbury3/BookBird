@@ -425,7 +425,7 @@ class AddBook extends Component {
                     <h3 className={"pageHeader"}>Add Book</h3>
                     <p className={"pageDescription"}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam asperiores blanditiis consectetur debitis dolorum earum enim illum magnam molestiae odit omnis</p>
                     <div id='input-container1' className=' title-container row'>
-                        <div id={"conditionError"} className={"error"}></div>
+                        <div id={"titleError"} className={"error"}>invalid title</div>
                         <div id={"conditionCheckMArk"}
                              className={"checkMark markCondition material-icons"}>check_circle_outline
                         </div>
@@ -436,7 +436,7 @@ class AddBook extends Component {
                         </div>
                     </div>
                     <div id='input-container2' className=' title-container row'>
-                        <div className={"error"}></div>
+                        <div className={"error"} id={"authErr"}>err</div>
                         <div className={"checkMark markTitle material-icons"}>check_circle_outline</div>
                         <div className='input-field'>
                             <h6 className='input-header second'>Author</h6>
@@ -445,7 +445,7 @@ class AddBook extends Component {
                         </div>
                     </div>
                     <div id='input-container3' className='title-container row'>
-                        <div className={"error"}></div>
+                        <div className={"error"} id={"priceErr"}>err</div>
                         <div className={"checkMark markEdition material-icons"}>check_circle_outline</div>
                         <div className='input-field'>
                             <input name={"price"} id={'price'} type='text' className={"inputs col s10 push-s1"}
@@ -464,7 +464,7 @@ class AddBook extends Component {
                             <option value="Thrashed">Thrashed</option>
                         </select>
                     </div>
-                    <div className={"error"}></div>
+                    {/*<div className={"error"}>err</div>*/}
                     <div className={"checkMark markPrice material-icons"}>check_circle_outline</div>
                     <h5 className='sellers-comments-tag'> Sellers Comments</h5>
                     <div className={'comment-text-area'}>
@@ -490,8 +490,8 @@ class AddBook extends Component {
                     {/*<input name={"edition"} placeholder={"*Edition"} className={"inputs"} onChange={this.handleInput}/>*/}
 
                     <div className='submit-photo-container'>
-                        <label id='add-photo-icon' className="  btn waves-effect waves-light" htmlFor="photoInput"><i
-                            className={"material-icons"}>add_a_photo</i></label>
+                        <label id="add-photo-icon picIcon" className="btn waves-effect waves-light" htmlFor="photoInput"><i
+                            className={"material-icons"} >add_a_photo</i></label>
                         <input id="photoInput" type="file" name="photo" capture="camera" accept="image/*"
                                onChange={this.fileSelectedHandler}/>
                     </div>
