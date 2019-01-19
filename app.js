@@ -303,7 +303,7 @@ webserver.get('/api/BookInfoIndex/:ID', (request, response) => {
 
     db.connect(() => {
         // const query = "SELECT l.ID, l.accounts_id, l.book_condition, l.price, l.comments, l.book_id, b.ID, b.title, b.author, b.ISBN, a.email, a.ID FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id WHERE l.`book_id` = " + request.params.bookId + "";
-        let query = "SELECT l.ID AS listingID, l.accounts_id, l.book_condition, l.price, l.comments, l.book_id, b.ID AS bookID, b.title, b.author, b.ISBN, a.email, a.ID FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id WHERE l.ID = " + request.params.ID + "";
+        let query = "SELECT l.ID AS listingID, l.accounts_id, l.book_condition, l.price, l.comments, l.book_id, b.ID AS bookID, b.title, b.author, b.ISBN, b.bookImage, a.email, a.ID FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id WHERE l.ID = " + request.params.ID + "";
         // query = escape_quotes(query);
         console.log(query);
         db.query(query, (err, data) => {

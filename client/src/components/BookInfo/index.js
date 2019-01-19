@@ -31,9 +31,14 @@ class Index extends Component {
     //     })
     // };
 
+    createCarousel = () => {
+        const bookImages = document.querySelectorAll('.carousel');
+        const initCarousel = M.Carousel.init(bookImages);
+    }
+
     componentDidMount = () => {
         this.props.getDataForBookClicked(this.state.listId);
-
+        this.createCarousel();
         // this.setState({
         //     ...this.state,
         //     data: bookInfo
@@ -56,6 +61,7 @@ class Index extends Component {
                           sellersComment={listingInfo.comments}
                           price={listingInfo.price}
                           sellersEmail={listingInfo.email}
+                          bookImage={listingInfo.bookImage}
                 />
             </div>
         )
