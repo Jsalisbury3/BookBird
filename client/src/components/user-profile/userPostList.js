@@ -5,6 +5,7 @@ import './profile.css';
 import 'materialize-css';
 
 
+
 export default class UserPostList extends Component {
     state = {
         data : null
@@ -53,10 +54,10 @@ export default class UserPostList extends Component {
 
     render() {
         return (
-            <div className='user-posts-container'>
-                {this.state.data}
-                <div className='samplePost'></div>
-            </div>
+                <div className='user-posts-container'>
+                    {this.state.data}
+                    <div className='samplePost'></div>
+                </div>
         )
     }
 }

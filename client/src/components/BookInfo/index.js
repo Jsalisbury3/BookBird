@@ -1,9 +1,11 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getDataForBookClicked } from '../../actions/book_id';
 import BookData from './bookData'
 import axios from 'axios'
+import Header from './../universal/header'
+import Nav from './../universal/nav'
 
 
 class Index extends Component {
@@ -47,17 +49,22 @@ class Index extends Component {
         const listingInfo = {...this.props.listId};
         console.log('LISTING INFO!:', listingInfo)
         return (
-            <div className='main-container'>
-                <BookData title={listingInfo.title}
-                          ISBN={listingInfo.ISBN}
-                          edition ={listingInfo.edition}
-                          author={listingInfo.author}
-                          condition={listingInfo.book_condition}
-                          sellersComment={listingInfo.comments}
-                          price={listingInfo.price}
-                          sellersEmail={listingInfo.email}
-                />
-            </div>
+            <Fragment>
+                <Header/>
+
+                    <div className='main-container'>
+                        <BookData title={listingInfo.title}
+                                ISBN={listingInfo.ISBN}
+                                edition ={listingInfo.edition}
+                                author={listingInfo.author}
+                                condition={listingInfo.book_condition}
+                                sellersComment={listingInfo.comments}
+                                price={listingInfo.price}
+                                sellersEmail={listingInfo.email}
+                        />
+                    </div>
+                <Nav/>
+            </Fragment>
         )
         }
 }
