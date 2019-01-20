@@ -1,0 +1,18 @@
+
+.introPageContainer{
+    background-color: #3C4452;
+    height: 100vh;
+}
+.logoImgContainer{
+    position: relative;
+    top: 8%;
+}
+.introPageButtonContainer{
+    position: relative;
+    top: 16%;
+    justify-content: center;
+    display: flex;
+}
+.getStartedButton{
+    background-color: #98C1D9;
+}
