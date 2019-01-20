@@ -2,6 +2,7 @@ import types from './types';
 import axios from "axios/index";
 
 export const getDataForBookClicked = (ID) => {
+   
     return (dispatch) => {
         axios({
             method: "get",
@@ -13,6 +14,7 @@ export const getDataForBookClicked = (ID) => {
                 type: types.BOOK_INFO_INDEX,
                 payload: listingInfo.data.data,
             })
+
         });
     }
 }

@@ -303,21 +303,62 @@ webserver.get('/api/BookInfoIndex/:ID', (request, response) => {
 
     db.connect(() => {
         // const query = "SELECT l.ID, l.accounts_id, l.book_condition, l.price, l.comments, l.book_id, b.ID, b.title, b.author, b.ISBN, a.email, a.ID FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id WHERE l.`book_id` = " + request.params.bookId + "";
-        let query = "SELECT l.ID AS listingID, l.accounts_id, l.book_condition, l.price, l.comments, l.book_id, b.ID AS bookID, b.title, b.author, b.ISBN, a.email, a.ID FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id WHERE l.ID = "+request.params.ID+"";
-        // query = escape_quotes(query);
-        console.log(query);
+        
+        let query = "SELECT i.ID, i.url, i.listing_id, i.imageType FROM images AS i WHERE i.listing_id = " + request.params.ID + "";
+        
         db.query(query, (err, data) => {
-            if (!err) {
-                console.log("bookidData: ", data);
-                let output = {
-                    success: true,
-                    data: data,
-                };
-                response.send(output);
+            if (data.length > 0) {
+                const images = data;
+                let query = "SELECT l.ID AS listingID, l.accounts_id, l.book_condition, l.price, l.comments, l.book_id, b.ID AS bookID, b.title, b.author, b.ISBN, b.bookImage, a.email, a.ID FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id WHERE l.ID = "+request.params.ID+""                
+                // query = escape_quotes(query);
+                console.log(query);
+                db.query(query, (err, data) => {
+                    if (!err) {
+                        console.log("bookidData: ", data);
+                        let output = {
+                            success: true,
+                            data: data,
+                            images,
+                        };
+                        response.send(output);
+                    } else {
+                        console.log(err);
+                    }
+                })
             } else {
-                console.log(err);
+                console.log('No images for that listing')
+                let query = "SELECT l.ID AS listingID, l.accounts_id, l.book_condition, l.price, l.comments, l.book_id, b.ID AS bookID, b.title, b.author, b.ISBN, b.bookImage, a.email, a.ID FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id WHERE l.ID = "+request.params.ID+""                
+                // query = escape_quotes(query);
+                console.log(query);
+                db.query(query, (err, data) => {
+                    if (!err) {
+                        console.log("bookidData: ", data);
+                        let output = {
+                            success: true,
+                            data: data,
+                        };
+                        response.send(output);
+                    } else {
+                        console.log(err);
+                    }
+                })
             }
         })
+        // let query = "SELECT l.ID AS listingID, l.accounts_id, l.book_condition, l.price, l.comments, l.book_id, b.ID AS bookID, b.title, b.author, b.ISBN, b.bookImage, a.email, a.ID FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id WHERE l.ID = " + request.params.ID + "";
+        // query = escape_quotes(query);
+        // console.log(query);
+        // db.query(query, (err, data) => {
+        //     if (!err) {
+        //         console.log("bookidData: ", data);
+        //         let output = {
+        //             success: true,
+        //             data: data,
+        //         };
+        //         response.send(output);
+        //     } else {
+        //         console.log(err);
+        //     }
+        // })
     })
 });
 

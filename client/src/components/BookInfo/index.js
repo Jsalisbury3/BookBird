@@ -33,9 +33,14 @@ class Index extends Component {
     //     })
     // };
 
+    createCarousel = () => {
+        const bookImages = document.querySelectorAll('.carousel');
+        const initCarousel = M.Carousel.init(bookImages);
+    }
+
     componentDidMount = () => {
         this.props.getDataForBookClicked(this.state.listId);
-
+        this.createCarousel();
         // this.setState({
         //     ...this.state,
         //     data: bookInfo
@@ -48,7 +53,7 @@ class Index extends Component {
         console.log("Book INFO index: ", this.props.listId);
         const listingInfo = {...this.props.listId};
         console.log('LISTING INFO!:', listingInfo)
-        return (
+        return (l
             <Fragment>
                 <Header/>
 
@@ -66,13 +71,14 @@ class Index extends Component {
                 <Nav/>
             </Fragment>
         )
-        }
+    }
 }
 
 function mapStateToProps(state) {
     console.log('book index state: ', state);
     return {
-        listId: state.bookIdReducer.listingInfo[0]
+        listId: state.bookIdReducer.listingInfo[0],
+
     }
 }
 
