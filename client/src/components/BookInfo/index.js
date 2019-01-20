@@ -53,7 +53,7 @@ class Index extends Component {
         console.log("Book INFO index: ", this.props.listId);
         const listingInfo = {...this.props.listId};
         console.log('LISTING INFO!:', listingInfo)
-        return (l
+        return (
             <Fragment>
                 <Header/>
 
