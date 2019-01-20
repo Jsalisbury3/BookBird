@@ -24,18 +24,15 @@ export default class UserPost extends Component{
                                 <div className='itemDetails'>
                                     <p>Title: {title}</p>
                                     <p>Author: {author}</p>
-                                    <p>Condition: {book_condition}</p>
-                                    
-                                </div>
-            
-                            
+                                    <p>Condition: {book_condition}</p>  
+                                </div>                            
                         </Link>
                         <div className='delete-btn-container'>
                             <p>Price: ${price}</p>
                             <button className='waves-effect btn red center' onClick={this.props.delete}><i className='large material-icons center'>delete_outline</i></button>
                         </div>
                     </div>
-        )
+                )
     }
     
 }
