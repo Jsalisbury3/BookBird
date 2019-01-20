@@ -25,9 +25,8 @@ h2:nth-child(2)  {
 }
 
 .Container {
-    height: 76vh;
+    height: 84vh;
     width: 100vw;
-
     background-color: lightblue;
 
 }
@@ -88,10 +87,106 @@ h2:nth-child(2)  {
     bottom: 409px;
     right: -6px;
 }
+
 .TitleTag {
     margin: 0;
 }
 
+/* NEW PAGE CSS */
+
+#cardContainer{
+    margin-top: 0;
+    height: 62vh;
+}
+
+#imageContainer {
+    height: 40%;
+    width: 100%;
+    background-color: rgb(197, 197, 197);
+
+}
+
+.imageContainer > img {
+    height: 100%;
+    width: 100%;
+}
+
+#book-item img {
+    position: relative;
+    left: 15%;
+    top: 5%;
+    height: 90%;
+    width: 70%;
+}
+.book-content {
+    height: 68%;
+}
+
+.bookInfoLeftContent {
+    border: 1px solid black;
+    display: inline-block;
+    height: 50%;
+    width: 70%;
+}
+
+.bookInfoLeftContent > h5 {
+    margin: 0;
+}
+
+.bookInfoRightContent {
+    border: 1px solid black;
+    display: inline-block;
+    vertical-align: top;
+    height: 50%;
+    width: 30%;
+}
+
+.bookCondition {
+    position: relative;
+    height: 40%;
+    border: 1px solid black;
+}
+
+.bookCondition h6 {
+    position: relative;
+    left: 10%;
+    height: 40%;
+    border: 1px solid black;
+}
+.bookPrice {
+    height: 60%;
+    border: 1px solid black;
+}
+
+.bookPrice h5 {
+    position: relative;
+    left: 25%;
+    height: 40%;
+    border: 1px solid black;
+
+}
+.bookTitle {
+    color: rgb(22, 22, 22);
+}
+
+.bookAuthor, .bookISBN {
+    color: rgb(179, 179, 179);
+}
+
+.sellersContent {
+    border: 1px solid black;
+    height: 50%;
+    
+}
+
+.card-action a {
+    position: relative;
+    left: 33%;
+}
+
+#contactAction {
+    color:blue;
+}
 @media screen and (min-width: 1000px) {
 
     .BookInfo {
@@ -188,3 +283,4 @@ h2:nth-child(2)  {
     }
 
 }
+
