@@ -2,13 +2,25 @@
     box-sizing:border-box;
 }
 .search-results-container{
-    height:69vh;
+    height: 84vh;
     overflow:auto;
     background-color: #C2E5F9;
+
+}
+.listItemContainer{
+    height:17.25vh;
+    /* border:solid black; */
 }
 .listItem{
-    height:17.25vh;
-    border:solid black;
+    border:1px solid rgb(43, 43, 43);
+    box-shadow: 2px 2px darkgray;
+    height: 96%;
+    width:96%;
+    margin: auto;
+    background-color: white;
+}
+.listItem:active{
+    box-shadow:none;
 }
 .itemImageContainer{
     vertical-align: top;
@@ -56,10 +68,11 @@
 }
 .search-text{
     vertical-align: top;
-    height: 7vh;
+    height: 6.5vh;
     width: 84vw;
-    position: relative;
+    /* position: relative; */
     font-size:23px;
+    margin:0;
 }
 .search-bar-icon{
     height:100%;
@@ -70,7 +83,7 @@
      height: 100%;
 }
 .searchForm{
-    height: 7vh;
+    height: 6.5vh;
     width: 100%;
 }  
 
