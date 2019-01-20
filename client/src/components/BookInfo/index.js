@@ -9,6 +9,7 @@ import axios from 'axios'
 class Index extends Component {
     state = {
         listId : this.props.match.params.bookId,
+        images: [],
         data: ''
     };
 
@@ -33,7 +34,10 @@ class Index extends Component {
 
     createCarousel = () => {
         const bookImages = document.querySelectorAll('.carousel');
-        const initCarousel = M.Carousel.init(bookImages);
+        const initCarousel = M.Carousel.init(bookImages,{
+            numVisible: 3,
+            padding: 0,
+        });
     }
 
     componentDidMount = () => {
@@ -50,10 +54,12 @@ class Index extends Component {
         console.log('BOOK DATA STATE,', this.state)
         console.log("Book INFO index: ", this.props.listId);
         const listingInfo = {...this.props.listId};
+        const images = this.props.images;
         console.log('LISTING INFO!:', listingInfo)
+        console.log('IMAGES INFO!:', images)
         return (
             <div className='main-container'>
-                <BookData {...this.props.listId}
+                <BookData imageList = {images}
                           title={listingInfo.title}
                           ISBN={listingInfo.ISBN}
                           edition ={listingInfo.edition}
@@ -65,14 +71,15 @@ class Index extends Component {
                           bookImage={listingInfo.bookImage}
                 />
             </div>
-        )
+            )
         }
 }
 
 function mapStateToProps(state) {
     console.log('book index state: ', state);
     return {
-        listId: state.bookIdReducer.listingInfo[0],
+        listId: state.bookIdReducer.listingInfo.bookInfo[0],
+        images: state.bookIdReducer.listingInfo.images
 
     }
 }

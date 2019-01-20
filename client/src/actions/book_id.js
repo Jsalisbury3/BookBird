@@ -9,10 +9,13 @@ export const getDataForBookClicked = (ID) => {
             url: `/api/BookInfoIndex/${ID}`,
             data : ID
         }).then( (listingInfo) => {
-            console.log("BOOKINFO YO: ", listingInfo);
+            console.log("BOOKINFO ACTION RESPONSE: ", listingInfo);
             dispatch({
                 type: types.BOOK_INFO_INDEX,
-                payload: listingInfo.data.data,
+                payload: {
+                    bookInfo: listingInfo.data.data,
+                    images: listingInfo.data.images
+                }
             })
 
         });

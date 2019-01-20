@@ -2,24 +2,41 @@
     position: absolute;
     z-index: 1;
     width: 100vw;
-    height: 76vh;
+    height: 84vh;
     left: 0;
     background-color: rgba(0,0,0,0.75);
+}
+
+.POST{
+    position: relative;
+    width: 50%;
+    margin-left: 0%;
+    top: 0vh;
+    right: 11%;
+}
+.cancelButton {
+    position: relative;
+    width: 50%;
+    right: 25%;
+}
+
+.isbnSearchErrorMessage{
+    /* display:'none'; */
+    color: red;
 }
 
 #loadingGif{
     z-index: 5;
     visibility: visible;
     position: absolute;
-    /* width: 20%; */
     height: 33%;
     top: 28%;
 }
-.isbnModalContainer{
+/* .isbnModalContainer{
 
 }
 .submit_clear_buttons{
-}
+} */
 
 #errorISBN{
     color:red;
@@ -27,6 +44,13 @@
 .signInRequiredButtons {
     margin: 14px;
 }
+
+.signInRequiredModal{
+    display:none;
+}
+
+
+
 
 .material-tooltip{
    left: 23% !important;
@@ -165,8 +189,8 @@ img {
     -webkit-transform: translateY(12px);
     transform: translateY(12px);
 }
-.input-field > label {
-}
+/* .input-field > label {
+} */
 
 .label-placeholder {
     left: 8%;
@@ -253,12 +277,6 @@ label {
     background-color: aliceblue;
     margin-left: 8%;
 }
-/*:root {*/
-    /*--moveRight: 91%;*/
-    /*--moveup: 4.5vh;*/
-    /*--marktop: 7.8vh;*/
-    /*--markbase: 4.2vh;*/
-/*}*/
 .title-container {
     height: 18%;
 }
@@ -279,10 +297,6 @@ label {
     margin-left: 20px;
     z-index: 0;
 }
-
-
-
-
 
 .label-placeholder {
     left: 8%;
@@ -309,22 +323,17 @@ label {
     z-index: 0;
 
 }
-
 .header {
     height: 12vh;
     width: 100vw;
     background-color: #5bc0de;
     color: white;
 }
-
-
 .inputs {
     position: relative;
     display: inline-block;
     width: 80%;
-    /*height: 5vh;*/
      height: min-content;
-    /*margin: auto;*/
     font-size: 1rem;
     left: 10.5%;
     top: 4vh;
@@ -349,9 +358,9 @@ label {
     position: absolute;
     display: inline;
     bottom: 43%;
-    width: 90%;
+    /* width: 90%; */
     margin-left: 0%;
-    height: 11%;
+    /* height: 11%; */
 }
 
 
@@ -390,18 +399,6 @@ label {
     height:100%;
     width:100%;
 }
-.POST {
-    position: absolute;
-    display: inline-block;
-    height: 8vh;
-    width: 50%;
-    margin-left: 0%;
-    border-radius: 40px;
-    border: none;
-    font-size: 1.5em;
-    background-color: #26a69a;
-}
-
 .condition {
     position: relative;
     display: inline-block;
@@ -536,13 +533,6 @@ select option {
 
     .last::placeholder {
         font-size: 1.5em;
-    }
-    
-    .POST {
-        top: 12vh;
-        left: 5.2vw;
-        height: 5vh;
-        width: 20vw;
     }
 }
 

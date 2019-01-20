@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './book-data.css';
+import CarouselItem from './carousel-item';
 
 // function IndividualBookData(props) {
 //     console.log("PROOOOOOOOOOOOOPS: ", props);
@@ -29,13 +30,14 @@ import './book-data.css';
 // export default IndividualBookData;
 
 function IndividualBookData(props) {
-    console.log("PROOOOOOOOOOOOOPS: ", props);
+    console.log("PROOOOOOOOOOOOOPS book data: ", props);
     return (
         <div className='Container'>
             <div className="carousel" id="imageContainer">
-                    <a className="carousel-item" id="book-item" href="#one!">
+                    <a className="carousel-item responsive-img" id="book-item" href="#one!">
                         <img src={props.bookImage}/>
-                    </a>    
+                    </a>
+                    <CarouselItem images={props}/> 
             </div>
             <div className="s12 m6">
                 <div className="card" id="cardContainer">
