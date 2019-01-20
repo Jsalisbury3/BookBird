@@ -20,7 +20,6 @@ class AddBook extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
             course: '',
             ISBN: '',
             condition: 'Excellent',
@@ -44,7 +43,7 @@ class AddBook extends Component {
         document.getElementsByClassName("modal-footer")[0].style.display = "none";
         document.getElementsByClassName("modal-body")[0].style.display = "none";
         document.getElementsByClassName("bookSuccessInfo")[0].style.display = "none";
-        document.getElementsByClassName("signInRequiredModal")[0].style.display = "none";
+        document.getElementsByClassName("isbnSearchErrorMessage")[0].style.display = "none";
         document.getElementById("loadingGif").style.visibility = 'hidden';
         await this.addPhotoToMultiPhotoContainer();
         this.instances = M.Tooltip.init(this.tooltip);
@@ -62,57 +61,24 @@ class AddBook extends Component {
         const element = 'input[name=ModalISBN]'
         var elementVal = document.querySelector(element).value;
         const pattern = /[0-9]{10,13}/
-        // const errorMessage = "Invalid ISBN number"
-        
         if(!pattern.test(elementVal)){
+            document.getElementById("loadingGif").style.visibility = 'hidden';
             document.getElementById("errorISBN").innerHTML = "Invalid ISBN number";
             return false
         }else{
             return true
         }
-        const isbnTest = [
-             {
-                element: 'input[name=ISBN]',
-                pattern: /[0-9]{13,}/,
-                errorMessage: "Invalid ISBN number",
-                index: 0
-            },
-        ]
     }
     validateInputsFields = (event) => {
         console.log('HELLO THERE')
         event.preventDefault();
         const test = [
-            // {
-            //     element: 'input[name=ISBN]',
-            //     pattern: /[0-9]{13,}/,
-            //     errorMessage: "Invalid ISBN number",
-            //     index: 0
-            // },
             {
                 element: 'input[name=condition]',
                 pattern: /^(New|Like New|Good|Worn|Thrashed)$/,
                 errorMessage: "Invalid Condition Selection",
                 index: 0
             },
-            // {
-            //     element: 'input[name=title]',
-            //     pattern: /[a-zA-Z0-9]{4,140}/,
-            //     errorMessage: "Invalid Title",
-            //     index: 2
-            // },
-            // {
-            //     element: 'input[name=author]',
-            //     pattern: /[a-zA-Z0-9]{4,140}/,
-            //     errorMessage: "Invalid Author",
-            //     index: 3
-            // },
-            // {
-            //     element: 'input[name=edition]',
-            //     pattern: /[0-9]{1,99}/,
-            //     errorMessage: "Whole Numbers Only",
-            //     index: 4
-            // },
             {
                 element: 'input[name=price]',
                 pattern: /[0-9]{1,4}/,
@@ -125,8 +91,7 @@ class AddBook extends Component {
                 this.addBook();
             } else {
                 this.signInRequiredModal();
-            }
-            
+            } 
         }
     };
     validateInputAndDisplayError = (test) => {
@@ -138,7 +103,6 @@ class AddBook extends Component {
         } else {
             var elementVal = document.querySelector(element).value;
         }
-        console.log(elementVal);
         let pattern = test.pattern;
         let errorMessage = test.errorMessage;
         let index = test.index;
@@ -159,15 +123,9 @@ class AddBook extends Component {
                 document.getElementById("conditionError").innerHTML = '';
                 document.getElementById("conditionCheckMArk").classList.add("visible");
             }
-
         }
-        // document.getElementsByClassName('modalPageContainer')[0].style.display = "block";
         return result;
     };
-    // addBook = async (event) => {
-    //     document.getElementsByClassName('modalPageContainer')[0].style.display = "block";
-    //     return result;
-    // };
     fileSelectedHandler = async event => {
 
         const reader = new FileReader();
@@ -191,8 +149,7 @@ class AddBook extends Component {
     addPhotoToMultiPhotoContainer = async () => {
         const imgTagArray = this.state.photoArray.map((item, index) => {
             return (
-                <SingleBookPhoto delete={this.deletePhotoFromStateAndContainer(index)} key={index} index={index}
-                                 about={item}/>
+                <SingleBookPhoto delete={this.deletePhotoFromStateAndContainer(index)} key={index} index={index} about={item}/>
             )
         });
         await this.setState({
@@ -214,11 +171,7 @@ class AddBook extends Component {
     }
     addBook = async (event) => {
         this.bookPostedModal();
-
-        console.log("state:", this.state);
         let request = {...this.state};
-        console.log('Request: ', request);
-
         const listing = await axios({
             method: 'post',
             url: '/api/addListing',
@@ -228,13 +181,7 @@ class AddBook extends Component {
             data: request,
         })
         try {
-
         const {insertId} = listing.data.data;
-        console.log('insert id:', listing);
-        // event.preventDefault();
-        // let data = new FormData(this.refs.bookPost);
-        // console.log('this forms', this.forms);
-        // console.log('this refs', this.refs);
         const prep = await axios({
             Authorization: `AWS ${accessKeyId}: ${secretAccessKey}`,
             method: 'get',
@@ -265,23 +212,8 @@ class AddBook extends Component {
             },
             data: saveImageParams
         })
-
-        // const formInfo = new FormData(this.forms)
-        // formInfo.append('images', this.forms[7].files[0], 'image1')
-        // request.files = formInfo;      
-        // console.log('request files:', request.files)
-        // console.log("state:", this.state);
-        // console.log('FORM DATA: ', data);
-        // data.append('data', request );
-        // console.log('FORM DATA AFTER APPEND', data);
-        console.log('Add Book: ', this.state);
-        // 'content-type': 'multipart/form-data'
-        // document.getElementsByClassName('modalPageContainer')[0].style.display = "block";
-
-        // this.bookPostedModal();
     } catch {
             console.log("Error posting book")
-
         }
     };
     getBooks = (event) => {
@@ -296,7 +228,6 @@ class AddBook extends Component {
             url: BASE_URL_GOOGLE_BOOKS + this.state.ISBN + API_KEY,
         }).then((response) => {
             try {
-            
             console.log("response from getbooks api: ", response);
             this.setState({
                 books: response.data.items,
@@ -304,13 +235,18 @@ class AddBook extends Component {
                 title: response.data.items[0].volumeInfo.title,
                 bookImage: response.data.items[0].volumeInfo.imageLinks.smallThumbnail
             }, () => {
-                // document.getElementById('loadingGif').style.visibility = 'hidden';
                 document.getElementById('loadingGif').style.visibility = 'hidden';
+                document.getElementsByClassName("isbnModalHeader")[0].style.display = "none"
                 document.getElementsByClassName("modal-footer")[0].style.display = "block"
                 document.getElementsByClassName("modal-body")[0].style.display = "block"
+                document.getElementsByClassName("google_book_image")[0].style.display = "block";
+                document.getElementsByClassName("isbnModalBookDescription")[0].style.display = "block";
+                document.getElementsByClassName("submit_clear_buttons")[0].style.display = "block";
             })
         } catch {
                 console.log("error finding book info");
+                document.getElementsByClassName('isbnSearchErrorMessage')[0].style.display = "block";
+                this.cancelButton();
                 //add the modal back to find another book here
             }
         });
@@ -333,7 +269,7 @@ class AddBook extends Component {
         this.setState({hideIsbnSearchBar: false});
         document.getElementsByClassName("modal-footer")[0].style.display = "none"
         document.getElementsByClassName("modal-body")[0].style.display = "none"
-        document.getElementById("errorISBN")[0].style.display = "none"
+        document.getElementById("errorISBN")[0].value = ""
         document.getElementsByName("ModalISBN")[0].value = " "
         this.setState({
             ISBN: '',
@@ -356,9 +292,26 @@ class AddBook extends Component {
         document.getElementsByClassName("submit_clear_buttons")[0].style.display = "none"
         document.getElementsByClassName("signInRequiredModal")[0].style.display = "block"
     }
-    acceptBookPosted = (event) => {
-        event.preventDefault();
+    cancelButton = () =>{
+        document.getElementsByClassName("modal-footer")[0].style.display = "none";
+        document.getElementsByClassName("modal-body")[0].style.display = "none";
+        document.getElementsByClassName("bookSuccessInfo")[0].style.display = "none";
+        document.getElementsByClassName("signInRequiredModal")[0].style.display = "none";
+        document.getElementsByClassName('modalIsbn')[0].style.display = "block";
+        document.getElementsByClassName('isbnModalHeader')[0].style.display = "block";
+        document.getElementById("loadingGif").style.visibility = 'hidden';
+        document.getElementsByName("author")[0].value = ``;
+        document.getElementsByName("title")[0].value = ``;
+        document.getElementsByName("price")[0].value = ``;
+        document.getElementsByClassName('checkMark')[0].style.display = "none"; 
 
+        this.setState({
+            ISBN: '',
+            photoArray: [],  
+            imgTagArray: [],
+            price: '',
+            comments: ''       
+        })
     }
     render() {
         const hideISBN = this.state.hideIsbnSearchBar ? {display: 'none'} : {display: 'block'};
@@ -368,17 +321,19 @@ class AddBook extends Component {
                     <div id="modal1" className="modalIsbn">
                         <div className="modal-content">
                             <div style={hideISBN} className="isbnModalHeader">
+                               
                                 <p className="isbnModalHeader">Post your book by ISBN</p>
                                 <form onSubmit={this.getBooks}className='form-isbn'>
                                     <div className = "input_label input-field">
                                         <input id="isbnInput" autoComplete="off" type="text" onChange={this.handleIsbnChange.bind(this)} name={"ModalISBN"} value={this.state.ISBN}/>
                                         <div id="errorISBN"></div>
                                         <p>ISBN is required <a ref={e => this.tooltip = e} className="tooltipped" data-position="top" data-tooltip="We require ISBN number to ensure accuracy of book postings">why?</a></p>
-                                        <label htmlFor="isbnInput" className="enterIsbnLabel"htmlFor="ISBN">ISBN</label>
+                                        <label htmlFor="isbnInput" className="enterIsbnLabel">ISBN</label>
                                     </div>
                                     <div className='search_button_container'>
                                         <button onClick={this.getBooks} type="button"className='isbnSearchButton btn btn-small waves-effect'>Search</button>
                                     </div>
+                                    <p className="isbnSearchErrorMessage">Error please try again</p>
                                 </form>
                             </div>
                             <div className="modal-body">
@@ -394,14 +349,14 @@ class AddBook extends Component {
                                         <img src={success}/>
                                     </div>
                                     <div className="successModalButtons">
-                                            <button onClick={this.clearData}type="button"className= "btn-small btn waves-effect postAgainButton">Post Again</button>
+                                            <button onClick={this.cancelButton}type="button"className= "btn-small btn waves-effect postAgainButton">Post Again</button>
                                             <p className="btn-small btn waves-effect white"><Link to={"/"}>Accept</Link> </p>
                                     </div>  
                                 </div>
                                 <div className="signInRequiredModal">
                                     <p>You must be signed in to post a book</p>
                                     <Link to={"/SignIn"}><p className="btn-small btn waves-effect signInRequiredButtons"> Sign In </p> </Link>
-                                    <Link to={"/SignUp"}><p className="btn-small btn waves-effect signInRequiredButtons"> Sign Up </p> </Link>
+                                    <Link to={"/SignUp"}><p className="btn-small btn waves-effect uiresignInReqdButtons"> Sign Up </p> </Link>
                                 </div>
                             </div>
                             <div className="modal-footer">
@@ -410,7 +365,7 @@ class AddBook extends Component {
                                         <button className="accept_button btn-small btn waves-effect" type="button"
                                                 onClick={this.populateData}> Accept
                                         </button>
-                                        <button onClick={this.clearData}
+                                        <button onClick={this.cancelButton}
                                                 className="clear_button btn-small btn waves-effect" type="button">Try
                                             Again
                                         </button>
@@ -464,7 +419,7 @@ class AddBook extends Component {
                     </div>
                     <div className={"error"}></div>
                     <div className={"checkMark markPrice material-icons"}>check_circle_outline</div>
-                    <h5 className='sellers-comments-tag'> Sellers Comments</h5>
+                    <h5 name="comments" className='sellers-comments-tag'> Sellers Comments</h5>
                     <div className={'comment-text-area'}>
                         <div className='row'>
                             <div className='input-field'>
@@ -497,14 +452,17 @@ class AddBook extends Component {
                         {this.state.imgTagArray}
                     </div>
                     <div className='post-button-container'>
-                        <button className={"POST"}>Post</button>
+                        <button type="button" onClick={this.cancelButton}className="btn-large cancelButton">Cancel</button>
+                        <button className="btn-large POST">Post</button>
+                        
+                        {/* <button onClick={this.cancelButton} className=" btn-small btn waves-effect cancelButton">Cancel</button> */}
+                        
                     </div>
                 </form>
+                
             </div>
         )
 
     }
 }
-
-
 export default AddBook;

@@ -54,24 +54,25 @@ class UserProfile extends Component {
             await this.setState({
                 photo: URL.createObjectURL(newImage)
             });
+            console.log("TYPE", newImage.type);
             const prep = await axios({
                 // Authorization: `AWS ${accessKeyId}: ${secretAccessKey}`,
                 method: 'get',
-                url: `/api/prepUpload?fileType=${this.state.photo.type}`,
-                ContentType: this.state.photo.type
+                url: `/api/prepUpload?fileType=${newImage.type}`,
+                ContentType: newImage.type
 
             })
 
             const {getUrl, key} = prep.data;
 
-            await axios.put(getUrl, this.state.photo, {
+            await axios.put(getUrl, newImage, {
                 headers: {
-                    'Content-Type': this.state.photo.type
+                    'Content-Type': newImage.type
                 }
             })
             let saveImageParams = {
                 key,
-                fileType: this.state.photo.type,
+                fileType: newImage.type,
             }
 
             console.log('saveImage Params: ', saveImageParams);
