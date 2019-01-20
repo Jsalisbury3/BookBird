@@ -46,9 +46,10 @@ body{
 
 }
 .uni-footer {
-    position: absolute;
+    position: fixed;
+    /* position: absolute; */
     bottom: 0vh;
-    height: 12vh;
+    height: 8vh;
     width: 100%;
     background-color: #F2C94C;
     color: white;
@@ -79,8 +80,8 @@ body{
     position: relative;
     display: inline-block;
     height: 100%;
-    width: 96%;
-    padding: 22%;
+    width: 69%;
+    padding: 15%;
     left: 51%;
 
 }
@@ -88,8 +89,8 @@ body{
     position: relative;
     display: inline-block;
     height: 100%;
-    width: 89%;
-    padding: 22%;
+    width: 69%;
+    padding: 15%;
     left: 13%;
 
 }
@@ -97,8 +98,8 @@ body{
     position: relative;
     display: inline-block;
     height: 100%;
-    width: 92.33%;
-    padding: 21%;
+    width: 69%;
+    padding: 15%;
     left: 16%;
 
 }
