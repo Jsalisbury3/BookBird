@@ -438,10 +438,7 @@ class AddBook extends Component {
                     <form className={'form-container '} onSubmit={this.validateInputsFields} encType="multipart/form-data">
                         <img src={loadingGif} alt="loadingGif" id="loadingGif"/>
                         <h3 className={"pageHeader"}>Add Book</h3>
-                        <p className={"pageDescription"}>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                            Aperiam
-                            asperiores blanditiis consectetur debitis dolorum earum enim illum magnam molestiae odit
-                            omnis</p>
+                        <p className={"pageDescription"}> Fill out the remaining fields below. This information will be displayed when other students are searching for books.</p>
                         <div id='input-container1' className=' title-container row'>
                             <div id={"titleError"} className={"error"}></div>
                             <div id={"conditionCheckMArk"}
@@ -467,7 +464,7 @@ class AddBook extends Component {
                             <div className={"checkMark markEdition material-icons"}>check_circle_outline</div>
                             <div className='input-field'>
                                 <input name={"price"} id={'price'} type='text' className={"inputs col s10 push-s1"} onChange={this.handleInput}/>
-                                <div classNname={"error"}id={"priceErr"}></div>
+                                <div className="s6"  id={"priceErr"}></div>
                                 <label className='label-placeholder' htmlFor={'price'}>Price</label>
                                 
                             </div>
