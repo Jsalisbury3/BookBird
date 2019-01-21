@@ -53,7 +53,7 @@ class Index extends Component {
 
     render() {
         // console.log("yoyoyoyoyooyo", this.state.data);
-        console.log('BOOK DATA STATE,', this.state)
+        console.log('BOOK DATA STATE,', this.state);
         console.log("Book INFO index: ", this.props.listId);
         const listingInfo = {...this.props.listId};
         const images = this.props.images;
