@@ -237,7 +237,7 @@ webserver.post('/api/addListing', (request, response) => {
                     } else {
                         console.log('INSERT INTO LISTINGS');
                         console.log('Listings Data: ', data);
-                        const query = "INSERT INTO `listing` SET listing.book_id = " + data[0].ID + ", price = '" + price + "', book_condition = '" + condition + "', comments = '" + comments + "', accounts_id = '1', public_id='21'";
+                        const query = "INSERT INTO `listing` SET listing.book_id = " + data[0].ID + ", price = '" + price + "', book_condition = '" + condition + "', comments = '" + comments + "', accounts_id = '"+userId+"', public_id='21'";
                         db.query(query, async (err, data) => {
                             if (!err) {
                                 console.log("all queries are good");

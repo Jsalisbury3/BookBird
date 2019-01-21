@@ -114,6 +114,7 @@ class AddBook extends Component {
         let index = test.index;
         const result = pattern.test(elementVal);
         if (!result) {
+            debugger
             if (element !== "input[name=condition]") {
                 document.getElementsByClassName("error")[index].nextElementSibling.classList.remove("visible");
                 document.querySelector(element).nextSibling.innerHTML = errorMessage;
@@ -333,7 +334,6 @@ class AddBook extends Component {
                         <div id="modal1" className="modalIsbn">
                             <div className="modal-content">
                                 <div style={hideISBN} className="isbnModalHeader">
-
                                     <p className="isbnModalHeader">Post your book by ISBN</p>
                                     <form onSubmit={this.getBooks} className='form-isbn'>
                                         <div className="input_label input-field">
@@ -371,7 +371,7 @@ class AddBook extends Component {
                                             <button onClick={this.cancelButton} type="button"
                                                     className="btn-small btn waves-effect postAgainButton">Post Again
                                             </button>
-                                            <p className="btn-small btn waves-effect white"><Link to={"/"}>Accept</Link>
+                                            <p className="btn-small btn waves-effect white"><Link to={"/landing"}>Accept</Link>
                                             </p>
                                         </div>
                                     </div>
@@ -436,8 +436,7 @@ class AddBook extends Component {
                     {/*</div>*/}
                     {/*</form>*/}
                     {/*</div>*/}
-                    <form className={'form-container '} onSubmit={this.validateInputsFields}
-                          encType="multipart/form-data">
+                    <form className={'form-container '} onSubmit={this.validateInputsFields} encType="multipart/form-data">
                         <img src={loadingGif} alt="loadingGif" id="loadingGif"/>
                         <h3 className={"pageHeader"}>Add Book</h3>
                         <p className={"pageDescription"}>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -445,7 +444,7 @@ class AddBook extends Component {
                             asperiores blanditiis consectetur debitis dolorum earum enim illum magnam molestiae odit
                             omnis</p>
                         <div id='input-container1' className=' title-container row'>
-                            <div id={"titleError"} className={"error"}>invalid title</div>
+                            <div id={"titleError"} className={"error"}></div>
                             <div id={"conditionCheckMArk"}
                                  className={"checkMark markCondition material-icons"}>check_circle_outline
                             </div>
@@ -456,7 +455,7 @@ class AddBook extends Component {
                             </div>
                         </div>
                         <div id='input-container2' className=' title-container row'>
-                            <div className={"error"} id={"authErr"}>err</div>
+                            <div className={"error"} id={"authErr"}></div>
                             <div className={"checkMark markTitle material-icons"}>check_circle_outline</div>
                             <div className='input-field'>
                                 <h6 className='input-header second'>Author</h6>
@@ -465,12 +464,13 @@ class AddBook extends Component {
                             </div>
                         </div>
                         <div id='input-container3' className='title-container row'>
-                            <div className={"error"} id={"priceErr"}>err</div>
+                            
                             <div className={"checkMark markEdition material-icons"}>check_circle_outline</div>
                             <div className='input-field'>
-                                <input name={"price"} id={'price'} type='text' className={"inputs col s10 push-s1"}
-                                       onChange={this.handleInput}/>
+                                <input name={"price"} id={'price'} type='text' className={"inputs col s10 push-s1"} onChange={this.handleInput}/>
+                                <div classNname={"error"}id={"priceErr"}></div>
                                 <label className='label-placeholder' htmlFor={'price'}>Price</label>
+                                
                             </div>
                         </div>
                         <div id='input-container4 condition-container' className='title-container row'>
@@ -484,7 +484,7 @@ class AddBook extends Component {
                                 <option value="Thrashed">Thrashed</option>
                             </select>
                         </div>
-                        {/*<div className={"error"}>err</div>*/}
+                        <div id={"conditionError"}></div>
                         <div className={"checkMark markPrice material-icons"}>check_circle_outline</div>
                         <h5 name="comments" className='sellers-comments-tag'> Sellers Comments</h5>
                         <div className={'comment-text-area'}>
