@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import DragDrop from './images/x3KMH.jpg'
 import SingleBookPhoto from './singleBookPhoto';
 import './addBook.css';
@@ -15,6 +15,8 @@ import success from './images/successlogo.png';
 import {Link} from 'react-router-dom';
 import { debug } from 'util';
 import loadingGif from './images/loadingGif.gif'
+import Header from './../universal/header'
+import Nav from './../universal/nav'
 
 class AddBook extends Component {
     constructor(props) {
@@ -316,61 +318,97 @@ class AddBook extends Component {
     render() {
         const hideISBN = this.state.hideIsbnSearchBar ? {display: 'none'} : {display: 'block'};
         return (
-            <div className={"addBook-container"}>
-                <div className="isbnModalContainer">
-                    <div id="modal1" className="modalIsbn">
-                        <div className="modal-content">
-                            <div style={hideISBN} className="isbnModalHeader">
-                               
-                                <p className="isbnModalHeader">Post your book by ISBN</p>
-                                <form onSubmit={this.getBooks}className='form-isbn'>
-                                    <div className = "input_label input-field">
-                                        <input id="isbnInput" autoComplete="off" type="text" onChange={this.handleIsbnChange.bind(this)} name={"ModalISBN"} value={this.state.ISBN}/>
-                                        <div id="errorISBN"></div>
-                                        <p>ISBN is required <a ref={e => this.tooltip = e} className="tooltipped" data-position="top" data-tooltip="We require ISBN number to ensure accuracy of book postings">why?</a></p>
-                                        <label htmlFor="isbnInput" className="enterIsbnLabel">ISBN</label>
+            <Fragment>
+                <Header/>
+                    <div className={"addBook-container"}>
+                        <div className="isbnModalContainer">
+                            <div id="modal1" className="modalIsbn">
+                                <div className="modal-content">
+                                    <div style={hideISBN} className="isbnModalHeader">
+                                    
+                                        <p className="isbnModalHeader">Post your book by ISBN</p>
+                                        <form onSubmit={this.getBooks}className='form-isbn'>
+                                            <div className = "input_label input-field">
+                                                <input id="isbnInput" autoComplete="off" type="text" onChange={this.handleIsbnChange.bind(this)} name={"ModalISBN"} value={this.state.ISBN}/>
+                                                <div id="errorISBN"></div>
+                                                <p>ISBN is required <a ref={e => this.tooltip = e} className="tooltipped" data-position="top" data-tooltip="We require ISBN number to ensure accuracy of book postings">why?</a></p>
+                                                <label htmlFor="isbnInput" className="enterIsbnLabel">ISBN</label>
+                                            </div>
+                                            <div className='search_button_container'>
+                                                <button onClick={this.getBooks} type="button"className='isbnSearchButton btn btn-small waves-effect'>Search</button>
+                                            </div>
+                                            <p className="isbnSearchErrorMessage">Error please try again</p>
+                                        </form>
                                     </div>
-                                    <div className='search_button_container'>
-                                        <button onClick={this.getBooks} type="button"className='isbnSearchButton btn btn-small waves-effect'>Search</button>
+                                    <div className="modal-body">
+                                        <img className="google_book_image" src={this.state.bookImage} alt=""/>
+                                        <div className="isbnModalBookDescription">
+                                            <p name="ModalISBN">ISBN: {this.state.ISBN}</p>
+                                            <p name="ModalAuthor">Author: {this.state.author}</p>
+                                            <p name="ModalTitle">Title: {this.state.title}</p>
+                                        </div>
+                                        <div className="bookSuccessInfo">
+                                            <p className="successModalText">Success!</p>
+                                            <div className="successImage">
+                                                <img src={success}/>
+                                            </div>
+                                            <div className="successModalButtons">
+                                                    <button onClick={this.cancelButton}type="button"className= "btn-small btn waves-effect postAgainButton">Post Again</button>
+                                                    <p className="btn-small btn waves-effect white"><Link to={"/"}>Accept</Link> </p>
+                                            </div>  
+                                        </div>
+                                        <div className="signInRequiredModal">
+                                            <p>You must be signed in to post a book</p>
+                                            <Link to={"/SignIn"}><p className="btn-small btn waves-effect signInRequiredButtons"> Sign In </p> </Link>
+                                            <Link to={"/SignUp"}><p className="btn-small btn waves-effect uiresignInReqdButtons"> Sign Up </p> </Link>
+                                        </div>
                                     </div>
-                                    <p className="isbnSearchErrorMessage">Error please try again</p>
-                                </form>
+                                    <div className="modal-footer">
+                                        <form>
+                                            <div className="submit_clear_buttons">
+                                                <button className="accept_button btn-small btn waves-effect" type="button"
+                                                        onClick={this.populateData}> Accept
+                                                </button>
+                                                <button onClick={this.cancelButton}
+                                                        className="clear_button btn-small btn waves-effect" type="button">Try
+                                                    Again
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
-                            <div className="modal-body">
-                                <img className="google_book_image" src={this.state.bookImage} alt=""/>
-                                <div className="isbnModalBookDescription">
-                                    <p name="ModalISBN">ISBN: {this.state.ISBN}</p>
-                                    <p name="ModalAuthor">Author: {this.state.author}</p>
-                                    <p name="ModalTitle">Title: {this.state.title}</p>
+                        </div>
+                        <form className={'form-container '} onSubmit={this.validateInputsFields} encType="multipart/form-data">
+                            <img src={loadingGif} alt="loadingGif" id="loadingGif"/>
+                            <div id='input-container' className=' title-container row'>
+                                <div id={"conditionError"} className={"error"}></div>
+                                <div id={"conditionCheckMArk"}
+                                    className={"checkMark markCondition material-icons"}>check_circle_outline
                                 </div>
-                                <div className="bookSuccessInfo">
-                                    <p className="successModalText">Success!</p>
-                                    <div className="successImage">
-                                        <img src={success}/>
-                                    </div>
-                                    <div className="successModalButtons">
-                                            <button onClick={this.cancelButton}type="button"className= "btn-small btn waves-effect postAgainButton">Post Again</button>
-                                            <p className="btn-small btn waves-effect white"><Link to={"/"}>Accept</Link> </p>
-                                    </div>
-                                </div>
-                                <div className="signInRequiredModal">
-                                    <p>You must be signed in to post a book</p>
-                                    <Link to={"/SignIn"}><p className="btn-small btn waves-effect signInRequiredButtons"> Sign In </p> </Link>
-                                    <Link to={"/SignUp"}><p className="btn-small btn waves-effect uiresignInReqdButtons"> Sign Up </p> </Link>
+                                <div className='input-field'>
+                                    <h6 className='input-header'>Title</h6>
+                                    <input name="title" id='title' type='text' className="inputs col s10 push-s1"
+                                        onChange={this.handleInput}/>
                                 </div>
                             </div>
-                            <div className="modal-footer">
-                                <form>
-                                    <div className="submit_clear_buttons">
-                                        <button className="accept_button btn-small btn waves-effect" type="button"
-                                                onClick={this.populateData}> Accept
-                                        </button>
-                                        <button onClick={this.cancelButton}
-                                                className="clear_button btn-small btn waves-effect" type="button">Try
-                                            Again
-                                        </button>
-                                    </div>
-                                </form>
+                            <div id='input-container' className=' title-container row'>
+                                <div className={"error"}></div>
+                                <div className={"checkMark markTitle material-icons"}>check_circle_outline</div>
+                                <div className='input-field'>
+                                    <h6 className='input-header'>Author</h6>
+                                    <input name="author" id='author' type='text' className="inputs col s10 push-s1"
+                                        onChange={this.handleInput}/>
+                                </div>
+                            </div>
+                            <div id='input-container' className='title-container row'>
+                                <div className={"error"}></div>
+                                <div className={"checkMark markEdition material-icons"}>check_circle_outline</div>
+                                <div className='input-field'>
+                                    <input name={"price"} id={'price'} type='text' className={"inputs col s10 push-s1"}
+                                        onChange={this.handleInput}/>
+                                    <label className='label-placeholder' htmlFor={'price'}>Price</label>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -429,20 +467,16 @@ class AddBook extends Component {
                                           onChange={this.handleInput}/>
                                 <h5 className='optional-tag'>*Optional</h5>
                             </div>
-                        </div>
-                    </div>
-
-                    {this.state.showToolTip && <Tooltip></Tooltip>}
-
-                    {/*<div className="row">*/}
-                    {/*<input name={"ISBN"} placeholder={"*ISBN"} className={"inputs isbn-container col s6 offset-s6"} onChange={this.handleInput}/>*/}
-                    {/*</div>*/}
-                    {/* <input name={"ISBN"} placeholder={"*ISBN"} className={"inputs"} onChange={this.handleInput}/>
-                    <div className={"error"}></div>
-                    <div className={"checkMark markISBN material-icons"}>check_circle_outline</div> */}
-                    {/*<div className={"error"}></div>*/}
-                    {/*<div className={"checkMark markAuthor material-icons"}>check_circle_outline</div>*/}
-                    {/*<input name={"edition"} placeholder={"*Edition"} className={"inputs"} onChange={this.handleInput}/>*/}
+                            {this.state.showToolTip && <Tooltip></Tooltip>}
+                            {/*<div className="row">*/}
+                            {/*<input name={"ISBN"} placeholder={"*ISBN"} className={"inputs isbn-container col s6 offset-s6"} onChange={this.handleInput}/>*/}
+                            {/*</div>*/}
+                            {/* <input name={"ISBN"} placeholder={"*ISBN"} className={"inputs"} onChange={this.handleInput}/>
+                            <div className={"error"}></div>
+                            <div className={"checkMark markISBN material-icons"}>check_circle_outline</div> */}
+                            {/*<div className={"error"}></div>*/}
+                            {/*<div className={"checkMark markAuthor material-icons"}>check_circle_outline</div>*/}
+                            {/*<input name={"edition"} placeholder={"*Edition"} className={"inputs"} onChange={this.handleInput}/>*/}
 
                     <div className='submit-photo-container'>
                         <label id="add-photo-icon picIcon" className="btn waves-effect waves-light" htmlFor="photoInput"><i
@@ -455,14 +489,16 @@ class AddBook extends Component {
                     </div>
                     <div className='post-button-container'>
                         <button type="button" onClick={this.cancelButton}className="btn-large cancelButton">Cancel</button>
-                        <button className="btn-large POST">Post</button>
-                        
+                        <button className="btn-large POST">Post</button>                    
                         {/* <button onClick={this.cancelButton} className=" btn-small btn waves-effect cancelButton">Cancel</button> */}
+
+//                             </div>
+//                         </form>
+
                         
                     </div>
-                </form>
-                
-            </div>
+                <Nav/>
+            </Fragment>
         )
 
     }

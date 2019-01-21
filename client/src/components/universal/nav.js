@@ -10,7 +10,7 @@ import Search from '../landing';
 export default () => (
     <footer className="uni-footer">
         <div className={'SearchIcon'}>
-            <Link to={"/"}><img alt={'SearchIcon'} className={'SearchPicture'} src={SearchImg}/></Link>
+            <Link to={"/Landing"}><img alt={'SearchIcon'} className={'SearchPicture'} src={SearchImg}/></Link>
         </div>
 
         <div className={'AddBookIcon'}>
