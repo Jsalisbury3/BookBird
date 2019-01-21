@@ -322,6 +322,7 @@ webserver.get('/api/BookInfoIndex/:ID', (request, response) => {
                         let output = {
                             success: true,
                             data: data,
+                            images: []
                         };
                         response.send(output);
                     } else {
