@@ -1,4 +1,7 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { getDataForBookClicked } from '../../actions/book_id';
 import './book-data.css';
 import CarouselItem from './carousel-item';
 
@@ -29,46 +32,96 @@ import CarouselItem from './carousel-item';
 
 // export default IndividualBookData;
 
-function IndividualBookData(props) {
-    console.log("PROOOOOOOOOOOOOPS book data: ", props);
-    return (
-        <div className='Container'>
-            <div className="carousel" id="imageContainer">
-                    <a className="carousel-item responsive-img" id="book-item" href="#one!">
-                        <img src={props.bookImage}/>
-                    </a>
-                    <CarouselItem images={props}/> 
-                    
-            </div>
-            <div className="s12 m6">
-                <div className="card" id="cardContainer">
-                    <div className="card-content book-content">
-                        <div className="bookInfoLeftContent s8">
-                            <h6 className="bookTitle">{props.title}</h6>
-                            <h6 className="bookAuthor">{props.author}</h6>
-                            <h6 className="bookISBN">{props.ISBN}</h6>
-                        </div>
-                        <div className="bookInfoRightContent s4">
-                            <div className="bookCondition">
-                                <h6>{props.condition}</h6>
+class IndividualBookData extends Component {
+
+    state = {
+        bookId : this.props.match.params.bookId,
+        images: this.props.images,
+        listId: {
+            bookImage: '',
+            title: '',
+            author: '',
+            ISBN: '',
+            condition: '',
+            price: '',
+            sellersComment: '',
+        },
+        data: ''
+    };
+
+    createCarousel = () => {
+        const bookImages = document.querySelectorAll('.carousel');
+        const initCarousel = M.Carousel.init(bookImages,{
+            numVisible: 3,
+            padding: 0,
+        });
+    }
+
+    componentDidMount = () => {
+        this.props.getDataForBookClicked(this.state.bookId);
+        this.createCarousel();
+    }
+
+    render() {
+        console.log('BOOK DATA: ', this.props)
+        debugger;
+        return (
+            <div className='Container'>
+                <div className="carousel" id="imageContainer">
+                        <a className="carousel-item responsive-img" id="book-item" href="#one!">
+                            <img src={this.props.listId.bookImage}/>
+                        </a>
+                        <CarouselItem images={this.props.images}/> 
+                        
+                </div>
+                <div className="s12 m6">
+                    <div className="card" id="cardContainer">
+                        <div className="card-content book-content">
+                            <div className="bookInfoLeftContent s8">
+                                <h6 className="bookTitle">{this.props.listId.title}</h6>
+                                <h6 className="bookAuthor">{this.props.listId.author}</h6>
+                                <h6 className="bookISBN">{this.props.listId.ISBN}</h6>
                             </div>
-                            <div className="bookPrice">
-                                <h5>${props.price}</h5>
+                            <div className="bookInfoRightContent s4">
+                                <div className="bookCondition">
+                                    <h6>{this.props.listId.condition}</h6>
+                                </div>
+                                <div className="bookPrice">
+                                    <h5>${this.props.listId.price}</h5>
+                                </div>
+                            </div>
+                            <div className="sellersContent">
+                                <h6>Seller's Comments</h6>
+                                <h5>{this.props.listId.sellersComment}</h5>
                             </div>
                         </div>
-                        <div className="sellersContent">
-                            <h6>Seller's Comments</h6>
-                            <h5>{props.sellersComment}</h5>
+                        <div className="card-action" id="contactAction">
+                            <a href="#" id="contactAction">This is a link</a>
                         </div>
-                    </div>
-                    <div className="card-action" id="contactAction">
-                        <a href="#" id="contactAction">This is a link</a>
                     </div>
                 </div>
             </div>
-        </div>
+    
+        )
 
-    )
+    }
+    
 }
 
-export default IndividualBookData;
+function mapStateToProps(state) {
+    debugger;
+    console.log('book index state: ', state);
+    return {
+        listId: state.bookIdReducer.bookInfo[0],
+        images: state.bookIdReducer.images
+
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        getDataForBookClicked: bindActionCreators(getDataForBookClicked,dispatch)
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(IndividualBookData);
