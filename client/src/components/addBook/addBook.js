@@ -462,8 +462,7 @@ class AddBook extends Component {
                                 {/* <button onClick={this.cancelButton} className=" btn-small btn waves-effect cancelButton">Cancel</button> */}
                                 
                             </div>
-                        </form>
-                        
+                        </form>   
                     </div>
                 <Nav/>
             </Fragment>
