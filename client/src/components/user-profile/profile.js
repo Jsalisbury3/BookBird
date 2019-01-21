@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import UserPostList from './userPostList';
 import {withRouter} from 'react-router-dom';
 import 'materialize-css';
@@ -9,6 +9,9 @@ import {removeTokenAndRow} from '../../actions/sign_out'
 import logout24 from './images/logout-24.png'
 import {bindActionCreators} from "redux";
 import axios from 'axios';
+import Header from './../universal/header'
+import Nav from './../universal/nav'
+
 
 class UserProfile extends Component {
     constructor(props) {
@@ -92,19 +95,23 @@ class UserProfile extends Component {
         render()
         {
             return (
-                <div className='profile-main-container'>
-                    <button onClick={this.callActionSignOut} className='logOut btn btn-small right'><img
-                        src={logout24}/>
-                    </button>
-                    <div className='user-image-container circleBase'>
-                        <img src={this.state.photo ? this.state.photo : defaultPhoto}/>
-                        <label className="opacitySlip" htmlFor="profilePhotoInput"><i
-                            className='material-icons center'>add_a_photo</i></label>
-                        <input id="profilePhotoInput" type="file" name="photo" capture="camera" accept="image/*"
-                               onChange={this.fileSelectedHandler}/>
-                    </div>
-                    <UserPostList/>
-                </div>
+                <Fragment>
+                    <Header/>
+                        <div className='profile-main-container'>
+                            <button onClick={this.callActionSignOut} className='logOut btn btn-small right'><img
+                                src={logout24}/>
+                            </button>
+                            <div className='user-image-container circleBase'>
+                                <img src={this.state.photo ? this.state.photo : defaultPhoto}/>
+                                <label className="opacitySlip" htmlFor="profilePhotoInput"><i
+                                    className='material-icons center'>add_a_photo</i></label>
+                                <input id="profilePhotoInput" type="file" name="photo" capture="camera" accept="image/*"
+                                    onChange={this.fileSelectedHandler}/>
+                            </div>
+                            <UserPostList/>
+                        </div>
+                    <Nav/>
+                </Fragment>
             );
         }
     }

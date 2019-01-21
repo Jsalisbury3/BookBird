@@ -25,14 +25,14 @@ h2:nth-child(2)  {
 }
 
 .Container {
-    height: 84vh;
+    height: 100vh;
     width: 100vw;
     background-color: lightblue;
 
 }
 
 .main-container{
-    height: 76vh;
+    height: 100vh;
     width: 100vw;
 }
 .SellerTitle {
@@ -100,7 +100,7 @@ h2:nth-child(2)  {
 }
 
 #imageContainer {
-    height: 40%;
+    height: 35%;
     width: 100%;
     background-color: rgb(197, 197, 197);
 
@@ -119,7 +119,7 @@ h2:nth-child(2)  {
     width: 70%;
 }
 .book-content {
-    height: 68%;
+    height: 79%;
 }
 
 .bookInfoLeftContent {
@@ -149,6 +149,7 @@ h2:nth-child(2)  {
 
 .bookCondition h6 {
     position: relative;
+    font-size: 5vw;
     left: 10%;
     height: 40%;
     border: 1px solid black;
@@ -160,7 +161,8 @@ h2:nth-child(2)  {
 
 .bookPrice h5 {
     position: relative;
-    left: 25%;
+    font-size: 10vw;
+    left: 15%;
     height: 40%;
     border: 1px solid black;
 
@@ -184,8 +186,13 @@ h2:nth-child(2)  {
     left: 33%;
 }
 
+.contactButton {
+    background-color: #ffcc33;
+}
+
 #contactAction {
-    color:blue;
+    color:white;
+    background-color:blue;
 }
 @media screen and (min-width: 1000px) {
 

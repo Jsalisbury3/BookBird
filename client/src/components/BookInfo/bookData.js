@@ -38,6 +38,7 @@ function IndividualBookData(props) {
                         <img src={props.bookImage}/>
                     </a>
                     <CarouselItem images={props}/> 
+                    
             </div>
             <div className="s12 m6">
                 <div className="card" id="cardContainer">
@@ -60,7 +61,7 @@ function IndividualBookData(props) {
                             <h5>{props.sellersComment}</h5>
                         </div>
                     </div>
-                    <div className="card-action">
+                    <div className="card-action" id="contactAction">
                         <a href="#" id="contactAction">This is a link</a>
                     </div>
                 </div>
