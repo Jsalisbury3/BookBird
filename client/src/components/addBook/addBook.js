@@ -68,6 +68,7 @@ class AddBook extends Component {
         const pattern = /[0-9]{10,13}/
         if (!pattern.test(elementVal)) {
             document.getElementById("loadingGif").style.visibility = 'hidden';
+            console.log("error isnb:", document.getElementById("errorISBN"));
             document.getElementById("errorISBN").innerHTML = "Invalid ISBN number";
             return false
         } else {
@@ -437,7 +438,7 @@ class AddBook extends Component {
                     {/*</div>*/}
                     <form className={'form-container '} onSubmit={this.validateInputsFields}
                           encType="multipart/form-data">
-                        {/*<img src={loadingGif} alt="loadingGif" id="loadingGif"/>*/}
+                        <img src={loadingGif} alt="loadingGif" id="loadingGif"/>
                         <h3 className={"pageHeader"}>Add Book</h3>
                         <p className={"pageDescription"}>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                             Aperiam
