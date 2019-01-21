@@ -114,7 +114,6 @@ class AddBook extends Component {
         let index = test.index;
         const result = pattern.test(elementVal);
         if (!result) {
-            debugger
             if (element !== "input[name=condition]") {
                 document.getElementsByClassName("error")[index].nextElementSibling.classList.remove("visible");
                 document.querySelector(element).nextSibling.innerHTML = errorMessage;
