@@ -178,20 +178,6 @@ webserver.post('/api/getResponse', (request, response) => {
     console.log(response.toString());
 });
 
-// webserver.post('/api/userResponse', (request, response) => {
-//     const Userresponse = new MessagingResponse();
-//     if (request.body.Body == 'hello') {
-//         Userresponse.message('Hi!');
-//     } else if (request.body.Body == 'bye') {
-//         Userresponse.message('Goodbye');
-//     } else {
-//         twiml.message(
-//             'No Body param match, Twilio sends this in the request to your server.'
-//         );
-//     }
-//     response.writeHead(200, { 'Content-Type': 'text/xml' });
-//     response.end(twiml.toString());
-// });
 
 
 webserver.get('/api/listings', (request, response) => {
@@ -529,15 +515,16 @@ webserver.get('/api/SignOut', (request, response) => {
 // redirect them to the landing page from the email.
 webserver.post("/api/SignUp",(request,response) => {
     let {Email, Password, Name} = request.body;
-    db.connect(()=>{
-        let {Name, EmailSignUp, PasswordSignUp} = request.body;
+    db.connect(() => {
+        console.log("REQUEST BODY HEREEEEEE: ", request.body);
+        let {Name, EmailSignUp, PasswordSignUp, Number} = request.body;
         PasswordSignUp = passwordHash(PasswordSignUp);
         let query = "SELECT a.ID from `accounts` AS a WHERE a.email = '" + EmailSignUp + "' AND a.password = '" + PasswordSignUp + "'";
         // query = escape_quotes(query);
         db.query(query, (err, data) => {
-            console.log("DATA FOR BAD CONDITIONAL: ",data);
-            if(!data || data.length === 0) { //if there is no account with that email and password then continue else send back info already taken.
-                const queryAddUser = 'INSERT INTO `accounts` SET name = "'+Name+'", password = "'+PasswordSignUp+'", email = "'+EmailSignUp+'", college_id = "3"'; //this query will add a user to the accounts table with the email and password, token and the
+            console.log("DATA FOR BAD CONDITIONAL: ", data);
+            if (!data || data.length === 0) { //if there is no account with that email and password then continue else send back info already taken.
+                const queryAddUser = 'INSERT INTO `accounts` SET phoneNumber = "'+Number+'", name = "' + Name + '", password = "' + PasswordSignUp + '", email = "' + EmailSignUp + '", college_id = "3"'; //this query will add a user to the accounts table with the email and password, token and the
                 console.log(queryAddUser);
                 db.query(queryAddUser, (err, data) => {
                     console.log(err)

@@ -386,7 +386,7 @@ class AddBook extends Component {
                                 <div id={"conditionCheckMArk"}
                                     className={"checkMark markCondition material-icons"}>check_circle_outline
                                 </div>
-                                <div className='input-field '>
+                                <div className='input-field'>
                                     <h6 className='input-header'>Title</h6>
                                     <input name="title" id='title' type='text' className="inputs col s10 push-s1"
                                         onChange={this.handleInput}/>
@@ -410,32 +410,64 @@ class AddBook extends Component {
                                     <label className='label-placeholder' htmlFor={'price'}>Price</label>
                                 </div>
                             </div>
-                            <div id='input-container condition-container' className='title-container row'>
-                                <select name={"condition"} onChange={this.handleInput} id={"mySelect"}
-                                        className={"condition  col s6 push-s3"}>
-                                    <option value="" disabled selected>*Select Condition:</option>
-                                    <option value="New">New</option>
-                                    <option value="Like New">Like New</option>
-                                    <option value="Good">Good</option>
-                                    <option value="Worn">Worn</option>
-                                    <option value="Thrashed">Thrashed</option>
-                                </select>
+                        </div>
+                    </div>
+                </div>
+                <form className={'form-container '} onSubmit={this.validateInputsFields} encType="multipart/form-data">
+                    <img src={loadingGif} alt="loadingGif" id="loadingGif"/>
+                    <h3 className={"pageHeader"}>Add Book</h3>
+                    <p className={"pageDescription"}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam asperiores blanditiis consectetur debitis dolorum earum enim illum magnam molestiae odit omnis</p>
+                    <div id='input-container1' className=' title-container row'>
+                        <div id={"titleError"} className={"error"}>invalid title</div>
+                        <div id={"conditionCheckMArk"}
+                             className={"checkMark markCondition material-icons"}>check_circle_outline
+                        </div>
+                        <div className='input-field '>
+                            <h6 className='input-header first'>Title</h6>
+                            <input name="title" id='title' type='text' className="inputs col s10 push-s1"
+                                   onChange={this.handleInput}/>
+                        </div>
+                    </div>
+                    <div id='input-container2' className=' title-container row'>
+                        <div className={"error"} id={"authErr"}>err</div>
+                        <div className={"checkMark markTitle material-icons"}>check_circle_outline</div>
+                        <div className='input-field'>
+                            <h6 className='input-header second'>Author</h6>
+                            <input name="author" id='author' type='text' className="inputs col s10 push-s1"
+                                   onChange={this.handleInput}/>
+                        </div>
+                    </div>
+                    <div id='input-container3' className='title-container row'>
+                        <div className={"error"} id={"priceErr"}>err</div>
+                        <div className={"checkMark markEdition material-icons"}>check_circle_outline</div>
+                        <div className='input-field'>
+                            <input name={"price"} id={'price'} type='text' className={"inputs col s10 push-s1"}
+                                   onChange={this.handleInput}/>
+                            <label className='label-placeholder' htmlFor={'price'}>Price</label>
+                        </div>
+                    </div>
+                    <div id='input-container4 condition-container' className='title-container row'>
+                        <select name={"condition"} onChange={this.handleInput} id={"mySelect"}
+                                className={"condition  col s6 push-s3"}>
+                            <option value="" disabled selected>*Select Condition:</option>
+                            <option value="New">New</option>
+                            <option value="Like New">Like New</option>
+                            <option value="Good">Good</option>
+                            <option value="Worn">Worn</option>
+                            <option value="Thrashed">Thrashed</option>
+                        </select>
+                    </div>
+                    {/*<div className={"error"}>err</div>*/}
+                    <div className={"checkMark markPrice material-icons"}>check_circle_outline</div>
+                    <h5 name="comments" className='sellers-comments-tag'> Sellers Comments</h5>
+                    <div className={'comment-text-area'}>
+                        <div className='row'>
+                            <div className='input-field'>
+                                <textarea name={"comments"} id='comment-box' className={"inputs last "}
+                                          onChange={this.handleInput}/>
+                                <h5 className='optional-tag'>*Optional</h5>
                             </div>
-                            <div className={"error"}></div>
-                            <div className={"checkMark markPrice material-icons"}>check_circle_outline</div>
-                            <h5 name="comments" className='sellers-comments-tag'> Sellers Comments</h5>
-                            <div className={'comment-text-area'}>
-                                <div className='row'>
-                                    <div className='input-field'>
-                                        <textarea name={"comments"} id='comment-box' className={"inputs last "}
-                                                onChange={this.handleInput}/>
-                                        <h5 className='optional-tag'>*Optional</h5>
-                                    </div>
-                                </div>
-                            </div>
-
                             {this.state.showToolTip && <Tooltip></Tooltip>}
-
                             {/*<div className="row">*/}
                             {/*<input name={"ISBN"} placeholder={"*ISBN"} className={"inputs isbn-container col s6 offset-s6"} onChange={this.handleInput}/>*/}
                             {/*</div>*/}
@@ -446,23 +478,23 @@ class AddBook extends Component {
                             {/*<div className={"checkMark markAuthor material-icons"}>check_circle_outline</div>*/}
                             {/*<input name={"edition"} placeholder={"*Edition"} className={"inputs"} onChange={this.handleInput}/>*/}
 
-                            <div className='submit-photo-container'>
-                                <label id='add-photo-icon' className="  btn waves-effect waves-light" htmlFor="photoInput"><i
-                                    className={"material-icons"}>add_a_photo</i></label>
-                                <input id="photoInput" type="file" name="photo" capture="camera" accept="image/*"
-                                    onChange={this.fileSelectedHandler}/>
-                            </div>
-                            <div className="upload-image-container">
-                                {this.state.imgTagArray}
-                            </div>
-                            <div className='post-button-container'>
-                                <button type="button" onClick={this.cancelButton}className="btn-large cancelButton">Cancel</button>
-                                <button className="btn-large POST">Post</button>
-                                
-                                {/* <button onClick={this.cancelButton} className=" btn-small btn waves-effect cancelButton">Cancel</button> */}
-                                
-                            </div>
-                        </form>
+                    <div className='submit-photo-container'>
+                        <label id="add-photo-icon picIcon" className="btn waves-effect waves-light" htmlFor="photoInput"><i
+                            className={"material-icons"} >add_a_photo</i></label>
+                        <input id="photoInput" type="file" name="photo" capture="camera" accept="image/*"
+                               onChange={this.fileSelectedHandler}/>
+                    </div>
+                    <div className="upload-image-container">
+                        {this.state.imgTagArray}
+                    </div>
+                    <div className='post-button-container'>
+                        <button type="button" onClick={this.cancelButton}className="btn-large cancelButton">Cancel</button>
+                        <button className="btn-large POST">Post</button>                    
+                        {/* <button onClick={this.cancelButton} className=" btn-small btn waves-effect cancelButton">Cancel</button> */}
+
+//                             </div>
+//                         </form>
+
                         
                     </div>
                 <Nav/>
