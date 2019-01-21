@@ -42,10 +42,10 @@ class Index extends Component {
 
     render() {
         // console.log("yoyoyoyoyooyo", this.state.data);
-        console.log('BOOK DATA STATE,', this.state)
+        console.log('BOOK DATA STATE,', this.state);
         console.log("Book INFO index: ", this.props.listId);
         const listingInfo = {...this.props.listId};
-        console.log('LISTING INFO!:', listingInfo)
+        console.log('LISTING INFO!:', listingInfo);
         return (
             <div className='main-container'>
                 <BookData title={listingInfo.title}
