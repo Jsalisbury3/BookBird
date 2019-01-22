@@ -488,7 +488,8 @@ class AddBook extends Component {
                                 <div className='input-field'>
                                 <textarea name={"comments"} id='comment-box' className={"inputs last "}
                                           onChange={this.handleInput}/>
-                                    <h5 className='optional-tag'>*Optional</h5>
+                                <label htmlFor="comment-box" className="sellers-comments-tag"></label>
+                                    {/* <h5 className='optional-tag'>*Optional</h5> */}
                                 </div>
                             </div>
                         </div>

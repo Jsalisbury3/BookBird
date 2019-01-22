@@ -6,6 +6,8 @@ import './book-data.css';
 import CarouselItem from './carousel-item';
 import Header from './../universal/header';
 import Nav from './../universal/nav';
+import axios from 'axios';
+import loading from './images/loading_gif.gif';
 
 class IndividualBookData extends Component {
 
@@ -38,19 +40,42 @@ class IndividualBookData extends Component {
         this.props.getDataForBookClicked(this.state.bookId);
         this.createCarousel();
         // this.addConditionStyling(this.props.listId[0].book_condition);
+    }
+    contactSeller = () => {
+        console.log("button pressed");
+        axios({
+            method : "post",
+            url: '/api/contactSeller',
+            headers: {
+                token: localStorage.getItem('Token'),
+            },
+            data: {
+                sellersNumber : this.props.listId[0].phoneNumber
+            }
+        }).then((response) => {
 
+            if ( response.data.success === false) {
+                displayError = false;
+                
+            } else {
+                displayError = true;
+            }
+            
+        })
     }
 
     render() {
         console.log('BOOKDATA STATE: ', this.props);
-
+        let displayError = true;
         if(!this.props.listId[0]){
             return <h1>Loading...</h1>
         }
         return (
             <div className='Container'>
+                
                 <Header/>
                 <div className="carousel" id="imageContainer">
+                <img className="bookLoading" src={loading} style={{display:'none'}}/>
                         <a className="carousel-item responsive-img" id="book-item" href="#one!">
                             <img src={this.props.listId[0].bookImage}/>
                         </a>
@@ -66,7 +91,7 @@ class IndividualBookData extends Component {
                             </div>
                             <div className="bookInfoRightContent s4">
                                 <div className="bookCondition">
-                                    <h6 className={this.props.listId[0].book_condition}> {(this.props.listId[0].book_condition)}</h6>
+                                    <h6 className={(this.props.listId[0].book_condition === 'Like New') ? 'Like_New' : `${this.props.listId[0].book_condition}`}> {(this.props.listId[0].book_condition)}</h6>
                                 </div>
                                 <div className="bookPrice">
                                     <h5>${this.props.listId[0].price}</h5>
@@ -76,9 +101,10 @@ class IndividualBookData extends Component {
                                 <h6>Seller's Comments</h6>
                                 <h5>{this.props.listId[0].comments}</h5>
                             </div>
+                            <div className="contactSignIn">{displayError ? '' : 'Please sign in to contact the seller'}</div> 
                         </div>
                         <div className="card-action" id="contactAction">
-                            <a href="#" id="contactAction">This is a link</a>
+                            <button onClick={this.contactSeller} className={"btn"} id="contactAction">This is a link</button>
                         </div>
                     </div>
                 </div>
