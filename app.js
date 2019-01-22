@@ -1,4 +1,4 @@
-const { accessKeyId, secretAccessKey,region } = require('./config/amzns3_creds');
+const {accessKeyId, secretAccessKey, region} = require('./config/amzns3_creds');
 const AWS = require('aws-sdk');
 const uuid = require('uuid/v4');
 const axios = require('axios');
@@ -16,22 +16,22 @@ const hash = require('./config/token-hash');
 const passwordHash = require('sha256');
 const MessagingResponse = require('twilio').twiml.MessagingResponse;
 
-const  accountSid = require('./config/twilio.sdi');
+const accountSid = require('./config/twilio.sdi');
 const authToken = require('./config/twilio_token');
 const twilio = require('twilio')(accountSid, authToken);
 
-AWS.config.update( {
-    accessKeyId, 
+AWS.config.update({
+    accessKeyId,
     secretAccessKey,
-    region 
+    region
 });
 
 const s3 = new AWS.S3({
     signatureVersion: 'v4'
-  });
+});
 
 const awsUpload = require('./services/file-upload');
-webserver.use(function(req, res, next) {
+webserver.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
@@ -43,69 +43,69 @@ webserver.use(express.json());
 webserver.use(bodyParser.json())
 webserver.use(cors());
 
-webserver.get('/api/prepUpload', function(request, response) {
+webserver.get('/api/prepUpload', function (request, response) {
 
-    const { query: {fileType}} = request;
+    const {query: {fileType}} = request;
     console.log(fileType);
     const key = `testing/jhgkghjg/${uuid()}`;
 
     s3.getSignedUrl('putObject', {
-        Bucket: 'book-bird-test-bucket',  
-        Key: key,      
+        Bucket: 'book-bird-test-bucket',
+        Key: key,
         ContentType: fileType.type,
         Expires: 500,
-        
+
     }, (err, url) => response.send({
-            success: true, 
-            key, 
-            url,
-            getUrl: url.split("?")[0],
-    
+        success: true,
+        key,
+        url,
+        getUrl: url.split("?")[0],
+
     }));
 
 });
 
-webserver.post('/api/photo',function(req,res){
+webserver.post('/api/photo', function (req, res) {
     let storage = multer.diskStorage({
         destination: function (req, file, callback) {
-          callback(null, './uploads');
+            callback(null, './uploads');
         },
         filename: function (req, file, callback) {
-          callback(null, file.fieldname + '-' + Date.now());
+            callback(null, file.fieldname + '-' + Date.now());
         }
-      });
-    
-    let fsUpload = multer({ storage : storage }).array('userPhoto',2);
+    });
 
-    var response = fsUpload(req,res,function(err) {
+    let fsUpload = multer({storage: storage}).array('userPhoto', 2);
+
+    var response = fsUpload(req, res, function (err) {
         console.log('Request: ', req);
-    
-        if(err) {
+
+        if (err) {
             return res.end("Error uploading file.");
         }
-        res.end("File is uploaded", );
+        res.end("File is uploaded",);
     });
 });
 
 
-webserver.post('/api/file-upload', function ( req, res ) {
+webserver.post('/api/file-upload', function (req, res) {
     // const awsUpload = require('./services/file-upload');
     console.log('File UPload Req');
-    awsUpload(req, res, function(err) {
-          return res.json({ 'imageUrl: ': req.file });
+    awsUpload(req, res, function (err) {
+        return res.json({'imageUrl: ': req.file});
     })
 
 });
 
 webserver.post('/api/save-image', function (request, response) {
     console.log('request: ', request.query)
-    const { key, listingId, fileType } = request.query;
+    const {key, listingId, fileType} = request.query;
     console.log('hello save image')
-    
-    db.connect( () => {
+
+    db.connect(() => {
         console.log('Save Item');
-        
-        const query = "INSERT INTO `images` SET url='"+key+"',listing_id="+listingId+",imageType='"+fileType+"'";
+
+        const query = "INSERT INTO `images` SET url='" + key + "',listing_id=" + listingId + ",imageType='" + fileType + "'";
         db.query(query, (err, data) => {
             if (!err) {
                 let output = {
@@ -122,7 +122,7 @@ webserver.post('/api/save-image', function (request, response) {
 
 webserver.post('/api/save-profile-image', function (request, response) {
     console.log('request: ', request.body);
-    const { key, fileType } = request.body;
+    const {key, fileType} = request.body;
     console.log('headers', request.headers)
 
     const userToken = request.headers['token'];
@@ -130,14 +130,14 @@ webserver.post('/api/save-profile-image', function (request, response) {
 
     // const {account_id}=request.headers.data;
     console.log('hello save image');
-    
-    db.connect( () => {
-        console.log('Save Item');
-        const query = "SELECT lg.account_id FROM `loggedin` AS lg WHERE lg.token = '"+userToken+"'";
 
-        db.query(query, (err, data ) => {
+    db.connect(() => {
+        console.log('Save Item');
+        const query = "SELECT lg.account_id FROM `loggedin` AS lg WHERE lg.token = '" + userToken + "'";
+
+        db.query(query, (err, data) => {
             console.log('DATA: ', data)
-            const query = "UPDATE `accounts` SET profile_photo_url='"+key+"', image_type='"+fileType+"' WHERE accounts.id='"+data[0].account_id+"'";
+            const query = "UPDATE `accounts` SET profile_photo_url='" + key + "', image_type='" + fileType + "' WHERE accounts.id='" + data[0].account_id + "'";
             console.log('query', query);
             db.query(query, (err, data) => {
                 if (!err) {
@@ -158,24 +158,75 @@ webserver.post('/api/save-profile-image', function (request, response) {
 webserver.post('/api/contactSeller', (request, response) => {
     db.connect(() => {
         const userToken = request.headers['token'];
-        const SellerNumber = request.body.sellersNumber;
-        console.log("selleNumber: ", SellerNumber);
-        const query = "SELECT a.phoneNumber FROM `accounts` AS a JOIN `loggedin` AS lg ON a.ID = lg.account_id WHERE lg.token = '"+userToken+"'";
-        console.log(query)
-        db.query(query, (err, data) => {
-            if(!err) {
-                const buyerNumber = data[0].phoneNumber;
-                console.log("buyerNumber: ", buyerNumber);
-           
-                twilio.messages.create({
-                    body: 'Someone is interested in buying your book BOOKNAME. respond to this message to contact possible buyer',
-                    to: '+19499226065',  // `+1${userPhoneNumber}`
-                    from: '+15108226645' // From a valid Twilio number up
-                }).then((message) => console.log(message));
-            }
-        })
+        if (userToken === "undefined" || userToken === "null") {
+            const outputAlreadySignedIn = {
+                success: false,
+                message: "You must be signed in to contact seller"
+            };
+            response.send(outputAlreadySignedIn);
+        } else {
+            const query = "SELECT a.phoneNumber FROM `accounts` AS a JOIN `loggedin` AS lg ON a.ID = lg.account_id WHERE lg.token = '" + userToken + "'";
+            console.log(query);
+            db.query(query, (err, data) => {
+                if (data) {
+                    const SellerNumber = request.body.sellersNumber;
+                    const sourceNumber = 5108226645; //this will change
+                    const buyerNumber = data[0].phoneNumber;
+                    console.log("buyerNumber: ", buyerNumber);
+                    twilio.messages.create({
+                        body: 'Someone is interested in buying your book BOOKNAME. respond to this message to contact possible buyer',
+                        to: '+19499226065',
+                        from: '+15108226645'
+                    });
+                    let infoToHash = buyerNumber + SellerNumber;
+                    let convoHash = jwt.encode(infoToHash, hash);
+                    const insertSourceTableQuery = "INSERT INTO `source_num` SET twilio_number = '" + sourceNumber + "'";
+                    console.log(insertSourceTableQuery);
+                    db.query(insertSourceTableQuery, (err, data) => {
+                        if (!err) {
+                            console.log("DATA FROM INSERT QUERY WANT THISSSS: ", data);
+                            const storeConvoDataQuery = "INSERT INTO `convos` SET hash = '" + convoHash + "', buyer_number = '" + buyerNumber + "', seller_number = '" + SellerNumber + "', source_num_id = '" + data.insertId + "'";
+                            console.log("FINAL QUERY MEMEMEMEME: ", storeConvoDataQuery);
+                            db.query(storeConvoDataQuery, (err, data) => {
+                                if (!err) {
+                                    const successOutput = {
+                                        success: true,
+                                        message: "Seller contacted"
+                                    };
+                                    response.send(successOutput);
+                                } else {
+                                    const failedStoringDetails = {
+                                        success: false,
+                                        message: "failed to make store contact information"
+                                    };
+                                    response.send(failedStoringDetails);
+                                }
+                            })
+                        } else {
+                            const failedStoringDetails = {
+                                success: false,
+                                message: "failed to make store contact information"
+                            };
+                            response.send(failedStoringDetails);
+                        }
+                    })
+                } else {
+                    const failedToContactSeller = {
+                        success: false,
+                        message: "Unable to contact seller"
+                    };
+                    response.send(failedToContactSeller);
+                }
+            })
+        }
     })
 });
+
+webserver.post('/api/MessageResponse', (request, response) => {
+    db.connect(() => {
+        console.log("MessageResponse RAN :D");
+    })
+})
 
 
 webserver.get('/api/listings', (request, response) => {
@@ -198,15 +249,15 @@ webserver.get('/api/listings', (request, response) => {
 
 
 webserver.post('/api/addListing', (request, response) => {
-    const {title, condition, ISBN, author, price, comments, bookImage } = request.body;
+    const {title, condition, ISBN, author, price, comments, bookImage} = request.body;
     console.log("ADD LISTING IS RUNNING");
     const userIDToken = request.headers['token'];
     console.log("TOKEN: ", userIDToken);
     db.connect(() => {
-        const query = "SELECT lg.account_id FROM `loggedin` AS lg WHERE lg.token = '"+userIDToken+"'";
+        const query = "SELECT lg.account_id FROM `loggedin` AS lg WHERE lg.token = '" + userIDToken + "'";
         db.query(query, (err, data) => {
-            if(!err) {
-                console.log("user id data wanttttt:" , data[0].account_id)
+            if (!err) {
+                console.log("user id data wanttttt:", data[0].account_id)
                 const userId = data[0].account_id;
                 const query = "SELECT b.ID FROM `books` AS b WHERE b.ISBN = '" + ISBN + "'";
                 console.log(query);
@@ -218,7 +269,7 @@ webserver.post('/api/addListing', (request, response) => {
                             if (!err) {
                                 console.log('INSERT INTO LISTINGS');
                                 console.log('Listings Data: ', data);
-                                const query = "INSERT INTO `listing` SET listing.book_id = " + data.insertId + ", price = '" + price + "', book_condition = '" + condition + "', comments = '" + comments + "', accounts_id = '"+ userId +"', public_id='21'";
+                                const query = "INSERT INTO `listing` SET listing.book_id = " + data.insertId + ", price = '" + price + "', book_condition = '" + condition + "', comments = '" + comments + "', accounts_id = '" + userId + "', public_id='21'";
                                 // escape_quotes(query);
                                 db.query(query, (err, response) => {
                                     if (!err) {
@@ -235,7 +286,7 @@ webserver.post('/api/addListing', (request, response) => {
                     } else {
                         console.log('INSERT INTO LISTINGS');
                         console.log('Listings Data: ', data);
-                        const query = "INSERT INTO `listing` SET listing.book_id = " + data[0].ID + ", price = '" + price + "', book_condition = '" + condition + "', comments = '" + comments + "', accounts_id = '"+userId+"', public_id='21'";
+                        const query = "INSERT INTO `listing` SET listing.book_id = " + data[0].ID + ", price = '" + price + "', book_condition = '" + condition + "', comments = '" + comments + "', accounts_id = '" + userId + "', public_id='21'";
                         db.query(query, async (err, data) => {
                             if (!err) {
                                 console.log("all queries are good");
@@ -290,7 +341,7 @@ webserver.get('/api/BookInfoIndex/:ID', (request, response) => {
         db.query(query, (err, data) => {
             if (data) {
                 const images = data;
-                let query = "SELECT l.ID AS listingID, l.accounts_id, l.book_condition, l.price, l.comments, l.book_id, b.ID AS bookID, b.title, b.author, b.ISBN, b.bookImage, a.email, a.phoneNumber, a.ID FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id WHERE l.ID = "+request.params.ID+""
+                let query = "SELECT l.ID AS listingID, l.accounts_id, l.book_condition, l.price, l.comments, l.book_id, b.ID AS bookID, b.title, b.author, b.ISBN, b.bookImage, a.email, a.phoneNumber, a.ID FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id WHERE l.ID = " + request.params.ID + ""
                 // query = escape_quotes(query);
                 console.log(query);
                 db.query(query, (err, data) => {
@@ -308,7 +359,7 @@ webserver.get('/api/BookInfoIndex/:ID', (request, response) => {
                 })
             } else {
                 console.log('No images for that listing');
-                let query = "SELECT l.ID AS listingID, l.accounts_id, l.book_condition, l.price, l.comments, l.book_id, b.ID AS bookID, b.title, b.author, b.ISBN, b.bookImage, a.email, a.phoneNumber, a.ID FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id WHERE l.ID = "+request.params.ID+""
+                let query = "SELECT l.ID AS listingID, l.accounts_id, l.book_condition, l.price, l.comments, l.book_id, b.ID AS bookID, b.title, b.author, b.ISBN, b.bookImage, a.email, a.phoneNumber, a.ID FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id WHERE l.ID = " + request.params.ID + ""
                 // query = escape_quotes(query);
                 console.log(query);
                 db.query(query, (err, data) => {
@@ -402,7 +453,7 @@ webserver.post('/api/SignIn', (request, response) => {
     let {Email, Password} = request.body;
     Password = passwordHash(Password);
     console.log("headers: ", typeof request.headers['token'], request.headers['token']);
-    if(request.headers['token'] !== "undefined" && request.headers['token'] !== "null") {
+    if (request.headers['token'] !== "undefined" && request.headers['token'] !== "null") {
         const outputAlreadySignedIn = {
             success: false,
             message: "You are already signed in"
@@ -457,7 +508,7 @@ webserver.post('/api/SignIn', (request, response) => {
 
 webserver.get('/api/SignOut', (request, response) => {
     const userIDToken = request.headers['token'];
-    if(userIDToken === "undefined" || userIDToken === "null") {
+    if (userIDToken === "undefined" || userIDToken === "null") {
         const outputNotSignedIn = {
             success: false,
             message: "You are already signed out"
@@ -469,7 +520,7 @@ webserver.get('/api/SignOut', (request, response) => {
             // getIdFromTokenQuery = escape_quotes(getIdFromTokenQuery);
             console.log(getIdFromTokenQuery);
             db.query(getIdFromTokenQuery, (err) => {
-                if(!err) {
+                if (!err) {
                     const outputSuccess = {
                         success: false,
                         message: "You are now signed out",
@@ -494,7 +545,7 @@ webserver.get('/api/SignOut', (request, response) => {
 // send email to the user to verify the account.
 // once verified, use the sign-in query to add them to the logged in table and give them an access token.
 // redirect them to the landing page from the email.
-webserver.post("/api/SignUp",(request,response) => {
+webserver.post("/api/SignUp", (request, response) => {
     let {Email, Password, Name} = request.body;
     db.connect(() => {
         console.log("REQUEST BODY HEREEEEEE: ", request.body);
@@ -505,18 +556,18 @@ webserver.post("/api/SignUp",(request,response) => {
         db.query(query, (err, data) => {
             console.log("DATA FOR BAD CONDITIONAL: ", data);
             if (!data || data.length === 0) { //if there is no account with that email and password then continue else send back info already taken.
-                const queryAddUser = 'INSERT INTO `accounts` SET phoneNumber = "'+Number+'", name = "' + Name + '", password = "' + PasswordSignUp + '", email = "' + EmailSignUp + '", college_id = "3"'; //this query will add a user to the accounts table with the email and password, token and the
+                const queryAddUser = 'INSERT INTO `accounts` SET phoneNumber = "' + Number + '", name = "' + Name + '", password = "' + PasswordSignUp + '", email = "' + EmailSignUp + '", college_id = "3"'; //this query will add a user to the accounts table with the email and password, token and the
                 console.log(queryAddUser);
                 db.query(queryAddUser, (err, data) => {
                     console.log(err)
-                    if(!err) {
+                    if (!err) {
                         console.log('further');
                         let userToken = jwt.encode(EmailSignUp + PasswordSignUp + Date.now(), hash);
                         let queryLoggedIn = "INSERT INTO `loggedin` SET loggedin.account_id = " + data.insertId + ", loggedin.token = '" + userToken + "'";
                         // queryLoggedIn = escape_quotes(queryLoggedIn)
                         db.query(queryLoggedIn, (err, data) => {
                             console.log(err)
-                            if(!err) {
+                            if (!err) {
                                 const outputSuccess = {
                                     success: true,
                                     data: userToken

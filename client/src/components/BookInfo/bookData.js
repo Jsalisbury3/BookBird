@@ -53,14 +53,12 @@ class IndividualBookData extends Component {
                 sellersNumber : this.props.listId[0].phoneNumber
             }
         }).then((response) => {
-
+            console.log("response from twilio query: ", response);
             if ( response.data.success === false) {
                 displayError = false;
-                
             } else {
                 displayError = true;
             }
-            
         })
     }
 
