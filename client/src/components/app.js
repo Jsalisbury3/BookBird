@@ -28,7 +28,7 @@ class App extends Component {
             <Router>
                 <div className="appContainer">
                     <div className="pageContainer">
-                        {/* <Header/> */}
+                         {/*<Header/>*/}
                         <Route exact path={"/"} component={IntroPage}/>
                         <Route path={"/Landing"} component={LandingPage}/>
                         <Route path={"/AddBook"} component={AddBook}/>
@@ -37,7 +37,7 @@ class App extends Component {
                         <Route path={"/UserProfile"} component={UserProfile}/>
                         <Route path={"/SignIn"} component={SignIn}/>
                         <Route path={"/SignUp"} component={SignUp}/>
-                         <Nav/>
+                         {/*<Nav/>*/}
                     </div>
                     {/* <Modal/> */}
                 </div>
