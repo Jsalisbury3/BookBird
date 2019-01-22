@@ -133,11 +133,16 @@ img {
     width: 0%;
 }
 .upload-image-container {
-    position: relative;
+    /* position: relative;
     height: 100px;
     width: 220px;
     margin-left: 85px;
-    top: 3vh;
+    top: 3vh; */
+    position: relative;
+    height: 102px;
+    width: 220px;
+    margin-left: 85px;
+    bottom: 22%;
 }
 .searchButtonContainer {
     padding-left: 35%;
@@ -170,7 +175,7 @@ img {
 }
 
 .input-field > label {
-    color: #9e9e9e;
+    /* color: #26a69a; */
     position: absolute;
     top: 0;
     left: 0;
@@ -197,7 +202,6 @@ img {
 
 label {
     font-size: .8rem;
-    color: #9e9e9e;
 }
 *, *:before, *:after {
     -webkit-box-sizing: inherit;
@@ -228,14 +232,14 @@ label {
     justify-content: center;
     flex-flow: column nowrap;
 }
-.input-field > label {
+/* .input-field > label {
     color: #9e9e9e;
     position: absolute;
     top: 0;
     left: 10%;
     font-size: 1rem;
     cursor: text;
-}
+} */
 .modal-footer{
     margin-bottom: 11px;
 }
@@ -250,14 +254,15 @@ label {
 
 }
 #comment-box {
-    top: 63%;
+    top: 59%;
     left: 8%;
     position: fixed;
-
+    font-size: 12px;
+    height: 7%;
 }
 .sellers-comments-tag {
     position: relative;
-    bottom: 5%;
+    bottom: 10%;
     font-size: .80rem;
     color: #26a69a;
     left: 8.5vw;
@@ -265,7 +270,7 @@ label {
 .optional-tag {
     position: relative;
     font-size: 0.9rem;
-    top: 23.8vh;
+    top: 5.8vh;
     left: 73vw;
 }
 #mySelect {
@@ -328,18 +333,24 @@ label {
 }
 .submit-photo-container {
     position: relative;
+    margin-top: 18%;
+    margin-left: 28px;
+    z-index: 0;
+    /* position: relative;
     z-index: 0;
     bottom: 13.6vh;
     left: 78vw;
-    display: inline-block;
+    display: inline-block; */
 }
 
 .pageHeader {
     margin: 0;
+    font-size:32px;
 }
 
 .pageDescription {
     margin: 0.5%;
+    font-size:13px;
 }
 
 .first {
@@ -352,7 +363,7 @@ label {
 
 .label-placeholder {
     left: 8%;
-    margin-top: 6%;
+    margin-top: 12%;
     font-size: 1.5rem;
 }
 
@@ -419,11 +430,18 @@ label {
 }
 
 #priceErr {
-    display: inline-block;
     top: 9vh;
-    right: 64vw;
+    right: 8vw;
+    position: absolute;
+    color: red;
 }
 
+#conditionError{
+    position: absolute;
+    bottom: 46%;
+    left: 47%;
+    color: red;
+}
 .comment-text-area {
     position: absolute;
     display: inline;
@@ -461,9 +479,9 @@ label {
 }
 .single-photo-container{
     display: inline-flex;
-    height: 94px;
+    height: 88px;
     width: 72px;
-    margin:3px;
+    margin:9px;
 }
 .single-photo-container>img{
     height:100%;
