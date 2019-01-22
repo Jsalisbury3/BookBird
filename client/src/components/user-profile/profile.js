@@ -31,109 +31,95 @@ class UserProfile extends Component {
     }
 
 
-        getProfileUrl = () => {
-            axios({
-                method: 'get',
-                url: '/api/UserProfileUrl',
-                headers: {
-                    token: localStorage.getItem('Token'),
-                }
-            }).then((response) => {
-                this.handleUrlToSetState(response);
-            })
-        }
-
-        callActionSignOut = () => {
-            localStorage.clear();
-            this.props.history.push('/SignIn');
-        }
-
-        fileSelectedHandler = async event => {
-            console.log(event.target.files[0]);
-            const newImage = event.target.files[0];
-            await this.setState({
-                photo: URL.createObjectURL(newImage)
-            });
-            console.log("TYPE", newImage.type);
-            const prep = await axios({
-                // Authorization: `AWS ${accessKeyId}: ${secretAccessKey}`,
-                method: 'get',
-                url: `/api/prepUpload?fileType=${newImage.type}`,
-                ContentType: newImage.type
-
-            })
-
-            const {getUrl, key} = prep.data;
-
-            await axios.put(getUrl, newImage, {
-                headers: {
-                    'Content-Type': newImage.type
-                }
-            })
-            let saveImageParams = {
-                key,
-                fileType: newImage.type,
+    getProfileUrl = () => {
+        debugger;
+        axios({
+            method: 'get',
+            url: '/api/UserProfileUrl',
+            headers: {
+                token: localStorage.getItem('Token'),
             }
+        }).then((response) => {
+            this.handleUrlToSetState(response);
+        })
+    }
 
-            console.log('saveImage Params: ', saveImageParams);
+    callActionSignOut = () => {
+        localStorage.clear();
+        this.props.history.push('/SignIn');
+    }
 
-            await axios({
-                method: 'post',
-                url: `/api/save-profile-image`,
-                'Content-Type': 'application/json',
-                headers: {
-                    token: localStorage.getItem('Token'),
-                },
-                data: saveImageParams
-            })
-        };
+    fileSelectedHandler = async event => {
+        console.log(event.target.files[0]);
+        const newImage = event.target.files[0];
+        await this.setState({
+            photo: URL.createObjectURL(newImage)
+        });
+        console.log("TYPE", newImage.type);
+        const prep = await axios({
+            // Authorization: `AWS ${accessKeyId}: ${secretAccessKey}`,
+            method: 'get',
+            url: `/api/prepUpload?fileType=${newImage.type}`,
+            ContentType: newImage.type
+
+        })
+
+        const {getUrl, key} = prep.data;
+
+        await axios.put(getUrl, newImage, {
+            headers: {
+                'Content-Type': newImage.type
+            }
+        })
+        let saveImageParams = {
+            key,
+            fileType: newImage.type,
+        }
+
+        console.log('saveImage Params: ', saveImageParams);
+
+        await axios({
+            method: 'post',
+            url: `/api/save-profile-image`,
+            'Content-Type': 'application/json',
+            headers: {
+                token: localStorage.getItem('Token'),
+            },
+            data: saveImageParams
+        })
+    };
 
 
-        render()
-        {
-            return (
-                <div className='profile-main-container'>
-                    <button onClick={this.callActionSignOut} className='logOut btn btn-small right'><img
-                        src={logout24}/>
-                    </button>
-                    <div className='user-image-container circleBase'>
-                        <img src={this.state.photo ? this.state.photo : defaultPhoto}/>
-                        <label className="opacitySlip" htmlFor="profilePhotoInput"><i
-                            className='material-icons center'>add_a_photo</i></label>
-                        <input id="profilePhotoInput" type="file" name="photo" capture="camera" accept="image/*"
-                               onChange={this.fileSelectedHandler}/>
-                    </div>
-                    <UserPostList/>
+    render(){
+        return (
+            <div className='profile-main-container'>
+                <button onClick={this.callActionSignOut} className='logOut btn btn-small right'><img
+                    src={logout24}/>
+                </button>
+                <div className='user-image-container circleBase'>
+                    <img src={this.state.photo ? this.state.photo : defaultPhoto}/>
+                    <label className="opacitySlip" htmlFor="profilePhotoInput"><i
+                        className='material-icons center'>add_a_photo</i></label>
+                    <input id="profilePhotoInput" type="file" name="photo" capture="camera" accept="image/*"
+                            onChange={this.fileSelectedHandler}/>
                 </div>
-            );
-        }
+                <UserPostList/>
+            </div>
+        );
     }
+}
 
-    function
-
-    mapStateToProps(state) {
-        console.log("state: ", state);
-        return {
-            signInResults: state.signInReducer.signInId
-        }
+function mapStateToProps(state) {
+    console.log("state: ", state);
+    return {
+        signInResults: state.signInReducer.signInId
     }
+}
 
-    function
-
-    mapDispatchToProps(dispatch) {
-        return {
-            removeTokenAndRow: bindActionCreators(removeTokenAndRow, dispatch),
-        }
+function mapDispatchToProps(dispatch) {
+    return {
+        removeTokenAndRow: bindActionCreators(removeTokenAndRow, dispatch),
     }
+}
 
-    export
-    default
-
-    connect(mapStateToProps, mapDispatchToProps)
-
-(
-
-    withRouter(UserProfile)
-
-)
-    ;
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(UserProfile));
