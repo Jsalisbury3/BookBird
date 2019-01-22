@@ -92,21 +92,25 @@ class UserProfile extends Component {
     };
 
 
-    render(){
+    render() {
         return (
-            <div className='profile-main-container'>
-                <button onClick={this.callActionSignOut} className='logOut btn right'><img
-                    src={logout24}/>
-                </button>
-                <div className='user-image-container circleBase'>
-                    <img src={this.state.photo ? this.state.photo : defaultPhoto}/>
-                    <label className="opacitySlip" htmlFor="profilePhotoInput"><i
-                        className='material-icons center'>add_a_photo</i></label>
-                    <input id="profilePhotoInput" type="file" name="photo" capture="camera" accept="image/*"
-                            onChange={this.fileSelectedHandler}/>
+            <Fragment>
+                <Header/>
+                <div className='profile-main-container'>
+                    <button onClick={this.callActionSignOut} className='logOut btn right'><img
+                        src={logout24}/>
+                    </button>
+                    <div className='user-image-container circleBase'>
+                        <img src={this.state.photo ? this.state.photo : defaultPhoto}/>
+                        <label className="opacitySlip" htmlFor="profilePhotoInput"><i
+                            className='material-icons center'>add_a_photo</i></label>
+                        <input id="profilePhotoInput" type="file" name="photo" capture="camera" accept="image/*"
+                               onChange={this.fileSelectedHandler}/>
+                    </div>
+                    <UserPostList/>
                 </div>
-                <UserPostList/>
-            </div>
+                <Nav/>
+            </Fragment>
         );
     }
 }
