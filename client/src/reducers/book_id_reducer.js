@@ -20,10 +20,10 @@ function bookIdReducer(state = DEFAULT_STATE, action) {
         case types.BOOK_INFO_INDEX:
             console.log("book_Id Reducer State: ", state);
             console.log("book_Id Reducer Action: ", action);
-            debugger;
+            
             return {
                 ...state,
-                bookInfo: [{...action.payload.bookInfo}],
+                bookInfo: {...action.payload.bookInfo},
                 images: action.payload.images
             }
         default:
