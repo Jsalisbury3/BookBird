@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import UserPostList from './userPostList';
 import {withRouter} from 'react-router-dom';
 import 'materialize-css';
@@ -9,6 +9,9 @@ import {removeTokenAndRow} from '../../actions/sign_out'
 import logout24 from './images/logout-24.png'
 import {bindActionCreators} from "redux";
 import axios from 'axios';
+import Header from './../universal/header'
+import Nav from './../universal/nav'
+
 
 class UserProfile extends Component {
     constructor(props) {

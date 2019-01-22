@@ -3,8 +3,10 @@ import axios from 'axios';
 import LandingPage from './landing';
 import './landing/package';
 import AddBook from './addBook';
+import IntroPage from './intro-page/introPage';
 import './addBook/package';
-import BookInfo from './BookInfo';
+import BookData from './BookInfo/bookData';
+import './BookInfo/package';
 import UserProfile from './user-profile/profile';
 import './user-profile/package';
 import SignIn from './sign/signin';
@@ -26,14 +28,16 @@ class App extends Component {
             <Router>
                 <div className="appContainer">
                     <div className="pageContainer">
-                        <Header/>
-                        <Route exact path={"/"} component={LandingPage}/>
+                        {/* <Header/> */}
+                        <Route exact path={"/"} component={IntroPage}/>
+                        <Route path={"/Landing"} component={LandingPage}/>
                         <Route path={"/AddBook"} component={AddBook}/>
-                        <Route path={"/BookInfoIndex/:bookId"} component={BookInfo}/>
+                        
+                        <Route path={"/BookInfoIndex/:bookId"} component={BookData}/>
                         <Route path={"/UserProfile"} component={UserProfile}/>
                         <Route path={"/SignIn"} component={SignIn}/>
                         <Route path={"/SignUp"} component={SignUp}/>
-                        <Nav/>
+                        {/* <Nav/> */}
                     </div>
                     {/* <Modal/> */}
                 </div>

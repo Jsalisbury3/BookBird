@@ -214,20 +214,6 @@ webserver.post('/api/getResponse', (request, response) => {
     console.log(response.toString());
 });
 
-// webserver.post('/api/userResponse', (request, response) => {
-//     const Userresponse = new MessagingResponse();
-//     if (request.body.Body == 'hello') {
-//         Userresponse.message('Hi!');
-//     } else if (request.body.Body == 'bye') {
-//         Userresponse.message('Goodbye');
-//     } else {
-//         twiml.message(
-//             'No Body param match, Twilio sends this in the request to your server.'
-//         );
-//     }
-//     response.writeHead(200, { 'Content-Type': 'text/xml' });
-//     response.end(twiml.toString());
-// });
 
 
 webserver.get('/api/listings', (request, response) => {
@@ -287,7 +273,7 @@ webserver.post('/api/addListing', (request, response) => {
                     } else {
                         console.log('INSERT INTO LISTINGS');
                         console.log('Listings Data: ', data);
-                        const query = "INSERT INTO `listing` SET listing.book_id = " + data[0].ID + ", price = '" + price + "', book_condition = '" + condition + "', comments = '" + comments + "', accounts_id = '1', public_id='21'";
+                        const query = "INSERT INTO `listing` SET listing.book_id = " + data[0].ID + ", price = '" + price + "', book_condition = '" + condition + "', comments = '" + comments + "', accounts_id = '"+userId+"', public_id='21'";
                         db.query(query, async (err, data) => {
                             if (!err) {
                                 console.log("all queries are good");
@@ -343,7 +329,7 @@ webserver.get('/api/BookInfoIndex/:ID', (request, response) => {
         let query = "SELECT i.ID, i.url, i.listing_id, i.imageType FROM images AS i WHERE i.listing_id = " + request.params.ID + "";
         
         db.query(query, (err, data) => {
-            if (data.length > 0) {
+            if (data) {
                 const images = data;
                 let query = "SELECT l.ID AS listingID, l.accounts_id, l.book_condition, l.price, l.comments, l.book_id, b.ID AS bookID, b.title, b.author, b.ISBN, b.bookImage, a.email, a.ID FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id WHERE l.ID = "+request.params.ID+""                
                 // query = escape_quotes(query);
@@ -372,6 +358,7 @@ webserver.get('/api/BookInfoIndex/:ID', (request, response) => {
                         let output = {
                             success: true,
                             data: data,
+                            images: []
                         };
                         response.send(output);
                     } else {
@@ -565,15 +552,16 @@ webserver.get('/api/SignOut', (request, response) => {
 // redirect them to the landing page from the email.
 webserver.post("/api/SignUp",(request,response) => {
     let {Email, Password, Name} = request.body;
-    db.connect(()=>{
-        let {Name, EmailSignUp, PasswordSignUp} = request.body;
+    db.connect(() => {
+        console.log("REQUEST BODY HEREEEEEE: ", request.body);
+        let {Name, EmailSignUp, PasswordSignUp, Number} = request.body;
         PasswordSignUp = passwordHash(PasswordSignUp);
         let query = "SELECT a.ID from `accounts` AS a WHERE a.email = '" + EmailSignUp + "' AND a.password = '" + PasswordSignUp + "'";
         // query = escape_quotes(query);
         db.query(query, (err, data) => {
-            console.log("DATA FOR BAD CONDITIONAL: ",data);
-            if(!data || data.length === 0) { //if there is no account with that email and password then continue else send back info already taken.
-                const queryAddUser = 'INSERT INTO `accounts` SET name = "'+Name+'", password = "'+PasswordSignUp+'", email = "'+EmailSignUp+'", college_id = "3"'; //this query will add a user to the accounts table with the email and password, token and the
+            console.log("DATA FOR BAD CONDITIONAL: ", data);
+            if (!data || data.length === 0) { //if there is no account with that email and password then continue else send back info already taken.
+                const queryAddUser = 'INSERT INTO `accounts` SET phoneNumber = "'+Number+'", name = "' + Name + '", password = "' + PasswordSignUp + '", email = "' + EmailSignUp + '", college_id = "3"'; //this query will add a user to the accounts table with the email and password, token and the
                 console.log(queryAddUser);
                 db.query(queryAddUser, (err, data) => {
                     console.log(err)

@@ -10,9 +10,9 @@
 .POST{
     position: relative;
     width: 50%;
-    margin-left: 0%;
-    top: 0vh;
+    margin-left: 0;
     right: 11%;
+    bottom: 0.2vh;
 }
 .cancelButton {
     position: relative;
@@ -48,9 +48,6 @@
 .signInRequiredModal{
     display:none;
 }
-
-
-
 
 .material-tooltip{
    left: 23% !important;
@@ -136,11 +133,16 @@ img {
     width: 0%;
 }
 .upload-image-container {
-    position: relative;
+    /* position: relative;
     height: 100px;
     width: 220px;
     margin-left: 85px;
-    bottom: 21%;
+    top: 3vh; */
+    position: relative;
+    height: 102px;
+    width: 220px;
+    margin-left: 85px;
+    bottom: 22%;
 }
 .searchButtonContainer {
     padding-left: 35%;
@@ -173,7 +175,7 @@ img {
 }
 
 .input-field > label {
-    color: #9e9e9e;
+    /* color: #26a69a; */
     position: absolute;
     top: 0;
     left: 0;
@@ -200,7 +202,6 @@ img {
 
 label {
     font-size: .8rem;
-    color: #9e9e9e;
 }
 *, *:before, *:after {
     -webkit-box-sizing: inherit;
@@ -231,14 +232,14 @@ label {
     justify-content: center;
     flex-flow: column nowrap;
 }
-.input-field > label {
+/* .input-field > label {
     color: #9e9e9e;
     position: absolute;
     top: 0;
     left: 10%;
     font-size: 1rem;
     cursor: text;
-}
+} */
 .modal-footer{
     margin-bottom: 11px;
 }
@@ -249,43 +250,82 @@ label {
     margin-left: auto;
     margin-right: auto;
     position: relative;
-    margin-bottom: 0%;
+    margin-bottom: 0;
 
 }
 #comment-box {
-    top: 51%;
+    top: 59%;
     left: 8%;
     position: fixed;
-
+    font-size: 12px;
+    height: 7%;
 }
 .sellers-comments-tag {
     position: relative;
-    bottom: 12%;
+    bottom: 10%;
     font-size: .80rem;
-    margin-left: 8%;
     color: #26a69a;
+    left: 8.5vw;
 }
 .optional-tag {
     position: relative;
-    margin-top: 29%;
-    margin-left: 83%;
     font-size: 0.9rem;
+    top: 5.8vh;
+    left: 73vw;
 }
 #mySelect {
-    position: static;
     margin-top: 2%;
     background-color: aliceblue;
     margin-left: 8%;
+    top: -4vh;
+    left: 0;
 }
+
+
+#picIcon {
+    position: relative;
+    top: 10vh;
+    left: 40vw;
+    display: inline-block;
+}
+
+/*:root {*/
+    /*--moveRight: 91%;*/
+    /*--moveup: 4.5vh;*/
+    /*--marktop: 7.8vh;*/
+    /*--markbase: 4.2vh;*/
+/*}*/
 .title-container {
     height: 18%;
 }
-#input-container {
+#input-container1 {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 0px;
-    bottom: 10%;
+    bottom: 17%;
 }
+
+#input-container2 {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0px;
+    bottom: 16%;
+}
+
+#input-container3 {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0px;
+    bottom: 15%;
+}
+
+#input-container4 {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0px;
+    bottom: 15%;
+}
+
 .post-button-container  {
     margin-left: 27%;
     position: relative;
@@ -293,14 +333,37 @@ label {
 }
 .submit-photo-container {
     position: relative;
-    margin-top: 25%;
-    margin-left: 20px;
+    margin-top: 18%;
+    margin-left: 28px;
     z-index: 0;
+    /* position: relative;
+    z-index: 0;
+    bottom: 13.6vh;
+    left: 78vw;
+    display: inline-block; */
+}
+
+.pageHeader {
+    margin: 0;
+    font-size:32px;
+}
+
+.pageDescription {
+    margin: 0.5%;
+    font-size:13px;
+}
+
+.first {
+    top: 2vh;
+}
+
+.second {
+    top: 2vh;
 }
 
 .label-placeholder {
     left: 8%;
-    margin-top: 6%;
+    margin-top: 12%;
     font-size: 1.5rem;
 }
 
@@ -354,6 +417,31 @@ label {
     text-align: center;
 }
 
+#titleError {
+    top: 8vh;
+    display: inline-block;
+    left: 16vw;
+}
+
+#authErr {
+    top: 8vh;
+    right: 64vw;
+    display: inline-block;
+}
+
+#priceErr {
+    top: 9vh;
+    right: 8vw;
+    position: absolute;
+    color: red;
+}
+
+#conditionError{
+    position: absolute;
+    bottom: 46%;
+    left: 47%;
+    color: red;
+}
 .comment-text-area {
     position: absolute;
     display: inline;
@@ -391,9 +479,9 @@ label {
 }
 .single-photo-container{
     display: inline-flex;
-    height: 94px;
+    height: 88px;
     width: 72px;
-    margin:3px;
+    margin:9px;
 }
 .single-photo-container>img{
     height:100%;
@@ -407,7 +495,6 @@ label {
     margin: auto;
     font-size: 1rem;
     left: 10.5%;
-    top: 4vh;
 }
 
 select {
@@ -432,34 +519,36 @@ select option {
     position: absolute;
     height: 3vh;
     width: 3vh;
-    left: var(--moveRight);
+    /*left: var(--moveRight);*/
     color: green;
     visibility: hidden;
 }
 
-.markISBN {
-    top: var(--markbase)
 
-}
+/*.markISBN {*/
+    /*top: var(--markbase)*/
 
-.markCondition {
-    top: calc(var(--markbase) + var(--marktop) * 1);
-}
+/*}*/
 
-.markTitle {
-    top: calc(var(--markbase) + var(--marktop) * 2);
-}
+/*.markCondition {*/
+    /*top: calc(var(--markbase) + var(--marktop) * 1);*/
+/*}*/
 
-.markAuthor {
-    top: calc(var(--markbase) + var(--marktop) * 3);
-}
+/*.markTitle {*/
+    /*top: calc(var(--markbase) + var(--marktop) * 2);*/
+/*}*/
 
-.markEdition {
-    top: calc(var(--markbase) + var(--marktop) * 4);
-}
+/*.markAuthor {*/
+    /*top: calc(var(--markbase) + var(--marktop) * 3);*/
+/*}*/
+
+/*.markEdition {*/
+    /*top: calc(var(--markbase) + var(--marktop) * 4);*/
+/*}*/
 
 .markPrice {
-    top: calc(var(--markbase) + var(--marktop) * 5);
+    top: 53vh;
+    left: 60vw;
 }
 
 
@@ -484,7 +573,7 @@ select option {
     }
 
     .inputs {
-        width: 80%;
+        width: 84%;
         left: 10%;
     }
 
