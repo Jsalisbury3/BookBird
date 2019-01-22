@@ -12,7 +12,7 @@
     width: 50%;
     margin-left: 0;
     right: 11%;
-    bottom: 0.2vh;
+
 }
 .cancelButton {
     position: relative;
@@ -79,9 +79,9 @@
 }
 
 .isbnModalBookDescription{
-    bottom: 47%;
+    /* bottom: 47%;
     left: 21%; 
-    top:49%;
+    top:49%; */
     font-weight: bold; 
 }
 
@@ -95,6 +95,7 @@
     left: 25%;
     max-height: 8%;
     max-width: 50%;
+    border: 1px solid black;
 }
 .isbnModalHeader{
     font-size: 16px;
@@ -168,14 +169,17 @@ img {
     height: 50%;
 }
 .modal-body{
-    left:9%
+    /* left:9% */
+    max-width: 80%;
+    margin: auto;
+
 }
 .label-placeholder {
     margin-left: 9%;
 }
 
 .input-field > label {
-    /* color: #26a69a; */
+    color: #26a69a !important;
     position: absolute;
     top: 0;
     left: 0;
@@ -227,10 +231,11 @@ label {
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
-
     align-items: center;
     justify-content: center;
     flex-flow: column nowrap;
+    /* border-radius: 6%; */
+    box-shadow: white 3px 3px 7px;
 }
 /* .input-field > label {
     color: #9e9e9e;
@@ -262,7 +267,7 @@ label {
 }
 .sellers-comments-tag {
     position: relative;
-    bottom: 10%;
+    bottom: 16%;
     font-size: .80rem;
     color: #26a69a;
     left: 8.5vw;
@@ -279,6 +284,7 @@ label {
     margin-left: 8%;
     top: -4vh;
     left: 0;
+    width:43%;
 }
 
 
@@ -329,11 +335,11 @@ label {
 .post-button-container  {
     margin-left: 27%;
     position: relative;
-    bottom: 20%;
+    bottom: 17%;
 }
 .submit-photo-container {
     position: relative;
-    margin-top: 18%;
+    margin-top: 8%;
     margin-left: 28px;
     z-index: 0;
     /* position: relative;
@@ -345,13 +351,21 @@ label {
 
 .pageHeader {
     margin: 0;
-    font-size:32px;
+    font-size: 28px;
+    position: relative;
+    left: 5%;
+    padding: 8px;
 }
 
 .pageDescription {
     margin: 0.5%;
-    font-size:13px;
+    font-size: 13px;
+    width: 83%;
+    position: relative;
+    left: 7%;
+    bottom: 4%;
 }
+
 
 .first {
     top: 2vh;
@@ -438,8 +452,8 @@ label {
 
 #conditionError{
     position: absolute;
-    bottom: 46%;
-    left: 47%;
+    bottom: 44%;
+    left: 52%;
     color: red;
 }
 .comment-text-area {
@@ -486,6 +500,7 @@ label {
 .single-photo-container>img{
     height:100%;
     width:100%;
+    border: 1px solid black;
 }
 .condition {
     position: relative;
