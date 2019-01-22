@@ -42,7 +42,7 @@ class IndividualBookData extends Component {
                 sellersNumber : this.props.listId[0].phoneNumber
             }
         }).then((response) => {
-            console.log("tell user that the message has been sent");
+            console.log("response from twilio query: ", response);
         })
     };
 
