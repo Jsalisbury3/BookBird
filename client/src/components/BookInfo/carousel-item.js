@@ -7,9 +7,7 @@ const images = [
 ];
 
 class CarouselItem extends Component {
-    componentDidMount() {
-        
-    }
+    
     render() {
         console.log('Carousel Props: ', this.props)
         const userImages = this.props.images.map((item, index) => { 

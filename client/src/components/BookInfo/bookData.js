@@ -8,6 +8,8 @@ import Header from './../universal/header';
 import Nav from './../universal/nav';
 import axios from 'axios';
 import loading from './images/loading_gif.gif';
+import bookshelf from './images/book_shelf.jpg';
+import {Link} from 'react-router-dom';
 
 class IndividualBookData extends Component {
 
@@ -38,8 +40,12 @@ class IndividualBookData extends Component {
 
     componentDidMount = () => {
         this.props.getDataForBookClicked(this.state.bookId);
-        this.createCarousel();
+        // this.createCarousel();
         // this.addConditionStyling(this.props.listId[0].book_condition);
+    }
+
+    componentDidUpdate = () => {
+        this.createCarousel();
     }
     contactSeller = () => {
         console.log("button pressed");
@@ -73,6 +79,9 @@ class IndividualBookData extends Component {
                 
                 <Header/>
                 <div className="carousel" id="imageContainer">
+            
+                <img id="imageBackground" style={{display:'block'}}/>
+                
                 <img className="bookLoading" src={loading} style={{display:'none'}}/>
                         <a className="carousel-item responsive-img" id="book-item" href="#one!">
                             <img src={this.props.listId[0].bookImage}/>
@@ -81,7 +90,7 @@ class IndividualBookData extends Component {
                 </div>
                 <div className="s12 m6">
                     <div className="card" id="cardContainer">
-                        <div className="card-content book-content">
+                        <div className="card-content book-content" id="book-content">
                             <div className="bookInfoLeftContent s8">
                                 <h6 className="bookTitle">{this.props.listId[0].title}</h6>
                                 <h6 className="bookAuthor">{this.props.listId[0].author}</h6>
@@ -102,6 +111,7 @@ class IndividualBookData extends Component {
                             <div className="contactSignIn">{displayError ? '' : 'Please sign in to contact the seller'}</div> 
                         </div>
                         <div className="card-action" id="contactAction">
+                            <Link className="card-action" to={"/Landing"} id="contactActionBack">Back</Link>
                             <button onClick={this.contactSeller} className={"btn"} id="contactAction">This is a link</button>
                         </div>
                     </div>
