@@ -154,8 +154,8 @@ webserver.post('/api/save-profile-image', function (request, response) {
     });
 });
 
+
 webserver.post('/api/contactSeller', (request, response) => {
-    console.log("runnnnnnnning");
     db.connect(() => {
         const userToken = request.headers['token'];
         const SellerNumber = request.body.sellersNumber;
@@ -166,7 +166,7 @@ webserver.post('/api/contactSeller', (request, response) => {
             if(!err) {
                 const buyerNumber = data[0].phoneNumber;
                 console.log("buyerNumber: ", buyerNumber);
-                const userPhoneNumber = data;
+           
                 twilio.messages.create({
                     body: 'Someone is interested in buying your book BOOKNAME. respond to this message to contact possible buyer',
                     to: '+19499226065',  // `+1${userPhoneNumber}`
