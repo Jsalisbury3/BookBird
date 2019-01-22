@@ -37,7 +37,7 @@ class App extends Component {
                         <Route path={"/UserProfile"} component={UserProfile}/>
                         <Route path={"/SignIn"} component={SignIn}/>
                         <Route path={"/SignUp"} component={SignUp}/>
-                        {/* <Nav/> */}
+                         <Nav/>
                     </div>
                     {/* <Modal/> */}
                 </div>
