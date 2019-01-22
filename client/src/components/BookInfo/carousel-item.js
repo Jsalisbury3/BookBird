@@ -12,8 +12,7 @@ class CarouselItem extends Component {
     }
     render() {
         console.log('Carousel Props: ', this.props)
-        
-        const userImages = this.props.images.imageList.map((item, index) => { 
+        const userImages = this.props.images.map((item, index) => { 
             return(
                 <a className="carousel-item responsive-img" key={index} id="book-item" href="#two!">
                     <img src={`https://s3-us-west-2.amazonaws.com/book-bird-test-bucket/${item.url}`}/>
