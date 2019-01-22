@@ -43,8 +43,6 @@
 .user-image-container>img{
     position:relative;
     height:150px;
-    /* width:170px;
-    right:18px; */
 }
 .opacitySlip{
     bottom: 50px;
@@ -64,8 +62,8 @@
     position:relative;
     display:inline-block;
     vertical-align: top;
-    height:8%;
-    /* width:100px; */
+    height: 6%;
+    width:40px;
     text-align: center;
     top:5px;
     padding:0;
