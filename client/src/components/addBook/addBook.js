@@ -82,7 +82,7 @@ class AddBook extends Component {
             {
                 element: 'input[name=condition]',
                 pattern: /^(New|Like New|Good|Worn|Thrashed)$/,
-                errorMessage: "Invalid Condition Selection",
+                errorMessage: "Please Select a Condition",
                 index: 0
             },
             {
@@ -464,7 +464,7 @@ class AddBook extends Component {
                             <div className={"checkMark markEdition material-icons"}>check_circle_outline</div>
                             <div className='input-field'>
                                 <input name={"price"} id={'price'} type='text' className={"inputs col s10 push-s1"} onChange={this.handleInput}/>
-                                <div className="s6"  id={"priceErr"}></div>
+                                <div className="text-red"id={"priceErr"}></div>
                                 <label className='label-placeholder' htmlFor={'price'}>Price</label>
                                 
                             </div>
@@ -515,9 +515,9 @@ class AddBook extends Component {
                         </div>
                         <div className='post-button-container'>
                             <button type="button" onClick={this.cancelButton}
-                                    className="btn-large cancelButton">Cancel
+                                    className="btn-small cancelButton">Cancel
                             </button>
-                            <button className="btn-large POST">Post</button>
+                            <button className="btn-small POST">Post</button>
                             {/* <button onClick={this.cancelButton} className=" btn-small btn waves-effect cancelButton">Cancel</button> */}
                         </div>
                     </form>
