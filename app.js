@@ -154,6 +154,42 @@ webserver.post('/api/save-profile-image', function (request, response) {
     });
 });
 
+webserver.get('/api/UserProfileUrl', (request, response) => {
+    const userIDToken = request.headers['token'];
+    console.log("TOKEN: ", userIDToken)
+    db.connect(() => {
+        let query = "SELECT lg.account_id FROM `loggedin` AS lg WHERE lg.token = '" + userIDToken + "'";
+        db.query(query, (err, data) => {
+            console.log("DTAAAAAAA: ", data);
+            if (!err) {
+                const urlQuery = "SELECT a.profile_photo_url, a.image_type FROM `accounts` AS a WHERE a.ID = '" + data[0].account_id + "'";
+                console.log("QUERY: ", urlQuery);
+                db.query(urlQuery, (err, data) => {
+                    if (!err) {
+                        const output = {
+                            success: true,
+                            data: data
+                        }
+                        response.send(output);
+                    }else {
+                        const output = {
+                            success: false,
+                            message: "error getting account profile pic url"
+                        }
+                        response.send(output);
+                    }
+                })
+            } else {
+                const output = {
+                    success: false,
+                    message: "error getting account id from token"
+                }
+                response.send(output);
+            }
+        })
+    })
+})
+
 webserver.post('/api/testTwilio', (request, response) => {
     db.connect(() => {
         const query = "SELECT a.phoneNumber FROM `accounts` WHERE a.ID = '"+userToken+"'";

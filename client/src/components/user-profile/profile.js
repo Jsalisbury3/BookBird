@@ -32,7 +32,6 @@ class UserProfile extends Component {
 
 
     getProfileUrl = () => {
-        debugger;
         axios({
             method: 'get',
             url: '/api/UserProfileUrl',
