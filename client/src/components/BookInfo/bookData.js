@@ -24,14 +24,26 @@ class IndividualBookData extends Component {
         });
     }
 
+    // addConditionStyling = (condition) => {
+    //     debugger;
+    //     switch (condition) {
+    //         case 'Thrashed':
+    //             console.log(document.getElementsByClassName('bookCondition'));
+    //         default:
+    //             console.log('Switch Condition');
+    //     }
+    // }
+
     componentDidMount = () => {
         this.props.getDataForBookClicked(this.state.bookId);
         this.createCarousel();
+        // this.addConditionStyling(this.props.listId[0].book_condition);
 
     }
 
     render() {
         console.log('BOOKDATA STATE: ', this.props);
+
         if(!this.props.listId[0]){
             return <h1>Loading...</h1>
         }
@@ -50,11 +62,11 @@ class IndividualBookData extends Component {
                             <div className="bookInfoLeftContent s8">
                                 <h6 className="bookTitle">{this.props.listId[0].title}</h6>
                                 <h6 className="bookAuthor">{this.props.listId[0].author}</h6>
-                                <h6 className="bookISBN">{this.props.listId[0].ISBN}</h6>
+                                <h6 className="bookISBN">ISBN {this.props.listId[0].ISBN}</h6>
                             </div>
                             <div className="bookInfoRightContent s4">
                                 <div className="bookCondition">
-                                    <h6>{this.props.listId[0].book_condition}</h6>
+                                    <h6 className={this.props.listId[0].book_condition}> {(this.props.listId[0].book_condition)}</h6>
                                 </div>
                                 <div className="bookPrice">
                                     <h5>${this.props.listId[0].price}</h5>
