@@ -102,7 +102,7 @@ h2:nth-child(2)  {
 #imageContainer {
     height: 35%;
     width: 100%;
-    background-color: rgb(197, 197, 197);
+    background-color: rgb(247, 247, 247);
 
 }
 
@@ -117,13 +117,17 @@ h2:nth-child(2)  {
     top: 5%;
     height: 90%;
     width: 70%;
+    border: 1px solid black;
+    box-shadow: 0px 5px 30px 10px rgba(49, 49, 49, 0.808);
 }
 .book-content {
+    box-shadow: 0px 5px 2px 5px rgba(49, 49, 49, 0.808);
+    background-color: rgb(247, 247, 247);
     height: 66%;
 }
 
 .bookInfoLeftContent {
-    border: 1px solid black;
+    /* border: 1px solid black; */
     display: inline-block;
     height: 50%;
     width: 70%;
@@ -134,7 +138,7 @@ h2:nth-child(2)  {
 }
 
 .bookInfoRightContent {
-    border: 1px solid black;
+    /* border: 1px solid black; */
     display: inline-block;
     vertical-align: top;
     height: 50%;
@@ -144,41 +148,51 @@ h2:nth-child(2)  {
 .bookCondition {
     position: relative;
     height: 40%;
-    border: 1px solid black;
+    /* border: 1px solid black; */
 }
 
 .bookCondition h6 {
     position: relative;
     font-size: 5vw;
-    left: 10%;
-    height: 40%;
-    border: 1px solid black;
+    /* border: 1px solid black; */
 }
 .bookPrice {
     height: 60%;
-    border: 1px solid black;
+    /* border: 1px solid black; */
 }
 
 .bookPrice h5 {
     position: relative;
     font-size: 10vw;
+    top: -35%;
     left: 15%;
     height: 40%;
-    border: 1px solid black;
+    /* border: 1px solid black; */
 
 }
 .bookTitle {
+    font-size: 6vw;
+    font-weight: bold;
     color: rgb(22, 22, 22);
 }
 
 .bookAuthor, .bookISBN {
     color: rgb(179, 179, 179);
+    font-weight: lighter;
 }
 
 .sellersContent {
-    border: 1px solid black;
     height: 50%;
-    
+    font-weight: lighter;
+}
+
+.sellersContent h6{
+    font-weight: bold;
+}
+
+.sellersContent h5 {
+    color: rgb(179, 179, 179);
+    font-weight: lighter;
 }
 
 .card-action a {
@@ -193,6 +207,65 @@ h2:nth-child(2)  {
 #contactAction {
     color:white;
     background-color:blue;
+}
+
+.Thrashed {
+    color: white;
+    padding: 5% 5% 5% 5%;
+    height: 65%;
+    width: 112%;
+    left: -10%;
+    text-transform: uppercase;
+    background-color: black;
+    border-radius: 5px;
+}
+
+.New {
+    color: white;
+    padding: 5% 5% 5% 5%;
+    height: 58%;
+    width: 56%;
+    left: 15%;
+    text-transform: uppercase;
+    background-color: rgb(6, 235, 6);
+    border-radius: 5px;
+}
+
+.Good {
+    color: white;
+    padding: 5% 5% 5% 5%;
+    height: 60%;
+    width: 68%;
+    left: 15%;
+    text-transform: uppercase;
+    background-color: rgb(0, 4, 255);
+    border-radius: 5px;
+}
+
+.Worn {
+    color: white;
+    padding: 5% 5% 5% 5%;
+    height: 58%;
+    width: 68%;
+    left: 15%;
+    text-transform: uppercase;
+    background-color: rgb(255, 0, 0);
+    border-radius: 5px;
+}
+.Like_New {
+    color: white;
+    padding: 5% 5% 5% 5%;
+    height: 80%;
+    width: 100%;
+    left: -5%;
+    top: -25%;
+    text-transform: uppercase;
+    background-color: rgb(0, 255, 42);
+    border-radius: 5px;
+}
+
+.bookLoading {
+    
 }
 @media screen and (min-width: 1000px) {
 

@@ -16,7 +16,7 @@ export default props => {
                     <div className='itemDetails'>
                         <p>Title: {title}</p>
                         <p>Author: {author}</p>
-                        <p>Condition: {book_condition}</p>
+                        <p className={`${book_condition}`}>{book_condition}</p>
                     </div>
                     <div className='itemPrice'>
                         <h3>Price:</h3>

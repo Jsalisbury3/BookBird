@@ -9,7 +9,6 @@ export const getDataForBookClicked = (ID) => {
             data : ID
         }).then( (listingInfo) => {
             console.log("BOOKINFO ACTION RESPONSE: ", listingInfo);
-            
             dispatch({
                 type: types.BOOK_INFO_INDEX,
                 payload: {
