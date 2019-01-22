@@ -4,6 +4,8 @@ import { searchFilter } from '../../actions/search';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ListItem from './listItem';
+import 'materialize-css/dist/css/materialize.min.css'
+import 'materialize-css'
 
 class SearchBar extends Component{
     constructor(props){
@@ -77,10 +79,12 @@ class SearchBar extends Component{
         let displayFiltered = this.getRowData(this.props.filterResults);
         return(
             <div className="search-bar-container">
-                <form className="searchForm" onSubmit={this.handleSubmit}>
-                    <input name="ISBN" className="search-text" placeholder="Search by ISBN" onChange={this.handleInputs}></input>
-                    {/* <button className="searchInputButton"><img src={searchIcon} className="search-bar-icon"/></button> */}
-                </form>
+                {/* <form className="searchForm" onSubmit={this.handleSubmit}> */}
+                <div className="searchbar-i-container"><i className="material-icons">search</i></div>
+                <input name="ISBN" className="searchInput" placeholder="Search..." onChange={this.handleInputs}/>
+                        
+                    
+                {/* </form> */}
             </div>
         )
     }   
