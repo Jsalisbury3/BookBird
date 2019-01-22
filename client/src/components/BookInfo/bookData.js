@@ -6,6 +6,7 @@ import './book-data.css';
 import CarouselItem from './carousel-item';
 import Header from './../universal/header';
 import Nav from './../universal/nav';
+import axios from 'axios';
 
 class IndividualBookData extends Component {
 
@@ -27,8 +28,23 @@ class IndividualBookData extends Component {
     componentDidMount = () => {
         this.props.getDataForBookClicked(this.state.bookId);
         this.createCarousel();
+    };
 
-    }
+    contactSeller = () => {
+        console.log("button pressed");
+        axios({
+            method : "post",
+            url: '/api/contactSeller',
+            headers: {
+                token: localStorage.getItem('Token'),
+            },
+            data: {
+                sellersNumber : this.props.listId[0].phoneNumber
+            }
+        }).then((response) => {
+            console.log("tell user that the message has been sent");
+        })
+    };
 
     render() {
         console.log('BOOKDATA STATE: ', this.props);
@@ -66,7 +82,7 @@ class IndividualBookData extends Component {
                             </div>
                         </div>
                         <div className="card-action" id="contactAction">
-                            <a href="#" id="contactAction">This is a link</a>
+                            <button onClick={this.contactSeller} className={"btn"} id="contactAction">This is a link</button>
                         </div>
                     </div>
                 </div>

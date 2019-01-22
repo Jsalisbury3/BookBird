@@ -154,12 +154,19 @@ webserver.post('/api/save-profile-image', function (request, response) {
     });
 });
 
-webserver.post('/api/testTwilio', (request, response) => {
+webserver.post('/api/contactSeller', (request, response) => {
+    console.log("runnnnnnnning");
     db.connect(() => {
-        const query = "SELECT a.phoneNumber FROM `accounts` WHERE a.ID = '"+userToken+"'";
+        const userToken = request.headers['token'];
+        const SellerNumber = request.body.sellersNumber;
+        console.log("selleNumber: ", SellerNumber);
+        const query = "SELECT a.phoneNumber FROM `accounts` AS a JOIN `loggedin` AS lg ON a.ID = lg.account_id WHERE lg.token = '"+userToken+"'";
+        console.log(query)
         db.query(query, (err, data) => {
             if(!err) {
-                const userPhoneNumber = data[0].phoneNumber;
+                const buyerNumber = data[0].phoneNumber;
+                console.log("buyerNumber: ", buyerNumber);
+                const userPhoneNumber = data;
                 twilio.messages.create({
                     body: 'Someone is interested in buying your book BOOKNAME. respond to this message to contact possible buyer',
                     to: '+19499226065',  // `+1${userPhoneNumber}`
@@ -169,15 +176,6 @@ webserver.post('/api/testTwilio', (request, response) => {
         })
     })
 });
-
-webserver.post('/api/getResponse', (request, response) => {
-    const Userresponse = new MessagingResponse();
-    const message = Userresponse.message();
-    message.body('Hello World!');
-    response.redirect('http://localhost:3000/api/testTwilio');
-    console.log(response.toString());
-});
-
 
 
 webserver.get('/api/listings', (request, response) => {
@@ -279,23 +277,20 @@ webserver.post('/api/filter', (request, response) => {
             }
         })
     })
-})
+});
 
 
 webserver.get('/api/BookInfoIndex/:ID', (request, response) => {
     console.log("listing running");
     console.log("HEYYYYYOOO", request.body);
     console.log(request.params);
-
     db.connect(() => {
         // const query = "SELECT l.ID, l.accounts_id, l.book_condition, l.price, l.comments, l.book_id, b.ID, b.title, b.author, b.ISBN, a.email, a.ID FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id WHERE l.`book_id` = " + request.params.bookId + "";
-        
         let query = "SELECT i.ID, i.url, i.listing_id, i.imageType FROM images AS i WHERE i.listing_id = " + request.params.ID + "";
-        
         db.query(query, (err, data) => {
             if (data) {
                 const images = data;
-                let query = "SELECT l.ID AS listingID, l.accounts_id, l.book_condition, l.price, l.comments, l.book_id, b.ID AS bookID, b.title, b.author, b.ISBN, b.bookImage, a.email, a.ID FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id WHERE l.ID = "+request.params.ID+""                
+                let query = "SELECT l.ID AS listingID, l.accounts_id, l.book_condition, l.price, l.comments, l.book_id, b.ID AS bookID, b.title, b.author, b.ISBN, b.bookImage, a.email, a.phoneNumber, a.ID FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id WHERE l.ID = "+request.params.ID+""
                 // query = escape_quotes(query);
                 console.log(query);
                 db.query(query, (err, data) => {
@@ -312,8 +307,8 @@ webserver.get('/api/BookInfoIndex/:ID', (request, response) => {
                     }
                 })
             } else {
-                console.log('No images for that listing')
-                let query = "SELECT l.ID AS listingID, l.accounts_id, l.book_condition, l.price, l.comments, l.book_id, b.ID AS bookID, b.title, b.author, b.ISBN, b.bookImage, a.email, a.ID FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id WHERE l.ID = "+request.params.ID+""                
+                console.log('No images for that listing');
+                let query = "SELECT l.ID AS listingID, l.accounts_id, l.book_condition, l.price, l.comments, l.book_id, b.ID AS bookID, b.title, b.author, b.ISBN, b.bookImage, a.email, a.phoneNumber, a.ID FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id WHERE l.ID = "+request.params.ID+""
                 // query = escape_quotes(query);
                 console.log(query);
                 db.query(query, (err, data) => {
@@ -331,21 +326,6 @@ webserver.get('/api/BookInfoIndex/:ID', (request, response) => {
                 })
             }
         })
-        // let query = "SELECT l.ID AS listingID, l.accounts_id, l.book_condition, l.price, l.comments, l.book_id, b.ID AS bookID, b.title, b.author, b.ISBN, b.bookImage, a.email, a.ID FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id WHERE l.ID = " + request.params.ID + "";
-        // query = escape_quotes(query);
-        // console.log(query);
-        // db.query(query, (err, data) => {
-        //     if (!err) {
-        //         console.log("bookidData: ", data);
-        //         let output = {
-        //             success: true,
-        //             data: data,
-        //         };
-        //         response.send(output);
-        //     } else {
-        //         console.log(err);
-        //     }
-        // })
     })
 });
 
