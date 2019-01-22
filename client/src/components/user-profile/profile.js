@@ -25,9 +25,10 @@ class UserProfile extends Component {
         this.getProfileUrl();
     }
 
-    handleUrlToSetState = async (response) => {
+    handleUrlToSetState = (response) => {
         console.log("LOOOOK ATTT MEEEE: ", response);
-        await this.setState({
+        if(response.data.data[0].profile_photo_url)
+        this.setState({
             photo: `https://s3-us-west-2.amazonaws.com/book-bird-test-bucket/${response.data.data[0].profile_photo_url}`
         })
         console.log("state in profile url: ", this.state.photo);
@@ -92,21 +93,25 @@ class UserProfile extends Component {
     };
 
 
-    render(){
+    render() {
         return (
-            <div className='profile-main-container'>
-                <button onClick={this.callActionSignOut} className='logOut btn btn-small right'><img
-                    src={logout24}/>
-                </button>
-                <div className='user-image-container circleBase'>
-                    <img src={this.state.photo ? this.state.photo : defaultPhoto}/>
-                    <label className="opacitySlip" htmlFor="profilePhotoInput"><i
-                        className='material-icons center'>add_a_photo</i></label>
-                    <input id="profilePhotoInput" type="file" name="photo" capture="camera" accept="image/*"
-                            onChange={this.fileSelectedHandler}/>
+            <Fragment>
+                <Header/>
+                <div className='profile-main-container'>
+                    <button onClick={this.callActionSignOut} className='logOut btn right'><img
+                        src={logout24}/>
+                    </button>
+                    <div className='user-image-container circleBase'>
+                        <img src={this.state.photo ? this.state.photo : defaultPhoto}/>
+                        <label className="opacitySlip" htmlFor="profilePhotoInput"><i
+                            className='material-icons center'>add_a_photo</i></label>
+                        <input id="profilePhotoInput" type="file" name="photo" capture="camera" accept="image/*"
+                               onChange={this.fileSelectedHandler}/>
+                    </div>
+                    <UserPostList/>
                 </div>
-                <UserPostList/>
-            </div>
+                <Nav/>
+            </Fragment>
         );
     }
 }

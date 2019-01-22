@@ -226,7 +226,7 @@ webserver.post('/api/MessageResponse', (request, response) => {
     db.connect(() => {
         console.log("MessageResponse RAN :D");
     })
-})
+});
 
 
 webserver.get('/api/listings', (request, response) => {
@@ -398,14 +398,17 @@ webserver.get('/api/UserProfile', (request, response) => {
                     console.log("data[0].account_id: ", data[0].account_id);
                     let query = "SELECT a.profile_photo_url, a.image_type, b.bookImage, a.ID, l.book_condition, l.ID, l.price, l.comments, l.book_id, b.title, b.ISBN, b.author FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id  WHERE a.ID = '" + data[0].account_id + "'";
                     db.query(query, (err, data) => {
-                        if (!err) {
+                        if (!err && data.length > 0) {
                             const output = {
                                 success: true,
                                 data: data,
                             };
                             response.send(output);
                         } else {
-                            console.log("Profile error: ", err);
+                            const output = {
+                                message: "no listings found, create a post!",
+                            };
+                            response.send(output);
                         }
                     })
                 }
@@ -591,6 +594,42 @@ webserver.post("/api/SignUp", (request, response) => {
                 })
             } else {
                 response.send("Username or password has been denied");
+            }
+        })
+    })
+});
+
+webserver.get('/api/UserProfileUrl', (request, response) => {
+    const userIDToken = request.headers['token'];
+    console.log("TOKEN: ", userIDToken)
+    db.connect(() => {
+        let query = "SELECT lg.account_id FROM `loggedin` AS lg WHERE lg.token = '" + userIDToken + "'";
+        db.query(query, (err, data) => {
+            console.log("DTAAAAAAA: ", data);
+            if (!err) {
+                const urlQuery = "SELECT a.profile_photo_url, a.image_type FROM `accounts` AS a WHERE a.ID = '" + data[0].account_id + "'";
+                console.log("QUERY: ", urlQuery);
+                db.query(urlQuery, (err, data) => {
+                    if (!err) {
+                        const output = {
+                            success: true,
+                            data: data
+                        };
+                        response.send(output);
+                    }else {
+                        const output = {
+                            success: false,
+                            message: "error getting account profile pic url"
+                        };
+                        response.send(output);
+                    }
+                })
+            } else {
+                const output = {
+                    success: false,
+                    message: "error getting account id from token"
+                };
+                response.send(output);
             }
         })
     })

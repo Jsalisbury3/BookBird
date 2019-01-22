@@ -38,6 +38,7 @@ export default class UserPostList extends Component {
     };
 
     deletePost=(id)=>()=>{
+        console.log("delete runs");
         axios({
             url:"/api/UserProfile",
             method:"delete",
@@ -56,7 +57,7 @@ export default class UserPostList extends Component {
         return (
             <div className='user-posts-container'>
                 {this.state.data}
-                <div className='samplePost'></div>
+                <div className='samplePost'>{!this.state.data ? "no listings found" : ''}</div>
             </div>
         )
     }
