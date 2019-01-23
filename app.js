@@ -175,7 +175,7 @@ webserver.post('/api/contactSeller', (request, response) => {
                     console.log("buyerNumber: ", buyerNumber);
                     twilio.messages.create({
                         body: 'Someone is interested in buying your book BOOKNAME. respond to this message to contact possible buyer',
-                        to: '+19499226065',
+                        to: `+1${SellerNumber}`,
                         from: '+15108226645'
                     });
                     let infoToHash = buyerNumber + SellerNumber;
@@ -224,7 +224,41 @@ webserver.post('/api/contactSeller', (request, response) => {
 
 webserver.post('/api/MessageResponse', (request, response) => {
     db.connect(() => {
-        console.log("MessageResponse RAN :D");
+        console.log("yoyoyoyo");
+        const message = request.body.Body;
+        let sentFrom = request.body.From;
+        sentFrom = sentFrom.slice(2, sentFrom.length);
+        console.log(request.body);
+        // const queryToGrabOtherNumber = "SELECT c.buyer_number, c.seller_number FROM `convos` AS c WHERE '"+sentFrom+"' = c.buyer_number OR c.seller_number";
+        const queryToGrabOtherNumber = "SELECT c.buyer_number, c.seller_number FROM `convos` AS c WHERE c.buyer_number = '"+sentFrom+"' OR c.seller_number = '"+sentFrom+"'";
+        console.log(queryToGrabOtherNumber);
+        db.query(queryToGrabOtherNumber, (err, data) => {
+            if(!err) {
+                console.log("")
+                // console.log("data[0].buyer_number", data[0].buyer_number)
+                // console.log("data[0].seller_number", data[0].seller_number)
+                if(data[0].buyer_number == sentFrom) {
+                    const numberWeWant = data[0].seller_number;
+                    console.log("numberWeWant", numberWeWant)
+                    twilio.messages.create({
+                        body: message,
+                        to: `+1${numberWeWant}`,
+                        from: '+15108226645'
+                    });
+
+                } else {
+                    const numberWeWant = data[0].buyer_number;
+                    console.log("numberWeWant", numberWeWant)
+                    twilio.messages.create({
+                        body: message,
+                        to: `+1${numberWeWant}`,
+                        from: '+15108226645'
+                    });
+                }
+            } else {
+                console.log("i dunn fudged up" , err)
+            }
+        })
     })
 });
 
