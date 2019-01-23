@@ -70,8 +70,6 @@ class IndividualBookData extends Component {
         }
         return (
             <div className='Container'>
-                
-                <Header/>
                 <div className="carousel" id="imageContainer">
                 <img className="bookLoading" src={loading} style={{display:'none'}}/>
                         <a className="carousel-item responsive-img" id="book-item" href="#one!">
@@ -106,7 +104,6 @@ class IndividualBookData extends Component {
                         </div>
                     </div>
                 </div>
-                <Nav/>
             </div>
         )
     }

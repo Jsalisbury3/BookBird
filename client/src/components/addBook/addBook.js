@@ -326,8 +326,6 @@ class AddBook extends Component {
     render() {
         const hideISBN = this.state.hideIsbnSearchBar ? {display: 'none'} : {display: 'block'};
         return (
-            <Fragment>
-                <Header/>
                 <div className={"addBook-container"}>
                     <div className="isbnModalContainer">
                         <div id="modal1" className="modalIsbn">
@@ -523,8 +521,6 @@ class AddBook extends Component {
                         </div>
                     </form>
                 </div>
-                <Nav/>
-            </Fragment>
         )
 
     }

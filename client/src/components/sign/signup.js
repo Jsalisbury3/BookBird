@@ -16,16 +16,12 @@ class Signup extends Component{
 
     render(){
         return(
-            <Fragment>
-                <Header/>
+
                     <div className="signup_container">
                         <h1 className="signUpHeader">Sign Up</h1>
                         <SignUpValidation />
                         <p className="signup_footer">Already have an account? <Link to={"/SignIn"}> Sign In </Link></p>
                     </div>
-                <Nav/>
-            </Fragment>
-
         )
     }
 }
