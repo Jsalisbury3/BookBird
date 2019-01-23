@@ -484,7 +484,7 @@ class AddBook extends Component {
                         <div className={"checkMark markPrice material-icons"}>check_circle_outline</div>
                         <h5 name="comments" className='sellers-comments-tag'> Sellers Comments</h5>
                         <div className={'comment-text-area'}>
-                            <div className='row'>
+                            <div>
                                 <div className='input-field'>
                                 <textarea name={"comments"} id='comment-box' className={"inputs last "}
                                           onChange={this.handleInput}/>

@@ -259,11 +259,12 @@ label {
 
 }
 #comment-box {
-    top: 59%;
+    top: 2vh;
     left: 8%;
     position: fixed;
     font-size: 12px;
-    height: 7%;
+    height: 46px;
+    position: relative;
 }
 .sellers-comments-tag {
     position: relative;
@@ -445,22 +446,25 @@ label {
 
 #priceErr {
     top: 9vh;
-    right: 8vw;
+    right: 10vw;
     position: absolute;
     color: red;
+    font-size: 12px;
 }
 
 #conditionError{
     position: absolute;
-    bottom: 44%;
-    left: 52%;
+    bottom: 46vh;
+    left: 53vw;
     color: red;
+    font-size:12px;
 }
 .comment-text-area {
     position: absolute;
-    display: inline;
-    bottom: 43%;
-    /* width: 90%; */
+    width:98%;
+    /* display: inline; */
+    bottom: 34%;
+    /* width: 98%; */
     margin-left: 0%;
     /* height: 11%; */
 }
