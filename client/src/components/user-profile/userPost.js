@@ -24,7 +24,7 @@ export default class UserPost extends Component{
                                 <div className='itemDetails'>
                                     <p>Title: {title}</p>
                                     <p>Author: {author}</p>
-                                    <p>Condition: {book_condition}</p>  
+                                    <p className={book_condition}>Condition: {book_condition}</p>  
                                 </div>                            
                         </Link>
                         <div className='delete-btn-container'>

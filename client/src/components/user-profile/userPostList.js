@@ -12,8 +12,13 @@ export default class UserPostList extends Component {
     };
 
     getUserProfileListings = async (results) => {
+        debugger;
         if(!results.data.success) {
             console.log("no matches found");
+            let listItems = "no listings found"
+            await this.setState({
+                data: listItems,
+            });
         } else {
             let listItems = results.data.data.map((item, index) => {
                 return (
@@ -27,6 +32,7 @@ export default class UserPostList extends Component {
     };
 
     getUserPosts = () => {
+        debugger;
         axios({
             method: 'get',
             url: '/api/UserProfile',
@@ -62,3 +68,5 @@ export default class UserPostList extends Component {
         )
     }
 }
+
+// {!this.state.data ? "no listings found" : ''}

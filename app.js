@@ -407,6 +407,7 @@ webserver.get('/api/UserProfile', (request, response) => {
                         } else {
                             const output = {
                                 message: "no listings found, create a post!",
+                                data: data,
                             };
                             response.send(output);
                         }

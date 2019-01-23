@@ -111,7 +111,7 @@ class IndividualBookData extends Component {
                             <div className="contactSignIn">{displayError ? '' : 'Please sign in to contact the seller'}</div> 
                         </div>
                         <div className="card-action" id="contactAction">
-                            <Link className="card-action" to={"/Landing"} id="contactActionBack">Back</Link>
+                            {/* <Link className="card-action" to={"/Landing"} id="contactActionBack">Back</Link> */}
                             <button onClick={this.contactSeller} className={"btn"} id="contactAction">This is a link</button>
                         </div>
                     </div>
