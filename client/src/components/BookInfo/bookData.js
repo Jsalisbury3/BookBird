@@ -17,7 +17,8 @@ class IndividualBookData extends Component {
         bookId : this.props.match.params.bookId,
         images: [],
         listId: [],
-        data: ''
+        data: '',
+        displayError : false,
     };
 
     createCarousel = () => {
@@ -60,17 +61,20 @@ class IndividualBookData extends Component {
             }
         }).then((response) => {
             console.log("response from twilio query: ", response);
-            if ( response.data.success === false) {
-                displayError = false;
+            if(response.data.success) {
+                this.setState({
+                    displayError : true
+                })
             } else {
-                displayError = true;
+                this.setState({
+                    displayError : false
+                })
             }
         })
     }
 
     render() {
         console.log('BOOKDATA STATE: ', this.props);
-        let displayError = true;
         if(!this.props.listId[0]){
             return <h1>Loading...</h1>
         }
@@ -108,7 +112,7 @@ class IndividualBookData extends Component {
                                 <h6>Seller's Comments</h6>
                                 <h5>{this.props.listId[0].comments}</h5>
                             </div>
-                            <div className="contactSignIn">{displayError ? '' : 'Please sign in to contact the seller'}</div> 
+                            <div className="contactSignIn">{this.state.displayError ? '' : 'Please sign in to contact the seller'}</div>
                         </div>
                         <div className="card-action" id="contactAction">
                             {/* <Link className="card-action" to={"/Landing"} id="contactActionBack">Back</Link> */}
