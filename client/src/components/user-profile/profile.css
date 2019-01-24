@@ -34,28 +34,45 @@
     position:relative;
     display:inline-block;
     height:28%;
-    width:36%;
+    width:43%;
     margin-top:6%;
-    margin-left:32%;
-    background-color:brown;
+    margin-left:28%;
+    /* background-color:brown; */
     overflow:hidden;
+    /* -moz-box-shadow: 0 0 3px #ccc;
+    -webkit-box-shadow: 0 0 3px #ccc; */
+    box-shadow: 0 0 4px 10px goldenrod;
 }
+
 .user-image-container>img{
-    position:relative;
-    height:164px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    height: 123%;
+    width: auto;
+    -webkit-transform: translate(-50%,-50%);
+        -ms-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
 }
+
+.user-image-container>img.portrait {
+    width: 100%;
+    height: auto;
+}
+
 .opacitySlip{
-    bottom: 50px;
+    top: 120px;
     position: relative;
     display: inline-block;
-    height: 38px;
-    width: 135px;
+    height: 55px;
+    width: 160px;
+    background-color:rgb(245, 245, 245,0.4);
 }
 .opacitySlip>i{
     height:100%;
     width:100%;
     padding-top:5px;
-    background-color:rgb(245, 245, 245,0.4);
+    /* background-color:rgb(245, 245, 245,0.4); */
     color:rgb(104, 101, 106);
 }
 .logOut{

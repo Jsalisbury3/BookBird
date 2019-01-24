@@ -94,9 +94,7 @@ class UserProfile extends Component {
 
 
     render() {
-        return (
-            <Fragment>
-                <Header/>
+        return (          
                 <div className='profile-main-container'>
                     <button onClick={this.callActionSignOut} className='logOut btn right'><img
                         src={logout24}/>
@@ -109,9 +107,7 @@ class UserProfile extends Component {
                                onChange={this.fileSelectedHandler}/>
                     </div>
                     <UserPostList/>
-                </div>
-                <Nav/>
-            </Fragment>
+                </div>                
         );
     }
 }

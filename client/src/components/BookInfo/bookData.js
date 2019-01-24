@@ -82,7 +82,6 @@ class IndividualBookData extends Component {
         return (
             <div className='Container'>
                 {/* <img id='bookLoadScreen' src={loading}/> */}
-                <Header/>
                 <div className="carousel" id="imageContainer">
             
                 <img id="imageBackground" style={{display:'block'}}/>
