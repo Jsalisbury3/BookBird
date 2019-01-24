@@ -15,6 +15,7 @@ import success from './images/successlogo.png';
 import {Link} from 'react-router-dom';
 import {debug} from 'util';
 import loadingGif from './images/loadingGif.gif'
+import loadingGif2 from './images/loadingGif2.gif';
 import Header from './../universal/header'
 import Nav from './../universal/nav'
 
@@ -221,6 +222,8 @@ class AddBook extends Component {
             })
         } catch {
             console.log("Error posting book")
+            // document.getElementsByClassName('isbnSearchErrorMessage')[0].style.display = "block";
+            // this.cancelButton();
         }
     };
     getBooks = (event) => {
@@ -370,7 +373,7 @@ class AddBook extends Component {
                                             <button onClick={this.cancelButton} type="button"
                                                     className="btn-small btn waves-effect postAgainButton">Post Again
                                             </button>
-                                            <p className="btn-small btn waves-effect white"><Link to={"/landing"}>Accept</Link>
+                                            <p className="btn-small btn waves-effect white-text acceptButton"><Link className="acceptLink" to={"/landing"}>Accept</Link>
                                             </p>
                                         </div>
                                     </div>
@@ -436,7 +439,7 @@ class AddBook extends Component {
                     {/*</form>*/}
                     {/*</div>*/}
                     <form className={'form-container '} onSubmit={this.validateInputsFields} encType="multipart/form-data">
-                        <img src={loadingGif} alt="loadingGif" id="loadingGif"/>
+                        <img src={loadingGif2} alt="loadingGif" id="loadingGif"/>
                         <h3 className={"pageHeader"}>Add Book</h3>
                         <p className={"pageDescription"}> Fill out the remaining fields below. This information will be displayed when other students are searching for books.</p>
                         <div id='input-container1' className=' title-container row'>
