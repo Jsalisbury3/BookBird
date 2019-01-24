@@ -23,13 +23,11 @@ class Signin extends Component{
     render(){
         return(
             <Fragment>
-                <Header/>
                     <div className="signin_container">
                         <h1 className="signInHeader">Sign in</h1>
                         <SignInValidation/>
                         <p className="signin_footer">Dont have an account? <Link to={"/SignUp"}>Sign up now! </Link> </p>
                     </div>
-                <Nav/>
             </Fragment>
         )
     }

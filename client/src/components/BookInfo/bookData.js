@@ -58,7 +58,8 @@ class IndividualBookData extends Component {
                 token: localStorage.getItem('Token'),
             },
             data: {
-                sellersNumber : this.props.listId[0].phoneNumber
+                sellersNumber : this.props.listId[0].phoneNumber,
+                title : this.props.listId[0].title
             }
         }).then((response) => {
             console.log("response from twilio query: ", response);

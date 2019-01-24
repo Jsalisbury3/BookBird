@@ -83,7 +83,7 @@ function validate(values) {
     }
 
     if (!passwordRegex.test(Password)) {
-        errors.Password = "please enter a valid password";
+        errors.Password = "password must be atleast 8 characters long with one capital letter and number";
     }
     return errors;
 }
