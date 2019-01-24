@@ -149,9 +149,9 @@ webserver.post('/api/save-profile-image', function (request, response) {
     });
 });
 
-function insertNewNumber(buyerNumber, SellerNumber, userToken, sourceNumber) {
+function insertNewNumberBuyNumber(buyerNumber, SellerNumber, sourceNumber, bookTitle) {
     twilio.messages.create({
-        body: 'Someone is interested in buying your book BOOKNAME. respond to this message to contact possible buyer',
+        body: `Someone is interested in buying your book ${bookTitle}. respond to this message to contact possible buyer`,
         to: `+1${SellerNumber}`,
         from: `${sourceNumber}`,
     });
@@ -189,6 +189,34 @@ function insertNewNumber(buyerNumber, SellerNumber, userToken, sourceNumber) {
     })
 }
 
+function insertNewNumber(buyerNumber, SellerNumber, sourceNumber, source_id, bookTitle) {
+    twilio.messages.create({
+        body: `Someone is interested in buying your book ${bookTitle}. respond to this message to contact possible buyer`,
+        to: `+1${SellerNumber}`,
+        from: `${sourceNumber}`,
+    });
+    let infoToHash = buyerNumber + SellerNumber;
+    let convoHash = jwt.encode(infoToHash, hash);
+    const storeConvoDataQuery = "INSERT INTO `convos` SET hash = '" + convoHash + "', buyer_number = '" + buyerNumber + "', seller_number = '" + SellerNumber + "', source_num_id = '" + source_id + "'";
+    console.log("FINAL QUERY MEMEMEMEME: ", storeConvoDataQuery);
+    db.query(storeConvoDataQuery, (err, data) => {
+        if (!err) {
+            const successOutput = {
+                success: true,
+                message: "Seller contacted"
+            };
+            return successOutput
+        } else {
+            console.log(err);
+            const failedStoringDetails = {
+                success: false,
+                message: "failed to make store contact information into convos"
+            };
+            return failedStoringDetails
+        }
+    });
+};
+
 
 function getnumberFunction(buyerNumber, SellerNumber, userToken) {
     console.log("ya boi is running");
@@ -209,40 +237,35 @@ function getnumberFunction(buyerNumber, SellerNumber, userToken) {
 }
 
 
-function getSourceNumber(buyerNumber, SellerNumber, userToken) {
+function getSourceNumber(buyerNumber, SellerNumber, bookTitle) {
     db.connect(() => {
-        const checkForNumbers = "SELECT source_num_id FROM `convos` WHERE buyer_number != '" + buyerNumber + "' AND seller_number != '" + SellerNumber + "'";
-        console.log(checkForNumbers);
-        db.query(checkForNumbers, (err, data) => {
-            console.log("data i need: ", data);
-            if (data.length > 0) {
-                const queryToGetNumber = "SELECT sn.twilio_number FROM `source_num` AS sn JOIN `convos` AS c ON sn.ID = c.source_num_id WHERE ";
-                const inserts = data[0];
-                const preparedQuery = 'c.source_num_id = ? OR '.repeat(array.length);
-                mysql.format(preparedQuery, inserts);
-                preparedQuery.slice(0, preparedQuery.length - 4);
-                const validNumbersQuery = queryToGetNumber + preparedQuery;
-                db.query(validNumbersQuery, (err, data) => {
-                    if (data.length > 0 && !err) {
-                        console.log("data after prepared: ", data);
-                        const NewNum = data[0].twilio_number;
-                        insertNewNumber(SellerNumber, userToken, NewNum)
-                    } else {
-                        console.log("inner console");
-                        getnumberFunction(buyerNumber, SellerNumber, userToken);
+        const checkForNumbers = "SELECT source_num_id FROM `convos` WHERE buyer_number = '" + buyerNumber + "' OR seller_number = '" + SellerNumber + "'";
+        db.query(checkForNumbers, (err, convos) => {
+            const selectAllAvailableNumbers = "SELECT ID, twilio_number as phone_num FROM `source_num`";
+            db.query(selectAllAvailableNumbers, (err, numbers) => {
+                for (let convo of convos) {
+                    for (let currentNum = 0; currentNum < numbers.length; currentNum++) {
+                        if (numbers[currentNum].ID === convo.source_num_id) {
+                            numbers.splice(currentNum, 1);
+                        }
                     }
-                })
-            } else {
-                console.log("outer console");
-                getnumberFunction(buyerNumber, SellerNumber, userToken)
-            }
+                }
+                const {ID} = numbers[0];
+                const {phone_num} = numbers[0];
+                insertNewNumber(buyerNumber, SellerNumber, phone_num, ID, bookTitle);
+            })
         })
     })
 }
 
 
+// insertNewNumber(SellerNumber, userToken, NewNum)
+
+
 webserver.post('/api/contactSeller', (request, response) => {
     db.connect(() => {
+        console.log("og request body: ", request.body);
+        const bookTitle = request.body.title;
         const SellerNumber = request.body.sellersNumber;
         const sourceNumber = 5108226645; //this will change
         const userToken = request.headers['token'];
@@ -264,45 +287,37 @@ webserver.post('/api/contactSeller', (request, response) => {
                         console.log("im what u want : ", data);
                         if (data.length < 1) {
                             twilio.messages.create({
-                                body: 'Someone is interested in buying your book BOOKNAME. respond to this message to contact possible buyer',
+                                body: `Someone is interested in buying your book ${bookTitle}. Respond to this message to contact the possible buyer`,
                                 to: `+1${SellerNumber}`,
                                 from: '+15108226645',
                             });
-                            let infoToHash = buyerNumber + SellerNumber;
-                            let convoHash = jwt.encode(infoToHash, hash);
-                            const insertSourceTableQuery = "INSERT INTO `source_num` SET twilio_number = '" + sourceNumber + "'";
-                            console.log(insertSourceTableQuery);
-                            db.query(insertSourceTableQuery, (err, data) => {
-                                if (!err) {
-                                    console.log("DATA FROM INSERT QUERY WANT THISSSS: ", data);
-                                    const storeConvoDataQuery = "INSERT INTO `convos` SET hash = '" + convoHash + "', buyer_number = '" + buyerNumber + "', seller_number = '" + SellerNumber + "', source_num_id = '" + data.insertId + "'";
-                                    console.log("FINAL QUERY MEMEMEMEME: ", storeConvoDataQuery);
-                                    db.query(storeConvoDataQuery, (err, data) => {
-                                        if (!err) {
-                                            const successOutput = {
-                                                success: true,
-                                                message: "Seller contacted"
-                                            };
-                                            response.send(successOutput);
-                                        } else {
-                                            console.log(err)
-                                            const failedStoringDetails = {
-                                                success: false,
-                                                message: "failed to make store contact information into convos"
-                                            };
-                                            response.send(failedStoringDetails);
-                                        }
-                                    })
-                                } else {
-                                    const failedStoringDetails = {
-                                        success: false,
-                                        message: "failed to make store contact information into source_num"
-                                    };
-                                    response.send(failedStoringDetails);
-                                }
+                            const getOriginalNumberQuery = "SELECT ID FROM `source_num` WHERE twilio_number = '" + sourceNumber + "'";
+                            db.query(getOriginalNumberQuery, (err, data) => {
+                                let infoToHash = buyerNumber + SellerNumber;
+                                let convoHash = jwt.encode(infoToHash, hash);
+                                console.log("DATA FROM INSERT QUERY WANT THISSSS: ", data);
+                                const storeConvoDataQuery = "INSERT INTO `convos` SET hash = '" + convoHash + "', buyer_number = '" + buyerNumber + "', seller_number = '" + SellerNumber + "', source_num_id = '" + data[0].ID + "'";
+                                console.log("FINAL QUERY MEMEMEMEME: ", storeConvoDataQuery);
+                                db.query(storeConvoDataQuery, (err, data) => {
+                                    if (!err) {
+                                        const successOutput = {
+                                            success: true,
+                                            message: "Seller contacted"
+                                        };
+                                        response.send(successOutput);
+                                    } else {
+                                        console.log(err)
+                                        const failedStoringDetails = {
+                                            success: false,
+                                            message: "failed to make store contact information into convos"
+                                        };
+                                        response.send(failedStoringDetails);
+                                    }
+                                })
                             })
+
                         } else {
-                            getSourceNumber(buyerNumber, SellerNumber, userToken, sourceNumber)
+                            getSourceNumber(buyerNumber, SellerNumber, bookTitle)
                         }
                     })
                 } else {
