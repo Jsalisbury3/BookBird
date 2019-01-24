@@ -623,6 +623,7 @@ webserver.post('/api/SignIn', (request, response) => {
                                     let output = {
                                         success: true,
                                         data: userToken,
+                                        runOnce: true
                                     };
                                     response.send(output);
                                 } else {
@@ -664,7 +665,6 @@ webserver.get('/api/SignOut', (request, response) => {
     } else {
         db.connect(() => {
             let getIdFromTokenQuery = "DELETE FROM `loggedin` WHERE token = '" + userIDToken + "'";
-            // getIdFromTokenQuery = escape_quotes(getIdFromTokenQuery);
             console.log(getIdFromTokenQuery);
             db.query(getIdFromTokenQuery, (err) => {
                 if (!err) {
@@ -710,14 +710,15 @@ webserver.post("/api/SignUp", (request, response) => {
                     if (!err) {
                         console.log('further');
                         let userToken = jwt.encode(EmailSignUp + PasswordSignUp + Date.now(), hash);
-                        let queryLoggedIn = "INSERT INTO `loggedin` SET loggedin.account_id = " + data.insertId + ", loggedin.token = '" + userToken + "'";
+                        let queryLoggedIn = "INSERT INTO `loggedin` SET account_id = " + data.insertId + ", token = '" + userToken + "'";
                         // queryLoggedIn = escape_quotes(queryLoggedIn)
                         db.query(queryLoggedIn, (err, data) => {
                             console.log(err)
                             if (!err) {
                                 const outputSuccess = {
                                     success: true,
-                                    data: userToken
+                                    data: userToken,
+                                    runOnce: true
                                 }
                                 response.send(outputSuccess);
                             } else {
@@ -750,7 +751,7 @@ webserver.get('/api/UserProfileUrl', (request, response) => {
         let query = "SELECT lg.account_id FROM `loggedin` AS lg WHERE lg.token = '" + userIDToken + "'";
         db.query(query, (err, data) => {
             console.log("DTAAAAAAA: ", data);
-            if (!err) {
+            if (!err && data.length > 0) {
                 const urlQuery = "SELECT a.profile_photo_url, a.image_type FROM `accounts` AS a WHERE a.ID = '" + data[0].account_id + "'";
                 console.log("QUERY: ", urlQuery);
                 db.query(urlQuery, (err, data) => {
