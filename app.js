@@ -539,7 +539,7 @@ webserver.get('/api/UserProfile', (request, response) => {
                     response.send(outputNoMatch);
                 } else {
                     console.log("data[0].account_id: ", data[0].account_id);
-                    let query = "SELECT a.profile_photo_url, a.image_type, b.bookImage, a.ID, l.book_condition, l.ID, l.price, l.comments, l.book_id, b.title, b.ISBN, b.author FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id  WHERE a.ID = '" + data[0].account_id + "'";
+                    let query = "SELECT a.name, a.profile_photo_url, a.image_type, b.bookImage, a.ID, l.book_condition, l.ID, l.price, l.comments, l.book_id, b.title, b.ISBN, b.author FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id  WHERE a.ID = '" + data[0].account_id + "'";
                     db.query(query, (err, data) => {
                         if (!err && data.length > 0) {
                             const output = {

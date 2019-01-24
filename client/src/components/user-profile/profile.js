@@ -106,6 +106,9 @@ class UserProfile extends Component {
                         <input id="profilePhotoInput" type="file" name="photo" capture="camera" accept="image/*"
                                onChange={this.fileSelectedHandler}/>
                     </div>
+                    <div>
+                    </div>
+
                     <UserPostList/>
                 </div>                
         );
