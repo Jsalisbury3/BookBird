@@ -51,7 +51,7 @@ class SignInValidation extends Component {
                            label={"Email"}/>
                 </div>
                 <div className="row">
-                    <Field type="password" name={"Password"} size={"s9 m8 offset-m2"} component={this.renderInput} id={"Password"}
+                    <Field name={"Password"} size={"s9 m8 offset-m2"} component={this.renderInput} id={"Password"}
                            label={"Password"}/>
                 </div>
                 <div className="row">
