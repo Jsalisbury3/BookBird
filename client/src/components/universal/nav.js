@@ -8,6 +8,7 @@ import { withRouter } from 'react-router-dom';
 import AddBook from '../addBook';
 import Search from '../landing';
 
+
 export default withRouter((props)=>{
     const dontShow = ['/'];
     console.log('Nav Props:', props);
@@ -16,11 +17,11 @@ export default withRouter((props)=>{
 
     return(
 
+
     <footer className="uni-footer">
         <div className={'SearchIcon'}>
             <Link to={"/Landing"}><img alt={'SearchIcon'} className={'SearchPicture'} src={SearchImg}/></Link>
         </div>
-
         <div className={'AddBookIcon'}>
             <Link to={"/AddBook"}><img alt={'AddBookIcon'} className={'BookPicture'} src={AddBookImg}/></Link>
         </div>
