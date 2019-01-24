@@ -393,28 +393,32 @@ webserver.get('/api/listings', (request, response) => {
 
 webserver.post('/api/addListing', (request, response) => {
     const {title, condition, ISBN, author, price, comments, bookImage} = request.body;
-    console.log("ADD LISTING IS RUNNING");
     const userIDToken = request.headers['token'];
-    console.log("TOKEN: ", userIDToken);
     db.connect(() => {
         const query = "SELECT lg.account_id FROM `loggedin` AS lg WHERE lg.token = '" + userIDToken + "'";
         db.query(query, (err, data) => {
             if (!err) {
-                console.log("user id data wanttttt:", data[0].account_id)
+                // console.log("user id data wanttttt:", data[0].account_id)
                 const userId = data[0].account_id;
-                const query = "SELECT b.ID FROM `books` AS b WHERE b.ISBN = '" + ISBN + "'";
-                console.log(query);
-                db.query(query, (err, data) => {
+                // const query = "SELECT b.ID FROM `books` AS b WHERE b.ISBN = '" + ISBN + "'";
+                const query = "SELECT b.ID FROM `books` AS b WHERE b.ISBN = ?";
+                const getBookInfoArray = [ISBN];
+                const selectBookIDQuery = mysql.format(query, getBookInfoArray);
+                db.query(selectBookIDQuery, (err, data) => {
                     if (!data.length) {
-                        const query = "INSERT INTO `books` SET title = '" + title + "', ISBN = '" + ISBN + "', author = '" + author + "', bookImage = '" + bookImage + "'";
-                        console.log(query)
-                        db.query(query, (err, data) => {
+                        // const query = "INSERT INTO `books` SET title = '" + title + "', ISBN = '" + ISBN + "', author = '" + author + "', bookImage = '" + bookImage + "'";
+                        const query = "INSERT INTO `books` SET title = ?, ISBN = ?, author = ?, bookImage = ?";
+                        const bookArray = [title, ISBN, author, bookImage];
+                        const bookInsertQuery = mysql.format(query, bookArray);
+                        console.log("QUERY IM LOOKING FORRRRRR: ", bookInsertQuery);
+                        db.query(bookInsertQuery, (err, data) => {
                             if (!err) {
-                                console.log('INSERT INTO LISTINGS');
-                                console.log('Listings Data: ', data);
-                                const query = "INSERT INTO `listing` SET listing.book_id = " + data.insertId + ", price = '" + price + "', book_condition = '" + condition + "', comments = '" + comments + "', accounts_id = '" + userId + "', public_id='21'";
-                                // escape_quotes(query);
-                                db.query(query, (err, response) => {
+                                // const query = "INSERT INTO `listing` SET listing.book_id = " + data.insertId + ", price = '" + price + "', book_condition = '" + condition + "', comments = '" + comments + "', accounts_id = '" + userId + "', public_id='21'";
+                                const query = "INSERT INTO `listing` SET listing.book_id = ?, price = ?, book_condition = ?, comments = ?, accounts_id = ?, public_id= ?";
+                                const listingsArray = [data.insertId, price, condition, comments, userId, 21];
+                                const listingsInsertQuery = mysql.format(query, listingsArray);
+                                console.log("LISTINGS INSERT QUERY: ", listingsInsertQuery);
+                                db.query(listingsInsertQuery, (err, response) => {
                                     if (!err) {
                                         console.log("all queries are good")
 
@@ -429,8 +433,12 @@ webserver.post('/api/addListing', (request, response) => {
                     } else {
                         console.log('INSERT INTO LISTINGS');
                         console.log('Listings Data: ', data);
-                        const query = "INSERT INTO `listing` SET listing.book_id = " + data[0].ID + ", price = '" + price + "', book_condition = '" + condition + "', comments = '" + comments + "', accounts_id = '" + userId + "', public_id='21'";
-                        db.query(query, async (err, data) => {
+                        // const query = "INSERT INTO `listing` SET listing.book_id = " + data[0].ID + ", price = '" + price + "', book_condition = '" + condition + "', comments = '" + comments + "', accounts_id = '" + userId + "', public_id='21'";
+                        const query = "INSERT INTO `listing` SET listing.book_id = ?, price = ?, book_condition = ?, comments = ?, accounts_id = ?, public_id= ?";
+                        const listingsArray = [data[0].ID, price, condition, comments, userId, 21];
+                        const listingsInsertQuery = mysql.format(query, listingsArray);
+                        console.log("LISTINGS INSERT QUERY: ", listingsInsertQuery);
+                        db.query(listingsInsertQuery, async (err, data) => {
                             if (!err) {
                                 console.log("all queries are good");
                                 let output = {
