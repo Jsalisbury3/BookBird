@@ -13,15 +13,15 @@ body{
 }
 
 
-.ProfileIcon:focus {
+.ProfileIcon:active {
     transform: scale(.75)
 }
 
-.AddBookIcon:focus {
+.AddBookIcon:active {
     transform: scale(.75)
 }
 
-.SearchIcon:focus {
+.SearchIcon:active {
     transform: scale(.75);
 }
 
