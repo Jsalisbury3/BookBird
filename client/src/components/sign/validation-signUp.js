@@ -32,7 +32,7 @@ class SignInValidation extends Component {
             const Token = this.props.signInResults.data;
             localStorage.setItem("Token", Token);
             this.props.reset();
-            this.props.history.push("/");
+            this.props.history.push("/landing");
         } else {
             console.log("didnt make it through: ", this.props.signInResults)
         }
