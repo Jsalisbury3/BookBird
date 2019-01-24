@@ -80,7 +80,7 @@ class IndividualBookData extends Component {
             return <h1>Loading...</h1>
         }
         return (
-            <div className='Container'>
+              <div className='bookDetailsContainer'>
                 {/* <img id='bookLoadScreen' src={loading}/> */}
                 <div className="carousel" id="imageContainer">
             
@@ -92,10 +92,10 @@ class IndividualBookData extends Component {
                         </a>
                         <CarouselItem images={this.props.images}/> 
                 </div>
-                <div className="s12 m6">
-                    <div className="card" id="cardContainer">
+                {/* <div className="s12 m6"> */}
+                    {/* <div className="card" id="cardContainer"> */}
                         
-                        <div className="card-content book-content" id="book-content">
+                        <div className="book-content" id="book-content">
                             <div className="bookInfoLeftContent s8">
                                 <h6 className="bookTitle">{this.props.listId[0].title}</h6>
                                 <h6 className="bookAuthor">{this.props.listId[0].author}</h6>
@@ -116,18 +116,19 @@ class IndividualBookData extends Component {
                             </div>
                             
                         </div>
-                        <div className="card-action" id="contactAction">
-                            <div id="backButtonContainer">
-                                <Link className="card-action" to={"/Landing"} id="contactActionBack">Back</Link>
+                            <div className="bookDetailButtonContainer" id="contactAction">
+                                <div id="backButtonContainer">
+                                    <Link to={"/Landing"} className="btn" id="contactActionBack">BACK</Link>
+                                </div>
+                                <div id="contactSellerContainer">
+                                    <button onClick={this.contactSeller} className="btn" id="contactActionButton">CONTACT SELLER</button>
+                                </div>
                             </div>
-                            <div id="contactSellerContainer">
-                                <button onClick={this.contactSeller} className={"btn"} id="contactActionButton">CONTACT  SELLER</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {/* <Nav/> */}
+                        
+                    {/* </div> */}
+                {/* </div> */}
             </div>
+        
         )
     }
 }

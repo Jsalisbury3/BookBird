@@ -12,6 +12,7 @@ import Search from '../landing';
 export default withRouter((props)=>{
     const dontShow = ['/'];
     console.log('Nav Props:', props);
+    console.log('PathName: ', props.location)
 
     if(dontShow.includes(props.location.pathname)) return null;
 
