@@ -6,22 +6,22 @@ import './sign.css'
 import Header from './../universal/header'
 import Nav from './../universal/nav'
 
-class Signup extends Component{
+class Signup extends Component {
 
     componentDidMount = () => {
-        if(localStorage.Token) {
+        if (localStorage.Token) {
             this.props.history.push('/UserProfile');
         }
     }
 
-    render(){
-        return(
+    render() {
+        return (
 
-                    <div className="signup_container">
-                        <h1 className="signUpHeader">Sign Up</h1>
-                        <SignUpValidation />
-                        <p className="signup_footer">Already have an account? <Link to={"/SignIn"}> Sign In </Link></p>
-                    </div>
+            <div className="signup_container">
+                <h1 className="signUpHeader">Sign Up</h1>
+                <SignUpValidation/>
+                <p className="signup_footer">Already have an account? <Link to={"/SignIn"}> Sign In </Link></p>
+            </div>
         )
     }
 }

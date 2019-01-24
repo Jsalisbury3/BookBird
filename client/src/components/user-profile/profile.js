@@ -14,6 +14,7 @@ import Nav from './../universal/nav'
 
 
 class UserProfile extends Component {
+    debugger;
     constructor(props) {
         super(props);
         this.state = {
@@ -22,7 +23,13 @@ class UserProfile extends Component {
     }
 
     componentDidMount = () => {
-        this.getProfileUrl();
+        const hasToken = localStorage.getItem("Token");
+        if(!hasToken) {
+            this.props.history.push("/SignIn");
+        } else {
+            this.getProfileUrl();
+        }
+
     }
 
     handleUrlToSetState = (response) => {
@@ -48,7 +55,8 @@ class UserProfile extends Component {
     }
 
     callActionSignOut = () => {
-        localStorage.clear();
+        this.props.removeTokenAndRow();
+        localStorage.removeItem("Token");
         this.props.history.push('/SignIn');
     }
 

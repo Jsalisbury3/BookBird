@@ -31,6 +31,7 @@ class SignInValidation extends Component {
         if (this.props.signInResults.success) {
             const Token = this.props.signInResults.data;
             localStorage.setItem("Token", Token);
+            this.props.signInResults.data ='';
             this.props.reset();
             this.props.history.push("/UserProfile");
         } else {
