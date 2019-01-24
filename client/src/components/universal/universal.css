@@ -12,44 +12,43 @@ body{
 
 }
 
-.ProfileIcon:active {
+
+.ProfileIcon:focus {
     transform: scale(.75)
 }
 
-.AddBookIcon:active {
+.AddBookIcon:focus {
     transform: scale(.75)
 }
 
-.SearchIcon:active {
+.SearchIcon:focus {
     transform: scale(.75);
 }
 
-
-h6 {
-    font-size: .9rem;
-    line-height: 110%;
-    position: fixed;
-    left: 5%;
-    top: 95.5%;
-    color: white;
-
-
-}
 #AddBookTitle {
-    left: 38%;
+    position: fixed;
+    left: 37%;
     font-size: .9rem;
+    color: white;
+    top: 95.5%;
 
 
 }
 #ProfileTitle {
-    left: 77%;
+    position: fixed;
+    left: 76.5%;
     font-size: .9rem;
+    color: white;
+    top: 95.5%;
 
 }
 
 #SearchTitle {
-    left: 7%;
+    position: fixed;
+    left: 6%;
     font-size: .9rem;
+    color: white;
+    top: 95.5%;
 
 }
 
@@ -127,7 +126,7 @@ h6 {
     padding: 15%;
     left: 18%;
     bottom: 14%;
-    transition: transform 550ms ease-in-out;
+    transition: transform 350ms ease-in-out;
     -webkit-filter: invert(100%);
 }
 .ProfilePicture {
@@ -138,7 +137,7 @@ h6 {
     padding: 15%;
     left: 16%;
     bottom: 14%;
-    transition: transform 550ms ease-in-out;
+    transition: transform 350ms ease-in-out;
     -webkit-filter: invert(100%);
 }
 .SearchPicture {
@@ -149,7 +148,7 @@ h6 {
     padding: 15%;
     left: 15%;
     bottom: 14%;
-    transition: transform 550ms ease-in-out;
+    transition: transform 350ms ease-in-out;
     -webkit-filter: invert(100%);
 
 
