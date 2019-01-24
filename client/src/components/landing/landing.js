@@ -26,14 +26,9 @@ export default class LandingPage extends Component {
 
     render() {
         return (
-            <Fragment>
-                <Header/>
                     <div>
                         <ResultList/>
-                    </div>
-                <Nav/>
-            </Fragment>
-            
+                    </div> 
         )
     }
 }
