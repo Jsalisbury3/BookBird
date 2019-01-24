@@ -28,8 +28,8 @@ class SignInValidation extends Component {
         return (
             <div className={`col ${props.size || 's9'}`}>
                 <div className="input-field">
-                    <input className="signInInput" {...props.input} id={props.id} type="text" autoComplete={"off"}/>
-                    <label className="signInLabel" htmlFor={props.id}>{props.label}</label>
+                    <input className="signInInput grey-text text-lighten-5" {...props.input} id={props.id} type="text" autoComplete={"off"}/>
+                    <label className="signInLabel yellow-text text-darken-2" htmlFor={props.id}>{props.label}</label>
                 </div>
                 <p className={"sign-in-error red-text text-darken-2"}>{props.meta.touched && props.meta.error}</p>
             </div>
@@ -45,7 +45,7 @@ class SignInValidation extends Component {
         console.log("add item form props: ", this.props);
         const {handleSubmit, reset} = this.props;
         return (
-            <form id='#sign-in-container' onSubmit={handleSubmit(this.handleAddItem)}>
+            <form id='sign-in-container' onSubmit={handleSubmit(this.handleAddItem)}>
                 <div className="row">
                     <Field name={"Email"} size={"s9 m8 offset-m2"} component={this.renderInput} id="Email"
                            label={"Email"}/>
@@ -55,11 +55,11 @@ class SignInValidation extends Component {
                            label={"Password"}/>
                 </div>
                 <div className="row">
-                    <div className="col s6 center">
+                    {/* <div className="col s6 center">
                         <button onClick={reset} type={"button"} className="btn red darken-2">clear</button>
-                    </div>
-                    <div className="col s6 center">
-                        <button className="btn grey darken-2">Sign In</button>
+                    </div> */}
+                    <div className="signin-button col s6 center">
+                        <button className="btn yellow darken-2 grey-text text-darken-3">Sign In</button>
                     </div>
                 </div>
                 
