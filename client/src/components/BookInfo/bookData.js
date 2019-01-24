@@ -26,7 +26,8 @@ class IndividualBookData extends Component {
         const initCarousel = M.Carousel.init(bookImages,{
             numVisible: 3,
             padding: 0,
-        });
+            indicators: true,
+        })
     }
 
     // addConditionStyling = (condition) => {
@@ -80,7 +81,7 @@ class IndividualBookData extends Component {
         }
         return (
             <div className='Container'>
-                
+                {/* <img id='bookLoadScreen' src={loading}/> */}
                 <Header/>
                 <div className="carousel" id="imageContainer">
             
@@ -94,6 +95,7 @@ class IndividualBookData extends Component {
                 </div>
                 <div className="s12 m6">
                     <div className="card" id="cardContainer">
+                        
                         <div className="card-content book-content" id="book-content">
                             <div className="bookInfoLeftContent s8">
                                 <h6 className="bookTitle">{this.props.listId[0].title}</h6>
@@ -102,7 +104,7 @@ class IndividualBookData extends Component {
                             </div>
                             <div className="bookInfoRightContent s4">
                                 <div className="bookCondition">
-                                    <h6 className={(this.props.listId[0].book_condition === 'Like New') ? 'Like_New' : `${this.props.listId[0].book_condition}`}> {(this.props.listId[0].book_condition)}</h6>
+                                    <h6 className={(this.props.listId[0].book_condition === 'Like New') ? 'Like_New book_details' : `${this.props.listId[0].book_condition} book_details`}> {(this.props.listId[0].book_condition)}</h6>
                                 </div>
                                 <div className="bookPrice">
                                     <h5>${this.props.listId[0].price}</h5>
@@ -111,16 +113,21 @@ class IndividualBookData extends Component {
                             <div className="sellersContent">
                                 <h6>Seller's Comments</h6>
                                 <h5>{this.props.listId[0].comments}</h5>
+                                <div className="contactSignIn">{this.state.displayError ? '' : 'Please sign in to contact the seller'}</div>
                             </div>
-                            <div className="contactSignIn">{this.state.displayError ? '' : 'Please sign in to contact the seller'}</div>
+                            
                         </div>
                         <div className="card-action" id="contactAction">
-                            {/* <Link className="card-action" to={"/Landing"} id="contactActionBack">Back</Link> */}
-                            <button onClick={this.contactSeller} className={"btn"} id="contactAction">This is a link</button>
+                            <div id="backButtonContainer">
+                                <Link className="card-action" to={"/Landing"} id="contactActionBack">Back</Link>
+                            </div>
+                            <div id="contactSellerContainer">
+                                <button onClick={this.contactSeller} className={"btn"} id="contactActionButton">CONTACT  SELLER</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <Nav/>
+                {/* <Nav/> */}
             </div>
         )
     }

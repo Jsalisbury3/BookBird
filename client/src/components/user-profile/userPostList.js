@@ -12,7 +12,6 @@ export default class UserPostList extends Component {
     };
 
     getUserProfileListings = async (results) => {
-        debugger;
         if(!results.data.success) {
             console.log("no matches found");
             let listItems = "no listings found"
@@ -32,7 +31,6 @@ export default class UserPostList extends Component {
     };
 
     getUserPosts = () => {
-        debugger;
         axios({
             method: 'get',
             url: '/api/UserProfile',

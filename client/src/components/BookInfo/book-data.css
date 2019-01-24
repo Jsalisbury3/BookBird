@@ -94,6 +94,15 @@ h2:nth-child(2)  {
 
 /* NEW PAGE CSS */
 
+#bookLoadScreen {
+    z-index: 1;
+    position: absolute;
+    left: 5%;
+    top: 5%;
+    height: 50%;
+    width: 90%;
+}
+
 #cardContainer{
     margin-top: 0;
     height: 62vh;
@@ -114,7 +123,6 @@ h2:nth-child(2)  {
 
 #imageBackground {
     background-image:
-        /* linear-gradient(rgba(255, 255, 255, 0.795), rgba(207, 199, 199, 0.884)), */
         linear-gradient(rgba(231, 231, 231, 0.795), rgba(175, 175, 175, 0.884)),
         url('./images/book_shelf.jpg');
     height: 100%;
@@ -140,7 +148,7 @@ h2:nth-child(2)  {
     padding: 1vh 6vw;
     box-shadow: 0px 5px 2px 5px rgba(49, 49, 49, 0.808);
     background-color: rgb(247, 247, 247);
-    height: 66%;
+    height: 72%;
 }
 
 .bookInfoLeftContent {
@@ -204,6 +212,8 @@ h2:nth-child(2)  {
 }
 
 .sellersContent h6{
+    position: relative;
+    top: 5%;
     font-weight: bold;
     margin: 0;
     margin-bottom: 1.5vh;
@@ -224,18 +234,53 @@ h2:nth-child(2)  {
     background-color: #ffcc33;
 }
 
+.contactSignIn {
+    position: relative;
+    left: 12%;
+    top: 35%;
+}
 #contactAction {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    color:white;
+}
+
+#backButtonContainer {
+    display: inline-block;
+    position: relative;
+    top: 2%;
+    height: 100%;
+    width: 40%;
+}
+
+#contactSellerContainer {
+    display: inline-block;
+    position: relative;
+    height: 100%;
+    width: 60%;
+}
+
+#contactActionButton {
+    display: inline-block;
+    position: relative;
+    height: 12%;
+    width: 80%;
+    top: 4%;
+    background-color: #ffcc33;
     color:white;
 }
 
 #contactActionBack {
     position: relative;
-    left: 0%;
+    height: 26%;
+    width: 50%;
+    top: 3%;
     border-radius: 5px;
     color:white;
-    background-color:#ffcc33;
+    background-color:black;
 }
-.Thrashed {
+.Thrashed.book_details {
     color: white;
     padding: 5% 5% 5% 5%;
     height: 65%;
@@ -246,7 +291,7 @@ h2:nth-child(2)  {
     border-radius: 5px;
 }
 
-.New {
+.New.book_details {
     color: white;
     padding: 5% 5% 5% 5%;
     height: 58%;
@@ -257,7 +302,7 @@ h2:nth-child(2)  {
     border-radius: 5px;
 }
 
-.Good {
+.Good.book_details {
     color: white;
     padding: 5% 5% 5% 5%;
     height: 60%;
@@ -268,7 +313,7 @@ h2:nth-child(2)  {
     border-radius: 5px;
 }
 
-.Worn {
+.Worn.book_details {
     color: white;
     padding: 5% 5% 5% 5%;
     height: 58%;
@@ -278,7 +323,7 @@ h2:nth-child(2)  {
     background-color: rgb(255, 0, 0);
     border-radius: 5px;
 }
-.Like_New {
+.Like_New.book_details {
     color: white;
     position: relative;
     padding: 5% 5% 5% 5%;
