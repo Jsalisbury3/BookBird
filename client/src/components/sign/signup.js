@@ -3,8 +3,7 @@ import {Link} from 'react-router-dom';
 import SignUpValidation from './validation-signUp'
 import './sign.css'
 // import 'materialize-css'
-import Header from './../universal/header'
-import Nav from './../universal/nav'
+
 
 class Signup extends Component {
 
@@ -19,6 +18,7 @@ class Signup extends Component {
 
             <div className="signup_container">
                 <h1 className="signUpHeader">Sign Up</h1>
+
                 <SignUpValidation/>
                 <p className="signup_footer">Already have an account? <Link to={"/SignIn"}> Sign In </Link></p>
             </div>

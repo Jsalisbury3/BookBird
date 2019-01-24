@@ -66,7 +66,7 @@ class SignInValidation extends Component {
                     <div className="col s6 center">
                         <button onClick={reset} type={"button"} className="btn red darken-2">clear</button>
                     </div>
-                    <div className="col s6 center">
+                    <div className="signup-button col s6 center">
                         <button className="btn grey darken-2">Sign Up</button>
                     </div>
                 </div>

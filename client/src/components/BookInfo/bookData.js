@@ -11,6 +11,9 @@ import axios from 'axios';
 import rainbow from './images/loading_rainbow.gif';
 import bookshelf from './images/book_shelf.jpg';
 import {Link} from 'react-router-dom';
+import 'materialize-css/dist/css/materialize.min.css'
+import 'materialize-css';
+
 
 class IndividualBookData extends Component {
 
@@ -82,9 +85,15 @@ class IndividualBookData extends Component {
             return <h1>Loading...</h1>
         }
         return (
+
               <div className='bookDetailsContainer'>
-                
-                {/* <img id='bookLoadScreen' src={rainbow}/> */}
+
+                  <div id='back-arrow-container'>
+                      <Link to={"/"}>
+                          <i id='arrow-icon' className='small yellow-text text-darken-1 material-icons'>arrow_back</i>
+                      </Link>
+                  </div>
+                {/* <img id='bookLoadScreen' src={loading}/> */}
                 <div className="carousel" id="imageContainer">
             
                 <img id="imageBackground" style={{display:'block'}}/>
