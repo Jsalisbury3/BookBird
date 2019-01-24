@@ -51,7 +51,7 @@ class SignInValidation extends Component {
                            label={"Email"}/>
                 </div>
                 <div className="row">
-                    <Field name={"Password"} size={"s9 m8 offset-m2"} component={this.renderInput} id={"Password"}
+                    <Field type="password" name={"Password"} size={"s9 m8 offset-m2"} component={this.renderInput} id={"Password"}
                            label={"Password"}/>
                 </div>
                 <div className="row">
@@ -83,7 +83,7 @@ function validate(values) {
     }
 
     if (!passwordRegex.test(Password)) {
-        errors.Password = "please enter a valid password";
+        errors.Password = "password must be atleast 8 characters long with one capital letter and number";
     }
     return errors;
 }

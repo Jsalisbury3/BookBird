@@ -94,8 +94,9 @@
     margin:0;
 } */
 .search-bar-container{
-    height:6.5vh;
-    background-color:rgb(27, 27, 27);;
+    height:7.5vh;
+    background-color:#001;
+    padding-top:1%
 }
 .searchbar-i-container {
     background-color: whitesmoke;
@@ -110,6 +111,8 @@
     text-align: center;
     vertical-align:center;
     /* font-size: 1rem; */
+    position: relative;
+    left:6%;
 } 
 .searchbar-i-container>i{
     font-size:30px !important;
@@ -124,11 +127,13 @@
     background-color: whitesmoke !important;
     border-radius: 0 25px 25px 0 !important;
     height: 100%;
-    width: 88% !important;
+    width: 75% !important;
     vertical-align: top;
     margin:0 !important;
     border:none !important;
     padding:5px !important;
+    position: relative;
+    left: 6%
 }
 /* .searchForm{
     height: 6.5vh;

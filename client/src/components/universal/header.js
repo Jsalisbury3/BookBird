@@ -14,7 +14,7 @@ export default withRouter((props)=>{
 
         return(
             
-                <nav className="uni-header black">
+                <nav className="uni-header">
                     <img src={bookBirdLogo} alt={"birdlogo"} className="birdLogo"/>
                     <img src={bookBirdText} alt={"birdlogotext"} className="birdLogoText"/>
                     <img src={sfSymbol} alt={"sfSymbol"} className="sfSymbol"/>

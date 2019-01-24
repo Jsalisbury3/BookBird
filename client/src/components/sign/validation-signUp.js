@@ -19,7 +19,7 @@ class SignInValidation extends Component {
         return (
             <div className={`col ${props.size || 's12'}`}>
                 <div className="input-field">
-                    <input className="signUpInput" {...props.input} id={props.id} type="text" autoComplete={"off"}/>
+                    <input className="signUpInput"{...props.input} id={props.id} autoComplete={"off"} type="text"/>
                     <label className="signUpLabel" htmlFor={props.id}>{props.label}</label>
                     <p className={"error-message red-text text-darken-2"}>{props.meta.touched && props.meta.error}</p>
                 </div>
@@ -59,7 +59,7 @@ class SignInValidation extends Component {
                 </div>
                 <div className="row">
                     <Field name={"Number"} size={"s9 m8 offset-m2"} component={this.renderInput} id={"Number"}
-                           label={"Enter Number"}/>
+                           label={"Phone Number"}/>
                 </div>
                 <div className=" row">
                     <div className="col s6 center">
@@ -90,7 +90,7 @@ function validate(values) {
     }
 
     if (!passwordRegex.test(PasswordSignUp)) {
-        errors.PasswordSignUp = "please enter a valid password";
+        errors.PasswordSignUp = "password must be atleast 8 characters long with one capital letter and number";
     }
 
     // if (nameRegex.test(Name)) {
