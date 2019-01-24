@@ -14,6 +14,7 @@ import Nav from './../universal/nav'
 
 
 class UserProfile extends Component {
+    debugger;
     constructor(props) {
         super(props);
         this.state = {
@@ -22,7 +23,13 @@ class UserProfile extends Component {
     }
 
     componentDidMount = () => {
-        this.getProfileUrl();
+        const hasToken = localStorage.getItem("Token");
+        if(!hasToken) {
+            this.props.history.push("/SignIn");
+        } else {
+            this.getProfileUrl();
+        }
+
     }
 
     handleUrlToSetState = (response) => {
@@ -34,7 +41,6 @@ class UserProfile extends Component {
         console.log("state in profile url: ", this.state.photo);
     }
 
-
     getProfileUrl = () => {
         axios({
             method: 'get',
@@ -45,10 +51,11 @@ class UserProfile extends Component {
         }).then((response) => {
             this.handleUrlToSetState(response);
         })
-    }
+    };
 
     callActionSignOut = () => {
-        localStorage.clear();
+        this.props.removeTokenAndRow();
+        localStorage.removeItem("Token");
         this.props.history.push('/SignIn');
     }
 
@@ -106,6 +113,9 @@ class UserProfile extends Component {
                         <input id="profilePhotoInput" type="file" name="photo" capture="camera" accept="image/*"
                                onChange={this.fileSelectedHandler}/>
                     </div>
+                    <div>
+                    </div>
+
                     <UserPostList/>
                 </div>                
         );

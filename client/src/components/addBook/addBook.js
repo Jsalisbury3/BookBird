@@ -448,7 +448,7 @@ class AddBook extends Component {
                             <div className='input-field '>
                                 <h6 className='input-header first'>Title</h6>
                                 <input name="title" id='title' type='text' className="inputs col s10 push-s1"
-                                       onChange={this.handleInput}/>
+                                       onChange={this.handleInput} autoComplete="off"/>
                             </div>
                         </div>
                         <div id='input-container2' className=' title-container row'>
@@ -457,14 +457,14 @@ class AddBook extends Component {
                             <div className='input-field'>
                                 <h6 className='input-header second'>Author</h6>
                                 <input name="author" id='author' type='text' className="inputs col s10 push-s1"
-                                       onChange={this.handleInput}/>
+                                       onChange={this.handleInput} autoComplete="off"/>
                             </div>
                         </div>
                         <div id='input-container3' className='title-container row'>
                             
                             <div className={"checkMark markEdition material-icons"}>check_circle_outline</div>
                             <div className='input-field'>
-                                <input name={"price"} id={'price'} type='text' className={"inputs col s10 push-s1"} onChange={this.handleInput}/>
+                                <input name={"price"} id={'price'} type='text' className={"inputs col s10 push-s1"} onChange={this.handleInput} autoComplete="off"/>
                                 <div className="text-red"id={"priceErr"}></div>
                                 <label className='label-placeholder' htmlFor={'price'}>Price</label>
                                 
@@ -488,7 +488,7 @@ class AddBook extends Component {
                             <div>
                                 <div className='input-field'>
                                 <textarea name={"comments"} id='comment-box' className={"inputs last "}
-                                          onChange={this.handleInput}/>
+                                          onChange={this.handleInput} autoComplete="off"/>
                                 <label htmlFor="comment-box" className="sellers-comments-tag"></label>
                                     {/* <h5 className='optional-tag'>*Optional</h5> */}
                                 </div>

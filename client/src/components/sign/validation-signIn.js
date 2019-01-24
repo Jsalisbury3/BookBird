@@ -8,7 +8,6 @@ import signInReducer from "../../reducers/sign_in_reducer";
 import {Link} from 'react-router-dom';
 
 class SignInValidation extends Component {
-
     componentDidUpdate() {
         if (this.props.signInResults.success) {
             this.storeToken(this.props.signInResults);
@@ -16,9 +15,10 @@ class SignInValidation extends Component {
     }
 
     storeToken = () => {
-        if (this.props.signInResults.success) {
+        if (this.props.signInResults.success && this.props.signInResults.runOnce) {
             const Token = this.props.signInResults.data;
             localStorage.setItem("Token", Token);
+            this.props.signInResults.runOnce = false;
             this.props.reset();
             this.props.history.push("/UserProfile");
         }
@@ -83,7 +83,7 @@ function validate(values) {
     }
 
     if (!passwordRegex.test(Password)) {
-        errors.Password = "please enter a valid password";
+        errors.Password = "password must be atleast 8 characters long with one capital letter and number";
     }
     return errors;
 }

@@ -1,3 +1,13 @@
-.idea
-.DS_Store
 node_modules
+mysql_creds.js
+token-hash.js
+./config/*
+amzns3_creds.js
+./uploads/*
+.DS_Store
+.idea
+token-hash.js
+twilio_token.js
+twilio.sdi.js
+.idea/workspace.xml
+.vscode

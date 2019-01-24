@@ -7,16 +7,16 @@
 }
 
 .signup_footer{
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center;
+    align-items: center; */
     left: 19%;
-    top: 72%;
-    position: absolute;
+    bottom:10%;
+    position: relative;
 }
 .signin_footer {
     position: relative;
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center;
+    align-items: center; */
     left: 19%;
 
 }
@@ -69,6 +69,7 @@
 .signin_container, .signup_container{
     /* background-color: #C2E5F9; */
     height: 90vh;
+ dev
     overflow: auto;
 }
 

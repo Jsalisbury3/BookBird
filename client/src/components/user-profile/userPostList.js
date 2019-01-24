@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import UserPost from './userPost';
+import {withRouter} from 'react-router-dom'
 import axios from 'axios';
 import './profile.css';
 import 'materialize-css';
 
 
 
-export default class UserPostList extends Component {
+class UserPostList extends Component {
     state = {
         data : null
     };
@@ -14,7 +15,7 @@ export default class UserPostList extends Component {
     getUserProfileListings = async (results) => {
         if(!results.data.success) {
             console.log("no matches found");
-            let listItems = "no listings found"
+            let listItems = "no listings found";
             await this.setState({
                 data: listItems,
             });
@@ -53,7 +54,12 @@ export default class UserPostList extends Component {
         })
     };
     componentDidMount = () => {
-        this.getUserPosts();
+        const hasToken = localStorage.getItem("Token");
+        if(!hasToken) {
+            this.props.history.push("/SignIn");
+        } else {
+            this.getUserPosts();
+        }
     };
 
 
@@ -66,5 +72,7 @@ export default class UserPostList extends Component {
         )
     }
 }
+
+export default withRouter(UserPostList)
 
 // {!this.state.data ? "no listings found" : ''}
