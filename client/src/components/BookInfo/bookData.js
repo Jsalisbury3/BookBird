@@ -82,6 +82,7 @@ class IndividualBookData extends Component {
         }
         return (
               <div className='bookDetailsContainer'>
+                
                 {/* <img id='bookLoadScreen' src={loading}/> */}
                 <div className="carousel" id="imageContainer">
             

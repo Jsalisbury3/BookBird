@@ -25,6 +25,7 @@ h2:nth-child(2)  {
 }
 
 .bookDetailsContainer {
+    background-image: linear-gradient(rgba(34, 0, 34, 0.589),rgba(92, 0, 92, 0.767));
     overflow: auto;
     background-color: white;
     height: 84vh;
@@ -62,7 +63,6 @@ h2:nth-child(2)  {
     display: inline-block;
     opacity: 1;
     font-size: 1.56rem;
-    top: 10%;
 }
 
 .price {
@@ -122,7 +122,7 @@ h2:nth-child(2)  {
 
 #imageBackground {
     background-image:
-        linear-gradient(rgba(231, 231, 231, 0.795), rgba(175, 175, 175, 0.884)),
+        linear-gradient(rgba(34, 0, 34, 0.589),rgba(92, 0, 92, 0.767)),
         url('./images/book_shelf.jpg');
     height: 100%;
     width: 100%;
@@ -135,14 +135,17 @@ h2:nth-child(2)  {
     height: 90%;
     width: 70%;
     border: 1px solid black;
-    box-shadow: 0px 5px 30px 10px rgba(49, 49, 49, 0.808);
+    /* box-shadow: 0px 5px 30px 10px rgba(230, 196, 0, 0.658); */
+    box-shadow: 0px 5px 30px 10px rgba(255, 255, 255, 0.836);
 }
 
 
 #book-content {
+    background-image: 
+        linear-gradient(rgba(80, 0, 80, 0.473),rgba(136, 0, 136, 0.699));
     padding: 5px 25px;
     box-shadow: 0px 5px 2px 5px rgba(49, 49, 49, 0.808);
-    background-color: rgb(247, 247, 247);
+    /* background-color: rgb(247, 247, 247); */
 
 }
 
@@ -177,6 +180,8 @@ h2:nth-child(2)  {
     /* border: 1px solid black; */
 }
 .bookPrice {
+    position: relative;
+    top: -20px;
     height: 60%;
     /* border: 1px solid black; */
 }
@@ -187,6 +192,10 @@ h2:nth-child(2)  {
     top: -35%;
     left: 15%;
     height: 40%;
+    color: rgb(22, 22, 22);
+    /* color: #ffcc33; */
+    color: #ffffff;
+    font-weight: lighter;
     /* border: 1px solid black; */
 
 }
@@ -195,20 +204,27 @@ h2:nth-child(2)  {
     font-size: 6vw;
     font-weight: bold;
     color: rgb(22, 22, 22);
+    color: #ffffff;
+    /* color: #ffcc33; */
 }
 
 .bookAuthor, .bookISBN {
     color: rgb(179, 179, 179);
     font-weight: lighter;
+    color: #ffffff;
 }
 
 .sellersContent {
     padding: 10px 0px 10px 0px;
     font-weight: lighter;
+    /* color: #ffcc33; */
+    color: rgb(22, 22, 22);
 }
 
 .sellersContent h6{
+    color: rgb(22, 22, 22);
     position: relative;
+    color: #ffffff;
     top: 5%;
     font-weight: bold;
     margin: 0;
@@ -217,7 +233,8 @@ h2:nth-child(2)  {
 
 .sellersContent h5 {
     margin: 0;
-    color: rgb(179, 179, 179);
+    color: #ffffff;
+    /* color: rgb(179, 179, 179); */
     font-weight: lighter;
     margin-bottom: 10px;
 }
@@ -227,6 +244,8 @@ h2:nth-child(2)  {
 }
 
 .contactSignIn {
+    color: #ffcc33;
+    /* color: #ffffff; */
     position: relative;
     display: inline;
     left: 18%;
@@ -234,6 +253,7 @@ h2:nth-child(2)  {
 }
 
 .bookDetailButtonContainer#contactAction {
+    background-image: linear-gradient(rgba(104, 0, 104, 0.753),rgba(158, 1, 158, 0.767));
     background-color: white;
     padding: 10px;
     width: 100%;
@@ -248,6 +268,7 @@ h2:nth-child(2)  {
 }
 
 #contactSellerContainer {
+    
     display: inline-block;
     position: relative;
     width: 60%;
@@ -267,6 +288,7 @@ h2:nth-child(2)  {
     width: 50%;
     height: 35px;
     left: 55px;
+    
     color:white;
     background-color:black;
 }
@@ -279,6 +301,7 @@ h2:nth-child(2)  {
     left: -10%;
     text-transform: uppercase;
     background-color: black;
+    
 }
 
 .New.book_details {
