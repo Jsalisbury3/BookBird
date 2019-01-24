@@ -41,7 +41,6 @@ class UserProfile extends Component {
         console.log("state in profile url: ", this.state.photo);
     }
 
-
     getProfileUrl = () => {
         axios({
             method: 'get',
@@ -52,7 +51,7 @@ class UserProfile extends Component {
         }).then((response) => {
             this.handleUrlToSetState(response);
         })
-    }
+    };
 
     callActionSignOut = () => {
         this.props.removeTokenAndRow();

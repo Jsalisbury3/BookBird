@@ -149,45 +149,45 @@ webserver.post('/api/save-profile-image', function (request, response) {
     });
 });
 
-function insertNewNumberBuyNumber(buyerNumber, SellerNumber, sourceNumber, bookTitle) {
-    twilio.messages.create({
-        body: `Someone is interested in buying your book ${bookTitle}. respond to this message to contact possible buyer`,
-        to: `+1${SellerNumber}`,
-        from: `${sourceNumber}`,
-    });
-    let infoToHash = buyerNumber + SellerNumber;
-    let convoHash = jwt.encode(infoToHash, hash);
-    const insertSourceTableQuery = "INSERT INTO `source_num` SET twilio_number = '" + sourceNumber + "'";
-    console.log(insertSourceTableQuery);
-    db.query(insertSourceTableQuery, (err, data) => {
-        if (!err) {
-            console.log("DATA FROM INSERT QUERY WANT THISSSS: ", data);
-            const storeConvoDataQuery = "INSERT INTO `convos` SET hash = '" + convoHash + "', buyer_number = '" + buyerNumber + "', seller_number = '" + SellerNumber + "', source_num_id = '" + data.insertId + "'";
-            console.log("FINAL QUERY MEMEMEMEME: ", storeConvoDataQuery);
-            db.query(storeConvoDataQuery, (err, data) => {
-                if (!err) {
-                    const successOutput = {
-                        success: true,
-                        message: "Seller contacted"
-                    };
-                } else {
-                    console.log(err)
-                    const failedStoringDetails = {
-                        success: false,
-                        message: "failed to make store contact information into convos"
-                    };
-                    return failedStoringDetails
-                }
-            })
-        } else {
-            const failedStoringDetailsSecond = {
-                success: false,
-                message: "failed to make store contact information into source_num"
-            };
-            return failedStoringDetailsSecond
-        }
-    })
-}
+// function insertNewNumberBuyNumber(buyerNumber, SellerNumber, sourceNumber, bookTitle) {
+//     twilio.messages.create({
+//         body: `Someone is interested in buying your book ${bookTitle}. respond to this message to contact possible buyer`,
+//         to: `+1${SellerNumber}`,
+//         from: `${sourceNumber}`,
+//     });
+//     let infoToHash = buyerNumber + SellerNumber;
+//     let convoHash = jwt.encode(infoToHash, hash);
+//     const insertSourceTableQuery = "INSERT INTO `source_num` SET twilio_number = '" + sourceNumber + "'";
+//     console.log(insertSourceTableQuery);
+//     db.query(insertSourceTableQuery, (err, data) => {
+//         if (!err) {
+//             console.log("DATA FROM INSERT QUERY WANT THISSSS: ", data);
+//             const storeConvoDataQuery = "INSERT INTO `convos` SET hash = '" + convoHash + "', buyer_number = '" + buyerNumber + "', seller_number = '" + SellerNumber + "', source_num_id = '" + data.insertId + "'";
+//             console.log("FINAL QUERY MEMEMEMEME: ", storeConvoDataQuery);
+//             db.query(storeConvoDataQuery, (err, data) => {
+//                 if (!err) {
+//                     const successOutput = {
+//                         success: true,
+//                         message: "Seller contacted"
+//                     };
+//                 } else {
+//                     console.log(err)
+//                     const failedStoringDetails = {
+//                         success: false,
+//                         message: "failed to make store contact information into convos"
+//                     };
+//                     return failedStoringDetails
+//                 }
+//             })
+//         } else {
+//             const failedStoringDetailsSecond = {
+//                 success: false,
+//                 message: "failed to make store contact information into source_num"
+//             };
+//             return failedStoringDetailsSecond
+//         }
+//     })
+// }
 
 function insertNewNumber(buyerNumber, SellerNumber, sourceNumber, source_id, bookTitle) {
     twilio.messages.create({
@@ -334,9 +334,10 @@ webserver.post('/api/contactSeller', (request, response) => {
 
 webserver.post('/api/MessageResponse', (request, response) => {
     db.connect(() => {
-        console.log("yoyoyoyo");
+        console.log("look here plzzzzzz: ", request.body);
         const message = request.body.Body;
         let sentFrom = request.body.From;
+        let numberUsed = request.body.To;
         sentFrom = sentFrom.slice(2, sentFrom.length);
         console.log(request.body);
         // const queryToGrabOtherNumber = "SELECT c.buyer_number, c.seller_number FROM `convos` AS c WHERE '"+sentFrom+"' = c.buyer_number OR c.seller_number";
@@ -352,7 +353,7 @@ webserver.post('/api/MessageResponse', (request, response) => {
                     twilio.messages.create({
                         body: message,
                         to: `+1${numberWeWant}`,
-                        from: '+15108226645'
+                        from: `+${numberUsed}`
                     });
 
                 } else {
@@ -361,7 +362,7 @@ webserver.post('/api/MessageResponse', (request, response) => {
                     twilio.messages.create({
                         body: message,
                         to: `+1${numberWeWant}`,
-                        from: '+15108226645'
+                        from: `+${numberUsed}`
                     });
                 }
             } else {
@@ -373,7 +374,6 @@ webserver.post('/api/MessageResponse', (request, response) => {
 
 
 webserver.get('/api/listings', (request, response) => {
-    console.log("IM RUUUUUNNNIIINNNNGGGG");
     db.connect(() => {
         const query = "SELECT l.ID, l.book_condition, l.price, l.comments, l.book_id, b.title, b.ISBN, b.author, b.bookImage FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.id";
         db.query(query, (err, data) => {
