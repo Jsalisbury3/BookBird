@@ -124,17 +124,12 @@ webserver.post('/api/save-profile-image', function (request, response) {
     console.log('request: ', request.body);
     const {key, fileType} = request.body;
     console.log('headers', request.headers)
-
     const userToken = request.headers['token'];
-
-
     // const {account_id}=request.headers.data;
     console.log('hello save image');
-
     db.connect(() => {
         console.log('Save Item');
         const query = "SELECT lg.account_id FROM `loggedin` AS lg WHERE lg.token = '" + userToken + "'";
-
         db.query(query, (err, data) => {
             console.log('DATA: ', data)
             const query = "UPDATE `accounts` SET profile_photo_url='" + key + "', image_type='" + fileType + "' WHERE accounts.id='" + data[0].account_id + "'";
@@ -154,9 +149,125 @@ webserver.post('/api/save-profile-image', function (request, response) {
     });
 });
 
+function insertNewNumberBuyNumber(buyerNumber, SellerNumber, sourceNumber, bookTitle) {
+    twilio.messages.create({
+        body: `Someone is interested in buying your book ${bookTitle}. respond to this message to contact possible buyer`,
+        to: `+1${SellerNumber}`,
+        from: `${sourceNumber}`,
+    });
+    let infoToHash = buyerNumber + SellerNumber;
+    let convoHash = jwt.encode(infoToHash, hash);
+    const insertSourceTableQuery = "INSERT INTO `source_num` SET twilio_number = '" + sourceNumber + "'";
+    console.log(insertSourceTableQuery);
+    db.query(insertSourceTableQuery, (err, data) => {
+        if (!err) {
+            console.log("DATA FROM INSERT QUERY WANT THISSSS: ", data);
+            const storeConvoDataQuery = "INSERT INTO `convos` SET hash = '" + convoHash + "', buyer_number = '" + buyerNumber + "', seller_number = '" + SellerNumber + "', source_num_id = '" + data.insertId + "'";
+            console.log("FINAL QUERY MEMEMEMEME: ", storeConvoDataQuery);
+            db.query(storeConvoDataQuery, (err, data) => {
+                if (!err) {
+                    const successOutput = {
+                        success: true,
+                        message: "Seller contacted"
+                    };
+                } else {
+                    console.log(err)
+                    const failedStoringDetails = {
+                        success: false,
+                        message: "failed to make store contact information into convos"
+                    };
+                    return failedStoringDetails
+                }
+            })
+        } else {
+            const failedStoringDetailsSecond = {
+                success: false,
+                message: "failed to make store contact information into source_num"
+            };
+            return failedStoringDetailsSecond
+        }
+    })
+}
+
+function insertNewNumber(buyerNumber, SellerNumber, sourceNumber, source_id, bookTitle) {
+    twilio.messages.create({
+        body: `Someone is interested in buying your book ${bookTitle}. respond to this message to contact possible buyer`,
+        to: `+1${SellerNumber}`,
+        from: `${sourceNumber}`,
+    });
+    let infoToHash = buyerNumber + SellerNumber;
+    let convoHash = jwt.encode(infoToHash, hash);
+    const storeConvoDataQuery = "INSERT INTO `convos` SET hash = '" + convoHash + "', buyer_number = '" + buyerNumber + "', seller_number = '" + SellerNumber + "', source_num_id = '" + source_id + "'";
+    console.log("FINAL QUERY MEMEMEMEME: ", storeConvoDataQuery);
+    db.query(storeConvoDataQuery, (err, data) => {
+        if (!err) {
+            const successOutput = {
+                success: true,
+                message: "Seller contacted"
+            };
+            return successOutput
+        } else {
+            console.log(err);
+            const failedStoringDetails = {
+                success: false,
+                message: "failed to make store contact information into convos"
+            };
+            return failedStoringDetails
+        }
+    });
+};
+
+
+function getnumberFunction(buyerNumber, SellerNumber, userToken) {
+    console.log("ya boi is running");
+    twilio.availablePhoneNumbers('US')
+        .local.list({
+        areaCode: '510',
+    })
+        .then(data => {
+            const number = data[0];
+            return twilio.incomingPhoneNumbers.create({
+                phoneNumber: number.phoneNumber,
+            });
+        })
+        .then(purchasedNumber => {
+            console.log("purchaseddddddddddddd: ", purchasedNumber.phoneNumber);
+            insertNewNumber(buyerNumber, SellerNumber, userToken, purchasedNumber.phoneNumber)
+        });
+}
+
+
+function getSourceNumber(buyerNumber, SellerNumber, bookTitle) {
+    db.connect(() => {
+        const checkForNumbers = "SELECT source_num_id FROM `convos` WHERE buyer_number = '" + buyerNumber + "' OR seller_number = '" + SellerNumber + "'";
+        db.query(checkForNumbers, (err, convos) => {
+            const selectAllAvailableNumbers = "SELECT ID, twilio_number as phone_num FROM `source_num`";
+            db.query(selectAllAvailableNumbers, (err, numbers) => {
+                for (let convo of convos) {
+                    for (let currentNum = 0; currentNum < numbers.length; currentNum++) {
+                        if (numbers[currentNum].ID === convo.source_num_id) {
+                            numbers.splice(currentNum, 1);
+                        }
+                    }
+                }
+                const {ID} = numbers[0];
+                const {phone_num} = numbers[0];
+                insertNewNumber(buyerNumber, SellerNumber, phone_num, ID, bookTitle);
+            })
+        })
+    })
+}
+
+
+// insertNewNumber(SellerNumber, userToken, NewNum)
+
 
 webserver.post('/api/contactSeller', (request, response) => {
     db.connect(() => {
+        console.log("og request body: ", request.body);
+        const bookTitle = request.body.title;
+        const SellerNumber = request.body.sellersNumber;
+        const sourceNumber = 5108226645; //this will change
         const userToken = request.headers['token'];
         if (userToken === "undefined" || userToken === "null") {
             const outputAlreadySignedIn = {
@@ -169,53 +280,52 @@ webserver.post('/api/contactSeller', (request, response) => {
             console.log(query);
             db.query(query, (err, data) => {
                 if (data) {
-                    const SellerNumber = request.body.sellersNumber;
-                    const sourceNumber = 5108226645; //this will change
-                    const buyerNumber = data[0].phoneNumber;
+                    let buyerNumber = data[0].phoneNumber;
                     console.log("buyerNumber: ", buyerNumber);
-                    twilio.messages.create({
-                        body: 'Someone is interested in buying your book BOOKNAME. respond to this message to contact possible buyer',
-                        to: `+1${SellerNumber}`,
-                        from: '+15108226645'
-                    });
-                    let infoToHash = buyerNumber + SellerNumber;
-                    let convoHash = jwt.encode(infoToHash, hash);
-                    const insertSourceTableQuery = "INSERT INTO `source_num` SET twilio_number = '" + sourceNumber + "'";
-                    console.log(insertSourceTableQuery);
-                    db.query(insertSourceTableQuery, (err, data) => {
-                        if (!err) {
-                            console.log("DATA FROM INSERT QUERY WANT THISSSS: ", data);
-                            const storeConvoDataQuery = "INSERT INTO `convos` SET hash = '" + convoHash + "', buyer_number = '" + buyerNumber + "', seller_number = '" + SellerNumber + "', source_num_id = '" + data.insertId + "'";
-                            console.log("FINAL QUERY MEMEMEMEME: ", storeConvoDataQuery);
-                            db.query(storeConvoDataQuery, (err, data) => {
-                                if (!err) {
-                                    const successOutput = {
-                                        success: true,
-                                        message: "Seller contacted"
-                                    };
-                                    response.send(successOutput);
-                                } else {
-                                    const failedStoringDetails = {
-                                        success: false,
-                                        message: "failed to make store contact information"
-                                    };
-                                    response.send(failedStoringDetails);
-                                }
+                    const query = "SELECT c.ID FROM `convos` AS c WHERE c.buyer_number = '" + buyerNumber + "' OR c.seller_number = '" + SellerNumber + "' AND c.source_num_id = '" + sourceNumber + "'";
+                    db.query(query, (err, data) => {
+                        console.log("im what u want : ", data);
+                        if (data.length < 1) {
+                            twilio.messages.create({
+                                body: `Someone is interested in buying your book ${bookTitle}. Respond to this message to contact the possible buyer`,
+                                to: `+1${SellerNumber}`,
+                                from: '+15108226645',
+                            });
+                            const getOriginalNumberQuery = "SELECT ID FROM `source_num` WHERE twilio_number = '" + sourceNumber + "'";
+                            db.query(getOriginalNumberQuery, (err, data) => {
+                                let infoToHash = buyerNumber + SellerNumber;
+                                let convoHash = jwt.encode(infoToHash, hash);
+                                console.log("DATA FROM INSERT QUERY WANT THISSSS: ", data);
+                                const storeConvoDataQuery = "INSERT INTO `convos` SET hash = '" + convoHash + "', buyer_number = '" + buyerNumber + "', seller_number = '" + SellerNumber + "', source_num_id = '" + data[0].ID + "'";
+                                console.log("FINAL QUERY MEMEMEMEME: ", storeConvoDataQuery);
+                                db.query(storeConvoDataQuery, (err, data) => {
+                                    if (!err) {
+                                        const successOutput = {
+                                            success: true,
+                                            message: "Seller contacted"
+                                        };
+                                        response.send(successOutput);
+                                    } else {
+                                        console.log(err)
+                                        const failedStoringDetails = {
+                                            success: false,
+                                            message: "failed to make store contact information into convos"
+                                        };
+                                        response.send(failedStoringDetails);
+                                    }
+                                })
                             })
+
                         } else {
-                            const failedStoringDetails = {
-                                success: false,
-                                message: "failed to make store contact information"
-                            };
-                            response.send(failedStoringDetails);
+                            getSourceNumber(buyerNumber, SellerNumber, bookTitle)
                         }
                     })
                 } else {
-                    const failedToContactSeller = {
+                    const noToken = {
                         success: false,
-                        message: "Unable to contact seller"
+                        message: "no token found"
                     };
-                    response.send(failedToContactSeller);
+                    response.send(noToken);
                 }
             })
         }
@@ -230,16 +340,15 @@ webserver.post('/api/MessageResponse', (request, response) => {
         sentFrom = sentFrom.slice(2, sentFrom.length);
         console.log(request.body);
         // const queryToGrabOtherNumber = "SELECT c.buyer_number, c.seller_number FROM `convos` AS c WHERE '"+sentFrom+"' = c.buyer_number OR c.seller_number";
-        const queryToGrabOtherNumber = "SELECT c.buyer_number, c.seller_number FROM `convos` AS c WHERE c.buyer_number = '"+sentFrom+"' OR c.seller_number = '"+sentFrom+"'";
+        const queryToGrabOtherNumber = "SELECT c.buyer_number, c.seller_number FROM `convos` AS c WHERE c.buyer_number = '" + sentFrom + "' OR c.seller_number = '" + sentFrom + "'";
         console.log(queryToGrabOtherNumber);
         db.query(queryToGrabOtherNumber, (err, data) => {
-            if(!err) {
-                console.log("")
+            if (!err) {
                 // console.log("data[0].buyer_number", data[0].buyer_number)
                 // console.log("data[0].seller_number", data[0].seller_number)
-                if(data[0].buyer_number == sentFrom) {
+                if (data[0].buyer_number == sentFrom) {
                     const numberWeWant = data[0].seller_number;
-                    console.log("numberWeWant", numberWeWant)
+                    console.log("numberWeWant", numberWeWant);
                     twilio.messages.create({
                         body: message,
                         to: `+1${numberWeWant}`,
@@ -248,7 +357,7 @@ webserver.post('/api/MessageResponse', (request, response) => {
 
                 } else {
                     const numberWeWant = data[0].buyer_number;
-                    console.log("numberWeWant", numberWeWant)
+                    console.log("numberWeWant", numberWeWant);
                     twilio.messages.create({
                         body: message,
                         to: `+1${numberWeWant}`,
@@ -256,7 +365,7 @@ webserver.post('/api/MessageResponse', (request, response) => {
                     });
                 }
             } else {
-                console.log("i dunn fudged up" , err)
+                console.log("i dunn fudged up", err)
             }
         })
     })
@@ -651,7 +760,7 @@ webserver.get('/api/UserProfileUrl', (request, response) => {
                             data: data
                         };
                         response.send(output);
-                    }else {
+                    } else {
                         const output = {
                             success: false,
                             message: "error getting account profile pic url"
