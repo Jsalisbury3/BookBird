@@ -23,32 +23,11 @@ body{
 .SearchIcon:active {
     transform: scale(.75);
 }
-/*:focus {*/
-/*position: absolute;*/
-/*display: inline-block;*/
-/*-webkit-filter: invert(100%);*/
-/*transition: all ease-in-out .3s;*/
-/*color: white;*/
 
-/*}*/
-
-/*h6:focus-within {*/
-/*-webkit-filter: invert(100%);*/
-/*}*/
-/*.ProfileIcon :focus {*/
-/*-webkit-filter: invert(100%);*/
-/*}*/
-/*a:active {*/
-/*position: absolute;*/
-
-/*transition: all ease-in-out .3s;*/
-/*color: white;*/
-/*}*/
 
 h6 {
     font-size: .9rem;
     line-height: 110%;
-    /*margin: .7666666667rem 0 .46rem 0;*/
     position: fixed;
     left: 5%;
     top: 95.5%;
