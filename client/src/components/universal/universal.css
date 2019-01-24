@@ -9,8 +9,51 @@ body{
     width: 100vw;
     background-color: #5bc0de;
     color: white;
-    
+
 }
+
+.ProfileIcon:active {
+    transform: scale(.75)
+}
+
+.AddBookIcon:active {
+    transform: scale(.75)
+}
+
+.SearchIcon:active {
+    transform: scale(.75);
+}
+
+
+h6 {
+    font-size: .9rem;
+    line-height: 110%;
+    position: fixed;
+    left: 5%;
+    top: 95.5%;
+    color: white;
+
+
+}
+#AddBookTitle {
+    left: 38%;
+    font-size: .9rem;
+
+
+}
+#ProfileTitle {
+    left: 77%;
+    font-size: .9rem;
+
+}
+
+#SearchTitle {
+    left: 7%;
+    font-size: .9rem;
+
+}
+
+
 /* .birdLogo, .universityLogo{
     display:inline-block;
     height:100%;
@@ -60,12 +103,12 @@ body{
     display: inline-block;
     position: relative;
     height: 100%;
-    width: 23.33%
+    width: 23.33%;
 }
 .AddBookIcon {
     display: inline-block;
     position: relative;
-    left: 3%;
+    left: 10%;
     height: 100%;
     width: 23.33%;
 }
@@ -80,28 +123,36 @@ body{
     position: relative;
     display: inline-block;
     height: 100%;
-    width: 69%;
+    width: 68%;
     padding: 15%;
-    left: 51%;
-
+    left: 18%;
+    bottom: 14%;
+    transition: transform 550ms ease-in-out;
+    -webkit-filter: invert(100%);
 }
 .ProfilePicture {
     position: relative;
     display: inline-block;
     height: 100%;
-    width: 69%;
+    width: 64%;
     padding: 15%;
-    left: 13%;
-
+    left: 16%;
+    bottom: 14%;
+    transition: transform 550ms ease-in-out;
+    -webkit-filter: invert(100%);
 }
 .SearchPicture {
     position: relative;
     display: inline-block;
     height: 100%;
-    width: 69%;
+    width: 68%;
     padding: 15%;
-    left: 16%;
+    left: 15%;
+    bottom: 14%;
+    transition: transform 550ms ease-in-out;
+    -webkit-filter: invert(100%);
+
+
 
 }
-
 
