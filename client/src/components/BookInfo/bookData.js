@@ -7,7 +7,8 @@ import CarouselItem from './carousel-item';
 import Header from './../universal/header';
 import Nav from './../universal/nav';
 import axios from 'axios';
-import loading from './images/loading_gif.gif';
+// import loading from './images/loading_gif.gif';
+import rainbow from './images/loading_rainbow.gif';
 import bookshelf from './images/book_shelf.jpg';
 import {Link} from 'react-router-dom';
 
@@ -83,12 +84,12 @@ class IndividualBookData extends Component {
         return (
               <div className='bookDetailsContainer'>
                 
-                {/* <img id='bookLoadScreen' src={loading}/> */}
+                {/* <img id='bookLoadScreen' src={rainbow}/> */}
                 <div className="carousel" id="imageContainer">
             
                 <img id="imageBackground" style={{display:'block'}}/>
                 
-                <img className="bookLoading" src={loading} style={{display:'none'}}/>
+                <img className="bookLoading" style={{display:'none'}}/>
                         <a className="carousel-item responsive-img" id="book-item" href="#one!">
                             <img src={this.props.listId[0].bookImage}/>
                         </a>

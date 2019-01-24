@@ -15,7 +15,7 @@ class UserPostList extends Component {
     getUserProfileListings = async (results) => {
         if(!results.data.success) {
             console.log("no matches found");
-            let listItems = "no listings found";
+            let listItems = "No listings found";
             await this.setState({
                 data: listItems,
             });
@@ -66,8 +66,8 @@ class UserPostList extends Component {
     render() {
         return (
             <div className='user-posts-container'>
-                {this.state.data}
-                <div className='samplePost'>{!this.state.data ? "no listings found" : ''}</div>
+                <div className="profileListings">{this.state.data === "No listings found" ? <div className="emptyListings">No Listings Found. Post some books!</div> : this.state.data}</div> 
+                {/* <div className='samplePost'>{!this.state.data ? "no listings found" : ''}</div> */}
             </div>
         )
     }

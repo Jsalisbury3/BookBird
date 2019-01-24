@@ -67,6 +67,7 @@
 }
 
 .itemPrice{
+    color: rgba(0, 0, 0, 0.808);
     vertical-align: top;
     display:inline-block;
     height:100%;

@@ -8,6 +8,7 @@ import {connect} from 'react-redux';
 import {removeTokenAndRow} from '../../actions/sign_out'
 import logout24 from './images/logout-24.png'
 import {bindActionCreators} from "redux";
+import schoolLogo from './images/sfsu_profile.jpg';
 import axios from 'axios';
 import Header from './../universal/header'
 import Nav from './../universal/nav'
@@ -104,20 +105,22 @@ class UserProfile extends Component {
     render() {
         return (          
                 <div className='profile-main-container'>
-                    <button onClick={this.callActionSignOut} className='logOut btn right'><img
-                        src={logout24}/>
-                    </button>
-                    <div className='user-image-container circleBase'>
-                        <img src={this.state.photo ? this.state.photo : defaultPhoto}/>
-                        <label className="opacitySlip" htmlFor="profilePhotoInput"><i
-                            className='material-icons center'>add_a_photo</i></label>
-                        <input id="profilePhotoInput" type="file" name="photo" capture="camera" accept="image/*"
-                               onChange={this.fileSelectedHandler}/>
+                    <div className='profile-image-container'>
+                        <button onClick={this.callActionSignOut} className='logOut btn right yellow darken-2'><img
+                            src={logout24}/>
+                        </button>
+                        <div className='user-image-container circleBase'>
+                            <img src={this.state.photo ? this.state.photo : defaultPhoto}/>
+                            <label className="opacitySlip" htmlFor="profilePhotoInput"><i
+                                className='material-icons center'>add_a_photo</i></label>
+                            <input id="profilePhotoInput" type="file" name="photo" capture="camera" accept="image/*"
+                                onChange={this.fileSelectedHandler}/>
+                        </div>
                     </div>
-                    <div>
+                    <div className="profile-main-content">
+                        <UserPostList/>
                     </div>
-
-                    <UserPostList/>
+                    
                 </div>                
         );
     }

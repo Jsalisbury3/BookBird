@@ -26,8 +26,8 @@ h2:nth-child(2)  {
 
 .bookDetailsContainer {
     background-image: linear-gradient(rgba(34, 0, 34, 0.589),rgba(92, 0, 92, 0.767));
-    overflow: auto;
     background-color: white;
+    overflow: auto;
     height: 84vh;
 }
 
@@ -97,7 +97,7 @@ h2:nth-child(2)  {
     z-index: 1;
     position: absolute;
     left: 5%;
-    top: 5%;
+    top: 15%;
     height: 50%;
     width: 90%;
 }

@@ -1,4 +1,5 @@
 .delete-btn-container{
+    color: rgba(0, 0, 0, 0.842);
     vertical-align: top;
     display:inline-block;
     height:100%;
@@ -24,24 +25,38 @@
     /* behavior: url(PIE.htc); */
 }
 .profile-main-container{
+    background-image: 
+        linear-gradient(rgba(96, 0, 138, 0.877),rgba(41, 0, 41, 0.829));
+    background-color: white;
     position:relative;
     display:inline-block;
     height: 84vh;
     width:100vw;
-    background-color:#C2E5F9;
+    /* background-color:#C2E5F9; */
+}
+
+.profile-image-container {
+    height: 40%;
+    background-image: linear-gradient(rgba(75, 0, 104, 0.877),rgba(43, 0, 43, 0.829)),
+}
+
+.profile-main-content {
+    height: 60%;
+    
 }
 .user-image-container{
     position:relative;
     display:inline-block;
-    height:28%;
-    width:43%;
+    height:65%;
+    /* width:43%; */
     margin-top:6%;
     margin-left:28%;
     /* background-color:brown; */
     overflow:hidden;
     /* -moz-box-shadow: 0 0 3px #ccc;
     -webkit-box-shadow: 0 0 3px #ccc; */
-    box-shadow: 0 0 4px 10px goldenrod;
+    /* box-shadow: 0 0 4px 10px goldenrod; */
+    box-shadow: 0 0 1px 5px rgba(243, 243, 243, 0.63);
 }
 
 .user-image-container>img{
@@ -79,7 +94,7 @@
     position:relative;
     display:inline-block;
     vertical-align: top;
-    height: 6%;
+    height: 35px;
     width:40px;
     text-align: center;
     top:5px;
@@ -111,6 +126,15 @@
     /*background-color:white;*/
     overflow:scroll;
 }
+
+.emptyListings {
+    position: relative;
+    left: 20px;
+    font-weight: bold;
+    font-size: 30px;
+    color: white;
+}
+
 .samplePost{
     display:inline-block;
     height:17.8%;
