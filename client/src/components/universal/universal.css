@@ -121,37 +121,34 @@ body{
 .BookPicture {
     position: relative;
     display: inline-block;
-    height: 100%;
-    width: 68%;
+    height: 55px;
+    width: 57px;
     padding: 15%;
     left: 18%;
-    bottom: 14%;
+    bottom: 18%;
     transition: transform 350ms ease-in-out;
     -webkit-filter: invert(100%);
 }
 .ProfilePicture {
     position: relative;
     display: inline-block;
-    height: 100%;
-    width: 64%;
+    height: 56px;
+    width: 54px;
     padding: 15%;
-    left: 16%;
-    bottom: 14%;
+    left: 17%;
+    bottom: 17%;
     transition: transform 350ms ease-in-out;
     -webkit-filter: invert(100%);
 }
 .SearchPicture {
     position: relative;
     display: inline-block;
-    height: 100%;
-    width: 68%;
+    height: 57px;
+    width: 55px;
     padding: 15%;
     left: 15%;
-    bottom: 14%;
+    bottom: 17%;
     transition: transform 350ms ease-in-out;
     -webkit-filter: invert(100%);
-
-
-
 }
 
