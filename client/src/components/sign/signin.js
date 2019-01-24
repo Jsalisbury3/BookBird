@@ -6,6 +6,7 @@ import './sign.css'
 import 'materialize-css/dist/css/materialize.min.css'
 import 'materialize-css'
 import axios from "axios/index";
+import logo from "../intro-page/images/BookBirdOnlyImgWhite.png";
 
 
 class Signin extends Component{
@@ -21,7 +22,7 @@ class Signin extends Component{
 
     render(){
         return(
-
+            <img src="logo"/>
             <div className="signin_container">
                 {/* <h1 className="signInHeader">Sign in</h1> */}
                 <SignInValidation/>
