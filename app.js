@@ -630,18 +630,25 @@ webserver.post('/api/SignIn', (request, response) => {
         response.send(outputAlreadySignedIn);
     } else {
         db.connect(() => {
-            let getAccountQuery = "SELECT a.ID from `accounts` AS a WHERE a.email = '" + Email + "' AND a.password = '" + Password + "'";
+            console.log("made it to db.connect")
+            // let getAccountQuery = "SELECT ID from `accounts` WHERE email = '" + Email + "' AND password = '" + Password + "'";
+            let getAccountQuery = "SELECT ID from `accounts` WHERE email = ? AND password = ?";
+            const arrayAccount = [Email, Password];
+            const checkForAccountQuery = mysql.format(getAccountQuery, arrayAccount);
             // getAccountQuery = escape_quotes(getAccountQuery);
-            console.log("query we want: ", getAccountQuery)
-            db.query(getAccountQuery, (err, data) => {
+            console.log("query we want: ", checkForAccountQuery)
+            db.query(checkForAccountQuery, (err, data) => {
+                console.log("data: ", data)
                 if (!err) {
                     if (data.length === 1) {
+                        console.log("made it past firsr query");
                         var userToken = jwt.encode(Email + Password + Date.now(), hash);
                         if (!err) {
                             let query = "INSERT INTO `loggedin` SET loggedin.account_id = " + data[0].ID + ", loggedin.token = '" + userToken + "'";
                             // query = escape_quotes(query);
                             db.query(query, (err) => {
                                 if (!err) {
+                                    console.log("made it to success");
                                     let output = {
                                         success: true,
                                         data: userToken,

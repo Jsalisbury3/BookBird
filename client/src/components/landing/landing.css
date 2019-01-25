@@ -157,13 +157,14 @@
     font-size: medium;
 }
 .New {
-    color: rgb(233, 241, 241);
+    border:solid 1px #212121;
+    color:#212121;
     text-transform: uppercase;
-    background-color: rgb(6, 235, 6);
+    background-color: whitesmoke;
 }
 .New.listing_condition {
     margin: 9px auto 0;
-    padding: 4% 5% 5% 7%;
+    padding: 4% 5% 5% 6%;
     font-size: medium;
     height: 28%;
     width: 53%;
@@ -176,7 +177,7 @@
 }
 .Good.listing_condition {
     margin: 9px auto 0;
-    padding: 4% 0% 0% 7%;
+    padding: 4% 0 0 7%;
     font-size: medium;
     height: 29%;
     width: 64%;
@@ -189,7 +190,7 @@
 }
 .Worn.listing_condition {
     margin: 9px auto 0;
-    padding: 4% 5% 5% 6%;
+    padding: 4% 0 0 6%;
     font-size: medium;
     height: 29%;
     width: 67%;
@@ -197,8 +198,8 @@
 .Like.New {
     color: rgb(233, 241, 241);
     text-transform: uppercase;
-    background-color: rgb(0, 255, 42);
-    
+    background-color: rgb(7, 193, 14);
+    border:none;
 }
 .Like.New.listing_condition{
     margin: 9px auto 0;
