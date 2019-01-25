@@ -2,6 +2,8 @@ import React, {Component, Fragment} from 'react';
 import {Link} from 'react-router-dom';
 import SignUpValidation from './validation-signUp'
 import './sign.css'
+import logo from "../intro-page/images/BookBirdOnlyImgWhite.png";
+
 // import 'materialize-css'
 
 
@@ -17,10 +19,11 @@ class Signup extends Component {
         return (
 
             <div className="signup_container">
-                <h1 className="signUpHeader">Sign Up</h1>
-
+                <div className='signup-logo-container'>
+                    <img src={logo}/>
+                </div>
                 <SignUpValidation/>
-                <p className="signup_footer">Already have an account? <Link to={"/SignIn"}> Sign In </Link></p>
+                <p className="grey-text signup_footer">Already have an account? <Link className='yellow-text text-darken-2' to={"/SignIn"}> Sign In </Link></p>
             </div>
         )
     }

@@ -6,19 +6,18 @@
     font-size: 3.3rem;
 }
 
-.signup_footer{
-    /* justify-content: center;
-    align-items: center; */
+/* .signup_footer{
+    justify-content: center;
+    align-items: center;
     left: 19%;
     bottom:10%;
     position: relative;
-}
-.signin_footer {
+} */
+.signin_footer, .signup_footer {
     position: relative;
     /* justify-content: center;
     align-items: center; */
     left: 19%;
-
 }
 .signin-logo-container{
     position:relative;
@@ -29,6 +28,15 @@
     position:relative;
     height:381px;
     bottom:61px;
+}
+.signup-logo-container{
+    position: relative;
+    height: 161px;
+}
+.signup-logo-container>img{
+    position:relative;
+    height:381px;
+    bottom:81px;
 }
 .row {
     margin-bottom: 0;
@@ -49,7 +57,7 @@
 }
 
 .error-message {
-    position: relative;
+    /* position: relative; */
     bottom: 14px;
     margin-left: 33%;
     font-size: 0.71rem;
@@ -62,22 +70,31 @@
 }
 
 
-#sign-in-container {
+#sign-in-container{
     position: relative;
     bottom: 5%;
     margin-top:41px;
 }
-.sign-up-form {
+#sign-up-form {
+    position: relative;
+    bottom: 5%;
+    margin-top:41px;
+}
+/* .sign-up-form {
     position: relative;
     bottom: 10%;
-}
+} */
 
 .signInError, .signUpError{
     color: red;
 }
 
-.signin_container, .signup_container{
+.signin_container {
     /* background-color: #C2E5F9; */
+    height: 90vh;
+    overflow: auto;
+}
+.signup_container{
     height: 90vh;
     overflow: auto;
 }
@@ -104,12 +121,25 @@
 .signInInput{
     border-bottom: 1px solid rgb(90, 81, 30) !important;
 }
-#sign-in-container>.row{
+#sign-in-container>.row, #sign-up-form>.row{
     width: 339px !important;
-    width: 90vw !important;
+    /* width: 90vw !important; */
     margin-left: 1vw !important;
 }
 .signin_container{
+    background: 
+    /* top, transparent red, faked with gradient */ 
+    linear-gradient(
+      #180218ee, 
+      #240024da
+    ),
+    /* bottom, image */
+    url(../images/chavezcenter.jpg);
+    background-size: 271%;
+    background-repeat: no-repeat;
+    background-position: -352px -38px;
+}
+.signup_container{
     background: 
     /* top, transparent red, faked with gradient */ 
     linear-gradient(
@@ -126,6 +156,10 @@
     width: 300px !important;
     margin-right: 0px !important;
 }
+.signup_container>p{
+    width: 300px !important;
+    margin: 0px !important;
+}
 .signInError, .signUpError{
     display: flex;
     left: 23%;
@@ -133,18 +167,10 @@
     justify-content: center;
 
 }
-.signInEmailLabel, .signInPasswordLabel{
-    left:24%
-}
-
 .signInLabel, .signUpLabel{
     left:23% !important
-}.sign_in_form {
-     position: relative;
-     bottom: 9%;
- }
-
-.signin-button{
+}
+.signin-button, .signup-button{
     margin-left:94px !important;
 }
 .sign-up-button{
