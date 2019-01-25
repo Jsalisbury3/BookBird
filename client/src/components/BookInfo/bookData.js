@@ -10,6 +10,9 @@ import axios from 'axios';
 import loading from './images/loading_gif.gif';
 import bookshelf from './images/book_shelf.jpg';
 import {Link} from 'react-router-dom';
+import 'materialize-css/dist/css/materialize.min.css'
+import 'materialize-css';
+
 
 class IndividualBookData extends Component {
 
@@ -58,7 +61,8 @@ class IndividualBookData extends Component {
                 token: localStorage.getItem('Token'),
             },
             data: {
-                sellersNumber : this.props.listId[0].phoneNumber
+                sellersNumber : this.props.listId[0].phoneNumber,
+                title : this.props.listId[0].title
             }
         }).then((response) => {
             console.log("response from twilio query: ", response);
@@ -80,7 +84,14 @@ class IndividualBookData extends Component {
             return <h1>Loading...</h1>
         }
         return (
-            <div className='Container'>
+
+              <div className='bookDetailsContainer'>
+
+                  <div id='back-arrow-container'>
+                      <Link to={"/"}>
+                          <i id='arrow-icon' className='small material-icons'>arrow_back</i>
+                      </Link>
+                  </div>
                 {/* <img id='bookLoadScreen' src={loading}/> */}
                 <div className="carousel" id="imageContainer">
             
@@ -92,10 +103,10 @@ class IndividualBookData extends Component {
                         </a>
                         <CarouselItem images={this.props.images}/> 
                 </div>
-                <div className="s12 m6">
-                    <div className="card" id="cardContainer">
+                {/* <div className="s12 m6"> */}
+                    {/* <div className="card" id="cardContainer"> */}
                         
-                        <div className="card-content book-content" id="book-content">
+                        <div className="book-content" id="book-content">
                             <div className="bookInfoLeftContent s8">
                                 <h6 className="bookTitle">{this.props.listId[0].title}</h6>
                                 <h6 className="bookAuthor">{this.props.listId[0].author}</h6>
@@ -116,18 +127,19 @@ class IndividualBookData extends Component {
                             </div>
                             
                         </div>
-                        <div className="card-action" id="contactAction">
-                            <div id="backButtonContainer">
-                                <Link className="card-action" to={"/Landing"} id="contactActionBack">Back</Link>
+                            <div className="bookDetailButtonContainer" id="contactAction">
+                                <div id="backButtonContainer">
+                                    <Link to={"/Landing"} className="btn" id="contactActionBack">BACK</Link>
+                                </div>
+                                <div id="contactSellerContainer">
+                                    <button onClick={this.contactSeller} className="btn" id="contactActionButton">CONTACT SELLER</button>
+                                </div>
                             </div>
-                            <div id="contactSellerContainer">
-                                <button onClick={this.contactSeller} className={"btn"} id="contactActionButton">CONTACT  SELLER</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {/* <Nav/> */}
+                        
+                    {/* </div> */}
+                {/* </div> */}
             </div>
+        
         )
     }
 }

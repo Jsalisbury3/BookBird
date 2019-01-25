@@ -11,6 +11,23 @@
     font-size: 1.56rem;
 
 }
+#back-arrow-container {
+    position: fixed;
+    font-size: 2.3rem;
+    color: yellow;
+    z-index: 1;
+    left: 5.3%;
+    top: 9.5%;
+
+}
+
+i.small {
+    font-size: 2.4rem;
+    color: yellow;
+}
+#arrow-icon {
+    font-size: 2.4rem;
+}
 
 h2:nth-child(1)  {
 
@@ -24,11 +41,10 @@ h2:nth-child(2)  {
     font-size: 3.2rem;
 }
 
-.Container {
-    height: 100vh;
-    width: 100vw;
-    background-color: lightblue;
-
+.bookDetailsContainer {
+    overflow: auto;
+    background-color: white;
+    height: 84vh;
 }
 
 .main-container{
@@ -104,12 +120,12 @@ h2:nth-child(2)  {
 }
 
 #cardContainer{
-    margin-top: 0;
-    height: 62vh;
+    margin:0;
+
 }
 
 #imageContainer {
-    height: 35%;
+    height: 250px;
     width: 100%;
     background-color: rgb(247, 247, 247);
 
@@ -138,23 +154,19 @@ h2:nth-child(2)  {
     border: 1px solid black;
     box-shadow: 0px 5px 30px 10px rgba(49, 49, 49, 0.808);
 }
-.book-content {
-    box-shadow: 0px 5px 2px 5px rgba(49, 49, 49, 0.808);
-    background-color: rgb(247, 247, 247);
-    height: 66%;
-}
+
 
 #book-content {
-    padding: 1vh 6vw;
+    padding: 5px 25px;
     box-shadow: 0px 5px 2px 5px rgba(49, 49, 49, 0.808);
     background-color: rgb(247, 247, 247);
-    height: 72%;
+
 }
 
 .bookInfoLeftContent {
     /* border: 1px solid black; */
     display: inline-block;
-    height: 50%;
+    /* height: 50%; */
     width: 70%;
 }
 
@@ -166,7 +178,7 @@ h2:nth-child(2)  {
     /* border: 1px solid black; */
     display: inline-block;
     vertical-align: top;
-    height: 50%;
+    /* height: 50%; */
     width: 30%;
 }
 
@@ -196,6 +208,7 @@ h2:nth-child(2)  {
 
 }
 .bookTitle {
+    margin-right: 5px;
     font-size: 6vw;
     font-weight: bold;
     color: rgb(22, 22, 22);
@@ -207,7 +220,7 @@ h2:nth-child(2)  {
 }
 
 .sellersContent {
-    height: 50%;
+    padding: 10px 0px 10px 0px;
     font-weight: lighter;
 }
 
@@ -223,11 +236,7 @@ h2:nth-child(2)  {
     margin: 0;
     color: rgb(179, 179, 179);
     font-weight: lighter;
-}
-
-.card-action a {
-    position: relative;
-    left: 33%;
+    margin-bottom: 10px;
 }
 
 .contactButton {
@@ -236,50 +245,51 @@ h2:nth-child(2)  {
 
 .contactSignIn {
     position: relative;
-    left: 12%;
+    display: inline;
+    left: 18%;
     top: 35%;
 }
-#contactAction {
-    height: 100%;
+
+.bookDetailButtonContainer#contactAction {
+    background-color: white;
+    padding: 10px;
     width: 100%;
-    padding: 0;
+    /* height: 300px; */
     color:white;
 }
 
 #backButtonContainer {
     display: inline-block;
     position: relative;
-    top: 2%;
-    height: 100%;
     width: 40%;
 }
 
 #contactSellerContainer {
     display: inline-block;
     position: relative;
-    height: 100%;
     width: 60%;
 }
 
 #contactActionButton {
     display: inline-block;
     position: relative;
-    height: 12%;
+    height: 35px;
+    border-radius: 5px;
     width: 80%;
-    top: 4%;
     background-color: #ffcc33;
     color:white;
 }
 
 #contactActionBack {
     position: relative;
-    height: 26%;
     width: 50%;
-    top: 3%;
+    height: 35px;
+    left: 55px;
     border-radius: 5px;
     color:white;
     background-color:black;
 }
+
 .Thrashed.book_details {
     color: white;
     padding: 5% 5% 5% 5%;

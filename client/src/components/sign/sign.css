@@ -7,20 +7,29 @@
 }
 
 .signup_footer{
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center;
+    align-items: center; */
     left: 19%;
-    top: 72%;
-    position: absolute;
+    bottom:10%;
+    position: relative;
 }
 .signin_footer {
     position: relative;
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center;
+    align-items: center; */
     left: 19%;
 
 }
-
+.signin-logo-container{
+    position:relative;
+    height:200px;
+    overflow:hidden;
+}
+.signin-logo-container>img{
+    position:relative;
+    height:381px;
+    bottom:61px;
+}
 .row {
     margin-bottom: 0;
 }
@@ -56,6 +65,7 @@
 #sign-in-container {
     position: relative;
     bottom: 5%;
+    margin-top:41px;
 }
 .sign-up-form {
     position: relative;
@@ -87,10 +97,13 @@
     position: relative;
     
 }
-.signInInput.input-field input[type=text]:focus {
-    border-bottom: 1px solid #ce93d8 !important;
+.signInInput:focus {
+    border-bottom: 1px rgb(211, 50, 163) !important;
     box-shadow: 0 1px 0 0 #ce93d8 !important;
   }
+.signInInput{
+    border-bottom: 1px solid rgb(90, 81, 30) !important;
+}
 #sign-in-container>.row{
     width: 339px !important;
     width: 90vw !important;
@@ -138,9 +151,7 @@
     position: absolute;
     left: 33%;
 }
-#sign-in-container{
-    margin-top:178px;
-}
+
 /* .sign_in_form {
     margin-right: 34%;
 }
