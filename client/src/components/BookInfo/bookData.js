@@ -7,6 +7,7 @@ import CarouselItem from './carousel-item';
 import Header from './../universal/header';
 import Nav from './../universal/nav';
 import axios from 'axios';
+import NoPhoto from '../BookInfo/images/defaultPhoto.jpg';
 // import loading from './images/loading_gif.gif';
 import rainbow from './images/loading_rainbow.gif';
 import bookshelf from './images/book_shelf.jpg';
@@ -112,6 +113,13 @@ class IndividualBookData extends Component {
                                 <h6 className="bookTitle">{this.props.listId[0].title}</h6>
                                 <h6 className="bookAuthor">{this.props.listId[0].author}</h6>
                                 <h6 className="bookISBN">ISBN {this.props.listId[0].ISBN}</h6>
+                                {/* <div className="userContactInfo soldBy" >Seller:</div>
+                                <img className="sellerPhoto" src={this.props.listId[0].profile_photo_url === null ? './images/no_photo_available.jpg' : `https://s3-us-west-2.amazonaws.com/book-bird-test-bucket/${this.props.listId[0].profile_photo_url}`}/>
+                                <div className="userContactInfo sellerName">{this.props.listId[0].name}</div> */}
+                                <div className="sellersContent">
+                                    <h6>Seller's Comments</h6>
+                                    <h5>{!this.props.listId[0].comments ? 'N/A' : this.props.listId[0].comments}</h5>
+                                </div>
                             </div>
                             <div className="bookInfoRightContent s4">
                                 <div className="bookCondition">
@@ -120,12 +128,23 @@ class IndividualBookData extends Component {
                                 <div className="bookPrice">
                                     <h5>${this.props.listId[0].price}</h5>
                                 </div>
+                                <div className="userContactInfo">
+                                    <div className="userContactInfo soldBy" >Seller:</div>
+                                    {/* <img src='images/defaultPhoto.jpg'></img> */}
+                                    <img className="sellerPhoto" src={this.props.listId[0].profile_photo_url === null ? NoPhoto : `https://s3-us-west-2.amazonaws.com/book-bird-test-bucket/${this.props.listId[0].profile_photo_url}`}/>
+                                    <div className="userContactInfo sellerName">{this.props.listId[0].name}</div>
+                                </div>
                             </div>
-                            <div className="sellersContent">
+                            {/* <div className="sellersContent">
                                 <h6>Seller's Comments</h6>
                                 <h5>{this.props.listId[0].comments}</h5>
-                                <div className="contactSignIn">{this.state.displayError ? '' : 'Please sign in to contact the seller'}</div>
-                            </div>
+                            </div> */}
+                            {/* <div className="userContactInfo">
+                                    <div className="userContactInfo soldBy" >Seller: {this.props.listId[0].name} </div>
+                                    <img className="sellerPhoto" src={this.props.listId[0].profile_photo_url === null ? './images/no_photo_available.jpg' : `https://s3-us-west-2.amazonaws.com/book-bird-test-bucket/${this.props.listId[0].profile_photo_url}`}/>
+                                    <div className="userContactInfo sellerName">{this.props.listId[0].name}</div>
+                            </div> */}
+                            <div className="contactSignIn">{this.state.displayError ? '' : 'Please sign in to contact the seller'}</div>
                             
                         </div>
                             <div className="bookDetailButtonContainer" id="contactAction">
