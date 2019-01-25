@@ -67,13 +67,14 @@
 }
 
 .signin_container, .signup_container{
-    background-color: #C2E5F9;
-    height: 100vh;
+    /* background-color: #C2E5F9; */
+    height: 90vh;
+ dev
     overflow: auto;
 }
 
 .sign_in_form, .sign_up_form {
-    margin-right: 34%;
+    margin: auto !important;
 }
 
 .signInInput, .signUpInput {
@@ -85,8 +86,34 @@
     border-radius: 4px; */
     left: 24%;
     position: relative;
+    
 }
-
+.signInInput.input-field input[type=text]:focus {
+    border-bottom: 1px solid #ce93d8 !important;
+    box-shadow: 0 1px 0 0 #ce93d8 !important;
+  }
+#sign-in-container>.row{
+    width: 339px !important;
+    width: 90vw !important;
+    margin-left: 1vw !important;
+}
+.signin_container{
+    background: 
+    /* top, transparent red, faked with gradient */ 
+    linear-gradient(
+      #180218ee, 
+      #240024da
+    ),
+    /* bottom, image */
+    url(../images/chavezcenter.jpg);
+    background-size: 271%;
+    background-repeat: no-repeat;
+    background-position: -352px -38px;
+}
+.signin_container>p{
+    width: 300px !important;
+    margin-right: 0px !important;
+}
 .signInError, .signUpError{
     display: flex;
     left: 23%;
@@ -105,16 +132,16 @@
      bottom: 9%;
  }
 
-.sign-in-button{
-    left: 33%;
-    position: absolute;
-    bottom: 27%;
+.signin-button{
+    margin-left:94px !important;
 }
 .sign-up-button{
     position: absolute;
     left: 33%;
 }
-
+#sign-in-container{
+    margin-top:178px;
+}
 /* .sign_in_form {
     margin-right: 34%;
 }
