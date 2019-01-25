@@ -328,7 +328,8 @@ img {
 
 }
 #comment-box {
-    top: 2vh;
+    /* top: 1vh; */
+    margin-bottom: 23px;
     left: 8%;
     position: fixed;
     font-size: 12px;
@@ -409,7 +410,7 @@ img {
 .post-button-container  {
     margin-left: 27%;
     position: relative;
-    bottom: 17%;
+    bottom: 13%;
 }
 .submit-photo-container {
     position: relative;
@@ -594,10 +595,20 @@ img {
     justify-content: space-around;
 }
 .single-photo-container{
+    /* display: inline-flex;
+    height: 88px;
+    width: 72px;
+    margin:9px; */
+
     display: inline-flex;
     height: 88px;
     width: 72px;
-    margin:9px;
+    margin: 9px;
+    position: relative;
+    align-items: center;
+    text-align: center;
+    bottom: 56px;
+    left: 79px;
 }
 .single-photo-container>img{
     height:100%;
