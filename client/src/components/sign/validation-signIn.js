@@ -74,7 +74,7 @@ function validate(values) {
     console.log("emaillllllllllllllll: ", Email);
     const errors = {};
     const emailRegex =  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-    const passwordRegex = /(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{8,})$/;
+    const passwordRegex = /(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{8,70})$/;
 
 
 
@@ -83,7 +83,7 @@ function validate(values) {
     }
 
     if (!passwordRegex.test(Password)) {
-        errors.Password = "password must be atleast 8 characters long with one capital letter and number";
+        errors.Password = "password must be at least 8 characters long with one capital letter and number";
     }
     return errors;
 }

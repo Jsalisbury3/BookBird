@@ -19,9 +19,10 @@ export default withRouter((props)=>{
     return(
         <footer className="uni-footer">
             <div className={'SearchIcon'}>
-                <Link to={"/Landing"}><img alt={'SearchIcon'} className={'SearchPicture'} src={SearchImg}/>
+                <Link classNameActive='active' to={"/Landing"}><img alt={'SearchIcon'} className={'SearchPicture'} src={SearchImg}/>
                     <h6 id='SearchTitle'>Search</h6>
                 </Link>
+
             </div>
             <div className={'AddBookIcon'}>
                 <Link to={"/AddBook"}><img alt={'AddBookIcon'} className={'BookPicture'} src={AddBookImg}/>
