@@ -99,15 +99,15 @@ body{
     display: inline-block;
     position: relative;
     height: 100%;
-    left: 12%;
+    left: 10%;
     width: 14.33%;
 }
 .AddBookIcon {
     display: inline-block;
     position: relative;
-    left: 24%;
+    left: 23%;
     height: 85%;
-    width: 23.33%;
+    width: 27%;
     top: 13%;
 
 }
@@ -116,7 +116,7 @@ body{
     position: relative;
     height: 100%;
     width: 18.33%;
-    left: 33%;
+    left: 28%;
 }
 .BookPicture {
     position: relative;
