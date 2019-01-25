@@ -1,3 +1,10 @@
+Input:focus {
+    border-bottom: 1px rgb(211, 50, 163) !important;
+    box-shadow: 0 1px 0 0 #ce93d8 !important;
+}
+Input{
+    border-bottom: 1px solid rgb(90, 81, 30) !important;
+}
 body{
     overflow-x: hidden;
     overflow-y: hidden;
@@ -11,8 +18,6 @@ body{
     color: white;
 
 }
-
-
 .ProfileIcon:active {
     transform: scale(.75)
 }
@@ -51,13 +56,6 @@ body{
     top: 95.5%;
 
 }
-
-
-/* .birdLogo, .universityLogo{
-    display:inline-block;
-    height:100%;
-} */
-
 .birdLogo{
     width: 25%;
     height: 91px;
@@ -79,17 +77,12 @@ body{
     height: 48px;
     display: none;
 }
-/* .birdLogo{
-    width:22%;
-    background-color:#C2E5F9;
-} */
 .universityLogo{
     width: 78%;
 
 }
 .uni-footer {
     position: fixed;
-    /* position: absolute; */
     bottom: 0vh;
     height: 8vh;
     width: 100%;

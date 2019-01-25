@@ -89,7 +89,7 @@
     text-align: center;
 }
 .signInRequiredButtons {
-    margin: 14px;
+    margin: 10px;
 }
 
 .signInRequiredModal{
@@ -102,14 +102,26 @@
    right: 38%
 }
 
+.checkIcon{
+    color: #fbc02d;
+    text-align: center;
+    position: relative;
+    left: 34%;      
+}
+
 .successModalButtons{
     padding: 1px;
     display: flex;
 }
 .successModalText{
+    /* justify-content: center;
+    display: flex;
+    color: white; */
     justify-content: center;
     display: flex;
     color: white;
+    font-size: 24px;
+    margin-top: 2px;
 }
 .input-header{
     font-size: .80rem;
@@ -157,11 +169,19 @@
     font-weight: lighter;
 }
 
+.signInRequiredText{
+    color:white;
+    text-align: center;
+}
+
 .addBook-container{
     height: 100vh;
     width: 100%;
-    /* background-color: #C2E5F9; */
-    background-image: linear-gradient(rgba(75, 0, 104, 0.877),rgba(43, 0, 43, 0.829));
+    background-image: linear-gradient(rgba(75, 0, 104, 0.877),rgba(43, 0, 43, 0.829)); 
+    background: linear-gradient( #180218ee, #240024da );
+    background-size: 271%;
+    background-repeat: no-repeat;
+    background-position: -352px -38px;
 }
 
 .isbn-container {
@@ -195,13 +215,14 @@ img {
     width: 220px;
     margin-left: 85px;
     top: 3vh; */
-    position: relative;
+
+
+    /* position: relative; */
     height: 102px;
-    width: 220px;
+    /* width: 220px;
     margin-left: 85px;
-    bottom: 22%;
-    /* margin-top: 7%;
-    padding-top: 21%; */
+    bottom: 22%; */
+    
 }
 .searchButtonContainer {
     padding-left: 35%;
@@ -266,25 +287,6 @@ img {
     font-size: 1.5rem;
 }
 
-label {
-    font-size: .8rem;
-}
-*, *:before, *:after {
-    -webkit-box-sizing: inherit;
-    box-sizing: inherit;
-}
-
-* {
-    box-sizing: border-box;
-}
-user agent stylesheet
-label {
-    cursor: default;
-}
-@media only screen and (min-width: 0){
-
-
-}
 .modal-content {
     width: 72%;
     /* background-color: white; */
@@ -299,7 +301,7 @@ label {
     /* border-radius: 6%; */
     box-shadow: darkgrey 0px 0px 2px;
     /* border: 1px solid darkgrey */
-    background-image: linear-gradient(rgba(93, 2, 129, 0.877),rgba(90, 3, 90, 0.829));
+    background-image: linear-gradient(rgba(79, 12, 110, 24),rgba(90, 45, 90, 1));
 }
 
 
@@ -424,23 +426,21 @@ label {
 .pageHeader {
     margin: 0;
     font-size: 28px;
-    position: relative;
-    left: 5%;
     padding: 8px;
-    color: white;
     font-weight: lighter;
-    color:  #fbc02d;
+    color: #fbc02d;
+    text-align: left;
+    margin-left: 22px;
 }
 
 .pageDescription {
     margin: 0.5%;
     font-size: 13px;
     width: 83%;
-    position: relative;
-    left: 7%;
-    bottom: 4%;
     color: white;
     font-weight: lighter;
+    margin-left: 29px;
+    margin-top: -12px;
 }
 
 
