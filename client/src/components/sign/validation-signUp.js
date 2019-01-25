@@ -48,7 +48,7 @@ class SignInValidation extends Component {
         console.log("add item form props: ", this.props);
         const {handleSubmit, reset} = this.props;
         return (
-            <form className='sign-up-form' onSubmit={handleSubmit(this.handleAddItem)}>
+            <form id='sign-up-form' onSubmit={handleSubmit(this.handleAddItem)}>
                 <div className="row">
                     <Field name={"Name"} size={"s9 m8 offset-m2"} component={this.renderInput} id="Name" label={"Name"}/>
                 </div>
@@ -63,11 +63,11 @@ class SignInValidation extends Component {
                            label={"Phone Number"}/>
                 </div>
                 <div className=" row">
-                    <div className="col s6 center">
-                        <button onClick={reset} type={"button"} className="btn red darken-2">clear</button>
-                    </div>
+                    {/* <div className="col s6 center">
+                        <button onClick={reset} type={"button"} className="btn grey darken-4">clear</button>
+                    </div> */}
                     <div className="signup-button col s6 center">
-                        <button className="btn grey darken-2">Sign Up</button>
+                        <button className="btn yellow darken-2 grey-text text-darken-3">Sign Up</button>
                     </div>
                 </div>
             </form>

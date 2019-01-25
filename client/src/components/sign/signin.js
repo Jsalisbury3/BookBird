@@ -25,7 +25,7 @@ class Signin extends Component{
             
             <div className="signin_container">
                 <div className='signin-logo-container'>
-                <img src={logo}/>
+                    <img src={logo}/>
                 </div>
                 
                 {/* <h1 className="signInHeader">Sign in</h1> */}
