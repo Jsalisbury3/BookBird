@@ -25,6 +25,10 @@
     /* behavior: url(PIE.htc); */
 }
 .profile-main-container{
+    /* background: linear-gradient( #180218ee, #240024da );
+    background-size: 271%;
+    background-repeat: no-repeat;
+    background-position: -352px -38px; */
     background-image: 
         linear-gradient(rgba(96, 0, 138, 0.877),rgba(41, 0, 41, 0.829));
     background-color: white;
@@ -45,6 +49,8 @@
     border-top: 1px solid rgba(255, 255, 255, 0.897);
     
 }
+
+
 .user-image-container{
     position:relative;
     display:inline-block;
@@ -101,6 +107,8 @@
     top:5px;
     padding:0;
 }
+
+
 #profilePhotoInput{
     width: 0.1px;
 	height: 0.1px;
@@ -119,21 +127,35 @@
     margin-top: 4px;
     /* margin-left: 3px; */
 }
+
+
 .user-posts-container{
     display:inline-block;
     width: 90%;
-    margin-top:7%;
+    margin-top:10px;
     margin-left:5vw;
     /*background-color:white;*/
     overflow:scroll;
+}
+
+.user-posts-header {
+    position: relative;
+    font-weight: lighter;
+    font-size: 20px;
+    color: white;
+    left: 120px;
 }
 
 .emptyListings {
     left: 35px;
     position: relative;
     font-weight: bold;
-    font-size: 30px;
+    font-size: 25px;
     color: white;
+}
+
+.profilePrice {
+    font-size: 20px;
 }
 
 .samplePost{
@@ -142,58 +164,57 @@
     background-color: bisque;
 }
 
-.Thrashed {
+.Thrashed.profileListings {
     color: white;
     padding: 5% 5% 5% 5%;
-    height: 65%;
-    width: 112%;
     left: -10%;
     text-transform: uppercase;
     background-color: black;
     
 }
 
-.New {
+.New.profileListings {
     color: white;
     padding: 5% 5% 5% 5%;
-    height: 58%;
-    width: 56%;
     left: 15%;
     text-transform: uppercase;
     background-color: rgb(6, 235, 6);
     
 }
 
-.Good {
+.Good.profileListings {
     color: white;
     padding: 5% 5% 5% 5%;
-    height: 60%;
-    width: 68%;
     left: 15%;
     text-transform: uppercase;
     background-color: rgb(0, 4, 255);
     
 }
 
-.Worn {
+.Worn.profileListings {
     color: white;
     padding: 5% 5% 5% 5%;
-    height: 58%;
-    width: 68%;
     left: 15%;
     text-transform: uppercase;
     background-color: rgb(255, 0, 0);
     
 }
-.Like_New {
+.Like_New.profileListings {
     color: white;
     position: relative;
     padding: 5% 5% 5% 5%;
-    height: 55%;
-    width: 100%;
     left: -5%;
-    top: 10%;
     text-transform: uppercase;
     background-color: rgb(0, 255, 42);
     
+}
+
+#profileListings {
+    margin-top: 5px;
+    left: 2px;
+    color: white;
+    text-transform: uppercase;
+    font-style: normal;
+    height: 30px;
+    width: 55%;
 }

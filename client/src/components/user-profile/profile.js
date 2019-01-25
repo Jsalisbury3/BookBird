@@ -117,6 +117,7 @@ class UserProfile extends Component {
                         </div>
                     </div>
                     <div className="profile-main-content">
+                        <div className="user-posts-header">Account Listings</div>
                         <UserPostList/>
                     </div>
                     
