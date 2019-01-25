@@ -114,6 +114,16 @@ h2:nth-child(2)  {
 
 }
 
+#back-arrow-container {
+    display: inline-block;
+    position: absolute;
+    z-index: 1;
+    height: 50px;
+    width: 50px;
+    top: 65px;
+    left: 20px;
+}
+
 .imageContainer > img {
     position: absolute;
     height: 100%;

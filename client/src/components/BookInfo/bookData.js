@@ -89,15 +89,16 @@ class IndividualBookData extends Component {
 
               <div className='bookDetailsContainer'>
 
-                  <div id='back-arrow-container'>
-                      <Link to={"/"}>
-                          <i id='arrow-icon' className='small yellow-text text-darken-1 material-icons'>arrow_back</i>
-                      </Link>
-                  </div>
+                    <div id='back-arrow-container'>
+                        <Link to={"/Landing"}>
+                            <i id='arrow-icon' className='small yellow-text text-darken-1 material-icons'>arrow_back</i>
+                        </Link>
+                    </div>
                 {/* <img id='bookLoadScreen' src={loading}/> */}
                 <div className="carousel" id="imageContainer">
+                    
             
-                <img id="imageBackground" style={{display:'block'}}/>
+                    <img id="imageBackground" style={{display:'block'}}/>
                 
                 <img className="bookLoading" style={{display:'none'}}/>
                         <a className="carousel-item responsive-img" id="book-item" href="#one!">
@@ -113,9 +114,6 @@ class IndividualBookData extends Component {
                                 <h6 className="bookTitle">{this.props.listId[0].title}</h6>
                                 <h6 className="bookAuthor">{this.props.listId[0].author}</h6>
                                 <h6 className="bookISBN">ISBN {this.props.listId[0].ISBN}</h6>
-                                {/* <div className="userContactInfo soldBy" >Seller:</div>
-                                <img className="sellerPhoto" src={this.props.listId[0].profile_photo_url === null ? './images/no_photo_available.jpg' : `https://s3-us-west-2.amazonaws.com/book-bird-test-bucket/${this.props.listId[0].profile_photo_url}`}/>
-                                <div className="userContactInfo sellerName">{this.props.listId[0].name}</div> */}
                                 <div className="sellersContent">
                                     <h6>Seller's Comments</h6>
                                     <h5>{!this.props.listId[0].comments ? 'N/A' : this.props.listId[0].comments}</h5>
@@ -130,20 +128,11 @@ class IndividualBookData extends Component {
                                 </div>
                                 <div className="userContactInfo">
                                     <div className="userContactInfo soldBy" >Seller:</div>
-                                    {/* <img src='images/defaultPhoto.jpg'></img> */}
                                     <img className="sellerPhoto" src={this.props.listId[0].profile_photo_url === null ? NoPhoto : `https://s3-us-west-2.amazonaws.com/book-bird-test-bucket/${this.props.listId[0].profile_photo_url}`}/>
                                     <div className="userContactInfo sellerName">{this.props.listId[0].name}</div>
                                 </div>
                             </div>
-                            {/* <div className="sellersContent">
-                                <h6>Seller's Comments</h6>
-                                <h5>{this.props.listId[0].comments}</h5>
-                            </div> */}
-                            {/* <div className="userContactInfo">
-                                    <div className="userContactInfo soldBy" >Seller: {this.props.listId[0].name} </div>
-                                    <img className="sellerPhoto" src={this.props.listId[0].profile_photo_url === null ? './images/no_photo_available.jpg' : `https://s3-us-west-2.amazonaws.com/book-bird-test-bucket/${this.props.listId[0].profile_photo_url}`}/>
-                                    <div className="userContactInfo sellerName">{this.props.listId[0].name}</div>
-                            </div> */}
+            
                             <div className="contactSignIn">{this.state.displayError ? '' : 'Please sign in to contact the seller'}</div>
                             
                         </div>
