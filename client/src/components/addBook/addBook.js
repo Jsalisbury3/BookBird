@@ -366,18 +366,19 @@ class AddBook extends Component {
                                     <div className="bookSuccessInfo">
                                         <p className="successModalText">Success!</p>
                                         <div className="successImage">
-                                            <img src={success}/>
+                                            {/* <img src={success}/> */}
+                                            <i className="checkIcon large material-icons">check_circle</i>
                                         </div>
                                         <div className="successModalButtons">
                                             <button onClick={this.cancelButton} type="button"
                                                     className="btn-small btn yellow darken-2 grey-text text-darken-2 postAgainButton">Post Again
                                             </button>
-                                            <p className="btn-small btn yellow darken-2 grey-text text-darken-2 acceptButton"><Link className="acceptLink" to={"/landing"}>Accept</Link>
+                                            <p className="btn-small btn yellow darken-2 acceptButton"><Link className="grey-text text-darken-2 acceptLink" to={"/landing"}>Accept</Link>
                                             </p>
                                         </div>
                                     </div>
                                     <div className="signInRequiredModal">
-                                        <p>You must be signed in to post a book</p>
+                                        <p className="signInRequiredText">You must be signed in to post a book</p>
                                         <Link to={"/SignIn"}><p
                                             className="btn-small btn signInRequiredButtons"> Sign In </p>
                                         </Link>
@@ -509,7 +510,7 @@ class AddBook extends Component {
                         <div className='submit-photo-container'>
                             <label id="add-photo-icon picIcon" className="btn waves-light add-photo-icon-class"
                                    htmlFor="photoInput"><i
-                                className={"material-icons"}>add_a_photo</i></label>
+                                className={"grey-text text-darken-2 material-icons"}>add_a_photo</i></label>
                             <input id="photoInput" type="file" name="photo" capture="camera" accept="image/*"
                                    onChange={this.fileSelectedHandler}/>
                         </div>
