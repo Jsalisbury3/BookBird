@@ -27,7 +27,7 @@ class UserProfile extends Component {
         if(!hasToken) {
             this.props.history.push("/SignIn");
         } else {
-            this.getProfileUrl();
+            this.getProfileUrl()
         }
 
     }

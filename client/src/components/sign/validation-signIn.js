@@ -15,6 +15,7 @@ class SignInValidation extends Component {
     }
 
     storeToken = () => {
+        debugger;
         if (this.props.signInResults.success && this.props.signInResults.runOnce) {
             const Token = this.props.signInResults.data;
             localStorage.setItem("Token", Token);
