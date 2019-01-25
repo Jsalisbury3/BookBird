@@ -12,10 +12,9 @@ import schoolLogo from './images/sfsu_profile.jpg';
 import axios from 'axios';
 import Header from './../universal/header'
 import Nav from './../universal/nav'
-
+import loadingGif2 from '../addBook/images/loadingGif2.gif'
 
 class UserProfile extends Component {
-    debugger;
     constructor(props) {
         super(props);
         this.state = {
@@ -28,6 +27,7 @@ class UserProfile extends Component {
         if(!hasToken) {
             this.props.history.push("/SignIn");
         } else {
+            document.getElementById("loadingGif2").style.visibility = 'visible';
             this.getProfileUrl();
         }
 
@@ -40,6 +40,7 @@ class UserProfile extends Component {
             photo: `https://s3-us-west-2.amazonaws.com/book-bird-test-bucket/${response.data.data[0].profile_photo_url}`
         })
         console.log("state in profile url: ", this.state.photo);
+        document.getElementById("loadingGif2").style.visibility = 'hidden';
     }
 
     getProfileUrl = () => {
@@ -109,6 +110,7 @@ class UserProfile extends Component {
                             src={logout24}/>
                         </button>
                         <div className='user-image-container circleBase'>
+                            <img src={loadingGif2} id="loadingGif2"alt=""/>
                             <img src={this.state.photo ? this.state.photo : defaultPhoto}/>
                             <label className="opacitySlip" htmlFor="profilePhotoInput"><i
                                 className='material-icons center'>add_a_photo</i></label>

@@ -12,9 +12,9 @@ import NoPhoto from '../BookInfo/images/defaultPhoto.jpg';
 import rainbow from './images/loading_rainbow.gif';
 import bookshelf from './images/book_shelf.jpg';
 import {Link} from 'react-router-dom';
+import {withRouter} from 'react-router-dom'
 import 'materialize-css/dist/css/materialize.min.css'
 import 'materialize-css';
-
 
 class IndividualBookData extends Component {
 
@@ -149,13 +149,13 @@ class IndividualBookData extends Component {
                         </div>
                             <div className="bookDetailButtonContainer" id="contactAction">
                                 <div id="backButtonContainer">
-                                    <Link to={"/Landing"} className="btn" id="contactActionBack">BACK</Link>
+                                    <div onClick={this.props.history.goBack}  className="btn" id="contactActionBack">BACK</div>
                                 </div>
                                 <div id="contactSellerContainer">
-                                    <button onClick={this.contactSeller} className="btn" id="contactActionButton">CONTACT SELLER</button>
+                                    <button  onClick={this.contactSeller} className="btn" id="contactActionButton">CONTACT SELLER</button>
                                 </div>
                             </div>
-                        
+
                     {/* </div> */}
                 {/* </div> */}
             </div>
@@ -178,4 +178,4 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(IndividualBookData);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(IndividualBookData));

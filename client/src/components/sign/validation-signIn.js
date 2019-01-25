@@ -15,6 +15,7 @@ class SignInValidation extends Component {
     }
 
     storeToken = () => {
+        debugger;
         if (this.props.signInResults.success && this.props.signInResults.runOnce) {
             const Token = this.props.signInResults.data;
             localStorage.setItem("Token", Token);
@@ -74,7 +75,7 @@ function validate(values) {
     console.log("emaillllllllllllllll: ", Email);
     const errors = {};
     const emailRegex =  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-    const passwordRegex = /(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{8,10})$/;
+    const passwordRegex = /(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{8,})$/;
 
 
 

@@ -218,3 +218,9 @@
     height: 30px;
     width: 55%;
 }
+
+#loadingGif2{
+    width: 42%;
+    height: 46%;
+    z-index: 1;
+}

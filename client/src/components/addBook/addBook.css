@@ -10,31 +10,39 @@
     width: 100vw;
     height: 130vh;
     left: 0;
-    background-color: rgba(0,0,0,0.75);
+    background-color: rgba(0,0,0,0.86);
     top: -19%;
 }
 
+#isbnInput{
+    color: white !important;
+    font-weight: lighter; 
+}
+
+
 .acceptButton{
-margin:2px;
+    margin:2px;
 }
 
 .acceptLink{
     color:white;
 }
 .postAgainButton{
-margin:2px;
+    margin:2px;
 }
 .POST{
     position: relative;
     width: 50%;
     margin-left: 0;
     right: 11%;
+    /* background-color: #fbc02d !important; */
 
 }
 .cancelButton {
     position: relative;
     width: 50%;
     right: 25%;
+    /* background-color: #fbc02d !important; */
 }
 
 .isbnSearchErrorMessage{
@@ -66,8 +74,19 @@ margin:2px;
 .submit_clear_buttons{
 } */
 
+.isbnIsRequiredText{
+    font-weight: lighter;
+    text-align: center; 
+}
+
+.tooltipped{
+    color: #fbc02d !important;
+    font-weight: lighter;
+}
+
 #errorISBN{
     color:red;
+    text-align: center;
 }
 .signInRequiredButtons {
     margin: 14px;
@@ -90,6 +109,7 @@ margin:2px;
 .successModalText{
     justify-content: center;
     display: flex;
+    color: white;
 }
 .input-header{
     font-size: .80rem;
@@ -97,7 +117,8 @@ margin:2px;
     margin: .7666666667rem 0 .46rem 0;
     position: absolute;
     left: 8%;
-    color: #26a69a;
+    font-weight: lighter; 
+    /* color:#fbc02d; */
 }
 
 
@@ -111,7 +132,9 @@ margin:2px;
     /* bottom: 47%;
     left: 21%; 
     top:49%; */
-    font-weight: bold; 
+    /* font-weight: bold;  */
+    color: white;
+    font-weight: lighter;
 }
 
 .isbnSearchButton{
@@ -130,13 +153,17 @@ margin:2px;
     font-size: 16px;
     margin-top: 6px;
     margin-bottom: 18px;
+    color: white;
+    font-weight: lighter;
 }
 
 .addBook-container{
     height: 100vh;
     width: 100%;
-    background-color: #C2E5F9;
+    /* background-color: #C2E5F9; */
+    background-image: linear-gradient(rgba(75, 0, 104, 0.877),rgba(43, 0, 43, 0.829));
 }
+
 .isbn-container {
     height: 100%
 }
@@ -190,11 +217,13 @@ img {
 }
 .enterIsbnLabel{
     font-size: 10px;
-    left:2%
+    left:2%;
+    color: #fbc02d !important;
 }
 .search_button_container{
-    position: relative;
-    left: 5%;
+    /* position: relative;
+    left: 21%; */
+    text-align: center;
 }
 .form-isbn {
     height: 50%;
@@ -210,7 +239,7 @@ img {
 }
 
 .input-field > label {
-    color: #26a69a !important;
+    /* color: #26a69a !important; */
     position: absolute;
     top: 0;
     left: 0;
@@ -226,7 +255,9 @@ img {
     -webkit-transform: translateY(12px);
     transform: translateY(12px);
 }
-/* .input-field > label {
+/* .input-field{
+    border-bottom: white !important;
+
 } */
 
 .label-placeholder {
@@ -256,7 +287,7 @@ label {
 }
 .modal-content {
     width: 72%;
-    background-color: white;
+    /* background-color: white; */
     position: absolute;
     top: 50%;
     left: 50%;
@@ -268,7 +299,11 @@ label {
     /* border-radius: 6%; */
     box-shadow: darkgrey 0px 0px 2px;
     /* border: 1px solid darkgrey */
+    background-image: linear-gradient(rgba(93, 2, 129, 0.877),rgba(90, 3, 90, 0.829));
 }
+
+
+
 /* .input-field > label {
     color: #9e9e9e;
     position: absolute;
@@ -297,12 +332,15 @@ label {
     font-size: 12px;
     height: 46px;
     position: relative;
+    border: 1px solid white;
+    color: white;
+    font-weight: lighter;
 }
 .sellers-comments-tag {
     position: relative;
     bottom: 16%;
     font-size: .80rem;
-    color: #26a69a;
+    color:#fbc02d;
     left: 8.5vw;
 }
 .optional-tag {
@@ -326,6 +364,7 @@ label {
     top: 10vh;
     left: 40vw;
     display: inline-block;
+    background-color: #fbc02d;
 }
 
 /*:root {*/
@@ -388,6 +427,9 @@ label {
     position: relative;
     left: 5%;
     padding: 8px;
+    color: white;
+    font-weight: lighter;
+    color:  #fbc02d;
 }
 
 .pageDescription {
@@ -397,6 +439,8 @@ label {
     position: relative;
     left: 7%;
     bottom: 4%;
+    color: white;
+    font-weight: lighter;
 }
 
 
@@ -431,7 +475,9 @@ label {
 }
 #add-photo-icon {
     z-index: 0;
-
+}
+.add-photo-icon-class{
+    background-color: #fbc02d !important;
 }
 .header {
     height: 12vh;
@@ -464,10 +510,30 @@ label {
     text-align: center;
 }
 
+#priceLabel{
+    /* font-weight:lighter */
+}
+
+#price{
+    font-weight: lighter; 
+    color: white; 
+}
+
 #titleError {
     top: 8vh;
     display: inline-block;
     left: 16vw;
+}
+
+#author{
+    /* color: #fbc02d !important; */
+    color:white;
+    font-weight: lighter;
+}
+
+#title{
+    color: white;
+    font-weight: lighter 
 }
 
 #authErr {

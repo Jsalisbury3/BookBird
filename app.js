@@ -276,48 +276,59 @@ webserver.post('/api/contactSeller', (request, response) => {
             };
             response.send(outputAlreadySignedIn);
         } else {
+
             const query = "SELECT a.phoneNumber FROM `accounts` AS a JOIN `loggedin` AS lg ON a.ID = lg.account_id WHERE lg.token = '" + userToken + "'";
             console.log(query);
             db.query(query, (err, data) => {
                 if (data) {
                     let buyerNumber = data[0].phoneNumber;
-                    console.log("buyerNumber: ", buyerNumber);
-                    const query = "SELECT c.ID FROM `convos` AS c WHERE c.buyer_number = '" + buyerNumber + "' OR c.seller_number = '" + SellerNumber + "' AND c.source_num_id = '" + sourceNumber + "'";
-                    db.query(query, (err, data) => {
-                        console.log("im what u want : ", data);
+                    const existingRow = "SELECT ID FROM `convos` WHERE buyer_number = ? AND seller_number = ?";
+                    const exisitingArray = [buyerNumber, SellerNumber];
+                    const exisitingConvoQuery = mysql.format(existingRow, exisitingArray);
+                    db.query(exisitingConvoQuery, (err, data) => {
                         if (data.length < 1) {
-                            twilio.messages.create({
-                                body: `Someone is interested in buying your book ${bookTitle}. Respond to this message to contact the possible buyer`,
-                                to: `+1${SellerNumber}`,
-                                from: '+15108226645',
-                            });
-                            const getOriginalNumberQuery = "SELECT ID FROM `source_num` WHERE twilio_number = '" + sourceNumber + "'";
-                            db.query(getOriginalNumberQuery, (err, data) => {
-                                let infoToHash = buyerNumber + SellerNumber;
-                                let convoHash = jwt.encode(infoToHash, hash);
-                                console.log("DATA FROM INSERT QUERY WANT THISSSS: ", data);
-                                const storeConvoDataQuery = "INSERT INTO `convos` SET hash = '" + convoHash + "', buyer_number = '" + buyerNumber + "', seller_number = '" + SellerNumber + "', source_num_id = '" + data[0].ID + "'";
-                                console.log("FINAL QUERY MEMEMEMEME: ", storeConvoDataQuery);
-                                db.query(storeConvoDataQuery, (err, data) => {
-                                    if (!err) {
-                                        const successOutput = {
-                                            success: true,
-                                            message: "Seller contacted"
-                                        };
-                                        response.send(successOutput);
-                                    } else {
-                                        console.log(err)
-                                        const failedStoringDetails = {
-                                            success: false,
-                                            message: "failed to make store contact information into convos"
-                                        };
-                                        response.send(failedStoringDetails);
-                                    }
-                                })
+                            console.log("buyerNumber: ", buyerNumber);
+                            const query = "SELECT c.ID FROM `convos` AS c WHERE c.buyer_number = '" + buyerNumber + "' OR c.seller_number = '" + SellerNumber + "' AND c.source_num_id = '" + sourceNumber + "'";
+                            db.query(query, (err, data) => {
+                                console.log("im what u want : ", data);
+                                if (data.length < 1) {
+                                    twilio.messages.create({
+                                        body: `Someone is interested in buying your book ${bookTitle}. Respond to this message to contact the possible buyer`,
+                                        to: `+1${SellerNumber}`,
+                                        from: '+15108226645',
+                                    });
+                                    const getOriginalNumberQuery = "SELECT ID FROM `source_num` WHERE twilio_number = '" + sourceNumber + "'";
+                                    db.query(getOriginalNumberQuery, (err, data) => {
+                                        let infoToHash = buyerNumber + SellerNumber;
+                                        let convoHash = jwt.encode(infoToHash, hash);
+                                        console.log("DATA FROM INSERT QUERY WANT THISSSS: ", data);
+                                        const storeConvoDataQuery = "INSERT INTO `convos` SET hash = '" + convoHash + "', buyer_number = '" + buyerNumber + "', seller_number = '" + SellerNumber + "', source_num_id = '" + data[0].ID + "'";
+                                        console.log("FINAL QUERY MEMEMEMEME: ", storeConvoDataQuery);
+                                        db.query(storeConvoDataQuery, (err, data) => {
+                                            if (!err) {
+                                                const successOutput = {
+                                                    success: true,
+                                                    message: "Seller contacted"
+                                                };
+                                                response.send(successOutput);
+                                            } else {
+                                                console.log(err)
+                                                const failedStoringDetails = {
+                                                    success: false,
+                                                    message: "failed to make store contact information into convos"
+                                                };
+                                                response.send(failedStoringDetails);
+                                            }
+                                        })
+                                    })
+                                } else {
+                                    getSourceNumber(buyerNumber, SellerNumber, bookTitle)
+                                }
                             })
-
                         } else {
-                            getSourceNumber(buyerNumber, SellerNumber, bookTitle)
+                            const ConvoNotNew = {
+                                message : "convo already in table"
+                            }
                         }
                     })
                 } else {
@@ -338,12 +349,15 @@ webserver.post('/api/MessageResponse', (request, response) => {
         const message = request.body.Body;
         let sentFrom = request.body.From;
         let numberUsed = request.body.To;
+        numberUsed = numberUsed.slice(2, numberUsed.length);
         sentFrom = sentFrom.slice(2, sentFrom.length);
         console.log(request.body);
         // const queryToGrabOtherNumber = "SELECT c.buyer_number, c.seller_number FROM `convos` AS c WHERE '"+sentFrom+"' = c.buyer_number OR c.seller_number";
-        const queryToGrabOtherNumber = "SELECT c.buyer_number, c.seller_number FROM `convos` AS c WHERE c.buyer_number = '" + sentFrom + "' OR c.seller_number = '" + sentFrom + "'";
-        console.log(queryToGrabOtherNumber);
-        db.query(queryToGrabOtherNumber, (err, data) => {
+        // const queryToGrabOtherNumber = "SELECT c.buyer_number, c.seller_number FROM `convos` AS c JOIN `source_num` AS sn ON c.source_num_id = sn.ID WHERE c.buyer_number = '" + sentFrom + "' OR c.seller_number =  AND twilio_number = ?";
+        const queryToGrabOtherNumber = "SELECT c.buyer_number, c.seller_number FROM `convos` AS c JOIN `source_num` AS sn ON c.source_num_id = sn.ID WHERE sn.twilio_number = ? AND (c.buyer_number = ? OR c.seller_number = ?)";
+        const grabOtherNumberArray = [numberUsed, sentFrom, sentFrom];
+        const getothernumberQurey = mysql.format(queryToGrabOtherNumber, grabOtherNumberArray);
+        db.query(getothernumberQurey, (err, data) => {
             if (!err) {
                 // console.log("data[0].buyer_number", data[0].buyer_number)
                 // console.log("data[0].seller_number", data[0].seller_number)
@@ -353,7 +367,7 @@ webserver.post('/api/MessageResponse', (request, response) => {
                     twilio.messages.create({
                         body: message,
                         to: `+1${numberWeWant}`,
-                        from: `+${numberUsed}`
+                        from: `+1${numberUsed}`
                     });
 
                 } else {
@@ -362,11 +376,11 @@ webserver.post('/api/MessageResponse', (request, response) => {
                     twilio.messages.create({
                         body: message,
                         to: `+1${numberWeWant}`,
-                        from: `+${numberUsed}`
+                        from: `+1${numberUsed}`
                     });
                 }
             } else {
-                console.log("i dunn fudged up", err)
+                console.log("query to grab other number: ", err)
             }
         })
     })
