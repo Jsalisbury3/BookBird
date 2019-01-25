@@ -29,7 +29,7 @@ class SignInValidation extends Component {
         return (
             <div className={`col ${props.size || 's9'}`}>
                 <div className="input-field">
-                    <input className="signInInput grey-text text-lighten-5" {...props.input} id={props.id} type="text" autoComplete={"off"}/>
+                    <input className="signInInput grey-text text-lighten-5" {...props.input} id={props.id} type={props.id === "Password" ? 'password' : 'text'} autoComplete={"off"}/>
                     <label className="signInLabel yellow-text text-darken-2" htmlFor={props.id}>{props.label}</label>
                 </div>
                 <p className={"sign-in-error red-text text-darken-2"}>{props.meta.touched && props.meta.error}</p>
