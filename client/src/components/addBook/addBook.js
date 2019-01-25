@@ -120,7 +120,7 @@ class AddBook extends Component {
                 document.querySelector(element).nextSibling.innerHTML = errorMessage;
             } else {
                 document.getElementById("conditionError").innerHTML = errorMessage;
-                document.getElementById("conditionCheckMArk").classList.remove("visible");
+                // document.getElementById("conditionCheckMArk").classList.remove("visible");
             }
         } else {
             if (element !== "input[name=condition]") {
@@ -128,7 +128,7 @@ class AddBook extends Component {
                 document.querySelector(element).nextSibling.innerHTML = '';
             } else {
                 document.getElementById("conditionError").innerHTML = '';
-                document.getElementById("conditionCheckMArk").classList.add("visible");
+                // document.getElementById("conditionCheckMArk").classList.add("visible");
             }
         }
         return result;
@@ -228,10 +228,10 @@ class AddBook extends Component {
     };
     getBooks = (event) => {
         event.preventDefault();
-        document.getElementById('loadingGif').style.visibility = 'visible';
         if (!this.validateIsbn()) {
             return
         }
+        document.getElementById('loadingGif').style.visibility = 'visible';
         this.setState({hideIsbnSearchBar: true});
         axios.request({
             method: 'get',
@@ -245,13 +245,14 @@ class AddBook extends Component {
                     title: response.data.items[0].volumeInfo.title,
                     bookImage: response.data.items[0].volumeInfo.imageLinks.smallThumbnail
                 }, () => {
-                    document.getElementById('loadingGif').style.visibility = 'hidden';
+                    // document.getElementById('loadingGif').style.visibility = 'hidden';
                     document.getElementsByClassName("isbnModalHeader")[0].style.display = "none";
                     document.getElementsByClassName("modal-footer")[0].style.display = "block";
                     document.getElementsByClassName("modal-body")[0].style.display = "block";
                     document.getElementsByClassName("google_book_image")[0].style.display = "block";
                     document.getElementsByClassName("isbnModalBookDescription")[0].style.display = "block";
                     document.getElementsByClassName("submit_clear_buttons")[0].style.display = "block";
+                    document.getElementById('loadingGif').style.visibility = 'hidden';
                 })
             } catch {
                 console.log("error finding book info");
@@ -315,7 +316,7 @@ class AddBook extends Component {
         document.getElementsByName("author")[0].value = ``;
         document.getElementsByName("title")[0].value = ``;
         document.getElementsByName("price")[0].value = ``;
-        document.getElementsByClassName('checkMark')[0].style.display = "none";
+        // document.getElementsByClassName('checkMark')[0].style.display = "none";
 
         this.setState({
             ISBN: '',
@@ -336,12 +337,12 @@ class AddBook extends Component {
                                 <div style={hideISBN} className="isbnModalHeader">
                                     <p className="isbnModalHeader">Post your book by ISBN</p>
                                     <form onSubmit={this.getBooks} className='form-isbn'>
-                                        <div className="input_label input-field">
+                                        <div className="input-field">
                                             <input id="isbnInput" autoComplete="off" type="text"
                                                    onChange={this.handleIsbnChange.bind(this)} name={"ModalISBN"}
                                                    value={this.state.ISBN}/>
                                             <div id="errorISBN"></div>
-                                            <p>ISBN is required <a ref={e => this.tooltip = e} className="tooltipped"
+                                            <p className="isbnIsRequiredText">ISBN is required <a ref={e => this.tooltip = e} className="tooltipped"
                                                                    data-position="top"
                                                                    data-tooltip="We require ISBN number to ensure accuracy of book postings">why?</a>
                                             </p>
@@ -349,7 +350,7 @@ class AddBook extends Component {
                                         </div>
                                         <div className='search_button_container'>
                                             <button onClick={this.getBooks} type="button"
-                                                    className='isbnSearchButton btn btn-small waves-effect'>Search
+                                                    className='yellow darken-2 grey-text text-darken-2 isbnSearchButton btn btn-small'>Search
                                             </button>
                                         </div>
                                         <p className="isbnSearchErrorMessage">Error please try again</p>
@@ -369,30 +370,30 @@ class AddBook extends Component {
                                         </div>
                                         <div className="successModalButtons">
                                             <button onClick={this.cancelButton} type="button"
-                                                    className="btn-small btn waves-effect postAgainButton">Post Again
+                                                    className="btn-small btn yellow darken-2 grey-text text-darken-2 postAgainButton">Post Again
                                             </button>
-                                            <p className="btn-small btn waves-effect white-text acceptButton"><Link className="acceptLink" to={"/landing"}>Accept</Link>
+                                            <p className="btn-small btn yellow darken-2 grey-text text-darken-2 acceptButton"><Link className="acceptLink" to={"/landing"}>Accept</Link>
                                             </p>
                                         </div>
                                     </div>
                                     <div className="signInRequiredModal">
                                         <p>You must be signed in to post a book</p>
                                         <Link to={"/SignIn"}><p
-                                            className="btn-small btn waves-effect signInRequiredButtons"> Sign In </p>
+                                            className="btn-small btn signInRequiredButtons"> Sign In </p>
                                         </Link>
                                         <Link to={"/SignUp"}><p
-                                            className="btn-small btn waves-effect uiresignInReqdButtons"> Sign Up </p>
+                                            className="btn-small btn signInRequiredButtons"> Sign Up </p>
                                         </Link>
                                     </div>
                                 </div>
                                 <div className="modal-footer">
                                     <form>
                                         <div className="submit_clear_buttons">
-                                            <button className="accept_button btn-small btn waves-effect" type="button"
+                                            <button className=" yellow darken-2 grey-text text-darken-2 accept_button btn-small btn" type="button"
                                                     onClick={this.populateData}> Accept
                                             </button>
                                             <button onClick={this.cancelButton}
-                                                    className="clear_button btn-small btn waves-effect"
+                                                    className=" yellow darken-2 grey-text text-darken-2 clear_button btn-small btn"
                                                     type="button">Try
                                                 Again
                                             </button>
@@ -442,31 +443,31 @@ class AddBook extends Component {
                         <p className={"pageDescription"}> Fill out the remaining fields below. This information will be displayed when other students are searching for books.</p>
                         <div id='input-container1' className=' title-container row'>
                             <div id={"titleError"} className={"error"}></div>
-                            <div id={"conditionCheckMArk"}
+                            {/* <div id={"conditionCheckMArk"}
                                  className={"checkMark markCondition material-icons"}>check_circle_outline
-                            </div>
+                            </div> */}
                             <div className='input-field '>
-                                <h6 className='input-header first'>Title</h6>
+                                <h6 className='yellow-text text-darken-2 input-header first'>Title</h6>
                                 <input name="title" id='title' type='text' className="inputs col s10 push-s1"
                                        onChange={this.handleInput} autoComplete="off"/>
                             </div>
                         </div>
                         <div id='input-container2' className=' title-container row'>
                             <div className={"error"} id={"authErr"}></div>
-                            <div className={"checkMark markTitle material-icons"}>check_circle_outline</div>
+                            {/* <div className={"checkMark markTitle material-icons"}>check_circle_outline</div> */}
                             <div className='input-field'>
-                                <h6 className='input-header second'>Author</h6>
+                                <h6 className='yellow-text text-darken-2 input-header second'>Author</h6>
                                 <input name="author" id='author' type='text' className="inputs col s10 push-s1"
                                        onChange={this.handleInput} autoComplete="off"/>
                             </div>
                         </div>
                         <div id='input-container3' className='title-container row'>
                             
-                            <div className={"checkMark markEdition material-icons"}>check_circle_outline</div>
+                            {/* <div className={"checkMark markEdition material-icons"}>check_circle_outline</div> */}
                             <div className='input-field'>
                                 <input name={"price"} id={'price'} type='text' className={"inputs col s10 push-s1"} onChange={this.handleInput} autoComplete="off"/>
                                 <div className="text-red"id={"priceErr"}></div>
-                                <label className='label-placeholder' htmlFor={'price'}>Price</label>
+                                <label id="pricelabel"className='yellow-text text-darken-2 label-placeholder' htmlFor={'price'}>Price</label>
                                 
                             </div>
                         </div>
@@ -482,7 +483,7 @@ class AddBook extends Component {
                             </select>
                         </div>
                         <div id={"conditionError"}></div>
-                        <div className={"checkMark markPrice material-icons"}>check_circle_outline</div>
+                        {/* <div className={"checkMark markPrice material-icons"}>check_circle_outline</div> */}
                         <h5 name="comments" className='sellers-comments-tag'> Sellers Comments</h5>
                         <div className={'comment-text-area'}>
                             <div>
@@ -506,7 +507,7 @@ class AddBook extends Component {
                         {/*<input name={"edition"} placeholder={"*Edition"} className={"inputs"} onChange={this.handleInput}/>*/}
 
                         <div className='submit-photo-container'>
-                            <label id="add-photo-icon picIcon" className="btn waves-effect waves-light"
+                            <label id="add-photo-icon picIcon" className="btn waves-light add-photo-icon-class"
                                    htmlFor="photoInput"><i
                                 className={"material-icons"}>add_a_photo</i></label>
                             <input id="photoInput" type="file" name="photo" capture="camera" accept="image/*"
@@ -517,9 +518,9 @@ class AddBook extends Component {
                         </div>
                         <div className='post-button-container'>
                             <button type="button" onClick={this.cancelButton}
-                                    className="btn-small cancelButton">Cancel
+                                    className="yellow darken-2 grey-text text-darken-2 btn-small cancelButton">Cancel
                             </button>
-                            <button className="btn-small POST">Post</button>
+                            <button className="yellow darken-2 grey-text text-darken-2 btn-small POST">Post</button>
                             {/* <button onClick={this.cancelButton} className=" btn-small btn waves-effect cancelButton">Cancel</button> */}
                         </div>
                     </form>
