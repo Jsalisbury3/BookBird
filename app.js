@@ -506,7 +506,7 @@ webserver.get('/api/BookInfoIndex/:ID', (request, response) => {
         db.query(query, (err, data) => {
             if (data) {
                 const images = data;
-                let query = "SELECT l.ID AS listingID, l.accounts_id, l.book_condition, l.price, l.comments, l.book_id, b.ID AS bookID, b.title, b.author, b.ISBN, b.bookImage, a.email, a.phoneNumber, a.ID FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id WHERE l.ID = " + request.params.ID + ""
+                let query = "SELECT l.ID AS listingID, l.accounts_id, l.book_condition, l.price, l.comments, l.book_id, b.ID AS bookID, b.title, b.author, b.ISBN, b.bookImage, a.email, a.phoneNumber, a.ID, a.profile_photo_url, a.name FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id WHERE l.ID = " + request.params.ID + ""
                 // query = escape_quotes(query);
                 console.log(query);
                 db.query(query, (err, data) => {
@@ -524,7 +524,7 @@ webserver.get('/api/BookInfoIndex/:ID', (request, response) => {
                 })
             } else {
                 console.log('No images for that listing');
-                let query = "SELECT l.ID AS listingID, l.accounts_id, l.book_condition, l.price, l.comments, l.book_id, b.ID AS bookID, b.title, b.author, b.ISBN, b.bookImage, a.email, a.phoneNumber, a.ID FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id WHERE l.ID = " + request.params.ID + ""
+                let query = "SELECT l.ID AS listingID, l.accounts_id, l.book_condition, l.price, l.comments, l.book_id, b.ID AS bookID, b.title, b.author, b.ISBN, b.bookImage, a.email, a.phoneNumber, a.ID, a.profile_photo_url, a.name FROM `listing` AS l JOIN `books` AS b ON l.book_id = b.ID JOIN `accounts` AS a ON a.ID = l.accounts_id WHERE l.ID = " + request.params.ID + ""
                 // query = escape_quotes(query);
                 console.log(query);
                 db.query(query, (err, data) => {

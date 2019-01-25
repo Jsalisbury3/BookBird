@@ -21,14 +21,14 @@ export default class UserPost extends Component{
                                 <div className='itemImageContainer'>
                                     <img className='itemImage' src={bookImage}/>
                                 </div>
-                                <div className='itemDetails'>
-                                    <p>Title: {title}</p>
-                                    <p>Author: {author}</p>
-                                    <p className={book_condition}>Condition: {book_condition}</p>  
+                                <div className='itemDetails itemListings'>
+                                    <p>{title}</p>
+                                    <p>{author}</p>
+                                    <p id="profileListings" className={(book_condition === 'Like New') ? 'Like_New profileListings' : book_condition}>{book_condition}</p>  
                                 </div>                            
                         </Link>
                         <div className='delete-btn-container'>
-                            <p>Price: ${price}</p>
+                            <p className="profilePrice">${price}</p>
                             <button className='waves-effect btn red center' onClick={this.props.delete}><i className='large material-icons center'>delete_outline</i></button>
                         </div>
                     </div>

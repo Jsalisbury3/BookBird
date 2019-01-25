@@ -1,4 +1,5 @@
 .delete-btn-container{
+    color: rgba(0, 0, 0, 0.842);
     vertical-align: top;
     display:inline-block;
     height:100%;
@@ -24,24 +25,45 @@
     /* behavior: url(PIE.htc); */
 }
 .profile-main-container{
+    /* background: linear-gradient( #180218ee, #240024da );
+    background-size: 271%;
+    background-repeat: no-repeat;
+    background-position: -352px -38px; */
+    background-image: 
+        linear-gradient(rgba(96, 0, 138, 0.877),rgba(41, 0, 41, 0.829));
+    background-color: white;
     position:relative;
     display:inline-block;
     height: 84vh;
     width:100vw;
-    background-color:#C2E5F9;
+    /* background-color:#C2E5F9; */
 }
+
+.profile-image-container {
+    height: 40%;
+    background-image: linear-gradient(rgba(75, 0, 104, 0.877),rgba(43, 0, 43, 0.829)),
+}
+
+.profile-main-content {
+    height: 60%;
+    border-top: 1px solid rgba(255, 255, 255, 0.897);
+    
+}
+
+
 .user-image-container{
     position:relative;
     display:inline-block;
-    height:28%;
-    width:43%;
+    height:65%;
+    /* width:43%; */
     margin-top:6%;
     margin-left:28%;
     /* background-color:brown; */
     overflow:hidden;
     /* -moz-box-shadow: 0 0 3px #ccc;
     -webkit-box-shadow: 0 0 3px #ccc; */
-    box-shadow: 0 0 4px 10px goldenrod;
+    /* box-shadow: 0 0 4px 10px goldenrod; */
+    box-shadow: 0 0 1px 5px rgba(243, 243, 243, 0.63);
 }
 
 .user-image-container>img{
@@ -79,12 +101,14 @@
     position:relative;
     display:inline-block;
     vertical-align: top;
-    height: 6%;
+    height: 35px;
     width:40px;
     text-align: center;
     top:5px;
     padding:0;
 }
+
+
 #profilePhotoInput{
     width: 0.1px;
 	height: 0.1px;
@@ -103,74 +127,96 @@
     margin-top: 4px;
     /* margin-left: 3px; */
 }
+
+
 .user-posts-container{
     display:inline-block;
     width: 90%;
-    margin-top:7%;
+    margin-top:10px;
     margin-left:5vw;
     /*background-color:white;*/
     overflow:scroll;
 }
+
+.user-posts-header {
+    position: relative;
+    font-weight: lighter;
+    font-size: 20px;
+    color: white;
+    left: 120px;
+}
+
+.emptyListings {
+    left: 35px;
+    position: relative;
+    font-weight: bold;
+    font-size: 25px;
+    color: white;
+}
+
+.profilePrice {
+    font-size: 20px;
+}
+
 .samplePost{
     display:inline-block;
     height:17.8%;
     background-color: bisque;
 }
 
-.Thrashed {
+.Thrashed.profileListings {
     color: white;
     padding: 5% 5% 5% 5%;
-    height: 65%;
-    width: 112%;
     left: -10%;
     text-transform: uppercase;
     background-color: black;
-    border-radius: 5px;
+    
 }
 
-.New {
+.New.profileListings {
     color: white;
     padding: 5% 5% 5% 5%;
-    height: 58%;
-    width: 56%;
     left: 15%;
     text-transform: uppercase;
     background-color: rgb(6, 235, 6);
-    border-radius: 5px;
+    
 }
 
-.Good {
+.Good.profileListings {
     color: white;
     padding: 5% 5% 5% 5%;
-    height: 60%;
-    width: 68%;
     left: 15%;
     text-transform: uppercase;
     background-color: rgb(0, 4, 255);
-    border-radius: 5px;
+    
 }
 
-.Worn {
+.Worn.profileListings {
     color: white;
     padding: 5% 5% 5% 5%;
-    height: 58%;
-    width: 68%;
     left: 15%;
     text-transform: uppercase;
     background-color: rgb(255, 0, 0);
-    border-radius: 5px;
+    
 }
-.Like_New {
+.Like_New.profileListings {
     color: white;
     position: relative;
     padding: 5% 5% 5% 5%;
-    height: 55%;
-    width: 100%;
     left: -5%;
-    top: 10%;
     text-transform: uppercase;
     background-color: rgb(0, 255, 42);
-    border-radius: 5px;
+    
+}
+
+#profileListings {
+    margin-top: 5px;
+    left: 2px;
+    color: white;
+    text-transform: uppercase;
+    font-style: normal;
+    height: 30px;
+    width: 55%;
 }
 
 #loadingGif2{
