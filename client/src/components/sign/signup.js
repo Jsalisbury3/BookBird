@@ -17,7 +17,6 @@ class Signup extends Component {
 
     render() {
         return (
-
             <div className="signup_container">
                 <div className='signup-logo-container'>
                     <img src={logo}/>
