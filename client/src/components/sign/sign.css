@@ -5,14 +5,6 @@
     bottom: 5%;
     font-size: 3.3rem;
 }
-
-/* .signup_footer{
-    justify-content: center;
-    align-items: center;
-    left: 19%;
-    bottom:10%;
-    position: relative;
-} */
 .signin_footer, .signup_footer {
     position: relative;
     /* justify-content: center;
@@ -55,9 +47,7 @@
 #UserNumber {
     margin-bottom: 0rem;
 }
-
 .error-message {
-    /* position: relative; */
     bottom: 14px;
     margin-left: 33%;
     font-size: 0.71rem;
@@ -80,17 +70,12 @@
     bottom: 5%;
     margin-top:41px;
 }
-/* .sign-up-form {
-    position: relative;
-    bottom: 10%;
-} */
 
 .signInError, .signUpError{
     color: red;
 }
 
 .signin_container {
-    /* background-color: #C2E5F9; */
     height: 90vh;
     overflow: auto;
 }
@@ -104,12 +89,6 @@
 }
 
 .signInInput, .signUpInput {
-    /* width: 55%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: block;
-    border: 1px solid #ccc;
-    border-radius: 4px; */
     left: 24%;
     position: relative;
     

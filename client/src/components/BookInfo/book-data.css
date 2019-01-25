@@ -347,13 +347,14 @@ h2:nth-child(2)  {
 }
 
 .New.book_details {
-    color: white;
+    color: #212121;
+    border:solid 1px #212121;
     padding: 5% 5% 5% 5%;
     height: 58%;
     width: 56%;
     left: 15%;
     text-transform: uppercase;
-    background-color: rgb(6, 235, 6);
+    background-color: whitesmoke;
     
 }
 
@@ -387,7 +388,7 @@ h2:nth-child(2)  {
     left: -5%;
     top: 10%;
     text-transform: uppercase;
-    background-color: rgb(0, 255, 42);
+    background-color: rgb(7, 193, 14);
 
 }
 
