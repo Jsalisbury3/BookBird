@@ -41,11 +41,13 @@
     width: 50%;
 }
 .itemDetails>p:first-of-type{
-    height: auto;
+    height: 40%;
     font-size: 1.1em;
     font-weight: bold;
     line-height: 1.2;
     overflow: hidden;
+    white-space: pre-wrap;
+    text-overflow:ellipsis;
     margin: 1%;
     color:rgb(27, 27, 27);
 }

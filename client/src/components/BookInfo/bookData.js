@@ -132,10 +132,10 @@ class IndividualBookData extends Component {
                                     <div onClick={this.props.history.goBack}  className="btn" id="contactActionBack">BACK</div>
                                 </div>
                                 <div id="contactSellerContainer">
-                                    <button onClick={this.contactSeller} className="btn" id="contactActionButton">CONTACT SELLER</button>
+                                    <button  onClick={this.contactSeller} className="btn" id="contactActionButton">CONTACT SELLER</button>
                                 </div>
                             </div>
-                        
+
                     {/* </div> */}
                 {/* </div> */}
             </div>
