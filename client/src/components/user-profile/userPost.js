@@ -16,7 +16,7 @@ export default class UserPost extends Component{
         const { title, edition, author, book_condition, course, price, ID, listingID, bookImage, profile_photo_url } = this.props.about;
         return (
                     <div className='listItem'>
-                        <Link to={`/BookInfoIndex/${this.ID}`}>
+                        <Link to={`/BookInfoIndex/${ID}`}>
                             
                                 <div className='itemImageContainer'>
                                     <img className='itemImage' src={bookImage}/>
