@@ -22,6 +22,7 @@ body{
     transform: scale(.75)
 }
 
+
 .AddBookIcon:active {
     transform: scale(.75)
 }
@@ -31,29 +32,32 @@ body{
 }
 
 #AddBookTitle {
-    position: fixed;
-    left: 43%;
+    position: absolute;
+    left: 20%;
     font-size: .9rem;
     color: white;
-    top: 95.5%;
+    top: 46.5%;
+    width: 59%;
 
 
 }
 #ProfileTitle {
-    position: fixed;
-    left: 75.5%;
+    position: absolute;
+    left: 26.5%;
     font-size: .9rem;
     color: white;
-    top: 95.5%;
+    top: 41.5%;
+
+
 
 }
 
 #SearchTitle {
-    position: fixed;
-    left: 15%;
+    left: 32%;
     font-size: .9rem;
     color: white;
-    top: 95.5%;
+    top: 39.5%;
+    position: absolute;
 
 }
 .birdLogo{
@@ -95,21 +99,24 @@ body{
     display: inline-block;
     position: relative;
     height: 100%;
-    width: 23.33%;
+    left: 12%;
+    width: 14.33%;
 }
 .AddBookIcon {
     display: inline-block;
     position: relative;
-    left: 16%;
-    height: 100%;
+    left: 24%;
+    height: 85%;
     width: 23.33%;
+    top: 13%;
+
 }
 .ProfileIcon {
     display: inline-block;
     position: relative;
     height: 100%;
-    width: 24.33%;
-    left: 23%;
+    width: 18.33%;
+    left: 33%;
 }
 .BookPicture {
     position: relative;
@@ -117,31 +124,31 @@ body{
     height: 55px;
     width: 57px;
     padding: 15%;
-    left: 15%;
-    bottom: 18%;
-    transition: transform 350ms ease-in-out;
+    left: 19%;
+    bottom: 23.5%;
+    transition: transform 650ms ease-in-out;
     -webkit-filter: invert(100%);
 }
 .ProfilePicture {
     position: relative;
     display: inline-block;
-    height: 56px;
-    width: 54px;
+    height: 48px;
+    width: 45px;
     padding: 15%;
-    left: 14%;
-    bottom: 17%;
-    transition: transform 350ms ease-in-out;
+    left: 21%;
+    bottom: 9%;
+    transition: transform 650ms ease-in-out;
     -webkit-filter: invert(100%);
 }
 .SearchPicture {
     position: relative;
     display: inline-block;
-    height: 57px;
-    width: 55px;
+    height: 46px;
+    width: 45px;
     padding: 15%;
-    left: 57%;
-    bottom: 15%;
-    transition: transform 350ms ease-in-out;
+    left: 24%;
+    bottom: 11%;
+    transition: transform 650ms ease-in-out;
     -webkit-filter: invert(100%);
 }
 
