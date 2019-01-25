@@ -34,7 +34,7 @@
     background-color: white;
     position:relative;
     display:inline-block;
-    height: 84vh;
+    height: 93vh;
     width:100vw;
     /* background-color:#C2E5F9; */
 }
@@ -134,8 +134,8 @@
     width: 90%;
     margin-top:10px;
     margin-left:5vw;
-    /*background-color:white;*/
     overflow:scroll;
+    height: 272px;
 }
 
 .user-posts-header {

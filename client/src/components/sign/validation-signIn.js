@@ -4,8 +4,6 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {getIdForToken} from '../../actions/sign_in';
 import {bindActionCreators} from "redux";
-import signInReducer from "../../reducers/sign_in_reducer";
-import {Link} from 'react-router-dom';
 
 class SignInValidation extends Component {
     componentDidUpdate() {
@@ -15,7 +13,6 @@ class SignInValidation extends Component {
     }
 
     storeToken = () => {
-        debugger;
         if (this.props.signInResults.success && this.props.signInResults.runOnce) {
             const Token = this.props.signInResults.data;
             localStorage.setItem("Token", Token);
@@ -43,7 +40,6 @@ class SignInValidation extends Component {
     };
 
     render() {
-        console.log("add item form props: ", this.props);
         const {handleSubmit, reset} = this.props;
         return (
             <form id='sign-in-container' onSubmit={handleSubmit(this.handleAddItem)}>
@@ -56,9 +52,6 @@ class SignInValidation extends Component {
                            label={"Password"}/>
                 </div>
                 <div className="row">
-                    {/* <div className="col s6 center">
-                        <button onClick={reset} type={"button"} className="btn red darken-2">clear</button>
-                    </div> */}
                     <div className="signin-button col s6 center">
                         <button className="btn yellow darken-2 grey-text text-darken-3">Sign In</button>
                     </div>
