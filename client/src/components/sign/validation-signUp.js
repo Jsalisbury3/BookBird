@@ -67,7 +67,7 @@ class SignInValidation extends Component {
                         <button onClick={reset} type={"button"} className="btn grey darken-4">clear</button>
                     </div> */}
                     <div className="signup-button col s6 center">
-                        <button className="btn yellow darken-2 grey-text text-darken-3">Sign Up</button>
+                        <button onClick={()=>console.log('################test')} className="btn yellow darken-2 grey-text text-darken-3">Sign Up</button>
                     </div>
                 </div>
             </form>
@@ -81,10 +81,13 @@ function validate(values) {
     const errors = {};
     const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
     const passwordRegex = /(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{8,70})$/;
-    const numberRegex = /[0-9]{10}/;   /* /^[2-9]\d{2}-\d{3}-\d{4}$/;  */
-    // const nameRegex = /^[a-z0-9_-]{3,15}$/;
+    const numberRegex = /^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$/;   /* /^[2-9]\d{2}-\d{3}-\d{4}$/;  */
+    const nameRegex = /[a-z]{1,20}/i;
 
-
+    if (!Name || !nameRegex.test(Name)) {
+        console.log('name test', Name);
+        errors.Name = "please enter a valid name";
+    }
     if (!emailRegex.test(EmailSignUp)) {
         console.log('email test');
         errors.EmailSignUp = 'please enter a valid email';
@@ -94,9 +97,6 @@ function validate(values) {
         errors.PasswordSignUp = "password must be atleast 8 characters long with one capital letter and number";
     }
 
-    // if (nameRegex.test(Name)) {
-    //     errors.Password = "please enter a valid password";
-    // }
     if (!numberRegex.test(Number)) {
         errors.Number = "please enter a valid number ";
     }
