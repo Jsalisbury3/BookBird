@@ -39,8 +39,8 @@ webserver.use(function (req, res, next) {
 
 webserver.use(express.static(__dirname + '/client/dist'));
 webserver.use(express.urlencoded({extended: false}));
+webserver.use(bodyParser.json({limit: '25mb'}));
 webserver.use(express.json());
-webserver.use(bodyParser.json())
 webserver.use(cors());
 
 webserver.get('/api/prepUpload', function (request, response) {
