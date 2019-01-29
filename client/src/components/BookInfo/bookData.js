@@ -24,6 +24,7 @@ class IndividualBookData extends Component {
         listId: [],
         data: '',
         displayError: false,
+        contacted : false,
     };
 
     createCarousel = () => {
@@ -35,25 +36,43 @@ class IndividualBookData extends Component {
         })
     }
 
-    // addConditionStyling = (condition) => {
-    //     debugger;
-    //     switch (condition) {
-    //         case 'Thrashed':
-    //             console.log(document.getElementsByClassName('bookCondition'));
-    //         default:
-    //             console.log('Switch Condition');
-    //     }
-    // }
-
-    componentDidMount = () => {
-        this.props.getDataForBookClicked(this.state.bookId);
-        // this.createCarousel();
-        // this.addConditionStyling(this.props.listId[0].book_condition);
+    changeContactButton = (response) => {
+        console.log("conatct response: ", response);
+        if(!this.state.contacted) {
+            if (response.data.success) {
+                this.setState({
+                    contacted: true
+                })
+            }
+        }
     }
+
+    checkForBookContact = () => {
+        console.log("I GOT HERE");
+        axios({
+            method: "post",
+            url: '/api/Contact',
+            headers: {
+                token: localStorage.getItem('Token'),
+            },
+            data : {
+                sellersNumber: this.props.listId[0].phoneNumber,
+                title: this.props.listId[0].title
+            }
+        }).then((response) => {
+            this.changeContactButton(response)
+        })
+    }
+
+    componentDidMount = async ()  => {
+        this.props.getDataForBookClicked(this.state.bookId);
+    };
 
     componentDidUpdate = () => {
         this.createCarousel();
+        this.checkForBookContact();
     }
+
     contactSeller = () => {
         console.log("button pressed");
         axios({
@@ -70,11 +89,13 @@ class IndividualBookData extends Component {
             console.log("response from twilio query: ", response);
             if (response.data.success) {
                 this.setState({
-                    displayError: true
+                    displayError: true,
+                    contacted: true
                 })
             } else {
                 this.setState({
-                    displayError: false
+                    displayError: false,
+                    contacted: true
                 })
             }
         })
@@ -85,6 +106,8 @@ class IndividualBookData extends Component {
         if (!this.props.listId[0]) {
             return <h1>Loading...</h1>
         }
+
+
         return (
             <div className='bookDetailsContainer'>
                 <div id='back-arrow-container'>
@@ -125,23 +148,23 @@ class IndividualBookData extends Component {
                             <div className="userContactInfo sellerName">{this.props.listId[0].name}</div>
                         </div>
                     </div>
-
-                    <div
-                        className="contactSignIn">{this.state.displayError ? '' : 'Please sign in to contact the seller'}</div>
-
+                    {
+                        localStorage.getItem('Token')
+                            ? null : (
+                                <div className="contactSignIn">
+                                    Please <Link to={"/SignIn"}>sign in</Link> to contact the seller
+                                </div>
+                            )
+                    }
                 </div>
                 <div className="bookDetailButtonContainer" id="contactAction">
                     <div id="backButtonContainer">
                         <div onClick={this.props.history.goBack} className="btn" id="contactActionBack">BACK</div>
                     </div>
                     <div id="contactSellerContainer">
-                        <button onClick={this.contactSeller} className="btn" id="contactActionButton">CONTACT SELLER
-                        </button>
+                        <button onClick={this.contactSeller} className={"btn"} id={this.state.contacted ? "alreadyContactedButton" : "contactActionButton"}>{this.state.contacted ? 'SELLER CONTACTED' : "CONTACT SELLER"}</button>
                     </div>
                 </div>
-
-                {/* </div> */}
-                {/* </div> */}
             </div>
 
         )

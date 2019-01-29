@@ -316,7 +316,7 @@ h2:nth-child(2)  {
     width: 60%;
 }
 
-#contactActionButton {
+#contactActionButton, #alreadyContactedButton{
     display: inline-block;
     position: relative;
     height: 35px;
@@ -333,6 +333,11 @@ h2:nth-child(2)  {
     
     color:white;
     background-color:black;
+}
+
+#alreadyContactedButton {
+    background-color: #24ff23;
+    color:white;
 }
 
 .Thrashed.book_details {
