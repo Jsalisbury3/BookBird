@@ -480,7 +480,7 @@ webserver.post('/api/addListing', (request, response) => {
 webserver.post('/api/filter', (request, response) => {
     const {ISBN} = request.body;
     db.connect(() => {
-        let query = "SELECT b.bookImage, b.title, b.ISBN, b.author, l.price, l.book_condition FROM `books` AS b JOIN `listing` AS l ON l.book_id = b.ID WHERE b.title LIKE '%" + ISBN + "%' OR b.ISBN LIKE '%" + ISBN + "%' OR b.author LIKE '%" + ISBN + "%' ";
+        let query = "SELECT b.bookImage, b.title, b.ISBN, b.author, l.ID, l.comments, l.book_id, l.price, l.book_condition FROM `books` AS b JOIN `listing` AS l ON l.book_id = b.ID WHERE b.title LIKE '%" + ISBN + "%' OR b.ISBN LIKE '%" + ISBN + "%' OR b.author LIKE '%" + ISBN + "%' ";
         db.query(query, (err, data) => {
             if (!err) {
                 let output = {

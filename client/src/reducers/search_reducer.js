@@ -5,6 +5,7 @@ const DEFAULT_STATE = {
 };
 
 function searchBarReducer(state = DEFAULT_STATE, action) {
+    debugger;
     console.log("Search Reducer State: ", state);
     console.log("Search Reducer Action: ", action);
     switch(action.type) {

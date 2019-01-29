@@ -14,11 +14,13 @@ class ResultList extends Component {
     // };
 
     receiveFilterResults = (response) => {
+        debugger;
         console.log('Receive Filter Results: ', response);
         this.getRowData(response.data.data);
     };
 
     getRowData = (results) => {
+        debugger;
         console.log('GET row data: ',results)
         const listItems = results.map((item, index) => {
             return (
