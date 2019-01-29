@@ -15,7 +15,6 @@ const hash = require('./config/token-hash');
 // const escape_quotes = require('escape-quotes');
 const passwordHash = require('sha256');
 const MessagingResponse = require('twilio').twiml.MessagingResponse;
-
 const accountSid = require('./config/twilio.sdi');
 const authToken = require('./config/twilio_token');
 const twilio = require('twilio')(accountSid, authToken);
@@ -197,7 +196,7 @@ function insertNewNumber(buyerNumber, SellerNumber, sourceNumber, source_id, boo
     });
     let infoToHash = buyerNumber + SellerNumber;
     let convoHash = jwt.encode(infoToHash, hash);
-    const storeConvoDataQuery = "INSERT INTO `convos` SET hash = '" + convoHash + "', buyer_number = '" + buyerNumber + "', seller_number = '" + SellerNumber + "', source_num_id = '" + source_id + "'";
+    const storeConvoDataQuery = "INSERT INTO `convos` SET book_title = '" + bookTitle + "', hash = '" + convoHash + "', buyer_number = '" + buyerNumber + "', seller_number = '" + SellerNumber + "', source_num_id = '" + source_id + "'";
     console.log("FINAL QUERY MEMEMEMEME: ", storeConvoDataQuery);
     db.query(storeConvoDataQuery, (err, data) => {
         if (!err) {
@@ -264,7 +263,6 @@ function getSourceNumber(buyerNumber, SellerNumber, bookTitle) {
 
 webserver.post('/api/contactSeller', (request, response) => {
     db.connect(() => {
-        console.log("og request body: ", request.body);
         const bookTitle = request.body.title;
         const SellerNumber = request.body.sellersNumber;
         const sourceNumber = 5108226645; //this will change
@@ -276,9 +274,7 @@ webserver.post('/api/contactSeller', (request, response) => {
             };
             response.send(outputAlreadySignedIn);
         } else {
-
             const query = "SELECT a.phoneNumber FROM `accounts` AS a JOIN `loggedin` AS lg ON a.ID = lg.account_id WHERE lg.token = '" + userToken + "'";
-            console.log(query);
             db.query(query, (err, data) => {
                 if (data) {
                     let buyerNumber = data[0].phoneNumber;
@@ -302,8 +298,7 @@ webserver.post('/api/contactSeller', (request, response) => {
                                         let infoToHash = buyerNumber + SellerNumber;
                                         let convoHash = jwt.encode(infoToHash, hash);
                                         console.log("DATA FROM INSERT QUERY WANT THISSSS: ", data);
-                                        const storeConvoDataQuery = "INSERT INTO `convos` SET hash = '" + convoHash + "', buyer_number = '" + buyerNumber + "', seller_number = '" + SellerNumber + "', source_num_id = '" + data[0].ID + "'";
-                                        console.log("FINAL QUERY MEMEMEMEME: ", storeConvoDataQuery);
+                                        const storeConvoDataQuery = "INSERT INTO `convos` SET book_title = '" + bookTitle + "', hash = '" + convoHash + "', buyer_number = '" + buyerNumber + "', seller_number = '" + SellerNumber + "', source_num_id = '" + data[0].ID + "'";
                                         db.query(storeConvoDataQuery, (err, data) => {
                                             if (!err) {
                                                 const successOutput = {
@@ -327,8 +322,9 @@ webserver.post('/api/contactSeller', (request, response) => {
                             })
                         } else {
                             const ConvoNotNew = {
-                                message : "convo already in table"
+                                message: "convo already in table"
                             }
+                            response.send(ConvoNotNew)
                         }
                     })
                 } else {
@@ -385,6 +381,47 @@ webserver.post('/api/MessageResponse', (request, response) => {
         })
     })
 });
+
+webserver.post('/api/Contact', (request, response) => {
+    const userToken = request.headers['token'];
+    const {title, sellersNumber} = request.body;
+    if (userToken === "undefined" || userToken === "null") {
+        const outputAlreadySignedIn = {
+            success: false,
+            message: "You must be signed in to contact seller"
+        };
+        response.send(outputAlreadySignedIn);
+    }
+    else {
+        const getNumberQuery = "SELECT a.phoneNumber FROM `accounts` AS a JOIN `loggedin` AS lg ON a.ID = lg.account_id WHERE lg.token = ?"
+        const getNumberArray = [userToken];
+        const query = mysql.format(getNumberQuery, getNumberArray);
+        db.query(query, (err, buyer_number) => {
+            if (buyer_number.length > 0) {
+                const buyer_phoneNumber = buyer_number[0].phoneNumber;
+                const contactQuery = "SELECT ID FROM `convos` WHERE book_title = ? AND (buyer_number = ? AND seller_number = ?)"
+                console.log("items i want: ", title, buyer_phoneNumber, sellersNumber);
+                const contacArray = [title, buyer_phoneNumber, sellersNumber];
+                const query = mysql.format(contactQuery, contacArray);
+                console.log("query i want: ", query);
+                db.query(query, (err, convoExists) => {
+                    if (convoExists.length > 0) {
+                        const output = {
+                            success: true,
+                            message: "seller already contacted for this book",
+                        }
+                        response.send(output)
+                    } else {
+                        const doesNotExist = {
+                            success: false
+                        };
+                        response.send(doesNotExist)
+                    }
+                })
+            }
+        })
+    }
+})
 
 
 webserver.get('/api/listings', (request, response) => {
