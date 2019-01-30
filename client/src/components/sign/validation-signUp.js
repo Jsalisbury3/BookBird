@@ -80,7 +80,7 @@ function validate(values) {
     const {EmailSignUp, PasswordSignUp, Name, Number} = values;
     const errors = {};
     const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[\d$@$!%*?&]).*$/;
+    const passwordRegex = /^([a-zA-Z0-9@*#]{8,20})$/;
     const numberRegex = /^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$/;   /* /^[2-9]\d{2}-\d{3}-\d{4}$/;  */
     const nameRegex = /[a-z]{1,20}/i;
 
