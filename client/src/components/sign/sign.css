@@ -20,13 +20,6 @@ input:-webkit-autofill:active {
     }
 }
 
-/* .signup_footer{
-    justify-content: center;
-    align-items: center;
-    left: 19%;
-    bottom:10%;
-    position: relative;
-} */
 .signin_footer, .signup_footer {
     position: relative;
     /* justify-content: center;
@@ -52,6 +45,7 @@ input:-webkit-autofill:active {
     height:381px;
     bottom:81px;
 }
+
 .row {
     margin-bottom: 0;
 }
@@ -69,12 +63,11 @@ input:-webkit-autofill:active {
 #UserNumber {
     margin-bottom: 0rem;
 }
-
 .error-message {
-    /* position: relative; */
     bottom: 14px;
-    margin-left: 33%;
+    margin: 0 0  0 33%;
     font-size: 0.71rem;
+    width:212px !important;
 }
 .sign-in-error {
     position: relative;
@@ -94,17 +87,12 @@ input:-webkit-autofill:active {
     bottom: 5%;
     margin-top:41px;
 }
-/* .sign-up-form {
-    position: relative;
-    bottom: 10%;
-} */
 
 .signInError, .signUpError{
     color: red;
 }
 
 .signin_container {
-    /* background-color: #C2E5F9; */
     height: 90vh;
     overflow: auto;
 }
@@ -118,15 +106,8 @@ input:-webkit-autofill:active {
 }
 
 .signInInput, .signUpInput {
-    /* width: 55%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: block;
-    border: 1px solid #ccc;
-    border-radius: 4px; */
     left: 24%;
     position: relative;
-    
 }
 .signInInput:focus {
     border-bottom: 1px rgb(211, 50, 163) !important;
@@ -137,7 +118,6 @@ input:-webkit-autofill:active {
 }
 #sign-in-container>.row, #sign-up-form>.row{
     width: 339px !important;
-    /* width: 90vw !important; */
     margin-left: 1vw !important;
 }
 .signin_container{
@@ -147,11 +127,21 @@ input:-webkit-autofill:active {
       #180218ee, 
       #240024da
     ),
-    /* bottom, image */
+
     url(../images/chavezcenter.jpg);
     background-size: 271%;
     background-repeat: no-repeat;
     background-position: -352px -38px;
+}
+#sign-up-form>.row .input-field{
+    margin-top:2px;
+}
+#Number{
+    margin-bottom:0;
+}
+.signin_container .row .col.s9{
+        max-height: 83px;
+    
 }
 .signup_container{
     background: 

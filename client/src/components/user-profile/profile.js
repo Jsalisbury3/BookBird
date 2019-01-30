@@ -35,12 +35,14 @@ class UserProfile extends Component {
 
     handleUrlToSetState = (response) => {
         console.log("LOOOOK ATTT MEEEE: ", response);
-        if(response.data.data[0].profile_photo_url)
-        this.setState({
-            photo: `https://s3-us-west-2.amazonaws.com/book-bird-test-bucket/${response.data.data[0].profile_photo_url}`
-        })
-        console.log("state in profile url: ", this.state.photo);
         document.getElementById("loadingGif2").style.visibility = 'hidden';
+        if (response.data.data[0].profile_photo_url) {
+            this.setState({
+                photo: `https://s3-us-west-2.amazonaws.com/book-bird-test-bucket/${response.data.data[0].profile_photo_url}`
+            });
+            console.log("state in profile url: ", this.state.photo);
+            document.getElementById("loadingGif2").style.visibility = 'hidden';
+        }
     }
 
     getProfileUrl = () => {

@@ -36,6 +36,7 @@ class SignInValidation extends Component {
 
     handleAddItem =  async (values) => {
         await this.props.getIdForToken(values);
+        localStorage.removeItem("Token");
         this.storeToken(this.props.signInResults);
     };
 
@@ -69,8 +70,6 @@ function validate(values) {
     const errors = {};
     const emailRegex =  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
     const passwordRegex = /(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{8,70})$/;
-
-
 
     if (!emailRegex.test(Email)) {
         errors.Email = 'please enter a valid email';

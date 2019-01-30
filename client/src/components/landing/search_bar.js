@@ -16,7 +16,7 @@ class SearchBar extends Component{
     }
 
     handleInputs = async (event)=>{
-        
+
         console.log("change event name", event.target.name)
         console.log("change event value", event.target.value)
         

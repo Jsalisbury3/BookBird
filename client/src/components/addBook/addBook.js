@@ -185,6 +185,7 @@ class AddBook extends Component {
             url: '/api/addListing',
             headers: {
                 token: localStorage.getItem('Token'),
+            
             },
             data: request,
         })
@@ -404,40 +405,6 @@ class AddBook extends Component {
                             </div>
                         </div>
                     </div>
-                    {/*<form className={'form-container '} onSubmit={this.validateInputsFields}*/}
-                    {/*encType="multipart/form-data">*/}
-                    {/*<img src={loadingGif} alt="loadingGif" id="loadingGif"/>*/}
-                    {/*<div id='input-container' className=' title-container row'>*/}
-                    {/*<div id={"conditionError"} className={"error"}></div>*/}
-                    {/*<div id={"conditionCheckMArk"}*/}
-                    {/*className={"checkMark markCondition material-icons"}>check_circle_outline*/}
-                    {/*</div>*/}
-                    {/*<div className='input-field'>*/}
-                    {/*<h6 className='input-header'>Title</h6>*/}
-                    {/*<input name="title" id='title' type='text' className="inputs col s10 push-s1"*/}
-                    {/*onChange={this.handleInput}/>*/}
-                    {/*</div>*/}
-                    {/*</div>*/}
-                    {/*<div id='input-container' className=' title-container row'>*/}
-                    {/*<div className={"error"}></div>*/}
-                    {/*<div className={"checkMark markTitle material-icons"}>check_circle_outline</div>*/}
-                    {/*<div className='input-field'>*/}
-                    {/*<h6 className='input-header'>Author</h6>*/}
-                    {/*<input name="author" id='author' type='text' className="inputs col s10 push-s1"*/}
-                    {/*onChange={this.handleInput}/>*/}
-                    {/*</div>*/}
-                    {/*</div>*/}
-                    {/*<div id='input-container' className='title-container row'>*/}
-                    {/*<div className={"error"}></div>*/}
-                    {/*<div className={"checkMark markEdition material-icons"}>check_circle_outline</div>*/}
-                    {/*<div className='input-field'>*/}
-                    {/*<input name={"price"} id={'price'} type='text' className={"inputs col s10 push-s1"}*/}
-                    {/*onChange={this.handleInput}/>*/}
-                    {/*<label className='label-placeholder' htmlFor={'price'}>Price</label>*/}
-                    {/*</div>*/}
-                    {/*</div>*/}
-                    {/*</form>*/}
-                    {/*</div>*/}
                     <form className={'form-container '} onSubmit={this.validateInputsFields} encType="multipart/form-data">
                         <img src={loadingGif2} alt="loadingGif" id="loadingGif"/>
                         <h3 className={"pageHeader"}>Add Book</h3>
