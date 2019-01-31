@@ -1,6 +1,11 @@
 *{
     box-sizing:border-box !important;
 }
+
+#mainListingsContainer {
+    padding:0;
+}
+
 .search-results-container{
     height: 77.5vh;
     overflow:auto;
@@ -11,6 +16,11 @@
     height:17.25vh;
     /* border:solid black; */
 }
+
+#listItemContainer {
+    padding: 0;
+}
+
 .listItem{
     border:1px solid rgb(43, 43, 43);
     box-shadow: 2px 2px darkgray;
@@ -210,4 +220,37 @@
 }
 .listing_condition{
     display:block;
+}
+
+
+@media only screen and (min-width: 768px) {
+    #mainListingsContainer {
+        padding:0;
+    }
+
+    .search-bar-container {
+        background-color: white;
+    }
+
+    .search-results-container {
+        background-color: white;
+        padding: 15px;
+        height: 100vh;
+    }
+
+    .listItem {
+        box-shadow: none;
+    }
+    .uni-header {
+        display: none;
+    }
+
+    .uni-footer {
+        display: none;
+    }
+} 
+
+.navigation {
+    background-color: rgb(17, 17, 17);
+    height: 100vh;
 }
