@@ -4,12 +4,14 @@ import SearchBar from './search_bar'
 import './landing.css';
 import Header from './../universal/header'
 import Nav from './../universal/nav'
+import SideNav from './../universal/sidenav';
 
 export default class LandingPage extends Component {
 
     render() {
         return (
-                    <div>
+                    <div className="row">
+                        <SideNav/>
                         <ResultList/>
                     </div> 
         )

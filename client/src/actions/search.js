@@ -3,7 +3,7 @@ import axios from "axios/index";
 
 
 export const searchFilter = (request) => {
-    debugger;
+    
     return (dispatch) => {
         axios({
             method: 'post',

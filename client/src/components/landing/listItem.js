@@ -5,7 +5,7 @@ export default props => {
     const {title, edition, author,ISBN, book_condition, ID, price, book_id, bookImage} = props.about;
     return (
         <Link to={`/BookInfoIndex/${ID}`}>
-            <div className="listItemContainer">
+            <div id="listItemContainer" className="listItemContainer col s12 m12 l6">
                 <div className='listItem'>
                     <div className='itemImageContainer'>
                         <img className='itemImage' src={bookImage}/>
