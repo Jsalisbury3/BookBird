@@ -29,7 +29,7 @@ class SignInValidation extends Component {
                     <input className="signInInput grey-text text-lighten-5" {...props.input} id={props.id} type={props.id === "Password" ? 'password' : 'text'} autoComplete={"off"}/>
                     <label className="signInLabel yellow-text text-darken-2" htmlFor={props.id}>{props.label}</label>
                 </div>
-                <p className={"sign-in-error red-text text-darken-2"}>{props.meta.touched && props.meta.error}</p>
+                
             </div>
         )
     };
@@ -37,7 +37,9 @@ class SignInValidation extends Component {
     handleAddItem =  async (values) => {
         await this.props.getIdForToken(values);
         localStorage.removeItem("Token");
+        console.log('signin storage:', this.props.signInResults);
         this.storeToken(this.props.signInResults);
+        
     };
 
     render() {
@@ -57,6 +59,7 @@ class SignInValidation extends Component {
                         <button className="btn yellow darken-2 grey-text text-darken-3">Sign In</button>
                     </div>
                 </div>
+                {/* <p className={"sign-in-error red-text text-darken-2"}>{props.meta.error}</p> */}
                 
             </form>
         );
@@ -69,7 +72,7 @@ function validate(values) {
     console.log("emaillllllllllllllll: ", Email);
     const errors = {};
     const emailRegex =  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-    const passwordRegex = /(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{8,70})$/;
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!$%@#£€*?&]{8,}$/;
 
     if (!emailRegex.test(Email)) {
         errors.Email = 'please enter a valid email';
