@@ -81,7 +81,7 @@ class SearchBar extends Component{
             <div className="search-bar-container">
                 {/* <form className="searchForm" onSubmit={this.handleSubmit}> */}
                 <div className="searchbar-i-container"><i className="material-icons">search</i></div>
-                <input name="ISBN" className="searchInput" placeholder="Search..." onChange={this.handleInputs} autoComplete="off"/>
+                <input name="ISBN" className="searchInput" placeholder="Search by Title/Author/ISBN#" onChange={this.handleInputs} autoComplete="off"/>
                         
                     
                 {/* </form> */}
