@@ -9,11 +9,8 @@ import SideNav from './../universal/sidenav';
 export default class LandingPage extends Component {
 
     render() {
-        return (
-                    <div className="row">
-                        <SideNav/>
-                        <ResultList/>
-                    </div> 
+        return (    
+                        <ResultList/>    
         )
     }
 }

@@ -40,7 +40,7 @@ class ResultList extends Component {
         console.log('Results List PROPS: ', this.props);
         let listings = this.getRowData(this.props.searchResults);
         return (
-            <div id="mainListingsContainer" className="col s12 m10">
+            <div id="mainListingsContainer">
                 <SearchBar function={this.receiveFilterResults}/>
                 <div className='search-results-container'>{listings}</div>
 

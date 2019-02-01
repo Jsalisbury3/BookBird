@@ -13,6 +13,7 @@ import SignIn from './sign/signin';
 import SignUp from './sign/signup';
 import Nav from './universal/nav';
 import Header from './universal/header';
+import SideNav from './universal/sidenav';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 // import Modal from './addBook/modal';
 import 'materialize-css/dist/css/materialize.min.css';
@@ -30,13 +31,18 @@ class App extends Component {
                 <div className="appContainer">
                     <div className="pageContainer">
                         <Header />
+                        <div className="row">
+                        <SideNav/>
                         <Route exact path={"/"} component={IntroPage}/>
+                        <div className="col s12 m10">
                         <Route path={"/Landing"} component={LandingPage}/>
                         <Route path={"/AddBook"} component={AddBook}/>                        
                         <Route path={"/BookInfoIndex/:bookId"} component={BookData}/>
                         <Route path={"/UserProfile"} component={UserProfile}/>
                         <Route path={"/SignIn"} component={SignIn}/>
                         <Route path={"/SignUp"} component={SignUp}/>
+                        </div>                        
+                        </div>
                          <Nav/>
                     </div>
                 </div>
