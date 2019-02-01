@@ -7,14 +7,15 @@
 }
 
 .search-results-container{
-    height: 77.5vh;
+    padding-top:3px;
+    height: 77.4vh;
     overflow:auto;
     background-color: rgb(62, 5, 80);
 
 }
 .listItemContainer{
     height:17.25vh;
-    /* border:solid black; */
+    
 }
 
 #listItemContainer {
@@ -22,8 +23,8 @@
 }
 
 .listItem{
-    border:1px solid rgb(43, 43, 43);
-    box-shadow: 2px 2px darkgray;
+    /* border: 1px solid rgb(43, 43, 43); */
+    box-shadow: 0 0 0px 1px darkgrey;
     height: 96%;
     width: 98%;
     margin: auto;
@@ -107,7 +108,7 @@
     margin:0;
 } */
 .search-bar-container{
-    height:7.5vh;
+    height:7.6vh;
     background-color:#001;
     padding-top:1%
 }
