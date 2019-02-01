@@ -34,7 +34,7 @@ class App extends Component {
                         <div className="row">
                         <SideNav/>
                         <Route exact path={"/"} component={IntroPage}/>
-                        <div className="col s12 m10">
+                        <div className="route_container col s12 m10">
                         <Route path={"/Landing"} component={LandingPage}/>
                         <Route path={"/AddBook"} component={AddBook}/>                        
                         <Route path={"/BookInfoIndex/:bookId"} component={BookData}/>

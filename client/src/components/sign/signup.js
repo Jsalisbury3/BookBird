@@ -17,7 +17,7 @@ class Signup extends Component {
 
     render() {
         return (
-            <div className="signup_container">
+            <div className="signup_container col m6 offset-m3">
                 <div className='signup-logo-container'>
                     <img src={logo}/>
                 </div>
