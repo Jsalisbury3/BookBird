@@ -9,10 +9,15 @@
 }
 .introPageButtonContainer{
     position: relative;
-    top: 16%;
+    top: 6%;
     justify-content: center;
-    display: flex;
+    /* display: flex; */
 }
 .getStartedButton{
     background-color: #98C1D9;
+}
+
+.introPageLogoImg{
+    width:357px !important;
+    height:400px !important;
 }

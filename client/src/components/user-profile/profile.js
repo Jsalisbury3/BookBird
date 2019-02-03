@@ -102,12 +102,15 @@ class UserProfile extends Component {
             data: saveImageParams
         })
     };
+     displayModal=()=>{
+        document.getElementsByClassName('profileModal')[0].style.display = "block";
+    }
 
 
     render() {
         return (          
                 <div className='profile-main-container col m6 offset-m3'>
-                    <div className='profile-image-container'>
+                    <div className='col s12 m12 l12 profile-image-container'>
                         <button onClick={this.callActionSignOut} className='logOut btn right yellow darken-2'><img
                             src={logout24}/>
                         </button>
@@ -121,10 +124,9 @@ class UserProfile extends Component {
                         </div>
                     </div>
                     <div className="profile-main-content">
-                        <div className="user-posts-header">Account Listings</div>
+                        <div className="col user-posts-header center-align s12 m12 l12">Account Listings</div>
                         <UserPostList/>
-                    </div>
-                    
+                    </div>                  
                 </div>                
         );
     }
