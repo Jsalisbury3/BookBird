@@ -22,7 +22,7 @@ class Signup extends Component {
                     <img src={logo}/>
                 </div>
                 <SignUpValidation/>
-                <p className="grey-text signup_footer">Already have an account? <Link className='yellow-text text-darken-2' to={"/SignIn"}> Sign In </Link></p>
+                <p className="grey-text signup_footer center-align">Already have an account? <Link className='yellow-text text-darken-2' to={"/SignIn"}> Sign In </Link></p>
             </div>
         )
     }

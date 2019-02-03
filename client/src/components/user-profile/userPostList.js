@@ -65,10 +65,10 @@ class UserPostList extends Component {
 
     render() {
         return (
-            <div className='user-posts-container'>
+            <div className='user-posts-container col center-align l12 m12 s12'>
                 <div className="profileListings">{this.state.data === "No listings found" ? 
                 
-                    <div className="emptyListings">
+                    <div className="col center-align emptyListings">
                     No Listings Found. <br/>Post some books!
                     
                     </div> : this.state.data}

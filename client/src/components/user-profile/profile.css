@@ -83,7 +83,7 @@
 }
 
 .opacitySlip{
-    top: 120px;
+    /* top: 120px; */
     position: relative;
     display: inline-block;
     height: 55px;
@@ -139,11 +139,11 @@
 }
 
 .user-posts-header {
-    position: relative;
+    /* position: relative; */
     font-weight: lighter;
     font-size: 20px;
     color: white;
-    left: 120px;
+    /* left: 120px; */
 }
 
 .emptyListings {
@@ -214,4 +214,22 @@
     width: 42%;
     height: 46%;
     z-index: 1;
+}
+
+.profileModal{
+    /* position: absolute;
+    z-index: 1;
+    width: 100vw;
+    height: 84vh;
+    left: 0;
+    background-color: rgba(0,0,0,0.75); */
+    position: absolute;
+    z-index: 1;
+    width: 100vw;
+    height: 130vh;
+    left: 0;
+    background-color: rgba(0,0,0,0.65);
+    top: -19%;
+    color: rgb(15, 15, 15);
+    display:none;
 }
