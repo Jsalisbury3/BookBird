@@ -23,7 +23,7 @@ class Signin extends Component{
     render(){
         return(
             
-            <div className="signin_container">
+            <div className="signin_container col m6 offset-m3">
                 <div className='signin-logo-container'>
                     <img src={logo}/>
                 </div>

@@ -151,4 +151,6 @@ body{
     transition: transform 650ms ease-in-out;
     -webkit-filter: invert(100%);
 }
-
+.route_container.col{
+    padding:0;
+}
