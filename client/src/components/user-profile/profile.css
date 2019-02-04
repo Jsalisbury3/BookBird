@@ -34,7 +34,7 @@
     background-color: white;
     position:relative;
     display:inline-block;
-    height: 93vh;
+    height: 100vh;
     width:100vw;
     /* background-color:#C2E5F9; */
 }
@@ -136,6 +136,8 @@
     margin-left:5vw;
     overflow:scroll;
     height: 272px;
+    overflow-y:auto;
+    overflow-x:auto;
 }
 
 .user-posts-header {
@@ -226,10 +228,25 @@
     position: absolute;
     z-index: 1;
     width: 100vw;
-    height: 130vh;
+    height: 100vh;
     left: 0;
     background-color: rgba(0,0,0,0.65);
-    top: -19%;
+    top: 0%;
     color: rgb(15, 15, 15);
     display:none;
+    left: 0% !important;
+}
+
+.deleteTitle{
+    margin:29px;
+}
+
+.noButton{
+    display: inline-block;
+    margin: 1px 3px 3px -28%;
+}
+
+.yesButton{
+    display: inline-block;
+    margin: -38px 2px 22px 26%;
 }

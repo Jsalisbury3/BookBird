@@ -36,11 +36,11 @@ class UserPost extends Component {
                     <button className='waves-effect btn red center' onClick={this.displayModal}><i
                         className='large material-icons center'>delete_outline</i></button>
                 </div>
-                <div className="profileModal">
+                <div className="profileModal col l12 m12 s12">
                         <div className="modal-content">
                             <p className="deleteTitle">Are you sure you want to delete this post?</p>
-                            <button className="btn green"onClick={this.closeModal}>No</button>
-                            <button className="btn red"onClick={this.props.delete}>Yes</button>
+                            <button className="noButton btn green"onClick={this.closeModal}>No</button>
+                            <button className="yesButton btn red"onClick={this.props.delete}>Yes</button>
                         </div>                       
                 </div>
             </div>
