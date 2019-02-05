@@ -47,11 +47,11 @@ class SignInValidation extends Component {
         return (
             <form id='sign-in-container' onSubmit={handleSubmit(this.handleAddItem)}>
                 <div className="row">
-                    <Field name={"Email"} size={"s9 m8 offset-m2"} component={this.renderInput} id="Email"
+                    <Field name={"Email"} size={"s9"} component={this.renderInput} id="Email"
                            label={"Email"}/>
                 </div>
                 <div className="row">
-                    <Field name={"Password"} size={"s9 m8 offset-m2"} component={this.renderInput} id={"Password"}
+                    <Field name={"Password"} size={"s9"} component={this.renderInput} id={"Password"}
                            label={"Password"}/>
                 </div>
                 <div className="row">

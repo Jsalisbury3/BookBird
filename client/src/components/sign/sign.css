@@ -183,8 +183,25 @@ input:-webkit-autofill:active {
 }
 
 @media only screen and (min-width: 768px) {
-    /* #mainListingsContainer {
-        padding:0;
-    } */
-
+    .signin_container, .signup_container {
+        padding-top:3vh !important;
+        height:110vh;
+    }
+    #sign-in-container{
+        bottom:0;
+        margin-top:30px;
+    }
+    .signin_container>p{
+        margin-top:12vh;
+    }
+    #sign-up-form{
+        margin-top: 35px;
+        bottom:0;
+    }
+    .signup_container>p{
+        margin-top: 42px !important;
+    }
+    .signup_footer {
+        left: 10%;
+    }
 } 
