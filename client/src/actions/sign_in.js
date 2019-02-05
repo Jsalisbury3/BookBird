@@ -19,7 +19,7 @@ export const getIdForToken = (request) => {
                 })
             })
         } catch {
-            console.log("NNOOOOOOOOOOOOOOOOOOOOOOOO")
+            console.log("action created failed")
         }
 
     }
