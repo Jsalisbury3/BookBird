@@ -3,19 +3,25 @@ import axios from 'axios';
 
 
 export const getIdForToken = (request) => {
+    debugger;
     return (dispatch) => {
-        axios({
-            method: 'post',
-            url: '/api/SignIn',
-            data: request,
-            headers: {token: localStorage.getItem('Token')}
-        }).then((signInResults) => {
-            console.log(signInResults.data);
-            dispatch({
-                type: types.SIGN_IN_ACTION,
-                payload: signInResults.data
+        try {
+            axios({
+                method: 'post',
+                url: '/api/SignIn',
+                data: request,
+                headers: {token: localStorage.getItem('Token')}
+            }).then((signInResults) => {
+                console.log("sing in resulttt: ", signInResults.data);
+                dispatch({
+                    type: types.SIGN_IN_ACTION,
+                    payload: signInResults.data
+                })
             })
-        })
+        } catch {
+            console.log("NNOOOOOOOOOOOOOOOOOOOOOOOO")
+        }
+
     }
 };
 
