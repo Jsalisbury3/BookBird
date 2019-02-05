@@ -1,19 +1,12 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
+import ProfileModal from '../profileModal/profile-modal';
 
 
 class UserPost extends Component {
     constructor(props) {
         super(props);
     }
-    closeModal=()=>{
-        document.getElementsByClassName('profileModal')[0].style.display = "none"
-    }
-
-    displayModal=()=>{
-        document.getElementsByClassName('profileModal')[0].style.display = "block"
-    }
-
     render() {
         const {title, edition, author, book_condition, course, price, ID, listingID, bookImage, profile_photo_url} = this.props.about;
         return (
@@ -31,17 +24,7 @@ class UserPost extends Component {
                 </Link>
                 <div className='delete-btn-container'>
                     <p className="profilePrice">${price}</p>
-                    {/* <button className='waves-effect btn red center' onClick={this.props.delete}><i
-                        className='large material-icons center'>delete_outline</i></button> */}
-                    <button className='waves-effect btn red center' onClick={this.displayModal}><i
-                        className='large material-icons center'>delete_outline</i></button>
-                </div>
-                <div className="profileModal col l12 m12 s12">
-                        <div className="modal-content">
-                            <p className="deleteTitle">Are you sure you want to delete this post?</p>
-                            <button className="noButton btn green"onClick={this.closeModal}>No</button>
-                            <button className="yesButton btn red"onClick={this.props.delete}>Yes</button>
-                        </div>                       
+                        <ProfileModal bookId = {ID} delete={this.props.delete}/>
                 </div>
             </div>
             

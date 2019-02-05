@@ -102,11 +102,7 @@ class UserProfile extends Component {
             data: saveImageParams
         })
     };
-     displayModal=()=>{
-        document.getElementsByClassName('profileModal')[0].style.display = "block";
-    }
-
-
+ 
     render() {
         return (          
                 <div className='profile-main-container col m6 offset-m3'>
