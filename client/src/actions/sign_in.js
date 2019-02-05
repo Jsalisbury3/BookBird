@@ -3,7 +3,6 @@ import axios from 'axios';
 
 
 export const getIdForToken = (request) => {
-    debugger;
     return (dispatch) => {
         try {
             axios({
