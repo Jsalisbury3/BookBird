@@ -9,10 +9,19 @@ function signInReducer(state = DEFAULT_STATE, action) {
     console.log("Search Reducer Action: ", action);
     switch(action.type) {
         case types.SIGN_IN_ACTION:
-            return {
-                ...state,
-                signInId: action.payload,
-            };
+            if(action.payload.success) {
+                return {
+                    ...state,
+                    signInId: action.payload,
+                };
+            } else {
+                return {
+                    ...state,
+                    signInId: action.payload,
+                    message: "Invalid Username/Password"
+                }
+            }
+
         default:
             return state;
     }
