@@ -14,6 +14,12 @@ export default withRouter((props)=>{
             <div className="sideNavLinks">
                 <ul>
                     <li>
+                        <Link to={"/"}>
+                            Home
+                        </Link>
+                        
+                    </li>
+                    <li>
                         <Link to={"/Landing"}>
                         Search
                         </Link>
@@ -28,7 +34,12 @@ export default withRouter((props)=>{
                         <Link to={"/SignIn"}>
                             Sign In
                         </Link>
-                </li>
+                    </li>
+                    <li>
+                        <Link to={"/"}>
+                            Meet the Team
+                        </Link>
+                    </li>
                 </ul>
             </div>
 
