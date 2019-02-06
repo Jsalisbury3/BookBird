@@ -18,6 +18,7 @@
     
 }
 
+
 #listItemContainer {
     padding: 0;
 }
@@ -33,6 +34,8 @@
 .listItem:active{
     box-shadow:none;
 }
+
+
 .itemImageContainer{
     vertical-align: top;
     display:inline-block;
@@ -246,6 +249,11 @@
 
     .itemImage {
         box-shadow: none;
+    }
+
+    .listItem:hover{
+        background-color: #ffcf40;
+        
     }
     .uni-header {
         display: none;

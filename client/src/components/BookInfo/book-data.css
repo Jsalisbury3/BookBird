@@ -163,7 +163,9 @@ h2:nth-child(2)  {
     /* border: 1px solid black; */
     display: inline-block;
     /* height: 50%; */
-    width: 70%;
+    width: 60%;
+    margin-right: 15px;
+    
 }
 
 .bookInfoLeftContent > h5 {
@@ -175,7 +177,7 @@ h2:nth-child(2)  {
     display: inline-block;
     vertical-align: top;
     /* height: 50%; */
-    width: 30%;
+    
 }
 
 .bookCondition {
@@ -289,7 +291,6 @@ h2:nth-child(2)  {
     color: #ffcc33;
     /* color: #ffffff; */
     position: relative;
-    display: inline;
     left: 18%;
     top: 35%;
 }
@@ -407,7 +408,7 @@ h2:nth-child(2)  {
         position: relative;
         top: 20px;
         left: 15px;
-        
+        width: 60%;
     }
 
     .bookInfoRightContent{
@@ -454,6 +455,7 @@ h2:nth-child(2)  {
         position: relative;
         top: 20px;
         left: 45px;
+        width: 75%;
         
     }
 
@@ -501,6 +503,7 @@ h2:nth-child(2)  {
         position: relative;
         top: 20px;
         left: 15px;
+        width: 65%;
         
     }
 
@@ -658,11 +661,12 @@ h2:nth-child(2)  {
         position: relative;
         top: 20px;
         left: 15px;
+        margin-right: 10%;
+        width: 60%;
         
     }
 
     .bookInfoRightContent{
-        position: relative;
         top: 20px;
         right: 15px;
         
@@ -670,9 +674,13 @@ h2:nth-child(2)  {
     
     .contactSignIn {
         position:relative;
-        top:250px;
-        left: 30%;
+        top:33%;
+        left: 33%;
     }
-
+    
+    .sellerPhoto {
+        height: 15vh;
+        width: 9vw;
+    }
   }
 
