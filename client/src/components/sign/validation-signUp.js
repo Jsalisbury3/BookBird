@@ -50,16 +50,16 @@ class SignInValidation extends Component {
         return (
             <form id='sign-up-form' onSubmit={handleSubmit(this.handleAddItem)}>
                 <div className="row">
-                    <Field name={"Name"} size={"s9 m8 offset-m2"} component={this.renderInput} id="Name" label={"Name"}/>
+                    <Field name={"Name"} size={"s9 m9"} component={this.renderInput} id="Name" label={"Name"}/>
                 </div>
                 <div className="row">
-                    <Field name={"EmailSignUp"} size={"s9 m8 offset-m2"} component={this.renderInput} id="EmailSignUp" label={"Email"}/>
+                    <Field name={"EmailSignUp"} size={"s9 m9"} component={this.renderInput} id="EmailSignUp" label={"Email"}/>
                 </div>
                 <div className="row">
-                    <Field name={"PasswordSignUp"} size={"s9 m8 offset-m2"} component={this.renderInput} id={"PasswordSignUp"} label={"Password"}/>
+                    <Field name={"PasswordSignUp"} size={"s9 m9"} component={this.renderInput} id={"PasswordSignUp"} label={"Password"}/>
                 </div>
                 <div className="row">
-                    <Field name={"Number"} size={"s9 m8 offset-m2"} component={this.renderInput} id={"Number"}
+                    <Field name={"Number"} size={"s9 m9"} component={this.renderInput} id={"Number"}
                            label={"Phone Number"}/>
                 </div>
                 <div className=" row">
