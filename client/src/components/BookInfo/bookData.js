@@ -109,7 +109,8 @@ class IndividualBookData extends Component {
 
 
         return (
-            <div className='bookDetailsContainer'>
+            <div className="bookDetailsModalBackground">
+                <div className='bookDetailsContainer'>
                 <div id='back-arrow-container'>
                     <div onClick={this.props.history.goBack}>
                         <i id='arrow-icon' className='small yellow-text text-darken-1 material-icons'>arrow_back</i>
@@ -141,7 +142,7 @@ class IndividualBookData extends Component {
                         <div className="bookPrice">
                             <h5>${this.props.listId[0].price}</h5>
                         </div>
-                        <div className="userContactInfo">
+                        <div className="userContactInfo userContactDesktop">
                             <div className="userContactInfo soldBy">Seller:</div>
                             <img className="sellerPhoto"
                                  src={this.props.listId[0].profile_photo_url === null ? NoPhoto : `https://s3-us-west-2.amazonaws.com/book-bird-test-bucket/${this.props.listId[0].profile_photo_url}`}/>
@@ -156,16 +157,18 @@ class IndividualBookData extends Component {
                                 </div>
                             )
                     }
-                </div>
-                <div className="bookDetailButtonContainer" id="contactAction">
-                    <div id="backButtonContainer">
-                        <div onClick={this.props.history.goBack} className="btn" id="contactActionBack">BACK</div>
                     </div>
-                    <div id="contactSellerContainer">
-                        <button onClick={this.contactSeller} className={"btn"} id={this.state.contacted ? "alreadyContactedButton" : "contactActionButton"}>{this.state.contacted ? 'SELLER CONTACTED' : "CONTACT SELLER"}</button>
+                    <div className="bookDetailButtonContainer" id="contactAction">
+                        <div id="backButtonContainer">
+                            <div onClick={this.props.history.goBack} className="btn" id="contactActionBack">BACK</div>
+                        </div>
+                        <div id="contactSellerContainer">
+                            <button onClick={this.contactSeller} className={"btn"} id={this.state.contacted ? "alreadyContactedButton" : "contactActionButton"}>{this.state.contacted ? 'SELLER CONTACTED' : "CONTACT SELLER"}</button>
+                        </div>
                     </div>
                 </div>
             </div>
+            
 
         )
     }

@@ -28,7 +28,7 @@ h2:nth-child(2)  {
     background-image: linear-gradient(rgba(34, 0, 34, 0.589),rgba(92, 0, 92, 0.767));
     background-color: white;
     overflow: auto;
-    height: 84vh;
+    height: 100vh;
 }
 
 .main-container{
@@ -400,8 +400,132 @@ h2:nth-child(2)  {
 .bookLoading {
     
 }
+
+@media (min-width: 481px) and (max-width: 767px) {
+
+    .bookInfoLeftContent{
+        position: relative;
+        top: 20px;
+        left: 15px;
+        
+    }
+
+    .bookInfoRightContent{
+        position: relative;
+        top: 20px;
+        right: 15px;
+        
+    }
+
+    .bookDetailsContainer {
+        overflow-x: hidden;
+    }
+
+    #book-content {
+        height: 50%;
+    }
+  
+    .bookTitle {
+        font-size: 25px;
+    }
+
+    .bookCondition h6 {
+        font-size: 15px;
+    }
+
+    .bookPrice h5{
+        font-size: 50px;
+    }
+    
+    .userContactDesktop {
+        position: relative;
+        left: 35px;
+    }
+    
+    .contactSignIn {
+        position:relative;
+        left: 28%;
+    }
+  }
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    .bookInfoLeftContent{
+        position: relative;
+        top: 20px;
+        left: 45px;
+        
+    }
+
+    .bookInfoRightContent{
+        position: relative;
+        top: 20px;
+        right: 30px;
+        
+    }
+
+    .bookDetailsContainer {
+        overflow-x: hidden;
+    }
+    
+    #book-content {
+        height: 64%;
+    }
+    .bookTitle {
+        font-size: 25px;
+    }
+
+    .bookCondition h6 {
+        font-size: 15px;
+    }
+
+    .bookPrice h5{
+        font-size: 50px;
+    }
+    
+    .userContactDesktop {
+        position: relative;
+        left: 35px;
+    }
+    
+    .contactSignIn {
+        position:relative;
+        top: 30%;
+        left: 33%;
+    }
+  }
+
 @media screen and (min-width: 1000px) {
 
+    .bookInfoLeftContent{
+        position: relative;
+        top: 20px;
+        left: 15px;
+        
+    }
+
+    .bookInfoRightContent{
+        position: relative;
+        top: 20px;
+        right: 10px;
+        
+    }
+
+    .bookDetailsModalBackground {
+        background-image: linear-gradient( #180218ee, #240024da );
+    }
+
+    .bookDetailsContainer {
+        position: relative;
+        left: 25%;
+        width: 50%;
+        overflow-x: hidden;
+    }
+    
+    #book-content {
+        height: 64%;
+    }
+    
     .BookInfo {
         left: 40%;
         width: 60%;
@@ -415,6 +539,14 @@ h2:nth-child(2)  {
         margin: 2%;
     }
 
+    .bookTitle {
+        font-size: 25px;
+    }
+
+    .contactSignIn {
+        left: 33%;
+    }
+    
     h2:nth-child(1)  {
 
         height: 23%
@@ -422,6 +554,14 @@ h2:nth-child(2)  {
     h2:nth-child(2)  {
         height: 23%;
 
+    }
+
+    .bookCondition h6 {
+        font-size: 15px;
+    }
+
+    .bookPrice h5{
+        font-size: 50px;
     }
     .Container {
         width: 60vw;
@@ -458,6 +598,12 @@ h2:nth-child(2)  {
         bottom: 43%;
         width: 100vw;
     }
+
+    .userContactDesktop {
+        position: relative;
+        left: 25px;
+    }
+
     .BookPrice {
         position: absolute;
         width: 32%;
@@ -495,5 +641,38 @@ h2:nth-child(2)  {
         margin: 0;
     }
 
+    .contactSignIn {
+        position:relative;
+        top:235px;
+        left: 22%;
+    }
 }
+
+@media (min-width: 1281px) {
+
+    #book-content {
+        height: 64%;
+    }
+  
+    .bookInfoLeftContent{
+        position: relative;
+        top: 20px;
+        left: 35px;
+        
+    }
+
+    .bookInfoRightContent{
+        position: relative;
+        top: 20px;
+        right: 25px;
+        
+    }
+    
+    .contactSignIn {
+        position:relative;
+        top:250px;
+        left: 30%;
+    }
+
+  }
 
