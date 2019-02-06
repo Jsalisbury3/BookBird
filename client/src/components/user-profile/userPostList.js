@@ -75,6 +75,7 @@ class UserPostList extends Component {
                 </div> 
                 {/* <div className='samplePost'>{!this.state.data ? "no listings found" : ''}</div> */}
             </div>
+                
         )
     }
 }
