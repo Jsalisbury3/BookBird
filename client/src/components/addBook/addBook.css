@@ -1,10 +1,4 @@
 .modalIsbn {
-    /* position: absolute;
-    z-index: 1;
-    width: 100vw;
-    height: 84vh;
-    left: 0;
-    background-color: rgba(0,0,0,0.75); */
     position: absolute;
     z-index: 1;
     width: 100vw;
@@ -31,20 +25,7 @@
 .postAgainButton{
     margin:2px;
 }
-.POST{
-    position: relative;
-    width: 50%;
-    margin-left: 0;
-    right: 11%;
-    /* background-color: #fbc02d !important; */
 
-}
-.cancelButton {
-    position: relative;
-    width: 50%;
-    right: 25%;
-    /* background-color: #fbc02d !important; */
-}
 
 .isbnSearchErrorMessage{
     /* display:'none'; */
@@ -52,39 +33,22 @@
 }
 
 #loadingGif{
-    /* z-index: 5;
-    visibility: visible;
-    position: absolute;
-    height: 33%;
-    top: 28%; */
-
     z-index: 5;
     visibility: visible;
     position: absolute;
     height: 15%;
     top: 40%;
     width: 28%;
-    /* align-items: center; */
-    /* justify-content: center; */
-    /* align-content: center; */
     left: 34%;
 }
-/* .isbnModalContainer{
-
-}
-.submit_clear_buttons{
-} */
-
 .isbnIsRequiredText{
     font-weight: lighter;
     text-align: center; 
 }
-
 .tooltipped{
     color: rgb(77, 0, 77) !important;
     font-weight: bold;
 }
-
 #errorISBN{
     color:red;
     text-align: center;
@@ -96,13 +60,11 @@
 .signInRequiredModal{
     display:none;
 }
-
 .material-tooltip{
    left: 23% !important;
    width: 55%;
    right: 38%
 }
-
 .checkIcon{
     color: #fbc02d;
     text-align: center;
@@ -115,37 +77,13 @@
     display: flex;
 }
 .successModalText{
-    /* justify-content: center;
-    display: flex;
-    color: white; */
     justify-content: center;
     display: flex;
     color: rgb(12, 12, 12);
     font-size: 24px;
     margin-top: 2px;
 }
-.input-header{
-    font-size: .80rem;
-    line-height: 110%;
-    margin: .7666666667rem 0 .46rem 0;
-    position: absolute;
-    left: 8%;
-    font-weight: lighter; 
-    /* color:#fbc02d; */
-}
-
-
-
-.postAgainButton{
-    /* margin-right: 30px;
-    left: 6%; */
-}
-
 .isbnModalBookDescription{
-    /* bottom: 47%;
-    left: 21%; 
-    top:49%; */
-    /* font-weight: bold;  */
     color: rgb(10, 10, 10);
     font-weight: lighter;
 }
@@ -176,7 +114,7 @@
 }
 
 .addBook-container{
-    height: 100vh;
+    height: 109vh;
     width: 100%;
     background-image: linear-gradient(rgba(75, 0, 104, 0.877),rgba(43, 0, 43, 0.829)); 
     background: linear-gradient( #180218ee, #240024da );
@@ -184,7 +122,6 @@
     background-repeat: no-repeat;
     background-position: -352px -38px;
 }
-
 .isbn-container {
     height: 100%
 }
@@ -197,33 +134,12 @@
     margin-left: 5%;
     margin-top: 1%;
 }
-img {
-    height: 100%;
-    width: 100%;
-
-}
 .pageContainer {
     height: 100vh;
     width: 100vw;
 }
-.upload-image {
-
-    width: 0%;
-}
 .upload-image-container {
-    /* position: relative;
-    height: 100px;
-    width: 220px;
-    margin-left: 85px;
-    top: 3vh; */
-
-
-    /* position: relative; */
     height: 102px;
-    /* width: 220px;
-    margin-left: 85px;
-    bottom: 22%; */
-    
 }
 .searchButtonContainer {
     padding-left: 35%;
@@ -231,12 +147,19 @@ img {
     position: relative;
     right: 15%;
 }
-
-.input_label{
+.input-header{
+    font-size: .80rem;
+    line-height: 110%;
+    margin: .7666666667rem 0 .46rem 0;
+    position: absolute;
+    left: 8%;
+    font-weight: lighter; 
+}
+/* .input_label{
     position: relative;
     margin-top: 1rem;
     margin-bottom: 1rem;
-}
+} */
 .enterIsbnLabel{
     font-size: 10px;
     left:2%;
@@ -307,14 +230,7 @@ img {
 
 
 
-/* .input-field > label {
-    color: #9e9e9e;
-    position: absolute;
-    top: 0;
-    left: 10%;
-    font-size: 1rem;
-    cursor: text;
-} */
+
 .modal-footer{
     margin-bottom: 11px;
 }
@@ -371,12 +287,6 @@ img {
     background-color: #fbc02d;
 }
 
-/*:root {*/
-    /*--moveRight: 91%;*/
-    /*--moveup: 4.5vh;*/
-    /*--marktop: 7.8vh;*/
-    /*--markbase: 4.2vh;*/
-/*}*/
 .title-container {
     height: 18%;
 }
@@ -384,45 +294,41 @@ img {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 0px;
-    bottom: 17%;
+    /* bottom: 17%; */
 }
 
 #input-container2 {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 0px;
-    bottom: 16%;
+    /* bottom: 16%; */
 }
 
 #input-container3 {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 0px;
-    bottom: 15%;
+    /* bottom: 15%; */
 }
 
 #input-container4 {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 0px;
-    bottom: 15%;
+    /* bottom: 15%; */
 }
 
 .post-button-container  {
     margin-left: 27%;
     position: relative;
-    bottom: 13%;
+    /* bottom: 13%; */
 }
 .submit-photo-container {
     position: relative;
     margin-top: 8%;
     margin-left: 28px;
     z-index: 0;
-    /* position: relative;
-    z-index: 0;
-    bottom: 13.6vh;
-    left: 78vw;
-    display: inline-block; */
+
 }
 
 .pageHeader {
@@ -465,8 +371,8 @@ img {
     width: 100%;
 }
 .form-container {
-    width: 100vw;
-    height: 49%;
+    width: 100%;
+    height: 77%;
 }
 .containerAddBook {
     position: absolute;
@@ -512,10 +418,6 @@ img {
     text-align: center;
 }
 
-#priceLabel{
-    /* font-weight:lighter */
-}
-
 #price{
     font-weight: lighter; 
     color: white; 
@@ -528,7 +430,6 @@ img {
 }
 
 #author{
-    /* color: #fbc02d !important; */
     color:white;
     font-weight: lighter;
 }
@@ -596,11 +497,6 @@ img {
     justify-content: space-around;
 }
 .single-photo-container{
-    /* display: inline-flex;
-    height: 88px;
-    width: 72px;
-    margin:9px; */
-
     display: inline-flex;
     height: 88px;
     width: 72px;
@@ -652,35 +548,10 @@ select option {
     color: green;
     visibility: hidden;
 }
-
-
-/*.markISBN {*/
-    /*top: var(--markbase)*/
-
-/*}*/
-
-/*.markCondition {*/
-    /*top: calc(var(--markbase) + var(--marktop) * 1);*/
-/*}*/
-
-/*.markTitle {*/
-    /*top: calc(var(--markbase) + var(--marktop) * 2);*/
-/*}*/
-
-/*.markAuthor {*/
-    /*top: calc(var(--markbase) + var(--marktop) * 3);*/
-/*}*/
-
-/*.markEdition {*/
-    /*top: calc(var(--markbase) + var(--marktop) * 4);*/
-/*}*/
-
 .markPrice {
     top: 53vh;
     left: 60vw;
 }
-
-
 .visible {
     visibility: visible;
 }
@@ -696,36 +567,32 @@ select option {
 
 }
 
-@media screen and (max-width: 600px) {
-    .container {
-        width: 100vw;
-    }
-
-    .inputs {
-        width: 84%;
-        left: 10%;
-    }
-
-
+.successImage {
+    /* display: inline-block; */
+    position: relative;
+    width: 80%;
+    bottom: 8px;
 }
-
-@media screen and (min-width: 600px) and (max-width: 800px) {
-    .inputs {
-        width: 50%;
-        left: 8%;
-    }
-
-    .condition {
-        width: 50%;
-        left: 8%;
-    }
-
-    .container {
-        width: 60vw;
-        margin-left: 20vw;
-    }
+.successImage > img {
+    display: inline-block;
+    position: relative;
+    left: 50%;
+    top: 20%;
+    height: 5%;
+    width: 25%;
 }
-
+.POST{
+    position: relative;
+    width: 50%;
+    margin-left: 0;
+    right: 11%;
+}
+.cancelButton {
+    position: relative;
+    width: 50%;
+    right: 25%;
+    /* background-color: #fbc02d !important; */
+}
 @media screen and (min-width: 600px) {
     .container {
         width: 60vw;
@@ -752,25 +619,7 @@ select option {
     .last::placeholder {
         font-size: 1.5em;
     }
-}
-
-
-
-
-
-
-
-.successImage {
-    /* display: inline-block; */
-    position: relative;
-    width: 80%;
-    bottom: 8px;
-}
-.successImage > img {
-    display: inline-block;
-    position: relative;
-    left: 50%;
-    top: 20%;
-    height: 5%;
-    width: 25%;
+    .modal-content{
+        width:300px;
+    }
 }

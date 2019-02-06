@@ -331,7 +331,7 @@ class AddBook extends Component {
     render() {
         const hideISBN = this.state.hideIsbnSearchBar ? {display: 'none'} : {display: 'block'};
         return (
-                <div className={"addBook-container"}>
+                <div className={"addBook-container col m6 offset-m3"}>
                     <div className="isbnModalContainer">
                         <div id="modal1" className="modalIsbn">
                             <div className="modal-content">
@@ -464,16 +464,7 @@ class AddBook extends Component {
                             </div>
                         </div>
                         {this.state.showToolTip && <Tooltip></Tooltip>}
-                        {/*<div className="row">*/}
-                        {/*<input name={"ISBN"} placeholder={"*ISBN"} className={"inputs isbn-container col s6 offset-s6"} onChange={this.handleInput}/>*/}
-                        {/*</div>*/}
-                        {/* <input name={"ISBN"} placeholder={"*ISBN"} className={"inputs"} onChange={this.handleInput}/>
-                            <div className={"error"}></div>
-                            <div className={"checkMark markISBN material-icons"}>check_circle_outline</div> */}
-                        {/*<div className={"error"}></div>*/}
-                        {/*<div className={"checkMark markAuthor material-icons"}>check_circle_outline</div>*/}
-                        {/*<input name={"edition"} placeholder={"*Edition"} className={"inputs"} onChange={this.handleInput}/>*/}
-
+                      
                         <div className='submit-photo-container'>
                             <label id="add-photo-icon picIcon" className="btn waves-light add-photo-icon-class"
                                    htmlFor="photoInput"><i
