@@ -657,14 +657,14 @@ h2:nth-child(2)  {
     .bookInfoLeftContent{
         position: relative;
         top: 20px;
-        left: 35px;
+        left: 15px;
         
     }
 
     .bookInfoRightContent{
         position: relative;
         top: 20px;
-        right: 25px;
+        right: 15px;
         
     }
     
