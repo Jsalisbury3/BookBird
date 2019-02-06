@@ -223,8 +223,13 @@
     display:block;
 }
 
+.navigation {
+    background-color: rgb(17, 17, 17);
+    height: 100vh;
+}
 
 @media only screen and (min-width: 768px) {
+    
     #mainListingsContainer {
         padding:0;
     }
@@ -239,7 +244,7 @@
         height: 92.6vh;
     }
 
-    .listItem {
+    .itemImage {
         box-shadow: none;
     }
     .uni-header {
@@ -251,7 +256,26 @@
     }
 } 
 
-.navigation {
-    background-color: rgb(17, 17, 17);
-    height: 100vh;
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    .itemImage {
+        box-shadow: none;
+        width: 65%;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .itemImage {
+        box-shadow: none;
+        width: 90%;
+    }
+
+}
+
+@media (min-width: 1281px) {
+    .itemImage {
+        box-shadow: none;
+        width: 75%;
+    }
 }
