@@ -1,4 +1,13 @@
 
+.photoContainer {
+    position: relative;
+    width: 41%;
+}
+.video {
+    width: 99%;
+    position: relative;
+    height: 41%;
+}
 .introPageContainer{
     background-color: #001;
     height: 100vh;
