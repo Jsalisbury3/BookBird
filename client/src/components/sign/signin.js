@@ -24,9 +24,10 @@ class Signin extends Component{
         return(
             
             <div className="signin_container col m6 offset-m3">
-                <div className='signin-logo-container'>
+                {/* <div className='signin-logo-container'>
                     <img src={logo}/>
-                </div>
+                </div> */}
+                <h6 className="SignInHeader col s12 m12 l12 center-align">Sign In</h6>
                 <SignInValidation/>
                 <p className="grey-text  signin_footer">Dont have an account? <Link className='yellow-text text-darken-2' to={"/SignUp"}>Sign up now! </Link> </p>
             </div>

@@ -48,15 +48,15 @@ class SignInValidation extends Component {
         return (
             <form id='sign-in-container' onSubmit={handleSubmit(this.handleAddItem)}>
                 <p className={"red-text"}>{this.props.signInResults.message ? this.props.signInResults.message : ""}</p>
-                <div className="row">
+                <div className="col signInRow">
                     <Field name={"Email"} size={"s9"} component={this.renderInput} id="Email"
                            label={"Email"}/>
                 </div>
-                <div className="row">
+                <div className="col signInRow">
                     <Field name={"Password"} size={"s9"} component={this.renderInput} id={"Password"}
                            label={"Password"}/>
                 </div>
-                <div className="row">
+                <div className="col signInRow">
                     <div className="signin-button col s6 center">
                         <button className="btn yellow darken-2 grey-text text-darken-3">Sign In</button>
                     </div>
