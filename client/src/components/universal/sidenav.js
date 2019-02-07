@@ -53,7 +53,14 @@ class SideNav extends Component {
         this.getLinksInMenu();
     };
 
+    componentDidMount = () => {
+        const dontShow = ['/'];
+        if(dontShow.includes(this.props.location.pathname)) return null;
+    }
+
     componentDidUpdate = () => {
+        const dontShow = ['/'];
+        if(dontShow.includes(this.props.location.pathname)) return null;
         this.getLinksInMenu();
     };
 
