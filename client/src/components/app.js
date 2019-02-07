@@ -21,8 +21,6 @@ import 'materialize-css/dist/js/materialize.min';
 import {BASE_URL_GOOGLE_BOOKS, API_KEY} from '../../../config/api'
 
 
-
-
 class App extends Component {
 
     render() {
@@ -30,20 +28,20 @@ class App extends Component {
             <Router>
                 <div className="appContainer">
                     <div className="pageContainer">
-                        <Header />
+                        <Header/>
                         <div className="row">
-                        <SideNav/>
-                        <Route exact path={"/"} component={IntroPage}/>
-                        <div className="route_container col s12 m10">
-                        <Route path={"/Landing"} component={LandingPage}/>
-                        <Route path={"/AddBook"} component={AddBook}/>                        
-                        <Route path={"/BookInfoIndex/:bookId"} component={BookData}/>
-                        <Route path={"/UserProfile"} component={UserProfile}/>
-                        <Route path={"/SignIn"} component={SignIn}/>
-                        <Route path={"/SignUp"} component={SignUp}/>
-                        </div>                        
+                            <SideNav/>
+                            <Route exact path={"/"} component={IntroPage}/>
+                            <div className="route_container col s12 m10">
+                                <Route path={"/Landing"} component={LandingPage}/>
+                                <Route path={"/AddBook"} component={AddBook}/>
+                                <Route path={"/BookInfoIndex/:bookId"} component={BookData}/>
+                                <Route path={"/UserProfile"} component={UserProfile}/>
+                                <Route path={"/SignIn"} component={SignIn}/>
+                                <Route path={"/SignUp"} component={SignUp}/>
+                            </div>
                         </div>
-                         <Nav/>
+                        <Nav/>
                     </div>
                 </div>
             </Router>
