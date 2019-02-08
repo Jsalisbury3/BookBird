@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import { withRouter } from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 import Logo from './images/IntroPageLogo.png';
 
 class SideNav extends Component {
@@ -18,6 +18,10 @@ class SideNav extends Component {
             {
                 text: "Add Book",
                 to: "/AddBook"
+            },
+            {
+                text: "Team",
+                to: "/MeetTheTeam"
             }
         ],
         Auth: [
@@ -53,18 +57,20 @@ class SideNav extends Component {
         this.getLinksInMenu();
     };
 
-    componentDidMount = () => {
-        const dontShow = ['/'];
-        if(dontShow.includes(this.props.location.pathname)) return null;
-    }
+    // componentDidMount = () => {
+    //     const dontShow = ['/'];
+    //     if (dontShow.includes(this.props.location.pathname)) return null;
+    // }
 
     componentDidUpdate = () => {
         const dontShow = ['/'];
-        if(dontShow.includes(this.props.location.pathname)) return null;
+        if (dontShow.includes(this.props.location.pathname)) return null;
         this.getLinksInMenu();
     };
 
     getLinksInMenu = () => {
+        const dontShow = ['/'];
+        if (dontShow.includes(this.props.location.pathname)) return null;
         const {common, Auth, noAuth} = this.state;
         let token = localStorage.getItem("Token");
         let links = [...common];
@@ -82,28 +88,27 @@ class SideNav extends Component {
     };
 
     render() {
-
         const links = this.getLinksInMenu();
         return (
-            <Fragment>
-                <div className="navigation col hide-on-small-only m2 ">
-                    <img className="navDesktopLogo" src={Logo}/>
-                    <div className="sideNavLinks">
-                        <ul>
-                            <ul ref={(element) => {this.navRef = element}}>
-                                {links}
-                            </ul>
+            <div className="navigation col hide-on-small-only m2 ">
+                <img className="navDesktopLogo" src={Logo}/>
+                <div className="sideNavLinks">
+                    <ul>
+                        <ul ref={(element) => {
+                            this.navRef = element
+                        }}>
+                            {links}
                         </ul>
-                    </div>
+                    </ul>
                 </div>
-            </Fragment>
+            </div>
         )
     }
 }
 
 function mapStateToProps(state) {
     return {
-        token : localStorage.getItem("Token")
+        token: localStorage.getItem("Token")
     }
 }
 
