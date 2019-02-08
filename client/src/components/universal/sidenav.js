@@ -9,7 +9,7 @@ export default withRouter((props)=>{
     if(dontShow.includes(props.location.pathname)) return null;
 
     return(
-        <div className="navigation col hide-on-small-only m2 ">
+        <div id="sideNav" className="navigation col hide-on-small-only m4 l2">
             <img className="navDesktopLogo" src={Logo}/>
             <div className="sideNavLinks">
                 <ul>

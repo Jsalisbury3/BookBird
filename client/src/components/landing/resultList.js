@@ -39,10 +39,11 @@ class ResultList extends Component {
     render() {
         console.log('Results List PROPS: ', this.props);
         let listings = this.getRowData(this.props.searchResults);
+   
         return (
             <div id="mainListingsContainer">
                 <SearchBar function={this.receiveFilterResults}/>
-                <div className='search-results-container'>{listings}</div>
+                <div className='search-results-container'>{listings.length > 0 ? listings : <div className="noSearchResults">No Listings Found</div>}</div>
 
             </div>
         )
