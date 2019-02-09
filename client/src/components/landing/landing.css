@@ -286,9 +286,7 @@
 } */
 @media only screen and (min-width: 768px) {
 
-    #searchInput {
-        height: 102% !important;
-    }
+    
     
     #mainListingsContainer {
         padding:0;
@@ -384,9 +382,7 @@
 
 @media (min-width: 992px) {
 
-    #searchInput {
-        height: 96% !important;
-    }
+    
 
     .itemImage {
         box-shadow: none;
@@ -403,6 +399,11 @@
 }
 
 @media screen and (min-width: 1000px) {
+
+
+    #searchInput {
+        height: 2.9rem;
+    }
     .itemImage {
         box-shadow: none;
         width: 90%;
@@ -420,7 +421,9 @@
 
 @media (min-width: 1281px) {
 
-    
+    #searchInput {
+        height: 2.9rem;
+    }
     .itemImage {
         box-shadow: none;
         width: 75%;
