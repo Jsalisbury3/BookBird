@@ -5,7 +5,9 @@ import {withRouter} from 'react-router-dom';
 import Logo from './images/IntroPageLogo.png';
 
 class SideNav extends Component {
+
     state = {
+        location: '',
         common: [
             {
                 text: "Home",
@@ -45,11 +47,17 @@ class SideNav extends Component {
 
     buildLinkForNav = (link) => {
         return (
-            <li key={link.to}>
+            <li onClick={this.changeState} key={link.to}>
                 <Link to={link.to}>{link.text}</Link>
             </li>
         )
     };
+
+    componentDidMount = () => {
+        this.setState({
+            location: this.props.location.pathname
+        })
+    }
 
     handleSignOut = () => {
         localStorage.clear();
@@ -57,20 +65,7 @@ class SideNav extends Component {
         this.getLinksInMenu();
     };
 
-    // componentDidMount = () => {
-    //     const dontShow = ['/'];
-    //     if (dontShow.includes(this.props.location.pathname)) return null;
-    // }
-
-    componentDidUpdate = () => {
-        const dontShow = ['/'];
-        if (dontShow.includes(this.props.location.pathname)) return null;
-        this.getLinksInMenu();
-    };
-
     getLinksInMenu = () => {
-        const dontShow = ['/'];
-        if (dontShow.includes(this.props.location.pathname)) return null;
         const {common, Auth, noAuth} = this.state;
         let token = localStorage.getItem("Token");
         let links = [...common];
@@ -87,7 +82,18 @@ class SideNav extends Component {
         return links
     };
 
+    changeState = async (e) => {
+        let path = e.target.pathname
+        console.log(path);
+        await this.setState({
+            location: path
+        })
+    }
+
     render() {
+        const dontShow = ['/'];
+        if (dontShow.includes(this.state.location)) return null;
+        console.log(this.state.location);
         const links = this.getLinksInMenu();
         return (
             <div className="navigation col hide-on-small-only m2 ">
@@ -108,7 +114,7 @@ class SideNav extends Component {
 
 function mapStateToProps(state) {
     return {
-        token: localStorage.getItem("Token")
+        token: localStorage.getItem("Token"),
     }
 }
 
