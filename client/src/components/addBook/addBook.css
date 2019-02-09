@@ -287,37 +287,6 @@
     background-color: #fbc02d;
 }
 
-.title-container {
-    height: 18%;
-}
-#input-container1 {
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 0px;
-    /* bottom: 17%; */
-}
-
-#input-container2 {
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 0px;
-    /* bottom: 16%; */
-}
-
-#input-container3 {
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 0px;
-    /* bottom: 15%; */
-}
-
-#input-container4 {
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 0px;
-    /* bottom: 15%; */
-}
-
 .post-button-container  {
     margin-left: 27%;
     position: relative;

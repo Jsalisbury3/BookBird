@@ -409,27 +409,27 @@ class AddBook extends Component {
                         <img src={loadingGif2} alt="loadingGif" id="loadingGif"/>
                         <h3 className={"pageHeader"}>Add Book</h3>
                         <p className={"pageDescription"}> Fill out the remaining fields below. This information will be displayed when other students are searching for books.</p>
-                        <div id='input-container1' className=' title-container row'>
+                        <div className=' title-container row'>
                             <div id={"titleError"} className={"error"}></div>
                             {/* <div id={"conditionCheckMArk"}
                                  className={"checkMark markCondition material-icons"}>check_circle_outline
                             </div> */}
                             <div className='input-field '>
-                                <h6 className='yellow-text text-darken-2 input-header first'>Title</h6>
+                                <label htmlFor='title' className='yellow-text text-darken-2 input-header'>Title</label>
                                 <input name="title" id='title' type='text' className="inputs col s10 push-s1"
                                        onChange={this.handleInput} autoComplete="off"/>
                             </div>
                         </div>
-                        <div id='input-container2' className=' title-container row'>
+                        <div className='row'>
                             <div className={"error"} id={"authErr"}></div>
                             {/* <div className={"checkMark markTitle material-icons"}>check_circle_outline</div> */}
                             <div className='input-field'>
-                                <h6 className='yellow-text text-darken-2 input-header second'>Author</h6>
+                                <label htmlFor='author' className='yellow-text text-darken-2 input-header'>Author</label>
                                 <input name="author" id='author' type='text' className="inputs col s10 push-s1"
                                        onChange={this.handleInput} autoComplete="off"/>
                             </div>
                         </div>
-                        <div id='input-container3' className='title-container row'>
+                        <div className='row'>
                             
                             {/* <div className={"checkMark markEdition material-icons"}>check_circle_outline</div> */}
                             <div className='input-field'>
@@ -439,7 +439,7 @@ class AddBook extends Component {
                                 
                             </div>
                         </div>
-                        <div id='input-container4 condition-container' className='title-container row'>
+                        <div id='condition-container' className='row'>
                             <select name={"condition"} onChange={this.handleInput} id={"mySelect"}
                                     className={"condition  col s6 push-s3"}>
                                 <option value="" disabled selected>*Select Condition:</option>
