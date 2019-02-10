@@ -6,4 +6,6 @@ export default {
     USER_LISTINGS : 'user_listings',
     SIGN_IN_ACTION : 'sign_in_action',
     SIGN_UP_ACTION : 'sign_up_action',
+    LINK_TRACKER: "link_tracker",
+    LINK_TRACKER_ERROR: "link_tracker_error",
 };
