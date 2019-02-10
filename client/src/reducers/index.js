@@ -5,6 +5,7 @@ import bookIdReducer from './book_id_reducer';
 import signInReducer from './sign_in_reducer';
 import {reducer as formReducer} from 'redux-form';
 import signUpReducer from "./sign_up_reducer";
+import link_tracker_reducer from "./link_tracker_reducer";
 
 const rootReducer = combineReducers({
     form: formReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
     bookIdReducer,
     signInReducer,
     signUpReducer,
+    link_tracker_reducer,
 })
 
 export default rootReducer;

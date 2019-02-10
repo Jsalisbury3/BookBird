@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {withRouter} from 'react-router-dom';
 import Logo from './images/IntroPageLogo.png';
+import {LinkTracker}from "../../actions/linkTracker_action"
 
 class SideNav extends Component {
 
@@ -83,16 +84,19 @@ class SideNav extends Component {
     };
 
     changeState = async (e) => {
-        let path = e.target.pathname
+        let path = e.target.pathname;
         console.log(path);
-        await this.setState({
-            location: path
-        })
+        await this.props.LinkTracker(path);
+        // this.setState({
+        //     location: this.props.currentLink,
+        // })
     }
 
     render() {
         const dontShow = ['/'];
-        if (dontShow.includes(this.state.location)) return null;
+        let currentLink = this.props.currentLink ? this.props.currentLink : "/";
+        console.log("currentLink variable: ", currentLink);
+        if (dontShow.includes(currentLink)) return null;
         console.log(this.state.location);
         const links = this.getLinksInMenu();
         return (
@@ -115,10 +119,13 @@ class SideNav extends Component {
 function mapStateToProps(state) {
     return {
         token: localStorage.getItem("Token"),
+        currentLink: state.link_tracker_reducer.currentLink
     }
 }
 
-export default connect(mapStateToProps, {})(withRouter(SideNav));
+export default connect(mapStateToProps, {
+    LinkTracker
+})(withRouter(SideNav));
 
 // import React, { Component } from 'react';
 // import {Link} from 'react-router-dom';
