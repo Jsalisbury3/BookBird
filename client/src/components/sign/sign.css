@@ -86,11 +86,11 @@ input:-webkit-autofill:active {
 }
 
 .signin_container {
-    height: 90vh;
+    height: 107vh;
     overflow: auto;
 }
 .signup_container{
-    height: 90vh;
+    height: 107vh;
     overflow: auto;
 }
 
@@ -122,7 +122,7 @@ input:-webkit-autofill:active {
     ),
 
     url(../images/chavezcenter.jpg);
-    background-size: 271%;
+    background-size: 362%;
     background-repeat: no-repeat;
     background-position: -352px -38px;
 }
@@ -145,7 +145,7 @@ input:-webkit-autofill:active {
     ),
     /* bottom, image */
     url(../images/chavezcenter.jpg);
-    background-size: 271%;
+    background-size: 362%;
     background-repeat: no-repeat;
     background-position: -352px -38px;
 }
