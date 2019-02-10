@@ -6,12 +6,10 @@ import bookBirdLogo from './images/introPageLogo.png'
 import {LinkTracker} from "../../actions/linkTracker_action"
 
 class IntroPage extends Component {
-
     addLinkToReducer = async () => {
         const path = "/Landing";
         await this.props.LinkTracker(path);
     }
-
     render() {
         return (
             <div className="row introPageContainer">
@@ -26,13 +24,10 @@ class IntroPage extends Component {
         )
     }
 }
-
 function mapStateToProps(state) {
     return {
-
     }
 }
-
 export default connect(mapStateToProps, {
     LinkTracker
 })(IntroPage);
