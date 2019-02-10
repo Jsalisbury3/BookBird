@@ -84,6 +84,7 @@ class SideNav extends Component {
     };
 
     changeState = async (e) => {
+        debugger;
         let path = e.target.pathname;
         console.log(path);
         await this.props.LinkTracker(path);
