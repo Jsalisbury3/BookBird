@@ -84,18 +84,14 @@ class SideNav extends Component {
     };
 
     changeState = async (e) => {
-        debugger;
-        let path = e.target.pathname;
+        let path = window.location.pathname;
         console.log(path);
         await this.props.LinkTracker(path);
-        // this.setState({
-        //     location: this.props.currentLink,
-        // })
     }
 
     render() {
         const dontShow = ['/'];
-        let currentLink = this.props.currentLink ? this.props.currentLink : "/";
+        let currentLink = this.props.currentLink ? this.props.currentLink : window.location.pathname;
         console.log("currentLink variable: ", currentLink);
         if (dontShow.includes(currentLink)) return null;
         console.log(this.state.location);
