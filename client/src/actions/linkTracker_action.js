@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import types from "./types";
 import axios from "axios";
 
-export const LinkTracker = (path) => dispatch => {
+export const LinkTracker = (path = "/Landing") => dispatch => {
     try {
         dispatch({
             type: types.LINK_TRACKER,
