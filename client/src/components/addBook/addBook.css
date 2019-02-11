@@ -139,7 +139,9 @@
     width: 100vw;
 }
 .upload-image-container {
-    height: 102px;
+    display:inline-block;
+    height: 128px;
+    width: 250px;
 }
 .searchButtonContainer {
     padding-left: 35%;
@@ -148,18 +150,11 @@
     right: 15%;
 }
 .input-header{
-    font-size: .80rem;
-    line-height: 110%;
-    margin: .7666666667rem 0 .46rem 0;
-    position: absolute;
-    left: 8%;
     font-weight: lighter; 
 }
-/* .input_label{
-    position: relative;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-} */
+.inputs{
+    margin-bottom:0 !important;
+}
 .enterIsbnLabel{
     font-size: 10px;
     left:2%;
@@ -184,9 +179,16 @@
 .label-placeholder {
     margin-left: 9%;
 }
+.input-field .prefix ~ label {
+    margin-left: 0rem;
+}
+.input-field.col label {
+    left: 2.75rem;
+}
 
-.input-field > label {
-    /* color: #26a69a !important; */
+
+/* .input-field > label {
+    color: #26a69a !important;
     position: absolute;
     top: 0;
     left: 0;
@@ -201,12 +203,15 @@
     text-align: initial;
     -webkit-transform: translateY(12px);
     transform: translateY(12px);
-}
+} */
 /* .input-field{
     border-bottom: white !important;
 
 } */
-
+.activated{
+    transform: translateY(-14px) scale(0.8) !important;
+    transform-origin: 0 0 !important;
+}
 .label-placeholder {
     left: 8%;
     margin-top: 6%;
@@ -245,14 +250,9 @@
 
 }
 #comment-box {
-    /* top: 1vh; */
-    margin-bottom: 23px;
-    left: 8%;
-    position: fixed;
-    font-size: 12px;
+    margin-top:5px;
     height: 46px;
     position: relative;
-    border: 1px solid white;
     color: white;
     font-weight: lighter;
 }
@@ -270,63 +270,49 @@
     left: 73vw;
 }
 #mySelect {
-    margin-top: 2%;
+    margin-top: 16px;
     background-color: aliceblue;
-    margin-left: 8%;
-    top: -4vh;
-    left: 0;
-    width:43%;
 }
 
 
-#picIcon {
+/* #picIcon {
     position: relative;
     top: 10vh;
     left: 40vw;
     display: inline-block;
     background-color: #fbc02d;
-}
+} */
 
 .post-button-container  {
-    margin-left: 27%;
+    margin-left: 92px;
+    margin-top:5px;
     position: relative;
     /* bottom: 13%; */
 }
 .submit-photo-container {
     position: relative;
-    margin-top: 8%;
+    margin-top: 11px;
     margin-left: 28px;
     z-index: 0;
-
+    display: inline-block;
+    vertical-align:top;
 }
 
 .pageHeader {
     margin: 0;
     font-size: 28px;
-    padding: 8px;
+    padding-top: 8px;
     font-weight: lighter;
     color: #fbc02d;
     text-align: left;
-    margin-left: 22px;
+    /* margin-left: 22px; */
 }
 
 .pageDescription {
-    margin: 0.5%;
+    margin: 0 0 5px 0;
     font-size: 13px;
-    width: 83%;
     color: white;
     font-weight: lighter;
-    margin-left: 29px;
-    margin-top: -12px;
-}
-
-
-.first {
-    top: 2vh;
-}
-
-.second {
-    top: 2vh;
 }
 
 .label-placeholder {
@@ -362,24 +348,9 @@
     background-color: #5bc0de;
     color: white;
 }
-.inputs {
-    position: relative;
-    display: inline-block;
-    width: 80%;
-     height: min-content;
-    font-size: 1rem;
-    left: 10.5%;
-    top: 4vh;
-}
 .textSpan {
     position: relative;
     top: 13%;
-}
-.last {
-    position: relative;
-    top: 4.1vh;
-    height: 10vh;
-    font-size: 1.3rem;
 }
 .text {
     width: 50%;
@@ -415,8 +386,8 @@
 }
 
 #priceErr {
-    top: 9vh;
-    right: 10vw;
+    /* top: 9vh;
+    right: 10vw; */
     position: absolute;
     color: red;
     font-size: 12px;
@@ -467,14 +438,12 @@
 }
 .single-photo-container{
     display: inline-flex;
-    height: 88px;
-    width: 72px;
+    height: auto;
+    width: 88px;
     margin: 9px;
     position: relative;
     align-items: center;
     text-align: center;
-    bottom: 56px;
-    left: 79px;
 }
 .single-photo-container>img{
     height:100%;
@@ -482,13 +451,13 @@
     border: 1px solid black;
 }
 .condition {
-    position: relative;
+    /* position: relative; */
     display: inline-block;
-    width: 80%;
+    /* width: 80%;
     height: 5vh;
-    margin: auto;
+    margin: auto; */
     font-size: 1rem;
-    left: 10.5%;
+    /* left: 10.5%; */
 }
 
 select {
@@ -563,31 +532,6 @@ select option {
     /* background-color: #fbc02d !important; */
 }
 @media screen and (min-width: 600px) {
-    .container {
-        width: 60vw;
-        margin-left: 20vw;
-    }
-
-    .inputs {
-        height: 5vh;
-        width: 40vw;
-        margin-left: 7vw;
-    }
-
-    .condition {
-        width: 40vw;
-        margin-left: 7vw;
-    }
-
-    .last {
-        height: 10vh;
-        top: 5vh;
-        resize: none;
-    }
-
-    .last::placeholder {
-        font-size: 1.5em;
-    }
     .modal-content{
         width:300px;
     }
