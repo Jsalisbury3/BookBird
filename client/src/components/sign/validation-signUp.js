@@ -17,8 +17,10 @@ class SignInValidation extends Component {
 
     renderInput = (props) => {
         return (
-            <div className={`col ${props.size || 's12'}`}>
-                <div className="input-field">
+            // <div className={`col ${props.size || 's12'}`}>
+
+            <div>
+                <div className="input-field sign-up-input-field">
                     <input className="signUpInput grey-text text-lighten-5"{...props.input} id={props.id} autoComplete={"off"} type={props.id === "PasswordSignUp" ? 'password' : 'text'}/>
                     <label className="signUpLabel yellow-text text-darken-2" htmlFor={props.id}>{props.label}</label>
                     <p className={"error-message red-text text-darken-2"}>{props.meta.touched && props.meta.error}</p>
@@ -49,24 +51,24 @@ class SignInValidation extends Component {
         const {handleSubmit, reset} = this.props;
         return (
             <form id='sign-up-form' onSubmit={handleSubmit(this.handleAddItem)}>
-                <div className="row">
-                    <Field name={"Name"} size={"s9 m8 offset-m2"} component={this.renderInput} id="Name" label={"Name"}/>
+                <div className="col offset-l1 l7 m8 s9 center-align signUpRow">
+                    <Field name={"Name"}  component={this.renderInput} id="Name" label={"Name"}/>
                 </div>
-                <div className="row">
-                    <Field name={"EmailSignUp"} size={"s9 m8 offset-m2"} component={this.renderInput} id="EmailSignUp" label={"Email"}/>
+                <div className="col offset-l1 l7 m8 s9 center-align signUpRow">
+                    <Field name={"EmailSignUp"}  component={this.renderInput} id="EmailSignUp" label={"Email"}/>
                 </div>
-                <div className="row">
-                    <Field name={"PasswordSignUp"} size={"s9 m8 offset-m2"} component={this.renderInput} id={"PasswordSignUp"} label={"Password"}/>
+                <div className="col offset-l1 l7 m8 s9 center-align signUpRow">
+                    <Field name={"PasswordSignUp"}  component={this.renderInput} id={"PasswordSignUp"} label={"Password"}/>
                 </div>
-                <div className="row">
-                    <Field name={"Number"} size={"s9 m8 offset-m2"} component={this.renderInput} id={"Number"}
+                <div className="col offset-l1 l7 m8 s9 center-align signUpRow">
+                    <Field name={"Number"}  component={this.renderInput} id={"Number"}
                            label={"Phone Number"}/>
                 </div>
-                <div className=" row">
+                <div className="col l12 m12 s12 center-align signInRow">
                     {/* <div className="col s6 center">
                         <button onClick={reset} type={"button"} className="btn grey darken-4">clear</button>
                     </div> */}
-                    <div className="signup-button col s6 center">
+                    <div className="signup-button">
                         <button onClick={()=>console.log('################test')} className="btn yellow darken-2 grey-text text-darken-3">Sign Up</button>
                     </div>
                 </div>

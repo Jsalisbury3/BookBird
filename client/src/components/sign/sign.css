@@ -19,7 +19,6 @@ input:-webkit-autofill:active {
         color: white;
     }
 }
-
 .signin_footer{
     position: relative;
     left: 61px;
@@ -28,6 +27,7 @@ input:-webkit-autofill:active {
     position: relative;
     left: 27px;
 }
+
 .signin-logo-container{
     position:relative;
     height:200px;
@@ -95,11 +95,11 @@ input:-webkit-autofill:active {
 }
 
 .signin_container {
-    height: 90vh;
+    height: 107vh;
     overflow: auto;
 }
 .signup_container{
-    height: 90vh;
+    height: 107vh;
     overflow: auto;
 }
 
@@ -131,7 +131,7 @@ input:-webkit-autofill:active {
     ),
 
     url(../images/chavezcenter.jpg);
-    background-size: 271%;
+    background-size: 362%;
     background-repeat: no-repeat;
     background-position: -352px -38px;
 }
@@ -154,18 +154,19 @@ input:-webkit-autofill:active {
     ),
     /* bottom, image */
     url(../images/chavezcenter.jpg);
-    background-size: 271%;
+    background-size: 362%;
     background-repeat: no-repeat;
     background-position: -352px -38px;
 }
-.signin_container>p{
+
+/* .signin_container>p{
     width: 300px !important;
     margin-right: 0px !important;
 }
 .signup_container>p{
     width: 300px !important;
     margin: 0px !important;
-}
+} */
 .signInError, .signUpError{
     display: flex;
     left: 23%;
@@ -173,15 +174,65 @@ input:-webkit-autofill:active {
     justify-content: center;
 
 }
-.signInLabel, .signUpLabel{
+ .signInLabel, .signUpLabel{
     left:23% !important
-}
-.signin-button, .signup-button{
+} 
+/* .signin-button, .signup-button{
     margin-left:94px !important;
-}
+}  */
 .sign-up-button{
     position: absolute;
     left: 33%;
+}
+
+.signin_footer {
+    position: relative;
+    top: 17px;
+}
+
+/* .signup_footer{
+    position: relative;
+    top: 442px;
+} */
+
+.signUpRow{
+    margin-bottom: 0;
+    margin-top: 15px;
+    /* top: 5px; */
+    position: relative;
+    top: 14px;
+}
+
+.signInRow{
+    margin-bottom: 0;
+    margin-top: 15px;
+    /* top: 5px; */
+    position: relative;
+    top: 27px;
+}
+
+.SignInHeader{
+    font-size: 59px;
+    margin-top: 45px;
+    color: #fbc02d;
+    font-weight: lighter;
+}
+
+.SignUpHeader{
+    font-size: 59px;
+    margin-top: 5px;
+    color: #fbc02d;
+    font-weight: lighter;
+}
+
+
+.sign-up-input-field{
+    margin-bottom: 0rem !important;
+}
+
+.sign-in-validation{
+    position: relative;
+    top: 44px;
 }
 
 @media only screen and (min-width: 768px) {
@@ -206,7 +257,6 @@ input:-webkit-autofill:active {
     .signup_footer {
         left: 10%;
     }
-    
     .route_container{
         background: 
         /* top, transparent red, faked with gradient */ 
@@ -220,4 +270,3 @@ input:-webkit-autofill:active {
         background-repeat: no-repeat;
         background-position: -352px -38px;
     }
-} 

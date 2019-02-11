@@ -1,4 +1,29 @@
+.intro-title {
+    position: absolute;
+    font-family: Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    color: white;
+    left: 35%;
+    font-weight: lighter;
+    font-size: 8vw;
+}
 
+.app-video {
+    position: absolute;
+    justify-content: center;
+    position: absolute;
+    left: 29%;
+    top: 26%;
+}
+
+.photoContainer {
+    position: relative;
+    width: 41%;
+}
+.video {
+    width: 99%;
+    position: relative;
+    height: 41%;
+}
 .introPageContainer{
     background-color: #001;
     height: 100vh;
@@ -20,4 +45,20 @@
 .introPageLogoImg{
     width:357px !important;
     height:400px !important;
+}
+
+
+@media only screen and (min-width: 1200px) {
+  #introPageButton{
+      position: relative;
+    justify-content: center;
+      top: 78%;
+   }
+}
+@media only screen and (min-width: 992px) {
+    #introPageButton{
+        position: relative;
+        justify-content: center;
+        top: 78%;
+    }
 }

@@ -10,7 +10,7 @@ export default class LandingPage extends Component {
 
     render() {
         return (    
-                        <ResultList/>    
+            <ResultList/>
         )
     }
 }

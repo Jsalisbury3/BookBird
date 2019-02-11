@@ -44,41 +44,39 @@ class SignInValidation extends Component {
 
     render() {
         const {handleSubmit, reset} = this.props;
+        console.log("this.props.signInResults!! ", this.props.signInResults);
         return (
             <form id='sign-in-container' onSubmit={handleSubmit(this.handleAddItem)}>
-                <div className="row">
-                    <Field name={"Email"} size={"s9 m8 offset-m2"} component={this.renderInput} id="Email"
+                <div className="col s10 offset-s1 m10 offset-m1 l9 offset-l1 signInRow">
+                    <Field name={"Email"} component={this.renderInput} id="Email"
                            label={"Email"}/>
                 </div>
-                <div className="row">
-                    <Field name={"Password"} size={"s9 m8 offset-m2"} component={this.renderInput} id={"Password"}
+                <div className="col s10 offset-s1 m10 offset-m1 l9 offset-l1 signInRow">
+                    <Field name={"Password"} component={this.renderInput} id={"Password"}
                            label={"Password"}/>
                 </div>
-                <div className="row">
-                    <div className="signin-button col s6 center">
+                <p className={"red-text col s12 m12 l12 center-align sign-in-validation"}>{this.props.signInResults.message ? this.props.signInResults.message : ""}</p>
+                <div className="col s12 offset-s3 m12 offset-m3 l10 offset-l3 center-align signInRow">
+                    <div className="signin-button col s6 ">
                         <button className="btn yellow darken-2 grey-text text-darken-3">Sign In</button>
                     </div>
                 </div>
-                {/* <p className={"sign-in-error red-text text-darken-2"}>{props.meta.error}</p> */}
-                
             </form>
         );
     }
-
 }
 
 function validate(values) {
     const {Email, Password} = values;
-    console.log("emaillllllllllllllll: ", Email);
     const errors = {};
-    const emailRegex =  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!$%@#£€*?&]{8,}$/;
+    // const emailRegex =  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+    // const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!$%@#£€*?&]{8,}$/;
 
-    if (!emailRegex.test(Email)) {
+    if (!Email) {
         errors.Email = 'please enter a valid email';
     }
 
-    if (!passwordRegex.test(Password)) {
+    if (!Password) {
         errors.Password = "password must be at least 8 characters long with one capital letter and number";
     }
     return errors;

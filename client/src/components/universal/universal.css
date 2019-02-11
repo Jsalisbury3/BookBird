@@ -154,3 +154,35 @@ body{
 .route_container.col{
     padding:0;
 }
+
+.navDesktopLogo {
+    height: 23%;
+    width: 85%;
+    position: relative;
+    left: 15px;
+}
+
+.sideNavLinks a {
+    color: #fbc02d;
+    font-weight: lighter;
+    font-family: Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    font-size: 2vw;
+}
+
+.sideNavLinks a:visited {
+    color: #fbc02d;
+    font-weight: lighter;
+
+}
+
+.sideNavLinks a:hover {
+    border-bottom: 1px solid rgb(224, 109, 190);
+}
+
+
+.sideNavLinks li {
+    text-align: center;
+    color:white;
+    margin-bottom: 10px;
+}
+
