@@ -406,7 +406,7 @@ class AddBook extends Component {
                             {/* <div id={"conditionCheckMArk"}
                                  className={"checkMark markCondition material-icons"}>check_circle_outline
                             </div> */}
-                            <div className='input-field col s12 m8 offset-m2'>
+                            <div className='input-field col s12'>
                                 <input disabled value={this.state.title} name="title" id='title' type='text' className="inputs col s10 push-s1" autoComplete="off"/>
                                 <label htmlFor='title' className='yellow-text text-darken-2 input-header activated'>Title</label>
                             </div>
@@ -414,7 +414,7 @@ class AddBook extends Component {
                         <div className='row'>
                             {/* <div className={"error"} id={"authErr"}></div> */}
                             {/* <div className={"checkMark markTitle material-icons"}>check_circle_outline</div> */}
-                            <div className='input-field col s12 m8 offset-m2'>
+                            <div className='input-field col s12'>
                             
                                 <input disabled value={this.state.author} name="author" id='author' type='text' className="inputs col s10 push-s1"  autoComplete="off"/>
                                 <label htmlFor='author' className='yellow-text text-darken-2 input-header activated'>Author</label>
@@ -423,7 +423,7 @@ class AddBook extends Component {
                         </div>
                         <div className='row'>
                             {/* <div className={"checkMark markEdition material-icons"}>check_circle_outline</div> */}
-                            <div className='input-field col s5 m8 offset-m2'>
+                            <div className='input-field col s5'>
                                 <i className="material-icons prefix yellow-text text-darken-2">attach_money</i>
                                 
                                 <input name="price" id='price' type='text' className={"inputs col s9 push-s2"} onChange={this.handleInput} autoComplete="off"/>
@@ -446,7 +446,7 @@ class AddBook extends Component {
                         <div id={"conditionError"}></div>
                         {/* <div className={"checkMark markPrice material-icons"}>check_circle_outline</div> */}
                         <div className='row'>
-                                <div className='input-field col s12 m8 offset-m2'>
+                                <div className='input-field col s12'>
                                 <textarea name={"comments"} id='comment-box' className="inputs col s10 push-s1" onChange={this.handleInput} autoComplete="off"/>
                                 <label htmlFor="comment-box" className="yellow-text text-darken-2 activated">Sellers Comments</label>
                                     {/* <h5 className='optional-tag'>*Optional</h5> */}
