@@ -1,8 +1,6 @@
 import React, {Component, Fragment} from 'react';
-import DragDrop from './images/x3KMH.jpg'
 import SingleBookPhoto from './singleBookPhoto';
 import './addBook.css';
-import Modal from './modal';
 import axios from 'axios';
 import 'materialize-css';
 import 'material-icons';
@@ -10,14 +8,9 @@ import {BASE_URL_GOOGLE_BOOKS, API_KEY} from '../../../../config/api';
 import SearchInput from './isbn_search';
 import FormData from 'form-data';
 import {accessKeyId, secretAccessKey} from '../../../../config/amzns3_creds';
-import image2 from './images/488.jpg';
-import success from './images/successlogo.png';
 import {Link} from 'react-router-dom';
-import {debug} from 'util';
-import loadingGif from './images/loadingGif.gif'
 import loadingGif2 from './images/loadingGif2.gif';
-import Header from './../universal/header'
-import Nav from './../universal/nav'
+
 
 class AddBook extends Component {
     constructor(props) {
@@ -58,7 +51,6 @@ class AddBook extends Component {
     }
 
     handleInput = (event) => {
-        console.log('handle input called');
         this.setState({
             [event.target.name]: event.target.value,
         })
@@ -331,7 +323,7 @@ class AddBook extends Component {
     render() {
         const hideISBN = this.state.hideIsbnSearchBar ? {display: 'none'} : {display: 'block'};
         return (
-                <div className={"addBook-container"}>
+                <div className={"addBook-container col m6 offset-m3"}>
                     <div className="isbnModalContainer">
                         <div id="modal1" className="modalIsbn">
                             <div className="modal-content">
@@ -407,41 +399,40 @@ class AddBook extends Component {
                     </div>
                     <form className={'form-container '} onSubmit={this.validateInputsFields} encType="multipart/form-data">
                         <img src={loadingGif2} alt="loadingGif" id="loadingGif"/>
-                        <h3 className={"pageHeader"}>Add Book</h3>
+                        <div className={"pageHeader"}>Add Book</div>
                         <p className={"pageDescription"}> Fill out the remaining fields below. This information will be displayed when other students are searching for books.</p>
-                        <div id='input-container1' className=' title-container row'>
-                            <div id={"titleError"} className={"error"}></div>
+                        <div className='row'>
+                            {/* <div id={"titleError"} className={"error"}></div> */}
                             {/* <div id={"conditionCheckMArk"}
                                  className={"checkMark markCondition material-icons"}>check_circle_outline
                             </div> */}
-                            <div className='input-field '>
-                                <h6 className='yellow-text text-darken-2 input-header first'>Title</h6>
-                                <input name="title" id='title' type='text' className="inputs col s10 push-s1"
-                                       onChange={this.handleInput} autoComplete="off"/>
+                            <div className='input-field col s12'>
+                                <input disabled value={this.state.title} name="title" id='title' type='text' className="inputs col s10 push-s1" autoComplete="off"/>
+                                <label htmlFor='title' className='yellow-text text-darken-2 input-header activated'>Title</label>
                             </div>
                         </div>
-                        <div id='input-container2' className=' title-container row'>
-                            <div className={"error"} id={"authErr"}></div>
+                        <div className='row'>
+                            {/* <div className={"error"} id={"authErr"}></div> */}
                             {/* <div className={"checkMark markTitle material-icons"}>check_circle_outline</div> */}
-                            <div className='input-field'>
-                                <h6 className='yellow-text text-darken-2 input-header second'>Author</h6>
-                                <input name="author" id='author' type='text' className="inputs col s10 push-s1"
-                                       onChange={this.handleInput} autoComplete="off"/>
-                            </div>
-                        </div>
-                        <div id='input-container3' className='title-container row'>
+                            <div className='input-field col s12'>
                             
-                            {/* <div className={"checkMark markEdition material-icons"}>check_circle_outline</div> */}
-                            <div className='input-field'>
-                                <input name={"price"} id={'price'} type='text' className={"inputs col s10 push-s1"} onChange={this.handleInput} autoComplete="off"/>
-                                <div className="text-red"id={"priceErr"}></div>
-                                <label id="pricelabel"className='yellow-text text-darken-2 label-placeholder' htmlFor={'price'}>Price</label>
-                                
+                                <input disabled value={this.state.author} name="author" id='author' type='text' className="inputs col s10 push-s1"  autoComplete="off"/>
+                                <label htmlFor='author' className='yellow-text text-darken-2 input-header activated'>Author</label>
+
                             </div>
                         </div>
-                        <div id='input-container4 condition-container' className='title-container row'>
+                        <div className='row'>
+                            {/* <div className={"checkMark markEdition material-icons"}>check_circle_outline</div> */}
+                            <div className='input-field col s5'>
+                                <i className="material-icons prefix yellow-text text-darken-2">attach_money</i>
+                                
+                                <input name="price" id='price' type='text' className={"inputs col s9 push-s2"} onChange={this.handleInput} autoComplete="off"/>
+                                <label className='yellow-text text-darken-2' htmlFor='price'>Price</label>
+                                <div className="text-red"id={"priceErr"}></div>
+                            </div>
+                            <div id='condition-container' className="col s6">
                             <select name={"condition"} onChange={this.handleInput} id={"mySelect"}
-                                    className={"condition  col s6 push-s3"}>
+                                    className={"condition"}>
                                 <option value="" disabled selected>*Select Condition:</option>
                                 <option value="New">New</option>
                                 <option value="Like New">Like New</option>
@@ -450,34 +441,23 @@ class AddBook extends Component {
                                 <option value="Thrashed">Thrashed</option>
                             </select>
                         </div>
+                        </div>
+                        
                         <div id={"conditionError"}></div>
                         {/* <div className={"checkMark markPrice material-icons"}>check_circle_outline</div> */}
-                        <h5 name="comments" className='sellers-comments-tag'> Sellers Comments</h5>
-                        <div className={'comment-text-area'}>
-                            <div>
-                                <div className='input-field'>
-                                <textarea name={"comments"} id='comment-box' className={"inputs last "}
-                                          onChange={this.handleInput} autoComplete="off"/>
-                                <label htmlFor="comment-box" className="sellers-comments-tag"></label>
+                        <div className='row'>
+                                <div className='input-field col s12'>
+                                <textarea name={"comments"} id='comment-box' className="inputs col s10 push-s1" onChange={this.handleInput} autoComplete="off"/>
+                                <label htmlFor="comment-box" className="yellow-text text-darken-2 activated">Sellers Comments</label>
                                     {/* <h5 className='optional-tag'>*Optional</h5> */}
                                 </div>
-                            </div>
                         </div>
                         {this.state.showToolTip && <Tooltip></Tooltip>}
-                        {/*<div className="row">*/}
-                        {/*<input name={"ISBN"} placeholder={"*ISBN"} className={"inputs isbn-container col s6 offset-s6"} onChange={this.handleInput}/>*/}
-                        {/*</div>*/}
-                        {/* <input name={"ISBN"} placeholder={"*ISBN"} className={"inputs"} onChange={this.handleInput}/>
-                            <div className={"error"}></div>
-                            <div className={"checkMark markISBN material-icons"}>check_circle_outline</div> */}
-                        {/*<div className={"error"}></div>*/}
-                        {/*<div className={"checkMark markAuthor material-icons"}>check_circle_outline</div>*/}
-                        {/*<input name={"edition"} placeholder={"*Edition"} className={"inputs"} onChange={this.handleInput}/>*/}
-
+                      
                         <div className='submit-photo-container'>
-                            <label id="add-photo-icon picIcon" className="btn waves-light add-photo-icon-class"
-                                   htmlFor="photoInput"><i
-                                className={"grey-text text-darken-2 material-icons"}>add_a_photo</i></label>
+                            <label id="add-photo-icon picIcon" className="btn waves-light add-photo-icon-class" htmlFor="photoInput">
+                            <i className={"grey-text text-darken-2 material-icons"}>add_a_photo</i>
+                            </label>
                             <input id="photoInput" type="file" name="photo" capture="camera" accept="image/*"
                                    onChange={this.fileSelectedHandler}/>
                         </div>

@@ -19,6 +19,15 @@ input:-webkit-autofill:active {
         color: white;
     }
 }
+.signin_footer{
+    position: relative;
+    left: 61px;
+}
+.signup_footer {
+    position: relative;
+    left: 27px;
+}
+
 .signin-logo-container{
     position:relative;
     height:200px;
@@ -110,7 +119,7 @@ input:-webkit-autofill:active {
     border-bottom: 1px solid rgb(90, 81, 30) !important;
 }
 #sign-in-container>.row, #sign-up-form>.row{
-    width: 339px !important;
+    width: 326px !important;
     margin-left: 1vw !important;
 }
 .signin_container{
@@ -149,11 +158,6 @@ input:-webkit-autofill:active {
     background-repeat: no-repeat;
     background-position: -352px -38px;
 }
-
-
-
-
-
 
 /* .signin_container>p{
     width: 300px !important;
@@ -231,9 +235,6 @@ input:-webkit-autofill:active {
     top: 44px;
 }
 
-
-
-
 @media only screen and (min-width: 768px) {
     .signin_container, .signup_container {
         padding-top:3vh !important;
@@ -256,4 +257,16 @@ input:-webkit-autofill:active {
     .signup_footer {
         left: 10%;
     }
-} 
+    .route_container{
+        background: 
+        /* top, transparent red, faked with gradient */ 
+        linear-gradient(
+          #180218ee, 
+          #240024da
+        ),
+    
+        url(../images/chavezcenter.jpg);
+        background-size: 271%;
+        background-repeat: no-repeat;
+        background-position: -352px -38px;
+    }
