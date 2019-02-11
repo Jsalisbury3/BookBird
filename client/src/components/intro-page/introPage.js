@@ -1,14 +1,18 @@
-import React from 'react'
+import React, {Component} from 'react'
+import {connect} from "react-redux"
 import {Link} from 'react-router-dom';
 import './introPage.css'
 import bookBirdLogo from './images/introPageLogo.png'
+import {LinkTracker} from "../../actions/linkTracker_action"
 
-
-
-
-export default ()=> {
-    return(
-        <div className="row introPageContainer">
+class IntroPage extends Component {
+    addLinkToReducer = async () => {
+        const path = "/Landing";
+        await this.props.LinkTracker(path);
+    }
+    render() {
+        return (
+            <div className="row introPageContainer">
             <div className='hide-on-med-and-down'>
                 <h1 className="intro-title">BookBird</h1>
             </div>
@@ -19,15 +23,19 @@ export default ()=> {
                 <img src={bookBirdLogo} className="introPageLogoImg"alt=""/>
             </div>
             <div id='introPageButton' className="col  m12 s12 center-align introPageButtonContainer">
-                <Link to={"/Landing"}><p className="btn-large btn waves-effect blue lighten-3 "> Get Started </p> </Link>
+                    <Link onClick={this.addLinkToReducer} to={"/Landing"}><p
+                        className="btn-large btn waves-effect blue lighten-3 "> Get Started </p></Link>
+                </div>
             </div>
-
-
-
-        </div>
-    )
-
+        )
+    }
 }
-
+function mapStateToProps(state) {
+    return {
+    }
+}
+export default connect(mapStateToProps, {
+    LinkTracker
+})(IntroPage);
 
 

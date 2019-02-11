@@ -126,6 +126,7 @@ class IndividualBookData extends Component {
                     <CarouselItem images={this.props.images}/>
                 </div>
                 <div className="book-content" id="book-content">
+                    
                     <div className="bookInfoLeftContent s8">
                         <h6 className="bookTitle">{this.props.listId[0].title}</h6>
                         <h6 className="bookAuthor">{this.props.listId[0].author}</h6>

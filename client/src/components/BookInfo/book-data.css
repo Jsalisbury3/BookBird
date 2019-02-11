@@ -1,3 +1,4 @@
+
 .BookInfo {
     left: 40%;
     width: 60%;
@@ -20,17 +21,34 @@ h2:nth-child(2)  {
     height: 11%;
 
 }
+
 .priceTitle{
     font-size: 3.2rem;
 }
 
+.route_container {
+    height: 84vh;
+}
+.bookDetailsModalBackground {
+    overflow: scroll;
+    height: 84vh;
+}
 .bookDetailsContainer {
     background-image: linear-gradient(rgba(34, 0, 34, 0.589),rgba(92, 0, 92, 0.767));
     background-color: white;
     overflow: auto;
-    height: 100vh;
+    height: 84vh;
 }
 
+.bookTitle, .bookAuthor, .bookISBN {
+    display:inline-block;
+    width: 60%;
+    margin-right: 0;
+}
+
+.bookPrice, .bookCondition {
+    width: 40%;
+}
 .main-container{
     height: 100vh;
     width: 100vw;
@@ -108,7 +126,7 @@ h2:nth-child(2)  {
 }
 
 #imageContainer {
-    height: 250px;
+    height: 225px;
     width: 100%;
     background-color: rgb(247, 247, 247);
 
@@ -156,14 +174,15 @@ h2:nth-child(2)  {
     padding: 5px 25px;
     box-shadow: 0px 5px 2px 5px rgba(49, 49, 49, 0.808);
     /* background-color: rgb(247, 247, 247); */
-
 }
 
 .bookInfoLeftContent {
     /* border: 1px solid black; */
     display: inline-block;
     /* height: 50%; */
-    width: 70%;
+    width: 60%;
+    margin-right: 15px;
+    
 }
 
 .bookInfoLeftContent > h5 {
@@ -175,12 +194,13 @@ h2:nth-child(2)  {
     display: inline-block;
     vertical-align: top;
     /* height: 50%; */
-    width: 30%;
+    
 }
 
 .bookCondition {
     position: relative;
     height: 40%;
+    width: 95%;
     /* border: 1px solid black; */
 }
 
@@ -205,7 +225,7 @@ h2:nth-child(2)  {
     color: rgb(22, 22, 22);
     /* color: #ffcc33; */
     color: #ffffff;
-    font-weight: lighter;
+    font-weight: bold;
     /* border: 1px solid black; */
 
 }
@@ -248,7 +268,7 @@ h2:nth-child(2)  {
 
 .sellerName {
     color: #ffffff;
-    margin-bottom: 5px;
+    margin-bottom: 30px;
 }
 
 .sellersContent {
@@ -281,6 +301,10 @@ h2:nth-child(2)  {
     margin-bottom: 20px;
 }
 
+.userContactDesktop {
+    position: relative;
+    left: 25px;
+}
 .contactButton {
     background-color: #ffcc33;
 }
@@ -289,9 +313,7 @@ h2:nth-child(2)  {
     color: #ffcc33;
     /* color: #ffffff; */
     position: relative;
-    display: inline;
     left: 18%;
-    top: 35%;
 }
 
 .bookDetailButtonContainer#contactAction {
@@ -345,7 +367,7 @@ h2:nth-child(2)  {
     padding: 5% 5% 5% 5%;
     height: 65%;
     width: 112%;
-    left: -10%;
+    left: 10%;
     text-transform: uppercase;
     background-color: black;
     
@@ -356,8 +378,8 @@ h2:nth-child(2)  {
     border:solid 1px #212121;
     padding: 5% 5% 5% 5%;
     height: 58%;
-    width: 56%;
-    left: 15%;
+    width: 100%;
+    left: 20%;
     text-transform: uppercase;
     background-color: whitesmoke;
     
@@ -367,8 +389,8 @@ h2:nth-child(2)  {
     color: white;
     padding: 5% 5% 5% 5%;
     height: 60%;
-    width: 68%;
-    left: 15%;
+    width: 70px;
+    left: 10px;
     text-transform: uppercase;
     background-color: rgb(0, 4, 255);
     
@@ -389,8 +411,8 @@ h2:nth-child(2)  {
     position: relative;
     padding: 5% 5% 5% 6%;
     height: 55%;
-    width: 100%;
-    left: -5%;
+    width: 108%;
+    left: 5%;
     top: 10%;
     text-transform: uppercase;
     background-color: rgb(7, 193, 14);
@@ -401,13 +423,25 @@ h2:nth-child(2)  {
     
 }
 
-@media (min-width: 481px) and (max-width: 767px) {
+@media only screen and (min-width: 600px) { 
 
+    
+
+    .bookDetailsModalBackground {
+        overflow: scroll;
+        height: 100vh;
+    }
+    .bookDetailsContainer {
+        background-image: linear-gradient(rgba(34, 0, 34, 0.589),rgba(92, 0, 92, 0.767));
+        background-color: white;
+        overflow: auto;
+        height: 100vh;
+    }
     .bookInfoLeftContent{
         position: relative;
         top: 20px;
         left: 15px;
-        
+        width: 60%;
     }
 
     .bookInfoRightContent{
@@ -415,14 +449,6 @@ h2:nth-child(2)  {
         top: 20px;
         right: 15px;
         
-    }
-
-    .bookDetailsContainer {
-        overflow-x: hidden;
-    }
-
-    #book-content {
-        height: 50%;
     }
   
     .bookTitle {
@@ -435,6 +461,7 @@ h2:nth-child(2)  {
 
     .bookPrice h5{
         font-size: 50px;
+        left: 30px;
     }
     
     .userContactDesktop {
@@ -444,16 +471,81 @@ h2:nth-child(2)  {
     
     .contactSignIn {
         position:relative;
-        left: 28%;
+        width: 240px;
+        top: 5%;
+        left: 24%;
     }
-  }
 
-@media (min-width: 768px) and (max-width: 1024px) {
+    .Thrashed.book_details {
+        color: white;
+        padding: 5% 5% 5% 5%;
+        height: 65%;
+        width: 100px;
+        left: 30px;
+        text-transform: uppercase;
+        background-color: black;
+        
+    }
+    
+    .New.book_details {
+        color: #212121;
+        border:solid 1px #212121;
+        padding: 5% 5% 5% 5%;
+        height: 58%;
+        width: 53%;
+        left: 35px;
+        text-transform: uppercase;
+        background-color: whitesmoke;
+        
+    }
+    
+    .Good.book_details {
+        color: white;
+        padding: 5% 5% 5% 5%;
+        height: 60%;
+        width: 55px;
+        left: 35px;
+        text-transform: uppercase;
+        background-color: rgb(0, 4, 255);
+        
+    }
+    
+    .Worn.book_details {
+        color: white;
+        padding: 5% 5% 5% 5%;
+        height: 58%;
+        width: 55px;
+        left: 35px;
+        text-transform: uppercase;
+        background-color: rgb(255, 0, 0);
+        
+    }
+    .Like_New.book_details {
+        color: white;
+        position: relative;
+        padding: 5% 5% 5% 6%;
+        height: 55%;
+        width: 80px;
+        left: 30px;
+        top: 10%;
+        text-transform: uppercase;
+        background-color: rgb(7, 193, 14);
+    
+    }
+}
+
+@media only screen and (min-width: 768px) {
+
+    .itemImage {
+        height: 100px;
+        width: 70px;
+    }
 
     .bookInfoLeftContent{
         position: relative;
         top: 20px;
         left: 45px;
+        width: 65%;
         
     }
 
@@ -466,41 +558,114 @@ h2:nth-child(2)  {
 
     .bookDetailsContainer {
         overflow-x: hidden;
+        height: 100vh;
     }
     
     #book-content {
-        height: 64%;
+        height: 53%;
     }
     .bookTitle {
         font-size: 25px;
+        width: 65%;
     }
 
     .bookCondition h6 {
         font-size: 15px;
+        left: 10px;
+        
     }
 
     .bookPrice h5{
         font-size: 50px;
+        left: 30px;
     }
     
     .userContactDesktop {
         position: relative;
-        left: 35px;
+        left: 60px;
     }
+    
     
     .contactSignIn {
         position:relative;
-        top: 30%;
+        top: 0%;
         left: 33%;
     }
-  }
 
-@media screen and (min-width: 1000px) {
+    .Thrashed.book_details {
+        color: white;
+        padding: 5% 5% 5% 5%;
+        height: 65%;
+        width: 90px;
+        left: 30px;
+        text-transform: uppercase;
+        background-color: black;
+        
+    }
+    
+    .New.book_details {
+        color: #212121;
+        border:solid 1px #212121;
+        padding: 5% 5% 5% 5%;
+        height: 58%;
+        width: 53%;
+        left: 35px;
+        text-transform: uppercase;
+        background-color: whitesmoke;
+        
+    }
+    
+    .Good.book_details {
+        color: white;
+        padding: 5% 5% 5% 5%;
+        height: 60%;
+        width: 60px;
+        left: 35px;
+        text-transform: uppercase;
+        background-color: rgb(0, 4, 255);
+        
+    }
+    
+    .Worn.book_details {
+        color: white;
+        padding: 5% 5% 5% 5%;
+        height: 58%;
+        width: 60px;
+        left: 35px;
+        text-transform: uppercase;
+        background-color: rgb(255, 0, 0);
+        
+    }
+    .Like_New.book_details {
+        color: white;
+        position: relative;
+        padding: 5% 5% 5% 6%;
+        height: 55%;
+        width: 83px;
+        left: 30px;
+        top: 10%;
+        text-transform: uppercase;
+        background-color: rgb(7, 193, 14);
+    
+    }
+}
+
+@media (min-width: 1000px) {
+
+    .route_container {
+        height: 100vh;
+    }
+
+    .itemImage {
+        height: 100px;
+        width: 90px;
+    }
 
     .bookInfoLeftContent{
         position: relative;
         top: 20px;
         left: 15px;
+        width: 60%;
         
     }
 
@@ -517,13 +682,9 @@ h2:nth-child(2)  {
 
     .bookDetailsContainer {
         position: relative;
-        left: 25%;
-        width: 50%;
+        left: 20%;
+        width: 60%;
         overflow-x: hidden;
-    }
-    
-    #book-content {
-        height: 64%;
     }
     
     .BookInfo {
@@ -544,7 +705,8 @@ h2:nth-child(2)  {
     }
 
     .contactSignIn {
-        left: 33%;
+        top:0%;
+        left: 25%;
     }
     
     h2:nth-child(1)  {
@@ -561,7 +723,8 @@ h2:nth-child(2)  {
     }
 
     .bookPrice h5{
-        font-size: 50px;
+        font-size: 8vmin;
+
     }
     .Container {
         width: 60vw;
@@ -601,7 +764,7 @@ h2:nth-child(2)  {
 
     .userContactDesktop {
         position: relative;
-        left: 25px;
+        left: 60px;
     }
 
     .BookPrice {
@@ -610,6 +773,16 @@ h2:nth-child(2)  {
         left: 62%;
         bottom: 30%;
         opacity: 1;
+
+    }
+
+    .BookPrice h5{
+        position: absolute;
+        width: 32%;
+        left: 62%;
+        bottom: 30%;
+        opacity: 1;
+        font-size: 75px;
 
     }
     .price {
@@ -641,28 +814,84 @@ h2:nth-child(2)  {
         margin: 0;
     }
 
-    .contactSignIn {
-        position:relative;
-        top:235px;
-        left: 22%;
+    .Thrashed.book_details {
+        color: white;
+        padding: 5% 5% 5% 5%;
+        height: 65%;
+        width: 90px;
+        left: 35px;
+        text-transform: uppercase;
+        background-color: black;
+        
+    }
+    
+    .New.book_details {
+        color: #212121;
+        border:solid 1px #212121;
+        padding: 5% 5% 5% 5%;
+        height: 58%;
+        width: 45px;
+        left: 40px;
+        text-transform: uppercase;
+        background-color: whitesmoke;
+        
+    }
+    
+    .Good.book_details {
+        color: white;
+        padding: 5% 5% 5% 5%;
+        height: 60%;
+        width: 55px;
+        left: 40px;
+        text-transform: uppercase;
+        background-color: rgb(0, 4, 255);
+        
+    }
+    
+    .Worn.book_details {
+        color: white;
+        padding: 5% 5% 5% 5%;
+        height: 58%;
+        width: 55px;
+        left: 40px;
+        text-transform: uppercase;
+        background-color: rgb(255, 0, 0);
+        
+    }
+    .Like_New.book_details {
+        color: white;
+        position: relative;
+        padding: 5% 5% 5% 6%;
+        height: 55%;
+        width: 90px;
+        left: 35px;
+        top: 10%;
+        text-transform: uppercase;
+        background-color: rgb(7, 193, 14);
+    
     }
 }
 
 @media (min-width: 1281px) {
 
+    .itemImage {
+        height: 110px;
+        width: 90px;
+    }
     #book-content {
-        height: 64%;
+        height: 58%;
     }
   
     .bookInfoLeftContent{
         position: relative;
         top: 20px;
         left: 15px;
+        margin-right: 10%;
+        width: 60%;
         
     }
 
     .bookInfoRightContent{
-        position: relative;
         top: 20px;
         right: 15px;
         
@@ -670,9 +899,70 @@ h2:nth-child(2)  {
     
     .contactSignIn {
         position:relative;
-        top:250px;
-        left: 30%;
+        top:15%;
+        left: 28%;
+    }
+    
+    .sellerPhoto {
+        height: 15vh;
+        width: 9vw;
     }
 
+    .Thrashed.book_details {
+        color: white;
+        padding: 5% 5% 5% 5%;
+        height: 65%;
+        width: 70%;
+        left: 10%;
+        text-transform: uppercase;
+        background-color: black;
+        
+    }
+    
+    .New.book_details {
+        color: #212121;
+        border:solid 1px #212121;
+        padding: 5% 5% 5% 5%;
+        height: 58%;
+        width: 42%;
+        left: 20%;
+        text-transform: uppercase;
+        background-color: whitesmoke;
+        
+    }
+    
+    .Good.book_details {
+        color: white;
+        padding: 5% 5% 5% 5%;
+        height: 60%;
+        width: 43%;
+        left: 15%;
+        text-transform: uppercase;
+        background-color: rgb(0, 4, 255);
+        
+    }
+    
+    .Worn.book_details {
+        color: white;
+        padding: 5% 5% 5% 5%;
+        height: 58%;
+        width: 40%;
+        left: 15%;
+        text-transform: uppercase;
+        background-color: rgb(255, 0, 0);
+        
+    }
+    .Like_New.book_details {
+        color: white;
+        position: relative;
+        padding: 5% 5% 5% 6%;
+        height: 55%;
+        width:68%;
+        left: 15%;
+        top: 10%;
+        text-transform: uppercase;
+        background-color: rgb(7, 193, 14);
+    
+    }
   }
 
