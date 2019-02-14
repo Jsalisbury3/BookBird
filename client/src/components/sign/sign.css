@@ -237,36 +237,41 @@ input:-webkit-autofill:active {
 
 @media only screen and (min-width: 768px) {
     .signin_container, .signup_container {
-        padding-top:3vh !important;
-        height:110vh;
+        padding-top: 3vh !important;
+        height: 110vh;
     }
-    #sign-in-container{
-        bottom:0;
-        margin-top:30px;
+
+    #sign-in-container {
+        bottom: 0;
+        margin-top: 30px;
     }
-    .signin_container>p{
-        margin-top:12vh;
+
+    .signin_container > p {
+        margin-top: 12vh;
     }
-    #sign-up-form{
+
+    #sign-up-form {
         margin-top: 35px;
-        bottom:0;
+        bottom: 0;
     }
-    .signup_container>p{
+
+    .signup_container > p {
         margin-top: 42px !important;
     }
+
     .signup_footer {
         left: 10%;
     }
-    .route_container{
-        background: 
-        /* top, transparent red, faked with gradient */ 
-        linear-gradient(
-          #180218ee, 
-          #240024da
+
+    .route_container {
+        background: /* top, transparent red, faked with gradient */ linear-gradient(
+                #180218ee,
+                #240024da
         ),
-    
         url(../images/chavezcenter.jpg);
         background-size: 271%;
         background-repeat: no-repeat;
         background-position: -352px -38px;
     }
+
+}
