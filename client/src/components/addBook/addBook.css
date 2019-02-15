@@ -2,7 +2,7 @@
     position: absolute;
     z-index: 1;
     width: 100vw;
-    height: 130vh;
+    height: 120vh;
     left: 0;
     background-color: rgba(0,0,0,0.65);
     top: -19%;
@@ -283,12 +283,6 @@
     background-color: #fbc02d;
 } */
 
-.post-button-container  {
-    margin-left: 92px;
-    margin-top:5px;
-    position: relative;
-    /* bottom: 13%; */
-}
 .submit-photo-container {
     position: relative;
     margin-top: 11px;
@@ -519,20 +513,18 @@ select option {
     height: 5%;
     width: 25%;
 }
-.POST{
-    position: relative;
-    width: 50%;
-    margin-left: 0;
-    right: 11%;
-}
-.cancelButton {
-    position: relative;
-    width: 50%;
-    right: 25%;
-    /* background-color: #fbc02d !important; */
-}
+
+
 @media screen and (min-width: 600px) {
     .modal-content{
         width:300px;
+    }
+    .addBook-container{
+        position:relative;
+    }
+    .modalIsbn{
+        height:125vh;
+        left:-50%;
+        width:200%;
     }
 }

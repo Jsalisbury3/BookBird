@@ -186,3 +186,15 @@ body{
     margin-bottom: 10px;
 }
 
+@media only screen and (min-width: 768px) {
+    .route_container {
+        background: /* top, transparent red, faked with gradient */ linear-gradient(
+                #180218ee,
+                #240024da
+        ),
+        url(../images/chavezcenter.jpg);
+        background-size: 200%;
+        background-repeat: no-repeat;
+        background-position: -352px -38px;
+    }
+}
