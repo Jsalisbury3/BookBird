@@ -535,6 +535,9 @@ h2:nth-child(2)  {
 }
 
 @media only screen and (min-width: 768px) {
+    .route_container {
+        height: 110vh;
+    }
 
     .itemImage {
         height: 100px;
@@ -652,10 +655,7 @@ h2:nth-child(2)  {
 
 @media (min-width: 1000px) {
 
-    .route_container {
-        height: 100vh;
-    }
-
+    
     .itemImage {
         height: 100px;
         width: 90px;

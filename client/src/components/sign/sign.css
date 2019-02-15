@@ -236,6 +236,7 @@ input:-webkit-autofill:active {
 }
 
 @media only screen and (min-width: 768px) {
+    
     .signin_container, .signup_container {
         padding-top: 3vh !important;
         height: 110vh;
@@ -263,15 +264,6 @@ input:-webkit-autofill:active {
         left: 10%;
     }
 
-    .route_container {
-        background: /* top, transparent red, faked with gradient */ linear-gradient(
-                #180218ee,
-                #240024da
-        ),
-        url(../images/chavezcenter.jpg);
-        background-size: 271%;
-        background-repeat: no-repeat;
-        background-position: -352px -38px;
-    }
+    
 
 }

@@ -324,7 +324,7 @@ class AddBook extends Component {
         const hideISBN = this.state.hideIsbnSearchBar ? {display: 'none'} : {display: 'block'};
         return (
                 <div className={"addBook-container col m6 offset-m3"}>
-                    <div className="isbnModalContainer">
+                    {/* <div className="isbnModalContainer"> */}
                         <div id="modal1" className="modalIsbn">
                             <div className="modal-content">
                                 <div style={hideISBN} className="isbnModalHeader">
@@ -395,7 +395,7 @@ class AddBook extends Component {
                                     </form>
                                 </div>
                             </div>
-                        </div>
+                        {/* </div> */}
                     </div>
                     <form className={'form-container '} onSubmit={this.validateInputsFields} encType="multipart/form-data">
                         <img src={loadingGif2} alt="loadingGif" id="loadingGif"/>
@@ -464,11 +464,11 @@ class AddBook extends Component {
                         <div className="upload-image-container">
                             {this.state.imgTagArray}
                         </div>
-                        <div className='post-button-container'>
+                        <div className='post-button-container row'>
                             <button type="button" onClick={this.cancelButton}
-                                    className="yellow darken-2 grey-text text-darken-2 btn-small cancelButton">Cancel
+                                    className="col s3 offset-s2 grey lighten-3 grey-text text-darken-1 btn-small">Cancel
                             </button>
-                            <button className="yellow darken-2 grey-text text-darken-2 btn-small POST">Post</button>
+                            <button className="col s3 offset-s2 yellow darken-2 grey-text text-darken-2 btn-small">Post</button>
                             {/* <button onClick={this.cancelButton} className=" btn-small btn waves-effect cancelButton">Cancel</button> */}
                         </div>
                     </form>
