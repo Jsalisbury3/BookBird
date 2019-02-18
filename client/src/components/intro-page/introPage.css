@@ -1,8 +1,8 @@
 
 .app-video {
-    position: absolute;
+    position: relative;
     justify-content: center;
-    left: 36%;
+    /*left: 36%;*/
     top: 26%;
 }
 
@@ -43,30 +43,30 @@
 }
 
 .intro-title {
-    position: absolute;
+    position: relative;
     font-family: Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
     color: white;
     font-weight: lighter;
     font-size: 8vw;
-    left: 36%;
+    /*left: 36%;*/
     top: 3%;
 }
 
 @media only screen and (min-width: 1650px) and (max-width: 1920px) {
     .intro-title {
-        position: absolute;
+        position: relative;
         font-family: Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
         color: white;
         font-weight: lighter;
         font-size: 8vw;
-        left: 34%;
+        /*left: 34%;*/
         top: 3%;
     }
 
     .app-video {
-        position: absolute;
+        position: relative;
         justify-content: center;
-        left: 34%;
+        /*left: 34%;*/
         top: 32%;
         box-shadow: 0px 0px 40px #696969
 
@@ -74,8 +74,8 @@
     #introPageButtonContainer{
         position: relative;
         justify-content: center;
-        top: 73%;
-        right: 2%;
+        /*bottom: 5px;*/
+        /*right: 2%;*/
 
     }
     .introPageButton {
@@ -86,27 +86,25 @@
 
 @media only screen and (min-width:1466px) and (max-width: 1650px)  {
     .intro-title {
-        position: absolute;
+        position: relative;
         font-family: Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
         color: white;
         font-weight: lighter;
         font-size: 10vw;
-        left: 32%;
-        top: 1%;
+        /*left: 32%;*/
+        /*top: 1%;*/
     }
     .app-video {
-        position: absolute;
+        position: relative;
         justify-content: center;
-        left: 34%;
-        top: 32%;
+        /*left: 34%;*/
+        /*top: 32%;*/
         box-shadow: 0px 0px 40px #696969;
     }
     #introPageButtonContainer{
         position: relative;
         justify-content: center;
-        top: 78%;
-        left: 1%;
-
+        /*top: 78%;*/
     }
     .introPageButton {
         box-shadow: 0px 0px 40px #696969;
@@ -117,27 +115,26 @@
 
 @media only screen and (min-width: 1260px) and (max-width: 1466px)  {
     .intro-title {
-        position: absolute;
+        position: relative;
         font-family: Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
         color: white;
         font-weight: lighter;
         font-size: 10vw;
-        left: 32%;
-        top: 1%;
+        /*left: 32%;*/
+        /*top: 1%;*/
     }
     .app-video {
-        position: absolute;
-        justify-content: center;
-        left: 34%;
-        top: 32%;
-        box-shadow: 0px 0px 40px #696969;
-    }
-    #introPageButtonContainer{
         position: relative;
         justify-content: center;
-        top: 78%;
-        left: 1%;
-
+        /*left: 34%;*/
+        /*top: 32%;*/
+        box-shadow: 0px 0px 40px #696969;
+    }
+    #introPageButtonContainer {
+        position: relative;
+        justify-content: center;
+        /*top: 78%;*/
+        /*left: 4%;*/
     }
     .introPageButton {
         box-shadow: 0px 0px 40px #696969;
@@ -148,26 +145,26 @@
 
 @media only screen and (min-width: 1180px) and (max-width: 1259px) {
     .intro-title {
-        position: absolute;
+        position: relative;
         font-family: Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
         color: white;
         font-weight: lighter;
         font-size: 10vw;
-        left: 30%;
-        top: 1%;
+        /*left: 30%;*/
+        /*top: 1%;*/
     }
     .app-video {
-        position: absolute;
+        position: relative;
         justify-content: center;
-        left: 28%;
-        top: 32%;
+        /*left: 28%;*/
+        /*top: 32%;*/
 
     }
     #introPageButtonContainer{
         position: relative;
         justify-content: center;
-        top: 78%;
-        right: 2.5%;
+        /*top: 78%;*/
+        /*right: 2.5%;*/
 
     }
     .introPageButton {
@@ -178,28 +175,28 @@
 
 @media only screen and (min-width: 1000px) and  (max-width: 1179px) {
     .intro-title {
-        position: absolute;
+        position: relative;
         font-family: Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
         color: white;
         font-weight: lighter;
         font-size: 12vw;
-        left: 29%;
-        top: 3%;
+        /*left: 29%;*/
+        /*top: 3%;*/
     }
 
     .app-video {
-        position: absolute;
+        position: relative;
         justify-content: center;
-        left: 28%;
-        top: 32%;
+        /*left: 28%;*/
+        /*top: 32%;*/
         box-shadow: 0px 0px 40px #696969;
     }
 
     #introPageButtonContainer {
         position: relative;
         justify-content: center;
-        top: 78%;
-        right: 0.5%;
+        /*top: 78%;*/
+        /*right: 0.5%;*/
     }
     .introPageButton {
         box-shadow: 0px 0px 40px #696969;
@@ -208,28 +205,28 @@
 
 @media only screen and (min-width: 820px) and (max-width: 999px) {
     .intro-title {
-        position: absolute;
+        position: relative;
         font-family: Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
         color: white;
         font-weight: lighter;
         font-size: 14vw;
-        left: 30%;
-        top: 5%;;
+        /*left: 30%;*/
+        /*top: 5%;;*/
     }
 
     .app-video {
-        position: absolute;
+        position: relative;
         justify-content: center;
-        left: 28%;
-        top: 32%;
+        /*left: 28%;*/
+        /*top: 32%;*/
         box-shadow: 0px 0px 40px #696969;
     }
 
     #introPageButtonContainer {
         position: relative;
         justify-content: center;
-        top: 78%;
-        left: 4%;
+        /*top: 78%;*/
+        /*left: 4%;*/
     }
 
     .introPageButton {
@@ -244,22 +241,22 @@
          color: white;
          font-weight: lighter;
          font-size: 17vw;
-         left: 20%;
-         top: 6%;
-         position: absolute;
+         /*left: 20%;*/
+         /*top: 6%;*/
+         position: relative;
     }
     .app-video {
-        position: absolute;
+        position: relative;
         justify-content: center;
-        left: 11%;
-        top: 32%;
+        /*left: 11%;*/
+        /*top: 32%;*/
         box-shadow: 0px 0px 40px #696969;
     }
     #introPageButtonContainer {
         position: relative;
         justify-content: center;
-        top: 78%;
-        left: 4%;
+        /*top: 78%;*/
+        /*left: 4%;*/
     }
     .introPageButton {
         box-shadow: 0px 0px 40px #696969;
@@ -272,22 +269,22 @@
         color: white;
         font-weight: lighter;
         font-size: 17vw;
-        left: 20%;
-        top: 6%;
-        position: absolute;
+        /*left: 20%;*/
+        /*top: 6%;*/
+        position: relative;
     }
     .app-video {
-        position: absolute;
+        position: relative;
         justify-content: center;
-        left: 9%;
-        top: 32%;
+        /*left: 9%;*/
+        /*top: 32%;*/
         box-shadow: 0px 0px 40px #696969;
     }
     #introPageButtonContainer {
         position: relative;
         justify-content: center;
-        top: 78%;
-        left: 4%;
+        /*top: 78%;*/
+        /*left: 4%;*/
     }
     .introPageButton {
         box-shadow: 0px 0px 40px #696969;
@@ -301,22 +298,22 @@
         color: white;
         font-weight: lighter;
         font-size: 17vw;
-        left: 20%;
-        top: 6%;
-        position: absolute;
+        /*left: 20%;*/
+        /*top: 6%;*/
+        position: relative;
     }
     .app-video {
-        position: absolute;
+        position: relative;
         justify-content: center;
-        left: 5%;
-        top: 32%;
+        /*left: 5%;*/
+        /*top: 32%;*/
         box-shadow: 0px 0px 40px #696969;
     }
     #introPageButtonContainer {
         position: relative;
         justify-content: center;
-        top: 78%;
-        left: 4%;
+        /*top: 78%;*/
+        /*left: 4%;*/
     }
     .introPageButton {
         box-shadow: 0px 0px 40px #696969;
