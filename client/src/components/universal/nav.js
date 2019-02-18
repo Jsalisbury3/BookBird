@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import SearchImg from './images/search-2.png'
 import AddBookImg from './images/addBook.png'
@@ -7,10 +7,10 @@ import './universal.css';
 import { withRouter } from 'react-router-dom';
 
 
-export default withRouter((props)=>{
+export default withRouter((props)=> {
     const dontShow = ['/'];
-    if(dontShow.includes(props.location.pathname)) return null;
-    return(
+    if (dontShow.includes(props.location.pathname)) return null;
+    return (
         <footer className="uni-footer">
             <div className={'SearchIcon'}>
                 <Link to={"/Landing"}><img alt={'SearchIcon'} className={'SearchPicture'} src={SearchImg}/>
@@ -31,4 +31,5 @@ export default withRouter((props)=>{
         </footer>
     )
 })
- 
+
+

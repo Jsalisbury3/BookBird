@@ -100,14 +100,14 @@ body{
     position: relative;
     height: 100%;
     left: 10%;
-    width: 14.33%;
+    width: 47px;
 }
 .AddBookIcon {
     display: inline-block;
     position: relative;
     left: 23%;
     height: 85%;
-    width: 27%;
+    width: 93px;
     top: 13%;
 
 }
@@ -115,7 +115,7 @@ body{
     display: inline-block;
     position: relative;
     height: 100%;
-    width: 18.33%;
+    width: 58px;
     left: 28%;
 }
 .BookPicture {
@@ -198,3 +198,30 @@ body{
         background-position: -352px -38px;
     }
 }
+
+.Landing:focus, .AddBook:focus, .MeetTheTeam:focus, .signIn:focus, .signUp:focus {
+    border-bottom: 1px solid rgb(224, 109, 190);
+    color: rgb(224, 109, 190);
+}
+
+
+
+/*.AddBook:active {*/
+    /*color: blue;*/
+    /*background-color: #5bc0de;*/
+/*}*/
+
+/*.MeetTheTeam:active {*/
+    /*color: blue;*/
+    /*background-color: #5bc0de;*/
+/*}*/
+
+/*.signIn:active {*/
+    /*color: blue;*/
+    /*background-color: #5bc0de;*/
+/*}*/
+
+/*.signUp:active {*/
+    /*color: blue;*/
+    /*background-color: #5bc0de;*/
+/*}*/

@@ -47,9 +47,12 @@ class SideNav extends Component {
     };
 
     buildLinkForNav = (link) => {
+        let to = link.to;
+        let wantedClass = to.slice(1, link.to.length);
+        console.log("wantedCLass: ", wantedClass);
         return (
             <li onClick={this.changeState} key={link.to}>
-                <Link to={link.to}>{link.text}</Link>
+                <Link className={`${wantedClass}`} to={link.to}>{link.text}</Link>
             </li>
         )
     };
