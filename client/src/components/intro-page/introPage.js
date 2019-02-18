@@ -14,15 +14,15 @@ class IntroPage extends Component {
         return (
             <div className="row introPageContainer">
             <div className=' col s12 m12 offset-6 offset-6 hide-on-small-only'>
-                <h1 className="intro-title">BookBird</h1>
+                <h1 className="intro-title center">BookBird</h1>
             </div>
-            <div className=' col l12 m12 s12 offset-6 app-tutorial-video hide-on-small-only'>
-            <iframe className="app-video" width="560" height='315' src="http://www.youtube.com/embed/9FkQEOjgLI0?autoplay=1&controls=0&loop=1&playlist=8HSr8BjcufM&amp;showinfo=0" loop="true"></iframe>
+            <div className=' col l12 m12 s12 center app-tutorial-video hide-on-small-only'>
+            <iframe className="app-video center" width="560" height='315' src="http://www.youtube.com/embed/9FkQEOjgLI0?autoplay=1&controls=0&loop=1&playlist=8HSr8BjcufM&amp;showinfo=0" loop="true"></iframe>
             </div>
-            <div className="col l12 m12 s12 offset-6  hide-on-med-and-up   center-align logoImgContainer">
+            <div className="col l12 m12 s12 center  hide-on-med-and-up logoImgContainer">
                 <img src={bookBirdLogo} className="introPageLogoImg"alt=""/>
             </div>
-            <div id='introPageButtonContainer' className="col l12 m12 s12 offset-6 center-align introPageButtonContainer">
+            <div id='introPageButtonContainer' className="col l12 m12 s12  introPageButtonContainer center">
                     <Link onClick={this.addLinkToReducer} to={"/Landing"}><p
                         className=" introPageButton btn-large btn waves-effect blue lighten-3 "> Get Started </p></Link>
                 </div>
