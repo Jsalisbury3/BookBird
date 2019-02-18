@@ -47,9 +47,9 @@
     font-family: Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
     color: white;
     font-weight: lighter;
-    font-size: 8vw;
+    font-size: 8em;
     /*left: 36%;*/
-    top: 3%;
+    /*top: 3%;*/
 }
 
 @media only screen and (min-width: 1650px) and (max-width: 1920px) {
@@ -58,9 +58,9 @@
         font-family: Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
         color: white;
         font-weight: lighter;
-        font-size: 8vw;
+        font-size: 8em;
         /*left: 34%;*/
-        top: 3%;
+        /*top: 3%;*/
     }
 
     .app-video {
@@ -90,7 +90,7 @@
         font-family: Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
         color: white;
         font-weight: lighter;
-        font-size: 10vw;
+        font-size: 8em;
         /*left: 32%;*/
         /*top: 1%;*/
     }
@@ -119,7 +119,7 @@
         font-family: Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
         color: white;
         font-weight: lighter;
-        font-size: 10vw;
+        font-size: 8em;
         /*left: 32%;*/
         /*top: 1%;*/
     }
@@ -149,7 +149,7 @@
         font-family: Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
         color: white;
         font-weight: lighter;
-        font-size: 10vw;
+        font-size: 8em;
         /*left: 30%;*/
         /*top: 1%;*/
     }
@@ -179,7 +179,7 @@
         font-family: Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
         color: white;
         font-weight: lighter;
-        font-size: 12vw;
+        font-size: 8em;
         /*left: 29%;*/
         /*top: 3%;*/
     }
@@ -209,7 +209,7 @@
         font-family: Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
         color: white;
         font-weight: lighter;
-        font-size: 14vw;
+        font-size: 8em;
         /*left: 30%;*/
         /*top: 5%;;*/
     }
@@ -240,7 +240,7 @@
          font-family: Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
          color: white;
          font-weight: lighter;
-         font-size: 17vw;
+         font-size: 8em;
          /*left: 20%;*/
          /*top: 6%;*/
          position: relative;
@@ -268,7 +268,7 @@
         font-family: Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
         color: white;
         font-weight: lighter;
-        font-size: 17vw;
+        font-size: 8em;
         /*left: 20%;*/
         /*top: 6%;*/
         position: relative;
@@ -297,7 +297,7 @@
         font-family: Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
         color: white;
         font-weight: lighter;
-        font-size: 17vw;
+        font-size: 8em;
         /*left: 20%;*/
         /*top: 6%;*/
         position: relative;
