@@ -199,11 +199,13 @@ body{
     }
 }
 
-.Landing:focus, .AddBook:focus, .MeetTheTeam:focus, .signIn:focus, .signUp:focus {
+.highlight {
     border-bottom: 1px solid rgb(224, 109, 190);
-    color: rgb(224, 109, 190);
 }
 
+ul > li:nth-child(1) > a {
+    border-bottom: none !important;
+}
 
 
 /*.AddBook:active {*/
