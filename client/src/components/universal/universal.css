@@ -36,7 +36,7 @@ body{
     left: 20%;
     font-size: .9rem;
     color: white;
-    top: 46.5%;
+    top: 63.5%;
     width: 59%;
 
 
@@ -100,14 +100,14 @@ body{
     position: relative;
     height: 100%;
     left: 10%;
-    width: 14.33%;
+    width: 47px;
 }
 .AddBookIcon {
     display: inline-block;
     position: relative;
     left: 23%;
     height: 85%;
-    width: 27%;
+    width: 93px;
     top: 13%;
 
 }
@@ -115,7 +115,7 @@ body{
     display: inline-block;
     position: relative;
     height: 100%;
-    width: 18.33%;
+    width: 58px;
     left: 28%;
 }
 .BookPicture {
@@ -125,7 +125,6 @@ body{
     width: 57px;
     padding: 15%;
     left: 19%;
-    bottom: 23.5%;
     transition: transform 650ms ease-in-out;
     -webkit-filter: invert(100%);
 }
@@ -197,4 +196,12 @@ body{
         background-repeat: no-repeat;
         background-position: -352px -38px;
     }
+}
+
+.highlight {
+    border-bottom: 1px solid rgb(224, 109, 190);
+}
+
+ul > li:nth-child(1) > a {
+    border-bottom: none !important;
 }

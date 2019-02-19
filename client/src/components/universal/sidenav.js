@@ -47,18 +47,30 @@ class SideNav extends Component {
     };
 
     buildLinkForNav = (link) => {
-        return (
-            <li onClick={this.changeState} key={link.to}>
-                <Link to={link.to}>{link.text}</Link>
-            </li>
-        )
+        let to = link.to;
+        let wantedClass = to.slice(1, link.to.length);
+        localStorage.setItem("currentLink", window.location.pathname.slice(1, link.to.length));
+        if(this.props.currentLink) {
+            return (
+                <li onClick={this.changeState} key={link.to}>
+                    <Link className={`${this.props.currentLink.slice(1, link.to.length) === wantedClass ? "highlight" : ""}`} to={link.to}>{link.text}</Link>
+                </li>
+            )
+        } else {
+            return (
+                <li onClick={this.changeState} key={link.to}>
+                    <Link className={`${localStorage.getItem("currentLink") === wantedClass ? "highlight" : ""}`} to={link.to}>{link.text}</Link>
+                </li>
+            )
+        }
+
     };
 
     componentDidMount = () => {
         this.setState({
             location: this.props.location.pathname
         })
-    }
+    };
 
     handleSignOut = () => {
         localStorage.clear();
