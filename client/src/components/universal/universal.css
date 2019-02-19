@@ -205,24 +205,3 @@ body{
 ul > li:nth-child(1) > a {
     border-bottom: none !important;
 }
-
-
-/*.AddBook:active {*/
-    /*color: blue;*/
-    /*background-color: #5bc0de;*/
-/*}*/
-
-/*.MeetTheTeam:active {*/
-    /*color: blue;*/
-    /*background-color: #5bc0de;*/
-/*}*/
-
-/*.signIn:active {*/
-    /*color: blue;*/
-    /*background-color: #5bc0de;*/
-/*}*/
-
-/*.signUp:active {*/
-    /*color: blue;*/
-    /*background-color: #5bc0de;*/
-/*}*/
