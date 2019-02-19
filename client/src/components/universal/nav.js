@@ -11,7 +11,7 @@ export default withRouter((props)=> {
     const dontShow = ['/'];
     if (dontShow.includes(props.location.pathname)) return null;
     return (
-        <footer className="uni-footer">
+        <footer className="row uni-footer">
             <div className={'SearchIcon'}>
                 <Link to={"/Landing"}><img alt={'SearchIcon'} className={'SearchPicture'} src={SearchImg}/>
                     <h6 id='SearchTitle'>Search</h6>
