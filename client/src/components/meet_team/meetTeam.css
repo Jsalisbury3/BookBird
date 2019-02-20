@@ -72,6 +72,11 @@ body {
     color: #fbc02d;
 }
 
+/*.personImg {*/
+    /*max-height: 500px;*/
+    /*max-width: 410px;*/
+/*}*/
+
 
 .teamMembers {
     height: 85%; 
