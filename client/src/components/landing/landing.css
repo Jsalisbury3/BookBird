@@ -45,8 +45,8 @@
 .itemImage{
     background-color: blueviolet;
     margin:5%;
-    height:90%;
-    width:90%;
+    height:100px;
+    width:80px;
 }
 .itemDetails{
     padding: 1% 1% 1% 1%;
