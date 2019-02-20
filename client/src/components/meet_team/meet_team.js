@@ -1,99 +1,106 @@
-import React, {Component} from 'react'
-import {Link} from 'react-router-dom';
+import React, { Component, Fragment } from 'react';
 import "./meetTeam.css";
+import Jordan from './images/small-person.jpg';
+import Quy from './images/quyquy.JPG'
+import Kuroash from './images/kuroash.jpg'
+import github from './images/github.png'
+import linkedIn from './images/linkdin.png'
 
-class MeetTeam extends Component {
-    render() {
-        return (
-            <div className="teamPage">
-                <div className={"teamHeader center"}>Book Bird Crew</div>
-                <div className={"teamMembers row"}>
-                    <div className={"personCard col s12 m6 l6"}>
-                        <div className={"personCardImg"}>
-                            <img src="IMG_0542.JPG" alt=""/>
-                        </div>
-                        <div className="cardContent">
-                            <h2 className={"nameSection"}>name</h2>
-                            <div className={"titleSection"}>title</div>
-                            <div className="socials">
-                                <div className={"col s4 linkedin"}>linkedin</div>
-                                <div className={"col s4 github"}>github</div>
-                                <div className={"col s4 portfolio"}>portfolio</div>
-                            </div>
-                        </div>
-                    </div>
+class Team extends Component {
 
-                    <div className={"personCard col s12 m6 l6"}>
-                        <div className={"col s12"}>
-                            <img src="" alt=""/>
+    teamMembers = () => {
+        const teamMembersInfo = [
+            {
+                Name: 'Jordan Salisbury',
+                Title: 'Project Lead',
+                LinkedIn: 'https://www.linkedin.com/in/jordansalisbury',
+                Github: 'https://github.com/Jsalisbury3',
+                Portfolio: 'https://jordansalisbury.me',
+                Photo: Quy,
+            },
+            {
+                Name: 'Justen Quirante',
+                Title: 'Back-End Developer',
+                LinkedIn: '',
+                Github: '',
+                Portfolio: '',
+                Photo: Quy,
+            },
+            {
+                Name: 'Kuroash Esmaili',
+                Title: 'Front-End Developer',
+                LinkedIn: 'https://www.linkedin.com/in/kuroash/',
+                Github: 'https://github.com/Kur0a5h',
+                Portfolio: 'https://www.kuroash.com/',
+                Photo: Quy,
+            },
+            {
+                Name: 'Michael Capobianco',
+                Title: 'Back-End Developer',
+                LinkedIn: '',
+                Github: '',
+                Portfolio: '',
+                Photo: Quy,
+            },
+            {
+                Name: 'Quy Truong',
+                Title: 'Front-End Developer',
+                LinkedIn: 'https://www.linkedin.com/in/quyminhtruong/',
+                Github: 'https://github.com/QuyQuy',
+                Portfolio: 'http://quyminhtruong.info/',
+                Photo: Quy,
+            },
+            {
+                Name: 'Cody Miller',
+                Title: 'Project Manager',
+                LinkedIn: 'https://www.linkedin.com/in/quyminhtruong/',
+                Github: 'https://github.com/QuyQuy',
+                Portfolio: 'http://quyminhtruong.info/',
+                Photo: Quy,
+            },
+        ]
+        const individualRow = teamMembersInfo.map((memberInfo, index) => {
+            
+            const {LinkedIn, Portfolio, Title, Photo, Name, Github} = memberInfo
+            return (
+                <div key={index} className="teamContainer col s12 m6 l4">
+                    
+                    <div className="card">
+                        <div className="card-image center-align">
+                            <img src={Photo}/>
                         </div>
-                        <div>
-                            <div className="cardContent">
-                                <div className={"nameSection"}>name</div>
-                                <div className={"titleSection"}>title</div>
-                                <div className="socials">
-                                    <div className={"col s4 linkedin"}>linkedin</div>
-                                    <div className={"col s4 github"}>github</div>
-                                    <div className={"col s4 portfolio"}>portfolio</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className={"personCard col s12 m6 l6"}>
-                        <div className={"col s12"}>
-                            <img src="" alt=""/>
-                        </div>
-                        <div>
-                            <div className="cardContent">
-                                <div className={"nameSection"}>name</div>
-                                <div className={"titleSection"}>title</div>
-                                <div className="socials">
-                                    <div className={"col s4 linkedin"}>linkedin</div>
-                                    <div className={"col s4 github"}>github</div>
-                                    <div className={"col s4 portfolio"}>portfolio</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className={"personCard col s12 m6 l6"}>
-                        <div className={"col s12"}>
-                            <img src="" alt=""/>
-                        </div>
-                        <div>
-                            <div className="cardContent">
-                                <div className={"nameSection"}>name</div>
-                                <div className={"titleSection"}>title</div>
-                                <div className="socials">
-                                    <div className={"col s4 linkedin"}>linkedin</div>
-                                    <div className={"col s4 github"}>github</div>
-                                    <div className={"col s4 portfolio"}>portfolio</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className={"personCard col s12 m6 l6"}>
-                        <div className={"col s12"}>
-                            <img src="" alt=""/>
-                        </div>
-                        <div>
-                            <div className="cardContent">
-                                <div className={"nameSection"}>name</div>
-                                <div className={"titleSection"}>title</div>
-                                <div className="socials">
-                                    <div className={"col s4 linkedin"}>linkedin</div>
-                                    <div className={"col s4 github"}>github</div>
-                                    <div className={"col s4 portfolio"}>portfolio</div>
-                                </div>
-                            </div>
+                        <div className="card-stacked">
+                            <div className="card-content">
+                                <h2 className="teamMemberName center-align">{Name}</h2>
+                                <div className="memberTitle row center-align">{Title}</div>
+                                <div className="socialsContainer card-action">
+                                    <div className="socialIcon"><a href={LinkedIn} target="_blank"><img className="icon" src={linkedIn}/></a></div>
+                                    <div className="socialIcon"><a href={Github} target="_blank"><img className="icon" src={github}/></a></div>
+                                    <div className="portfolio"><a className="portfolioText"   href={Portfolio} target="_blank">Portfolio</a></div>
+                                </div>                                                            
+                            </div> 
                         </div>
                     </div>
                 </div>
-            </div>
+            )
+           
+        }) 
+        return individualRow
+    }
+
+    render() {
+        return(
+            <Fragment>
+                <div className="bookBirdTeamMembersPage">
+                    <div className="teamPageTitle">BOOKBIRD Crew</div>
+                    <div className="row">
+                        {this.teamMembers()}
+                    </div>
+                </div>
+            </Fragment>
         )
     }
 }
 
-export default MeetTeam
+
+export default Team
