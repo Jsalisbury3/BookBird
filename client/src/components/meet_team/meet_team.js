@@ -19,14 +19,6 @@ class Team extends Component {
                 Photo: Quy,
             },
             {
-                Name: 'Michael Capobianco',
-                Title: 'Back-End Developer',
-                LinkedIn: '',
-                Github: '',
-                Portfolio: '',
-                Photo: Quy,
-            },
-            {
                 Name: 'Justen Quirante',
                 Title: 'Back-End Developer',
                 LinkedIn: '',
@@ -40,6 +32,14 @@ class Team extends Component {
                 LinkedIn: 'https://www.linkedin.com/in/kuroash/',
                 Github: 'https://github.com/Kur0a5h',
                 Portfolio: 'https://www.kuroash.com/',
+                Photo: Quy,
+            },
+            {
+                Name: 'Michael Capobianco',
+                Title: 'Back-End Developer',
+                LinkedIn: '',
+                Github: '',
+                Portfolio: '',
                 Photo: Quy,
             },
             {
