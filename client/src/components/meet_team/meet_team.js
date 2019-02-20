@@ -32,11 +32,11 @@ class Team extends Component {
                 LinkedIn: 'https://www.linkedin.com/in/kuroash/',
                 Github: 'https://github.com/Kur0a5h',
                 Portfolio: 'https://www.kuroash.com/',
-                Photo: Quy,
+                Photo: Kuroash,
             },
             {
                 Name: 'Michael Capobianco',
-                Title: 'Back-End Developer',
+                Title: 'Full-Stack Developer',
                 LinkedIn: '',
                 Github: '',
                 Portfolio: '',
@@ -67,7 +67,7 @@ class Team extends Component {
                     
                     <div className="card">
                         <div className="card-image center-align">
-                            <img src={Photo}/>
+                            <img className={"personImg"} src={Photo}/>
                         </div>
                         <div className="card-stacked">
                             <div className="card-content">
