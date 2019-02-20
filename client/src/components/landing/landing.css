@@ -293,11 +293,13 @@
     }
 
     .search-bar-container {
-        background-color: white;
+        background-image: linear-gradient(rgba(75, 0, 104, 0.877),rgba(43, 0, 43, 0.829));
+        background: linear-gradient( #180218ee, #240024da );
     }
 
     .search-results-container {
-        background-color: white;
+        background-image: linear-gradient(rgba(75, 0, 104, 0.877),rgba(43, 0, 43, 0.829));
+        background: linear-gradient( #180218ee, #240024da );
         padding: 15px;
         height: 92.6vh;
     }

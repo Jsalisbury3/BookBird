@@ -244,7 +244,7 @@ body{
 
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 600px) {
     .route_container {
         background: /* top, transparent red, faked with gradient */ linear-gradient(
                 #180218ee,
@@ -253,7 +253,8 @@ body{
         url(../images/chavezcenter.jpg);
         background-size: 200%;
         background-repeat: no-repeat;
-        background-position: -352px -38px;
+        background-position: 50% 50%;
+        height: 110vh !important;
     }
 }
 
@@ -263,4 +264,9 @@ body{
 
 ul > li:nth-child(1) > a {
     border-bottom: none !important;
+}
+
+.singoutBtn {
+    font-size: 12px;
+    padding: 0px 10px 0px 10px;
 }
