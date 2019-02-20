@@ -185,6 +185,65 @@ body{
     margin-bottom: 10px;
 }
 
+@media only screen and (min-width:  400px) {
+
+    #AddBookTitle {
+        position: absolute;
+        left: 37%;
+        font-size: .9rem;
+        color: white;
+        top: 68.5%;
+        width: 65%;
+
+
+    }
+    .AddBookIcon {
+        display: inline-block;
+        position: relative;
+        left: 23%;
+        height: 85%;
+        width: 93px;
+        top: 13%;
+
+    }
+    .BookPicture {
+        position: relative;
+        display: inline-block;
+        height: 55px;
+        width: 57px;
+        padding: 15%;
+        left: 39%;
+        transition: transform 650ms ease-in-out;
+    }
+    #SearchTitle {
+        left: 32%;
+        font-size: .9rem;
+        color: white;
+        top: 39.5%;
+        position: absolute;
+
+    }
+    #ProfileTitle {
+        position: absolute;
+        left: 96.5%;
+        font-size: .9rem;
+        color: white;
+        top: 41.5%;
+    }
+    .ProfilePicture {
+        position: relative;
+        display: inline-block;
+        height: 48px;
+        width: 45px;
+        padding: 15%;
+        left: 90%;
+        bottom: 9%;
+        transition: transform 650ms ease-in-out;
+        -webkit-filter: invert(100%);
+    }
+
+}
+
 @media only screen and (min-width: 768px) {
     .route_container {
         background: /* top, transparent red, faked with gradient */ linear-gradient(
