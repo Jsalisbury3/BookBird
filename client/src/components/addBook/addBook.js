@@ -424,10 +424,10 @@ class AddBook extends Component {
                         <div className='row'>
                             {/* <div className={"checkMark markEdition material-icons"}>check_circle_outline</div> */}
                             <div className='input-field col s5'>
-                                <i className="material-icons prefix yellow-text text-darken-2">attach_money</i>
+                                <i id={"moneyID"} className="material-icons prefix yellow-text text-darken-2">attach_money</i>
                                 
-                                <input name="price" id='price' type='text' className={"inputs col s9 push-s2"} onChange={this.handleInput} autoComplete="off"/>
-                                <label className='yellow-text text-darken-2' htmlFor='price'>Price</label>
+                                <input name="price" id='price' type='text' className={"inputs col s7 push-s2"} onChange={this.handleInput} autoComplete="off"/>
+                                <label className='labelPrice yellow-text text-darken-2' htmlFor='price'>Price</label>
                                 <div className="text-red"id={"priceErr"}></div>
                             </div>
                             <div id='condition-container' className="col s6">
@@ -448,7 +448,7 @@ class AddBook extends Component {
                         <div className='row'>
                                 <div className='input-field col s12'>
                                 <textarea name={"comments"} id='comment-box' className="inputs col s10 push-s1" onChange={this.handleInput} autoComplete="off"/>
-                                <label htmlFor="comment-box" className="yellow-text text-darken-2 activated">Sellers Comments</label>
+                                <label id={"sellerLabel"} htmlFor="comment-box" className="yellow-text text-darken-2 activated">Sellers Comments</label>
                                     {/* <h5 className='optional-tag'>*Optional</h5> */}
                                 </div>
                         </div>

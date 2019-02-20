@@ -123,17 +123,8 @@ input:-webkit-autofill:active {
     margin-left: 1vw !important;
 }
 .signin_container{
-    background: 
-    /* top, transparent red, faked with gradient */ 
-    linear-gradient(
-      #180218ee, 
-      #240024da
-    ),
-
-    url(../images/chavezcenter.jpg);
-    background-size: 362%;
-    background-repeat: no-repeat;
-    background-position: -352px -38px;
+    background-image: linear-gradient(rgba(75, 0, 104, 0.877),rgba(43, 0, 43, 0.829));
+    background: linear-gradient( #180218ee, #240024da );
 }
 #sign-up-form>.row .input-field{
     margin-top:2px;
@@ -146,17 +137,8 @@ input:-webkit-autofill:active {
     
 }
 .signup_container{
-    background: 
-    /* top, transparent red, faked with gradient */ 
-    linear-gradient(
-      #180218ee, 
-      #240024da
-    ),
-    /* bottom, image */
-    url(../images/chavezcenter.jpg);
-    background-size: 362%;
-    background-repeat: no-repeat;
-    background-position: -352px -38px;
+    background-image: linear-gradient(rgba(75, 0, 104, 0.877),rgba(43, 0, 43, 0.829));
+    background: linear-gradient( #180218ee, #240024da );
 }
 
 /* .signin_container>p{

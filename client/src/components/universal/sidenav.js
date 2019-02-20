@@ -86,7 +86,7 @@ class SideNav extends Component {
             links = [...common, ...Auth].map(this.buildLinkForNav);
             links.push(
                 <li key={"sign-out"} className={"sign-out center"}>
-                    <button onClick={this.handleSignOut} className={"btn blue"}>Sign Out</button>
+                    <button onClick={this.handleSignOut} className={"singoutBtn btn blue"}>Sign Out</button>
                 </li>
             )
         } else {

@@ -142,6 +142,7 @@
     display:inline-block;
     height: 128px;
     width: 250px;
+    left: 85px;
 }
 .searchButtonContainer {
     padding-left: 35%;
@@ -233,8 +234,13 @@
     background-color: rgb(240, 240, 240);
 }
 
+#moneyID {
+    left: 30px;
+}
 
-
+.labelPrice {
+    left: 60px !important
+}
 
 .modal-footer{
     margin-bottom: 11px;
@@ -354,7 +360,8 @@
 
 #price{
     font-weight: lighter; 
-    color: white; 
+    color: white;
+    left: 50px;
 }
 
 #titleError {
@@ -457,6 +464,8 @@
 select {
     background-color: white;
     border-radius: 0;
+    position: relative;
+    left: 3px;
 }
 
 select option {
