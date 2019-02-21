@@ -32,6 +32,7 @@ class SignInValidation extends Component {
     storeTokenSignUp = () => {
         if (this.props.signInResults.success) {
             const Token = this.props.signInResults.data;
+
             localStorage.setItem("Token", Token);
             this.props.signInResults.data ='';
             this.props.reset();

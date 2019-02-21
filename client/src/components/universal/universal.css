@@ -244,6 +244,8 @@ body{
 
 }
 
+
+
 @media only screen and (min-width: 600px) {
     .route_container {
         background: /* top, transparent red, faked with gradient */ linear-gradient(
@@ -269,4 +271,15 @@ ul > li:nth-child(1) > a {
 .singoutBtn {
     font-size: 12px;
     padding: 0px 10px 0px 10px;
+}
+
+@media only screen and (max-width: 990px) {
+    .navDesktopLogo {
+        height: 30%;
+        width: 100%;
+        /*height: 120px !important;*/
+        /*width: 120px !important;*/
+        /*position: relative;*/
+        left: -5px;
+    }
 }

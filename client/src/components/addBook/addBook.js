@@ -115,6 +115,7 @@ class AddBook extends Component {
                 // document.getElementById("conditionCheckMArk").classList.remove("visible");
             }
         } else {
+            debugger;
             if (element !== "input[name=condition]") {
                 document.getElementsByClassName("error")[index].nextElementSibling.classList.add("visible");
                 document.querySelector(element).nextSibling.innerHTML = '';

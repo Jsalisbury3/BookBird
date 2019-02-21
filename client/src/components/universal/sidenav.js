@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import {withRouter} from 'react-router-dom';
 import Logo from './images/IntroPageLogo.png';
 import {LinkTracker}from "../../actions/linkTracker_action"
+import {removeTokenAndRow} from "../../actions/sign_out";
 
 class SideNav extends Component {
 
@@ -73,9 +74,10 @@ class SideNav extends Component {
     };
 
     handleSignOut = () => {
-        localStorage.clear();
+        localStorage.clear("Token");
         this.props.history.push("/SignIn");
         this.getLinksInMenu();
+        this.props.removeTokenAndRow();
     };
 
     getLinksInMenu = () => {
@@ -97,7 +99,6 @@ class SideNav extends Component {
 
     changeState = async (e) => {
         let path = window.location.pathname;
-        console.log(path);
         await this.props.LinkTracker(path);
     }
 
@@ -110,9 +111,9 @@ class SideNav extends Component {
         const links = this.getLinksInMenu();
         return (
             <div className="navigation col hide-on-small-only m2 ">
-                <img className="navDesktopLogo" src={Logo}/>
                 <div className="sideNavLinks">
                     <ul>
+                        <img className="center navDesktopLogo" src={Logo}/>
                         <ul ref={(element) => {
                             this.navRef = element
                         }}>
@@ -133,7 +134,8 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, {
-    LinkTracker
+    LinkTracker,
+    removeTokenAndRow
 })(withRouter(SideNav));
 
 // import React, { Component } from 'react';
