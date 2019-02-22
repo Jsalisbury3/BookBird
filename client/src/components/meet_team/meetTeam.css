@@ -72,10 +72,10 @@ body {
     color: #fbc02d;
 }
 
-/*.personImg {*/
-    /*max-height: 500px;*/
-    /*max-width: 410px;*/
-/*}*/
+.personImg {
+    height:177px;
+}
+
 
 
 .teamMembers {
@@ -134,7 +134,7 @@ body {
 
 .teamMemberName{
     font-weight: 800;
-    font-size:22px;
+    font-size:21px;
 }
 
 .memberTitle {
@@ -148,7 +148,9 @@ body {
     align-items: center;
 }
 
-
+.card{
+    margin:9px;
+}
 
 
 

@@ -1,10 +1,12 @@
 import React, { Component, Fragment } from 'react';
 import "./meetTeam.css";
-import Jordan from './images/small-person.jpg';
-import Quy from './images/quyquy.JPG'
-import Kuroash from './images/kuroash.jpg'
-import github from './images/github.png'
-import linkedIn from './images/linkdin.png'
+import smallGuy from './images/small-person.jpg';
+import Justen from './images/jus2.jpg';
+import Quy from './images/quyquy.JPG';
+import Kuroash from './images/kuroash.jpg';
+import github from './images/github.png';
+import Michael from './images/capo.JPG';
+import linkedIn from './images/linkdin.png';
 
 class Team extends Component {
 
@@ -20,27 +22,27 @@ class Team extends Component {
             },
             {
                 Name: 'Justen Quirante',
-                Title: 'Back-End Developer',
-                LinkedIn: '',
-                Github: '',
-                Portfolio: '',
-                Photo: Quy,
+                Title: 'Full-Stack Developer',
+                LinkedIn: 'http://www.linkedin.com/in/justen-quirante',
+                Github: 'https://github.com/jquirante',
+                Portfolio: 'https://justenquirante.com',
+                Photo: Justen,
             },
             {
                 Name: 'Kuroash Esmaili',
                 Title: 'Front-End Developer',
                 LinkedIn: 'https://www.linkedin.com/in/kuroash/',
                 Github: 'https://github.com/Kur0a5h',
-                Portfolio: 'https://www.kuroash.com/',
-                Photo: Kuroash,
+                Portfolio: 'http://kuroash.com/',
+                Photo: Kuroash
             },
             {
                 Name: 'Michael Capobianco',
                 Title: 'Full-Stack Developer',
-                LinkedIn: '',
-                Github: '',
-                Portfolio: '',
-                Photo: Quy,
+                LinkedIn: 'https://www.linkedin.com/in/michaelACapobainco',
+                Github: 'https://github.com/MichaelCapo23',
+                Portfolio: 'http://www.thecapobianco.com/',
+                Photo: Michael,
             },
             {
                 Name: 'Quy Truong',
@@ -51,11 +53,11 @@ class Team extends Component {
                 Photo: Quy,
             },
             {
-                Name: 'Cody Miller',
+                Name: 'Andy Ong',
                 Title: 'Project Manager',
-                LinkedIn: 'https://www.linkedin.com/in/quyminhtruong/',
-                Github: 'https://github.com/QuyQuy',
-                Portfolio: 'http://quyminhtruong.info/',
+                LinkedIn: 'https://www.linkedin.com/in/andy-ong/',
+                Github: '',
+                Portfolio: '',
                 Photo: Quy,
             },
         ]
@@ -64,9 +66,9 @@ class Team extends Component {
             const {LinkedIn, Portfolio, Title, Photo, Name, Github} = memberInfo
             return (
                 <div key={index} className="teamContainer col s12 m6 l4">
-                    
                     <div className="card">
                         <div className="card-image center-align">
+                            {/* <img className={ index === 1 ? "justenPic" : "personImg"} src={Photo}/> */}
                             <img className={"personImg"} src={Photo}/>
                         </div>
                         <div className="card-stacked">
