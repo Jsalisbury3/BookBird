@@ -68,7 +68,8 @@ class Team extends Component {
                 <div key={index} className="teamContainer col s12 m6 l4">
                     <div className="card">
                         <div className="card-image center-align">
-                            <img className={ index === 1 ? "justenPic" : "personImg"} src={Photo}/>
+                            {/* <img className={ index === 1 ? "justenPic" : "personImg"} src={Photo}/> */}
+                            <img className={"personImg"} src={Photo}/>
                         </div>
                         <div className="card-stacked">
                             <div className="card-content">

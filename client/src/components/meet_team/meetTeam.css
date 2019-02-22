@@ -73,13 +73,9 @@ body {
 }
 
 .personImg {
-    max-height: 500px;
-    max-width: 410px;
+    height:177px;
 }
 
-.justenPic{
-    
-}
 
 
 .teamMembers {
@@ -138,7 +134,7 @@ body {
 
 .teamMemberName{
     font-weight: 800;
-    font-size:22px;
+    font-size:21px;
 }
 
 .memberTitle {
@@ -153,7 +149,7 @@ body {
 }
 
 .card{
-    margin:7px;
+    margin:9px;
 }
 
 
