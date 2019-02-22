@@ -72,10 +72,14 @@ body {
     color: #fbc02d;
 }
 
-/*.personImg {*/
-    /*max-height: 500px;*/
-    /*max-width: 410px;*/
-/*}*/
+.personImg {
+    max-height: 500px;
+    max-width: 410px;
+}
+
+.justenPic{
+    
+}
 
 
 .teamMembers {
@@ -148,7 +152,9 @@ body {
     align-items: center;
 }
 
-
+.card{
+    margin:7px;
+}
 
 
 
