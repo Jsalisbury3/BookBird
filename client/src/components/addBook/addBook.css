@@ -140,8 +140,9 @@
 }
 .upload-image-container {
     display:inline-block;
-    height: 128px;
-    width: 250px;
+    height: 105px;
+    /* width: 250px; */
+    width:212px;
     left: 85px;
 }
 .searchButtonContainer {
@@ -570,5 +571,18 @@ select option {
         right: 50px;
         width: 115px;
         display: inline;
+    }
+}
+
+
+
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+
+    .form-container{
+       overflow:scroll;
     }
 }
