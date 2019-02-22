@@ -108,8 +108,9 @@ class AddBook extends Component {
         const result = pattern.test(elementVal);
         if (!result) {
             if (element !== "input[name=condition]") {
-                document.getElementsByClassName("error")[index].nextElementSibling.classList.remove("visible");
-                document.querySelector(element).nextSibling.innerHTML = errorMessage;
+                // document.getElementsByClassName("error")[index].nextElementSibling.classList.remove("visible");
+                document.getElementById("priceErr").innerHTML = errorMessage;
+                // document.querySelector(element).nextSibling.innerHTML = errorMessage;
             } else {
                 document.getElementById("conditionError").innerHTML = errorMessage;
                 // document.getElementById("conditionCheckMArk").classList.remove("visible");
@@ -428,7 +429,7 @@ class AddBook extends Component {
                                 
                                 <input name="price" id='price' type='text' className={"inputs col s7 push-s2"} onChange={this.handleInput} autoComplete="off"/>
                                 <label className='labelPrice yellow-text text-darken-2' htmlFor='price'>Price</label>
-                                <div className="text-red"id={"priceErr"}></div>
+                                <div className="text-red" id={"priceErr"}></div>
                             </div>
                             <div id='condition-container' className="col s6">
                             <select name={"condition"} onChange={this.handleInput} id={"mySelect"}
