@@ -387,19 +387,23 @@
 }
 
 #priceErr {
-    /* top: 9vh;
-    right: 10vw; */
     position: absolute;
     color: red;
-    font-size: 12px;
+    font-size: 11px;
+    top: 55px;
+    left: 35px;
+    display: inline;
+    width:115px;
 }
 
 #conditionError{
     position: absolute;
-    bottom: 46vh;
-    left: 53vw;
     color: red;
-    font-size:12px;
+    font-size:11px;
+    /*top: 320px;*/
+    right: -5px;
+    width: 115px;
+    display: inline;
 }
 .comment-text-area {
     position: absolute;
@@ -459,6 +463,11 @@
     margin: auto; */
     font-size: 1rem;
     /* left: 10.5%; */
+}
+
+
+#sellersContainer {
+    margin-top: 20px;
 }
 
 select {
@@ -525,15 +534,41 @@ select option {
 
 
 @media screen and (min-width: 600px) {
-    .modal-content{
-        width:300px;
+    .modal-content {
+        width: 300px;
     }
-    .addBook-container{
-        position:relative;
+
+    .addBook-container {
+        position: relative;
     }
-    .modalIsbn{
-        height:125vh;
-        left:-50%;
-        width:200%;
+
+    .modalIsbn {
+        height: 125vh;
+        left: -50%;
+        width: 200%;
+    }
+}
+
+@media only screen and (min-width: 886px) {
+    #conditionError{
+        position: absolute;
+        color: red;
+        font-size:11px;
+        top: 310px;
+        right: 50px !important;
+        width: 115px;
+        display: inline;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    #conditionError{
+        position: absolute;
+        color: red;
+        font-size:11px;
+        top: 310px;
+        right: 50px;
+        width: 115px;
+        display: inline;
     }
 }

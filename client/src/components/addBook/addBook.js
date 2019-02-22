@@ -75,7 +75,7 @@ class AddBook extends Component {
             {
                 element: 'input[name=condition]',
                 pattern: /^(New|Like New|Good|Worn|Thrashed)$/,
-                errorMessage: "Please Select a Condition",
+                errorMessage: "Invalid Condition",
                 index: 0
             },
             {
@@ -108,19 +108,16 @@ class AddBook extends Component {
         const result = pattern.test(elementVal);
         if (!result) {
             if (element !== "input[name=condition]") {
-                document.getElementsByClassName("error")[index].nextElementSibling.classList.remove("visible");
-                document.querySelector(element).nextSibling.innerHTML = errorMessage;
+                document.getElementById("priceErr").innerHTML = errorMessage;
             } else {
                 document.getElementById("conditionError").innerHTML = errorMessage;
-                // document.getElementById("conditionCheckMArk").classList.remove("visible");
             }
         } else {
             if (element !== "input[name=condition]") {
-                document.getElementsByClassName("error")[index].nextElementSibling.classList.add("visible");
-                document.querySelector(element).nextSibling.innerHTML = '';
+                // document.getElementById("priceErr").innerHTML = errorMessage;classList.add("visible");
+                document.getElementById("priceErr").innerHTML = '';
             } else {
                 document.getElementById("conditionError").innerHTML = '';
-                // document.getElementById("conditionCheckMArk").classList.add("visible");
             }
         }
         return result;
@@ -428,7 +425,7 @@ class AddBook extends Component {
                                 
                                 <input name="price" id='price' type='text' className={"inputs col s7 push-s2"} onChange={this.handleInput} autoComplete="off"/>
                                 <label className='labelPrice yellow-text text-darken-2' htmlFor='price'>Price</label>
-                                <div className="text-red"id={"priceErr"}></div>
+                                <div className="text-red" id={"priceErr"}></div>
                             </div>
                             <div id='condition-container' className="col s6">
                             <select name={"condition"} onChange={this.handleInput} id={"mySelect"}
@@ -445,7 +442,7 @@ class AddBook extends Component {
                         
                         <div id={"conditionError"}></div>
                         {/* <div className={"checkMark markPrice material-icons"}>check_circle_outline</div> */}
-                        <div className='row'>
+                        <div id="sellersContainer" className='row'>
                                 <div className='input-field col s12'>
                                 <textarea name={"comments"} id='comment-box' className="inputs col s10 push-s1" onChange={this.handleInput} autoComplete="off"/>
                                 <label id={"sellerLabel"} htmlFor="comment-box" className="yellow-text text-darken-2 activated">Sellers Comments</label>
