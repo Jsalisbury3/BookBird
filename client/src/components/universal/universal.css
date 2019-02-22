@@ -61,16 +61,18 @@ body{
 
 }
 .birdLogo{
+    top: -20px;
     width: 25%;
-    height: 91px;
+    min-height: 91px;
     position: relative;
-    bottom: 35%;
+    /* bottom: 35%; */
 }
 .birdLogoText{
     width: 75%;
     position: relative;
-    bottom: 61%;
-    height: 123%;
+    top:-30px;
+    /* bottom: 61%; */
+    min-height: 70px;
     left: -11%;
 }
 .sfSymbol{
@@ -451,3 +453,4 @@ ul > li:nth-child(1) > a {
 
 /*     }
 } */
+}
