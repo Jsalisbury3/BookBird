@@ -273,13 +273,181 @@ ul > li:nth-child(1) > a {
     padding: 0px 10px 0px 10px;
 }
 
-@media only screen and (max-width: 990px) {
+
+@media only  screen  and (min-width: 500px) {
+    #SearchTitle {
+        left: 76%;
+    }
+    .SearchPicture {
+        left: 65%;
+    }
+    #ProfileTitle {
+
+        left: 101px;
+    }
+    .ProfilePicture {
+        left: 97px;
+    }
+    #AddBookTitle {
+        left: 71%;
+    }
+    .BookPicture {
+        left: 71%;
+    }
+}
+
+@media only screen and (min-width: 460px) and (max-width: 499px) {
+    .SearchPicture {
+        left: 49%;
+    }
+    #SearchTitle {
+        left: 61%;
+    }
+    #ProfileTitle {
+        left: 90px;
+    }
+    .ProfilePicture {
+        left: 86px;
+    }
+    #AddBookTitle {
+        left: 61px;
+    }
+    .BookPicture {
+        left: 62px;
+    }
+    .birdLogoText {
+        width: 75%;
+        position: relative;
+        bottom: 53%;
+        height: 123%;
+        left: -11%;
+    }
+
+}
+
+@media only screen and (min-width: 410px) {
+    .birdLogoText {
+        bottom: 61%;
+    }
+}
+
+@media only screen and (min-width: 374px ) and (max-width: 409px) {
+    .birdLogoText {
+        bottom: 61%;
+
+    }
+    #AddBookTitle {
+        width: 63%;
+    }
+    .ProfilePicture {
+        left: 53%;
+    }
+    #ProfileTitle {
+        left: 64.5%;
+    }
+    #AddBookTitle {
+        left: 27%;
+    }
+    .BookPicture {
+        left: 29.5%;
+    }
+}
+
+@media only screen and  (min-width: 350px) and (max-width: 370px) {
+    #AddBookTitle {
+        position: absolute;
+        left: 21%;
+        font-size: .9rem;
+        color: white;
+        top: 63.5%;
+        width: 63%;
+    }
+    #ProfileTitle {
+        position: absolute;
+        left: 46%;
+        font-size: .9rem;
+        color: white;
+        top: 41.5%;
+    }
+
+    .ProfilePicture {
+        position: relative;
+        display: inline-block;
+        height: 48px;
+        width: 45px;
+        padding: 15%;
+        left: 39.5%;
+        bottom: 11%;
+        transition: transform 650ms ease-in-out;
+        -webkit-filter: invert(100%)
+    }
+    .BookPicture {
+        position: relative;
+        display: inline-block;
+        height: 55px;
+        width: 61px;
+        padding: 15%;
+        left: 20%;
+        bottom: 4px;
+        transition: transform 650ms ease-in-out;
+        -webkit-filter: invert(100%);
+    }
+    .SearchPicture {
+        position: relative;
+        display: inline-block;
+        height: 46px;
+        width: 45px;
+        padding: 15%;
+        left: 24%;
+        bottom: 16%;
+        transition: transform 650ms ease-in-out;
+        -webkit-filter: invert(100%);
+    }
+    #SearchTitle {
+        left: 32%;
+        font-size: .9rem;
+        color: white;
+        top: 36.5%;
+        position: absolute;
+    }
+}
+@media only screen and (min-width: 319px) and (max-width: 340px) {
+    .SearchPicture {
+        height: 46px;
+        width: 45px;
+        left: 24%;
+        bottom: 24%;
+
+    }
+    #SearchTitle {
+        top: 29.5%;
+    }
+    .BookPicture {
+        bottom: 6px;
+        left: 20%;
+    }
+    #AddBookTitle {
+        top: 60.5%;
+        width: 62%;
+    }
+    .ProfilePicture {
+        height: 46px;
+        bottom: 20%;
+    }
+    #ProfileTitle {
+        top: 34.5%;
+    }
+    .birdLogoText {
+        bottom: 75%;
+  }
+/* @media only screen and (max-width: 990px) {
     .navDesktopLogo {
         height: 30%;
-        width: 100%;
+        width: 100%; */
         /*height: 120px !important;*/
         /*width: 120px !important;*/
         /*position: relative;*/
         left: -5px;
-    }
-}
+
+/*     }
+} */
