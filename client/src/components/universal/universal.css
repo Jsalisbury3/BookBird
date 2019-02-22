@@ -275,8 +275,40 @@ ul > li:nth-child(1) > a {
     padding: 0px 10px 0px 10px;
 }
 
+@media only screen and (min-width: 547px)  {
+    .birdLogoText {
+        position: fixed;
+        left: 12%;
+        margin-top: 1%;
+    }
+    .birdLogo {
+        width: 18%;
+    }
+    #SearchTitle {
+        left: 76%;
+    }
+    .SearchPicture {
+        left: 65%;
+    }
+    #ProfileTitle {
+        left: 5px;
+    }
+    .ProfilePicture {
+        left: 0px;
+    }
+    #AddBookTitle {
+        left: 105%;
+    }
+    .BookPicture {
+        left: 104%;
+    }
+    .ProfileIcon {
+        left: 55%;
+    }
+}
 
-@media only  screen  and (min-width: 500px) {
+
+@media only  screen  and (min-width: 500px) and (max-width: 546px) {
     #SearchTitle {
         left: 76%;
     }
@@ -296,9 +328,20 @@ ul > li:nth-child(1) > a {
     .BookPicture {
         left: 71%;
     }
+    .birdLogoText {
+        position: fixed;
+        left: 12%;
+        margin-top: 3%;
+    }
+    .birdLogo {
+        width: 19%;
+        min-height: 91px;
+        position: relative;
+        bottom: 31%;
+    }
 }
 
-@media only screen and (min-width: 460px) and (max-width: 499px) {
+@media only screen and (min-width: 409px) and (max-width: 499px) {
     .SearchPicture {
         left: 49%;
     }
@@ -318,20 +361,24 @@ ul > li:nth-child(1) > a {
         left: 62px;
     }
     .birdLogoText {
-        width: 75%;
+        position: fixed;
+        left: 12%;
+        margin-top: 3%;
+    }
+    .birdLogo {
+        width: 21%;
+        min-height: 91px;
         position: relative;
-        bottom: 53%;
-        height: 123%;
-        left: -11%;
+        bottom: 31%;
     }
 
 }
 
-@media only screen and (min-width: 410px) {
-    .birdLogoText {
-        bottom: 61%;
-    }
-}
+/*@media only screen and (min-width: 410px) {*/
+    /*.birdLogoText {*/
+        /*bottom: 61%;*/
+    /*}*/
+/*}*/
 
 @media only screen and (min-width: 374px ) and (max-width: 409px) {
     .birdLogoText {
@@ -342,7 +389,7 @@ ul > li:nth-child(1) > a {
         width: 63%;
     }
     .ProfilePicture {
-        left: 53%;
+        left: 57%;
     }
     #ProfileTitle {
         left: 64.5%;
