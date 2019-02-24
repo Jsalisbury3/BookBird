@@ -496,7 +496,7 @@ ul > li:nth-child(1) > a {
         /*height: 120px !important;*/
         /*width: 120px !important;*/
         /*position: relative;*/
-        left: -5px;
+        /* left: -5px; */
 
 /*     }
 } */

@@ -134,7 +134,8 @@ body {
 
 .teamMemberName{
     font-weight: 800;
-    font-size:21px;
+    /* font-size:21px; */
+    font-size:17px;
 }
 
 .memberTitle {
@@ -149,11 +150,11 @@ body {
 }
 
 .card{
-    margin:9px;
+    /* margin:9px; */
+
+    margin: 29px;
+    /* width: 78%; */
 }
-
-
-
 
 
 
