@@ -21,12 +21,12 @@ class Team extends Component {
                 Photo: Quy,
             },
             {
-                Name: 'Justen Quirante',
+                Name: 'Michael Capobianco',
                 Title: 'Full-Stack Developer',
-                LinkedIn: 'http://www.linkedin.com/in/justen-quirante',
-                Github: 'https://github.com/jquirante',
-                Portfolio: 'https://justenquirante.com',
-                Photo: Justen,
+                LinkedIn: 'https://www.linkedin.com/in/michaelACapobainco',
+                Github: 'https://github.com/MichaelCapo23',
+                Portfolio: 'http://www.thecapobianco.com/',
+                Photo: Michael,
             },
             {
                 Name: 'Kuroash Esmaili',
@@ -37,20 +37,20 @@ class Team extends Component {
                 Photo: Kuroash
             },
             {
-                Name: 'Michael Capobianco',
-                Title: 'Full-Stack Developer',
-                LinkedIn: 'https://www.linkedin.com/in/michaelACapobainco',
-                Github: 'https://github.com/MichaelCapo23',
-                Portfolio: 'http://www.thecapobianco.com/',
-                Photo: Michael,
-            },
-            {
                 Name: 'Quy Truong',
                 Title: 'Front-End Developer',
                 LinkedIn: 'https://www.linkedin.com/in/quyminhtruong/',
                 Github: 'https://github.com/QuyQuy',
                 Portfolio: 'http://quyminhtruong.info/',
                 Photo: Quy,
+            },
+            {
+                Name: 'Justen Quirante',
+                Title: 'Full-Stack Developer',
+                LinkedIn: 'http://www.linkedin.com/in/justen-quirante',
+                Github: 'https://github.com/jquirante',
+                Portfolio: 'https://justenquirante.com',
+                Photo: Justen,
             },
             {
                 Name: 'Andy Ong',
@@ -94,7 +94,7 @@ class Team extends Component {
         return(
             <Fragment>
                 <div className="bookBirdTeamMembersPage">
-                    <div className="teamPageTitle">BOOKBIRD Crew</div>
+                    <div className="teamPageTitle">BookBird Crew</div>
                     <div className="row">
                         {this.teamMembers()}
                     </div>
