@@ -438,7 +438,8 @@
 @media (min-width: 1281px) {
 
     #searchInput {
-        height: 2.9rem;
+        /* height: 2.9rem; */
+        height:42px;
     }
     .itemImage {
         box-shadow: none;
