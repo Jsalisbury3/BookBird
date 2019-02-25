@@ -44,13 +44,6 @@
     background-image: linear-gradient(rgba(75, 0, 104, 0.877),rgba(43, 0, 43, 0.829)),
 }
 
-.profile-main-content {
-    height: 60%;
-    border-top: 1px solid rgba(255, 255, 255, 0.897);
-    
-}
-
-
 .user-image-container{
     position:relative;
     display:inline-block;
@@ -131,26 +124,6 @@
     /* margin-left: 3px; */
 }
 
-
-.user-posts-container{
-    display:inline-block;
-    width: 90%;
-    margin-top:10px;
-    margin-left:5vw;
-    overflow:scroll;
-    height: 272px;
-    overflow-y:auto;
-    overflow-x:auto;
-}
-
-.user-posts-header {
-    /* position: relative; */
-    font-weight: lighter;
-    font-size: 20px;
-    color: white;
-    /* left: 120px; */
-}
-
 .emptyListings {
     left: 58px;
     position: relative;
@@ -221,3 +194,55 @@
     z-index: 1;
 }
 
+
+
+
+
+
+/* .profile-main-content {
+    height: 60%;
+    border-top: 1px solid rgba(255, 255, 255, 0.897);
+    
+} */
+
+.profile-main-content {
+    height: 37%;
+    border-top: 1px solid rgba(255, 255, 255, 0.897);
+    
+}
+
+.user-posts-header {
+    font-weight: lighter;
+    font-size: 20px;
+    color: white;
+}
+
+/* .user-posts-header {
+    position: relative;
+    font-weight: lighter;
+    font-size: 20px;
+    color: white;
+    top:-56px;
+} */
+
+.user-posts-container{
+    display:inline-block;
+    width: 90%;
+    margin-top:10px;
+    margin-left:5vw;
+    overflow:scroll;
+    height: 272px;
+    overflow-y:auto;
+    overflow-x:auto;
+}
+
+/* .user-posts-container{
+    display:inline-block;
+    margin-top:10px;
+    overflow:scroll;
+    overflow-y:auto;
+    overflow-x:auto;
+    height: 391px;
+    position: relative;
+    top: -46px;
+} */

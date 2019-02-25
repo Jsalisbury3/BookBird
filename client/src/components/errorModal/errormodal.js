@@ -24,8 +24,8 @@ class ErrorModal extends Component {
         return (
             <div id={"errorModal"} className="errorModal hide col l12 m12 s12">
                 <div className="profile-modal-content center-align">
-                    <p className="deleteTitle">Error posting book</p>
-                    <button className="yesButton s12 offset-s5 btn red" onClick={this.hideModal}>okay</button>
+                    <p className="errorTitle">Error posting book</p>
+                    <button className="okayButton s12 offset-s5 btn green" onClick={this.hideModal}>okay</button>
                 </div>
             </div>
         )
