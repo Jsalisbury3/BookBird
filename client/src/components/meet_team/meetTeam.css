@@ -1,59 +1,6 @@
- /* .teamPage {
-    width: 100%;
-    height: 90%;
-}
-
-.teamHeader {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12vmin;
-    height: 15%;
-}
-
-.teamMembers {
-    height: 85%;
-}
-
-.personCard {
-    position: relative;
-    border-radius: 2px;
-}
-
-.personCardImg {
-    position: relative;
-    border-radius: 50%;
-    text-align: center;
-}
-.cardContent {
-    padding: 24px;
-    border-radius: 0 0 2px 2px;
-}
-
-.nameSection {
-    font-size: 5vmin;
-    font-weight: 800;
-}
-
-.titleSection {
-    font-size: 4.5vmin;
-    font-style: italic;
-}
-
-.socials {
-    display: flex;
-    justify-content: space-evenly;
-
-} */
- 
-
 body {
     width: auto;
 }
-/* #root {
-    height: 100%;
-    width: 100%
-;} */
 
 .bookBirdTeamMembersPage {
     width: 100%;
@@ -71,12 +18,6 @@ body {
     font-weight: lighter;
     color: #fbc02d;
 }
-
-.personImg {
-    height:177px;
-}
-
-
 
 .teamMembers {
     height: 85%; 
@@ -134,12 +75,12 @@ body {
 
 .teamMemberName{
     font-weight: 800;
-    font-size:21px;
+    font-size:16px;
 }
 
 .memberTitle {
     font-style: italic;
-    font-size: 18px;
+    font-size: 15px;
 }
 
 .photoIcon {
@@ -149,11 +90,8 @@ body {
 }
 
 .card{
-    margin:9px;
+    margin: 12px;
 }
-
-
-
 
 
 
