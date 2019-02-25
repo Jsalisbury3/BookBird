@@ -38,7 +38,7 @@ class ProfileModal extends Component {
         }
 
         return (
-                    <button className='waves-effect btn red center' onClick={this.open}><i 
+                    <button className='btn red center' onClick={this.open}><i 
                     className='large material-icons center'>delete_outline</i></button>
                 
         );
