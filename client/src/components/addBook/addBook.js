@@ -10,6 +10,7 @@ import FormData from 'form-data';
 import {accessKeyId, secretAccessKey} from '../../../../config/amzns3_creds';
 import {Link} from 'react-router-dom';
 import loadingGif2 from './images/loadingGif2.gif';
+import ErrorModal from "../errorModal/errormodal"
 
 
 class AddBook extends Component {
@@ -167,17 +168,25 @@ class AddBook extends Component {
         });
     }
     addBook = async (event) => {
-        this.bookPostedModal();
-        let request = {...this.state};
-        const listing = await axios({
-            method: 'post',
-            url: '/api/addListing',
-            headers: {
-                token: localStorage.getItem('Token'),
-            
-            },
-            data: request,
-        })
+        document.getElementById("loadingGif").style.visibility = "visible";
+        try {
+            let request = {...this.state};
+            const listing = await axios({
+                method: 'post',
+                url: '/api/addListing',
+                headers: {
+                    token: localStorage.getItem('Token'),
+
+                },
+                data: request,
+            });
+            document.getElementById("loadingGif").style.visibility = "hidden";
+            this.bookPostedModal();
+        } catch {
+            document.getElementById("loadingGif").style.visibility = "hidden";
+            document.getElementById("errorModal").classList.remove("hide");
+        }
+
         try {
             const {insertId} = listing.data.data;
             const prep = await axios({
@@ -186,7 +195,7 @@ class AddBook extends Component {
                 url: `/api/prepUpload?fileType=${this.state.photoArray[0].type}`,
                 ContentType: this.state.photoArray[0].type
 
-            })
+            });
             const {getUrl, key} = prep.data;
 
             console.log('add book key: ', key, insertId);
@@ -195,12 +204,12 @@ class AddBook extends Component {
                 headers: {
                     'Content-Type': this.state.photoArray[0].type
                 }
-            })
+            });
             let saveImageParams = {
                 key,
                 insertId,
                 fileType: this.state.photoArray[0].type,
-            }
+            };
             await axios({
                 method: 'post',
                 url: `/api/save-image?key=${key}&listingId=${insertId}&fileType=${this.state.photoArray[0].type}`,
@@ -209,11 +218,11 @@ class AddBook extends Component {
                     token: localStorage.getItem('Token'),
                 },
                 data: saveImageParams
-            })
+            });
+
         } catch {
-            console.log("Error posting book")
-            // document.getElementsByClassName('isbnSearchErrorMessage')[0].style.display = "block";
-            // this.cancelButton();
+            console.log("Error posting book");
+
         }
     };
     getBooks = (event) => {
@@ -321,6 +330,7 @@ class AddBook extends Component {
         const hideISBN = this.state.hideIsbnSearchBar ? {display: 'none'} : {display: 'block'};
         return (
                 <div className={"addBook-container col m6 offset-m3"}>
+                    <ErrorModal/>
                     {/* <div className="isbnModalContainer"> */}
                         <div id="modal1" className="modalIsbn">
                             <div className="modal-content">
@@ -412,7 +422,7 @@ class AddBook extends Component {
                             {/* <div className={"error"} id={"authErr"}></div> */}
                             {/* <div className={"checkMark markTitle material-icons"}>check_circle_outline</div> */}
                             <div className='input-field col s12'>
-                            
+
                                 <input disabled value={this.state.author} name="author" id='author' type='text' className="inputs col s10 push-s1"  autoComplete="off"/>
                                 <label htmlFor='author' className='yellow-text text-darken-2 input-header activated'>Author</label>
 
@@ -422,7 +432,7 @@ class AddBook extends Component {
                             {/* <div className={"checkMark markEdition material-icons"}>check_circle_outline</div> */}
                             <div className='input-field col s5'>
                                 <i id={"moneyID"} className="material-icons prefix yellow-text text-darken-2">attach_money</i>
-                                
+
                                 <input name="price" id='price' type='text' className={"inputs col s7 push-s2"} onChange={this.handleInput} autoComplete="off"/>
                                 <label className='labelPrice yellow-text text-darken-2' htmlFor='price'>Price</label>
                                 <div className="text-red" id={"priceErr"}></div>
@@ -439,7 +449,7 @@ class AddBook extends Component {
                             </select>
                         </div>
                         </div>
-                        
+
                         <div id={"conditionError"}></div>
                         {/* <div className={"checkMark markPrice material-icons"}>check_circle_outline</div> */}
                         <div id="sellersContainer" className='row'>
@@ -450,7 +460,7 @@ class AddBook extends Component {
                                 </div>
                         </div>
                         {this.state.showToolTip && <Tooltip></Tooltip>}
-                      
+
                         <div className='submit-photo-container'>
                             <label id="add-photo-icon picIcon" className="btn waves-light add-photo-icon-class" htmlFor="photoInput">
                             <i className={"grey-text text-darken-2 material-icons"}>add_a_photo</i>
@@ -470,6 +480,7 @@ class AddBook extends Component {
                         </div>
                     </form>
                 </div>
+
         )
 
     }
