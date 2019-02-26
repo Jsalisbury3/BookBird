@@ -16,14 +16,21 @@
 
 
 .acceptButton{
-    margin:2px;
+    /* margin:2px; */
+
+    margin: -45px;
+    left: -94px;
+    position: relative;
 }
 
 .acceptLink{
     color:white;
 }
 .postAgainButton{
-    margin:2px;
+    /* margin:2px; */
+
+    margin: 2px;
+    width: 105%;
 }
 
 
@@ -77,11 +84,19 @@
     display: flex;
 }
 .successModalText{
+    /* justify-content: center;
+    display: flex;
+    color: rgb(12, 12, 12);
+    font-size: 24px;
+    margin-top: 2px; */
+
     justify-content: center;
     display: flex;
     color: rgb(12, 12, 12);
     font-size: 24px;
-    margin-top: 2px;
+    margin-top: 36px;
+    position: relative;
+    top: -26px;
 }
 .isbnModalBookDescription{
     color: rgb(10, 10, 10);
@@ -520,9 +535,14 @@ select option {
 
 .successImage {
     /* display: inline-block; */
-    position: relative;
+    /* position: relative;
     width: 80%;
-    bottom: 8px;
+    bottom: 8px; */
+
+        /* display: inline-block; */
+        position: relative;
+        width: 80%;
+        bottom: 49px;
 }
 .successImage > img {
     display: inline-block;

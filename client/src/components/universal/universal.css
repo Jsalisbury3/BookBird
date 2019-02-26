@@ -501,3 +501,34 @@ ul > li:nth-child(1) > a {
 /*     }
 } */
 }
+
+
+ /* media query for intro page landscape  */
+@media only screen and  (min-height: 192px) and (max-height: 670px) {
+    .introPageContainer{
+        overflow:scroll;
+    }
+}
+
+ /* media query for profile page landscape  */
+ @media only screen and  (min-height: 192px) and (max-height: 450px){
+    .user-image-container{
+        height: 99px !important;
+        width: 121px !important;
+        margin-top: -2% !important;
+    }
+    .opacitySlip{
+        margin-top: 69px !important;
+    }
+    .opacitySlip>i{
+        left: -19px;
+        position: relative;
+    }
+    .user-posts-header{
+        position: relative;
+        top: -44px;
+        font-size: 20px !important;
+    }
+    
+
+}

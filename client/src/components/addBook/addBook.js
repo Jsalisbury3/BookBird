@@ -371,7 +371,7 @@ class AddBook extends Component {
                                         </div>
                                         <div className="successModalButtons">
                                             <button onClick={this.cancelButton} type="button"
-                                                    className="btn-small btn yellow darken-2 grey-text text-darken-2 postAgainButton">Post Again
+                                                    className="btn-small btn yellow darken-2 grey-text text-darken-2 postAgainButton">Post Another Book
                                             </button>
                                             <p className="btn-small btn yellow darken-2 acceptButton"><Link className="grey-text text-darken-2 acceptLink" to={"/landing"}>Accept</Link>
                                             </p>
