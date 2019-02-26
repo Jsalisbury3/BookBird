@@ -6,6 +6,10 @@ import {getIdForToken} from '../../actions/sign_in';
 import {bindActionCreators} from "redux";
 
 class SignInValidation extends Component {
+    state = {
+        attempted: false
+    }
+
     componentDidUpdate() {
         if (this.props.signInResults.success) {
             this.storeToken(this.props.signInResults);
@@ -35,6 +39,9 @@ class SignInValidation extends Component {
     };
 
     handleAddItem =  async (values) => {
+        this.setState({
+            attempted: true
+        })
         await this.props.getIdForToken(values);
         localStorage.removeItem("Token");
         console.log('signin storage:', this.props.signInResults);
@@ -55,7 +62,7 @@ class SignInValidation extends Component {
                     <Field name={"Password"} component={this.renderInput} id={"Password"}
                            label={"Password"}/>
                 </div>
-                <p className={"red-text col s12 m12 l12 center-align sign-in-validation"}>{this.props.signInResults.message ? this.props.signInResults.message : ""}</p>
+                <p className={"red-text col s12 m12 l12 center-align sign-in-validation"}>{this.props.signInResults.message && this.state.attempted ? this.props.signInResults.message : ""}</p>
                 <div className="col s12 offset-s3 m12 offset-m3 l10 offset-l3 center-align signInRow">
                     <div className="signin-button col s6 ">
                         <button className="btn yellow darken-2 grey-text text-darken-3">Sign In</button>

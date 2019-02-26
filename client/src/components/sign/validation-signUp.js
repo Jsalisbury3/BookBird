@@ -8,7 +8,6 @@ import signUpReducer from "../../reducers/sign_up_reducer";
 
 
 class SignInValidation extends Component {
-
     componentDidUpdate() {
         if (this.props.signInResults.success) {
             this.storeTokenSignUp(this.props.signInResults);

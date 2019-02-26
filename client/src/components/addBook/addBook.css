@@ -544,7 +544,7 @@ select option {
     }
 
     .modalIsbn {
-        height: 125vh;
+        height: 200vh;
         left: -50%;
         width: 200%;
     }
@@ -584,5 +584,18 @@ select option {
 
     .form-container{
        overflow:scroll;
+    }
+}
+
+@media only screen and (orientation: landscape) {
+    .addBook-container {
+        margin-left: 25%;
+        overflow: scroll;
+    }
+
+    .post-button-container {
+        position: relative;
+        top: 24px;
+        min-height: 110px;
     }
 }
