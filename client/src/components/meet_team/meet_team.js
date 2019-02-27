@@ -6,7 +6,7 @@ import Andy from './images/andy.jpg';
 import Quy from './images/quyquy.JPG';
 import Kuroash from './images/kuroash.jpg';
 import github from './images/github.png';
-import Michael from './images/capo.JPG';
+import Michael from './images/michael.jpg';
 import linkedIn from './images/linkdin.png';
 
 class Team extends Component {
