@@ -312,9 +312,12 @@ class AddBook extends Component {
         document.getElementsByClassName('modalIsbn')[0].style.display = "block";
         document.getElementsByClassName('isbnModalHeader')[0].style.display = "block";
         document.getElementById("loadingGif").style.visibility = 'hidden';
-        document.getElementsByName("author")[0].value = ``;
-        document.getElementsByName("title")[0].value = ``;
-        document.getElementsByName("price")[0].value = ``;
+        // document.getElementsByName("author")[0].value = ``;
+        document.getElementById("author").val('');
+        // document.getElementsByName("title")[0].value = ``;
+        document.getElementById("title").val('');
+        // document.getElementsByName("price")[0].value = ``;
+        document.getElementById("price").val('')
         // document.getElementsByClassName('checkMark')[0].style.display = "none";
 
         this.setState({
