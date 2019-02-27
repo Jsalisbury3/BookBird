@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import "./meetTeam.css";
-import smallGuy from './images/small-person.jpg';
+import Jordan from './images/jordan.jpg';
 import Justen from './images/jus2.jpg';
+import Andy from './images/andy.jpg';
 import Quy from './images/quyquy.JPG';
 import Kuroash from './images/kuroash.jpg';
 import github from './images/github.png';
@@ -18,7 +19,7 @@ class Team extends Component {
                 LinkedIn: 'https://www.linkedin.com/in/jordansalisbury',
                 Github: 'https://github.com/Jsalisbury3',
                 Portfolio: 'https://jordansalisbury.me',
-                Photo: Quy,
+                Photo: Jordan,
             },
             {
                 Name: 'Michael Capobianco',
@@ -58,7 +59,7 @@ class Team extends Component {
                 LinkedIn: 'https://www.linkedin.com/in/andy-ong/',
                 Github: '',
                 Portfolio: '',
-                Photo: Quy,
+                Photo: Andy,
             },
         ]
         const individualRow = teamMembersInfo.map((memberInfo, index) => {

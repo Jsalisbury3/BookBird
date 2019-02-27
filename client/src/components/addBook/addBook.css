@@ -554,6 +554,15 @@ select option {
 }
 
 
+@media only screen and (max-height:617px) and (min-height:192px){
+    .modalIsbn {
+        height: 759px !important;
+        left: -50% !important;
+        width: 200% !important;
+    }
+}
+
+
 @media screen and (min-width: 600px) {
     .modal-content {
         width: 300px;
@@ -564,7 +573,7 @@ select option {
     }
 
     .modalIsbn {
-        height: 200vh;
+        height: 121vh;
         left: -50%;
         width: 200%;
     }
