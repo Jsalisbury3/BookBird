@@ -1,0 +1,963 @@
+
+.BookInfo {
+    left: 40%;
+    width: 60%;
+    height: 44%;
+    position: relative;
+    font-size: 6px;
+    opacity: 1;
+    top: 2%;
+}
+.BookInfo > h2{
+    font-size: 1.56rem;
+
+}
+
+h2:nth-child(1)  {
+
+    height: 13%;
+}
+h2:nth-child(2)  {
+    height: 11%;
+
+}
+
+.priceTitle{
+    font-size: 3.2rem;
+}
+
+.route_container {
+    height: 84vh;
+}
+.bookDetailsModalBackground {
+    overflow: scroll;
+    height: 84vh;
+}
+.bookDetailsContainer {
+    position: relative;
+    background-image: linear-gradient(rgba(34, 0, 34, 0.589),rgba(92, 0, 92, 0.767));
+    background-color: white;
+    overflow: auto;
+    height: 84vh;
+}
+
+.bookTitle, .bookAuthor, .bookISBN {
+    display:inline-block;
+    width: 60%;
+    margin-right: 0;
+}
+
+.bookPrice, .bookCondition {
+    width: 40%;
+}
+.main-container{
+    height: 100vh;
+    width: 100vw;
+}
+.SellerTitle {
+    position: absolute;
+    display: inline-block;
+    font-size: 21px;
+    top: 56%;
+    margin-left: 3vw;
+}
+.SellersEmail {
+    display: inline-block;
+    position: absolute;
+    left: 3%;
+    font-size: 21px;
+    bottom: 48%;
+    width: 100vw;
+}
+.userEmail{
+    display: inline-block;
+    position: absolute;
+    left: 10%;
+    font-size: 21px;
+    bottom: 43%;
+    width: 100vw;
+}
+.BookPrice {
+    position: relative;
+    display: inline-block;
+    opacity: 1;
+    font-size: 1.56rem;
+}
+
+.price {
+    position: relative;
+    margin: 0;
+}
+
+.SellersComments {
+    position: relative;
+    display: inline-block;
+    font-size: 12px;
+    top: 62%;
+    height: 18%;
+}
+
+.image {
+    margin: 6px auto;
+    min-height: 27vh;
+    position: relative;
+    width: 29vw;
+    bottom: 409px;
+    right: -6px;
+}
+
+.TitleTag {
+    margin: 0;
+}
+
+/* NEW PAGE CSS */
+
+#bookLoadScreen {
+    z-index: 1;
+    position: absolute;
+    left: 5%;
+    top: 15%;
+    height: 50%;
+    width: 90%;
+}
+
+#cardContainer{
+    margin:0;
+
+}
+
+#imageContainer {
+    height: 225px;
+    width: 100%;
+    background-color: rgb(247, 247, 247);
+
+}
+
+#back-arrow-container {
+    display: inline-block;
+    position: absolute;
+    z-index: 1;
+    height: 50px;
+    width: 50px;
+    top: 12px;
+    left: 20px;
+}
+
+.imageContainer > img {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+#imageBackground {
+    background-image:
+        linear-gradient(rgba(34, 0, 34, 0.589),rgba(92, 0, 92, 0.767)),
+        url('./images/book_shelf.jpg');
+    height: 100%;
+    width: 100%;
+}
+
+#book-item img {
+    position: relative;
+    left: 15%;
+    top: 5%;
+    height: 90%;
+    width: 70%;
+    border: 1px solid black;
+    /* box-shadow: 0px 5px 30px 10px rgba(230, 196, 0, 0.658); */
+    box-shadow: 0px 5px 30px 10px rgba(255, 255, 255, 0.836);
+}
+
+
+#book-content {
+    background-image: 
+        linear-gradient(rgba(80, 0, 80, 0.473),rgba(136, 0, 136, 0.699));
+    padding: 5px 25px;
+    box-shadow: 0px 5px 2px 5px rgba(49, 49, 49, 0.808);
+    /* background-color: rgb(247, 247, 247); */
+}
+
+.bookInfoLeftContent {
+    /* border: 1px solid black; */
+    display: inline-block;
+    /* height: 50%; */
+    width: 60%;
+    margin-right: 15px;
+    
+}
+
+.bookInfoLeftContent > h5 {
+    margin: 0;
+}
+
+.bookInfoRightContent {
+    /* border: 1px solid black; */
+    display: inline-block;
+    vertical-align: top;
+    /* height: 50%; */
+    
+}
+
+.bookCondition {
+    position: relative;
+    height: 40%;
+    width: 95%;
+    /* border: 1px solid black; */
+}
+
+.bookCondition h6 {
+    position: relative;
+    font-size: 5vw;
+    /* border: 1px solid black; */
+}
+.bookPrice {
+    position: relative;
+    top: -20px;
+    height: 60%;
+    /* border: 1px solid black; */
+}
+
+.bookPrice h5 {
+    position: relative;
+    font-size: 10vw;
+    top: -20%;
+    left: 15%;
+    height: 40%;
+    color: rgb(22, 22, 22);
+    /* color: #ffcc33; */
+    color: #ffffff;
+    font-weight: bold;
+    /* border: 1px solid black; */
+
+}
+.bookTitle {
+    margin-right: 5px;
+    font-size: 6vw;
+    font-weight: bold;
+    color: rgb(22, 22, 22);
+    color: #ffffff;
+    /* color: #ffcc33; */
+}
+
+.bookAuthor, .bookISBN {
+    color: rgb(179, 179, 179);
+    font-weight: lighter;
+    color: #ffffff;
+}
+
+.bookISBN {
+    margin-bottom: 20px;
+}
+
+.userContactInfo {
+    color: rgba(240, 236, 236, 0.911);
+}
+
+.soldBy {
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 17px;
+    color: #ffffff;
+}
+
+.sellerPhoto {
+    color: rgba(240, 236, 236, 0.911);
+    height: 65px;
+    border: 1px solid white;
+    width: 81px;
+}
+
+.sellerName {
+    color: #ffffff;
+    margin-bottom: 30px;
+}
+
+.sellersContent {
+    padding: 10px 0px 10px 0px;
+    font-weight: lighter;
+    /* color: #ffcc33; */
+    color: rgb(22, 22, 22);
+}
+
+.sellersContent h6{
+    color: rgb(22, 22, 22);
+    position: relative;
+    color: #ffffff;
+    top: 5%;
+    font-size: 17px;
+    font-weight: bold;
+    margin: 0;
+    margin-bottom: 1.5vh;
+}
+
+.sellersContent h5 {
+    margin: 0;
+    color: #ffffff;
+    padding-right: 55px;
+    word-wrap: break-word;
+    /* color: rgb(179, 179, 179); */
+    width: 100%;
+    font-size: 15px;
+    font-weight: lighter;
+    margin-bottom: 20px;
+}
+
+.userContactDesktop {
+    position: relative;
+    left: 25px;
+}
+.contactButton {
+    background-color: #ffcc33;
+}
+
+.contactSignIn {
+    color: #ffcc33;
+    /* color: #ffffff; */
+    position: relative;
+    left: 20%;
+}
+
+.bookDetailButtonContainer#contactAction {
+    background-image: linear-gradient(rgba(104, 0, 104, 0.753),rgba(158, 1, 158, 0.767));
+    background-color: white;
+    padding: 10px;
+    width: 100%;
+    /* height: 300px; */
+    color:white;
+}
+
+#backButtonContainer {
+    display: inline-block;
+    position: relative;
+    width: 40%;
+}
+
+#contactSellerContainer {
+    
+    display: inline-block;
+    position: relative;
+    width: 60%;
+}
+
+#contactActionButton, #alreadyContactedButton{
+    display: inline-block;
+    position: relative;
+    height: 35px;
+    width: 80%;
+    background-color: #ffcc33;
+    color:white;
+}
+
+#contactActionBack {
+    position: relative;
+    width: 50%;
+    height: 35px;
+    left: 55px;
+    
+    color:white;
+    background-color:black;
+}
+
+#alreadyContactedButton {
+    background-color: #24ff23;
+    color:white;
+}
+
+.Thrashed.book_details {
+    color: white;
+    padding: 5% 5% 5% 5%;
+    height: 65%;
+    width: 112%;
+    left: 10%;
+    text-transform: uppercase;
+    background-color: black;
+    
+}
+
+.New.book_details {
+    color: #212121;
+    border:solid 1px #212121;
+    padding: 5% 5% 5% 5%;
+    height: 58%;
+    width: 83%;
+    left: 20%;
+    text-transform: uppercase;
+    background-color: whitesmoke;
+    
+}
+
+.Good.book_details {
+    color: white;
+    padding: 5% 5% 5% 5%;
+    height: 60%;
+    width: 95%;
+    left: 10px;
+    text-transform: uppercase;
+    background-color: rgb(0, 4, 255);
+    
+}
+
+.Worn.book_details {
+    color: white;
+    padding: 5% 5% 5% 5%;
+    height: 58%;
+    width: 80%;
+    left: 15%;
+    text-transform: uppercase;
+    background-color: rgb(255, 0, 0);
+    
+}
+.Like_New.book_details {
+    color: white;
+    position: relative;
+    padding: 5% 5% 5% 6%;
+    height: 55%;
+    width: 120%;
+    left: 5%;
+    top: 10%;
+    text-transform: uppercase;
+    background-color: rgb(7, 193, 14);
+
+}
+
+.bookLoading {
+    
+}
+
+#arrow-icon:hover {
+    cursor: pointer;
+}
+
+@media only screen and (min-width: 600px) { 
+
+    
+
+    .bookDetailsModalBackground {
+        overflow: scroll;
+        height: 100vh;
+    }
+    .bookDetailsContainer {
+        background-image: linear-gradient(rgba(34, 0, 34, 0.589),rgba(92, 0, 92, 0.767));
+        background-color: white;
+        overflow: auto;
+        height: 100vh;
+    }
+    .bookInfoLeftContent{
+        position: relative;
+        top: 20px;
+        left: 15px;
+        width: 60%;
+    }
+
+    .bookInfoRightContent{
+        position: relative;
+        top: 20px;
+        right: 15px;
+        
+    }
+  
+    .bookTitle {
+        font-size: 25px;
+    }
+
+    .bookCondition h6 {
+        font-size: 15px;
+    }
+
+    .bookPrice h5{
+        font-size: 50px;
+        left: 30px;
+    }
+    
+    .userContactDesktop {
+        position: relative;
+        left: 35px;
+    }
+    
+    .contactSignIn {
+        position:relative;
+        width: 240px;
+        top: 5%;
+        left: 24%;
+    }
+
+    .Thrashed.book_details {
+        color: white;
+        padding: 5% 5% 5% 5%;
+        height: 65%;
+        width: 100px;
+        left: 30px;
+        text-transform: uppercase;
+        background-color: black;
+        
+    }
+    
+    .New.book_details {
+        color: #212121;
+        border:solid 1px #212121;
+        padding: 5% 5% 5% 5%;
+        height: 58%;
+        width: 53%;
+        left: 35px;
+        text-transform: uppercase;
+        background-color: whitesmoke;
+        
+    }
+    
+    .Good.book_details {
+        color: white;
+        padding: 5% 5% 5% 5%;
+        height: 60%;
+        width: 55px;
+        left: 45px;
+        text-transform: uppercase;
+        background-color: rgb(0, 4, 255);
+        
+    }
+    
+    .Worn.book_details {
+        color: white;
+        padding: 5% 5% 5% 5%;
+        height: 58%;
+        width: 55px;
+        left: 45px;
+        text-transform: uppercase;
+        background-color: rgb(255, 0, 0);
+        
+    }
+    .Like_New.book_details {
+        color: white;
+        position: relative;
+        padding: 5% 5% 5% 6%;
+        height: 55%;
+        width: 80px;
+        left: 30px;
+        top: 10%;
+        text-transform: uppercase;
+        background-color: rgb(7, 193, 14);
+    
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .route_container {
+        height: 110vh;
+    }
+
+    /* .itemImage {
+        height: 100px;
+        width: 70px;
+    } */
+
+    .bookInfoLeftContent{
+        position: relative;
+        top: 20px;
+        left: 45px;
+        width: 65%;
+        
+    }
+
+    .bookInfoRightContent{
+        position: relative;
+        top: 20px;
+        right: 30px;
+        
+    }
+
+    .bookDetailsContainer {
+        overflow-x: hidden;
+        height: 100vh;
+    }
+    
+    .bookTitle {
+        font-size: 25px;
+        width: 65%;
+    }
+
+    .bookCondition h6 {
+        font-size: 15px;
+        left: 10px;
+        
+    }
+
+    .bookPrice h5{
+        font-size: 50px;
+        left: 45px;
+    }
+    
+    .userContactDesktop {
+        position: relative;
+        left: 60px;
+    }
+    
+    
+    .contactSignIn {
+        position:relative;
+        top: 0%;
+        left: 33%;
+    }
+
+    .Thrashed.book_details {
+        color: white;
+        padding: 5% 5% 5% 5%;
+        height: 65%;
+        width: 90px;
+        left: 55px;
+        text-transform: uppercase;
+        background-color: black;
+        
+    }
+    
+    .New.book_details {
+        color: #212121;
+        border:solid 1px #212121;
+        padding: 5% 5% 5% 5%;
+        height: 58%;
+        width: 53%;
+        left: 65px;
+        text-transform: uppercase;
+        background-color: whitesmoke;
+        
+    }
+    
+    .Good.book_details {
+        color: white;
+        padding: 5% 5% 5% 5%;
+        height: 60%;
+        width: 60px;
+        left: 70px;
+        text-transform: uppercase;
+        background-color: rgb(0, 4, 255);
+        
+    }
+    
+    .Worn.book_details {
+        color: white;
+        padding: 5% 5% 5% 5%;
+        height: 58%;
+        width: 60px;
+        left: 35px;
+        text-transform: uppercase;
+        background-color: rgb(255, 0, 0);
+        
+    }
+    .Like_New.book_details {
+        color: white;
+        position: relative;
+        padding: 5% 5% 5% 6%;
+        height: 55%;
+        width: 83px;
+        left: 50px;
+        top: 10%;
+        text-transform: uppercase;
+        background-color: rgb(7, 193, 14);
+    
+    }
+}
+
+@media (min-width: 1000px) {
+
+    
+    /* .itemImage {
+        height: 100px;
+        width: 90px;
+    } */
+
+    .bookInfoLeftContent{
+        position: relative;
+        top: 20px;
+        left: 15px;
+        width: 60%;
+        
+    }
+
+    .bookInfoRightContent{
+        position: relative;
+        top: 20px;
+        right: 10px;
+        
+    }
+
+    .bookDetailsModalBackground {
+        background-image: linear-gradient( #180218ee, #240024da );
+    }
+
+    .bookDetailsContainer {
+        position: relative;
+        left: 20%;
+        width: 60%;
+        overflow-x: hidden;
+    }
+    
+    .BookInfo {
+        left: 40%;
+        width: 60%;
+        height: 44%;
+        position: relative;
+        font-size: 12px;
+        opacity: 1;
+        top: 2%;
+    }
+    .BookInfo > h2{
+        margin: 2%;
+    }
+
+    .bookTitle {
+        font-size: 25px;
+    }
+
+    .contactSignIn {
+        top:0%;
+        left: 25%;
+    }
+    
+    h2:nth-child(1)  {
+
+        height: 23%
+    }
+    h2:nth-child(2)  {
+        height: 23%;
+
+    }
+
+    .bookCondition h6 {
+        font-size: 15px;
+    }
+
+    .bookPrice h5{
+        font-size: 8vmin;
+
+    }
+    .Container {
+        width: 60vw;
+        margin-left: 20vw;
+
+        background-color: lightblue;
+
+    }
+
+    .main-container{
+        height: 76vh;
+        width: 100vw;
+    }
+    .SellerTitle {
+        position: absolute;
+        display: inline-block;
+        font-size: 19px;
+        top: 56%;
+        margin-left: 3vw;
+    }
+    .SellersEmail {
+        display: inline-block;
+        position: absolute;
+        left: 3%;
+        font-size: 21px;
+        bottom: 48%;
+        width: 100vw;
+    }
+    .userEmail{
+        display: inline-block;
+        position: absolute;
+        left: 10%;
+        font-size: 21px;
+        bottom: 43%;
+        width: 100vw;
+    }
+
+    .userContactDesktop {
+        position: relative;
+        left: 60px;
+    }
+
+    .BookPrice {
+        position: absolute;
+        width: 32%;
+        left: 62%;
+        bottom: 30%;
+        opacity: 1;
+
+    }
+
+    .BookPrice h5{
+        position: absolute;
+        width: 32%;
+        left: 62%;
+        bottom: 30%;
+        opacity: 1;
+        font-size: 75px;
+
+    }
+    .price {
+        color: green;
+        font-size: 51px;
+        position: absolute;
+        top: 39%;
+    }
+
+    .SellersComments {
+        position: absolute;
+        font-size: 12px;
+        background-color: beige;
+        width: 50%;
+        top: 62%;
+        height: 18%;
+        margin-left: 3vw;
+    }
+
+    .image {
+        margin: 6px auto;
+        min-height: 27vh;
+        position: relative;
+        width: 29vw;
+        bottom: 409px;
+        right: -6px;
+    }
+    .TitleTag {
+        margin: 0;
+    }
+
+    .Thrashed.book_details {
+        color: white;
+        padding: 5% 5% 5% 5%;
+        height: 65%;
+        width: 90px;
+        left: 50px;
+        text-transform: uppercase;
+        background-color: black;
+        
+    }
+    
+    .New.book_details {
+        color: #212121;
+        border:solid 1px #212121;
+        padding: 5% 5% 5% 5%;
+        height: 58%;
+        width: 45px;
+        left: 65px;
+        text-transform: uppercase;
+        background-color: whitesmoke;
+        
+    }
+    
+    .Good.book_details {
+        color: white;
+        padding: 5% 5% 5% 5%;
+        height: 60%;
+        width: 55px;
+        left: 65px;
+        text-transform: uppercase;
+        background-color: rgb(0, 4, 255);
+        
+    }
+    
+    .Worn.book_details {
+        color: white;
+        padding: 5% 5% 5% 5%;
+        height: 58%;
+        width: 55px;
+        left: 65px;
+        text-transform: uppercase;
+        background-color: rgb(255, 0, 0);
+        
+    }
+    .Like_New.book_details {
+        color: white;
+        position: relative;
+        padding: 5% 5% 5% 6%;
+        height: 55%;
+        width: 90px;
+        left: 50px;
+        top: 10%;
+        text-transform: uppercase;
+        background-color: rgb(7, 193, 14);
+    
+    }
+}
+
+@media (min-width: 1281px) {
+    
+  
+    .bookInfoLeftContent{
+        position: relative;
+        top: 20px;
+        left: 15px;
+        margin-right: 10%;
+        width: 60%;
+        
+    }
+
+    .bookInfoRightContent{
+        top: 20px;
+        right: 15px;
+        
+    }
+    
+    .contactSignIn {
+        position:relative;
+        top:15%;
+        left: 28%;
+    }
+    
+    .sellerPhoto {
+        height: 15vh;
+        width: 9vw;
+    }
+
+    .Thrashed.book_details {
+        color: white;
+        padding: 5% 5% 5% 5%;
+        height: 65%;
+        width: 90px;
+        left: 55px;
+        text-transform: uppercase;
+        background-color: black;
+        
+    }
+    
+    .New.book_details {
+        color: #212121;
+        border:solid 1px #212121;
+        padding: 5% 5% 5% 5%;
+        height: 58%;
+        width: 42%;
+        left: 75px;
+        text-transform: uppercase;
+        background-color: whitesmoke;
+        
+    }
+    
+    .Good.book_details {
+        color: white;
+        padding: 5% 5% 5% 5%;
+        height: 60%;
+        width: 48%;
+        left: 75px;
+        text-transform: uppercase;
+        background-color: rgb(0, 4, 255);
+        
+    }
+    
+    .Worn.book_details {
+        color: white;
+        padding: 5% 5% 5% 5%;
+        height: 58%;
+        width: 60px;
+        left: 70px;
+        text-transform: uppercase;
+        background-color: rgb(255, 0, 0);
+        
+    }
+    .Like_New.book_details {
+        color: white;
+        position: relative;
+        padding: 5% 5% 5% 6%;
+        height: 55%;
+        width:83px;
+        left: 55px;
+        top: 10%;
+        text-transform: uppercase;
+        background-color: rgb(7, 193, 14);
+    
+    }
+  }
+

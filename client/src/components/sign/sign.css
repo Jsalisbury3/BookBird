@@ -1,0 +1,251 @@
+.signUpHeader, .signInHeader{
+    text-align: center;
+    display: grid;
+    position: relative;
+    bottom: 5%;
+    font-size: 3.3rem;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-animation: autofill 0s forwards;
+    animation: autofill 0s forwards;
+}
+
+@keyframes autofill {
+    100% {
+        background: transparent;
+        color: white;
+    }
+}
+.signin_footer{
+    position: relative;
+    left: 61px;
+}
+.signup_footer {
+    position: relative;
+    left: 27px;
+}
+
+.signin-logo-container{
+    position:relative;
+    height:200px;
+    overflow:hidden;
+}
+.signin-logo-container>img{
+    position:relative;
+    height:381px;
+    bottom:61px;
+}
+.signup-logo-container{
+    position: relative;
+    height: 161px;
+}
+.signup-logo-container>img{
+    position:relative;
+    height:381px;
+    bottom:81px;
+}
+
+.row {
+    margin-bottom: 0;
+}
+
+#Name {
+    margin-bottom: 0rem;
+}
+
+#EmailSignUp {
+    margin-bottom: 0rem;
+}
+#PasswordSignUp {
+    margin-bottom: 0rem;
+}
+#UserNumber {
+    margin-bottom: 0rem;
+}
+.error-message {
+    bottom: 14px;
+    margin: 0 0  0 33%;
+    font-size: 0.71rem;
+    width:212px !important;
+}
+.sign-in-error {
+    position: relative;
+    bottom: 14px;
+    margin-left: 33%;
+    font-size: 0.71rem;
+}
+
+
+#sign-in-container{
+    position: relative;
+    bottom: 5%;
+    margin-top:41px;
+}
+#sign-up-form {
+    position: relative;
+    bottom: 5%;
+    margin-top:41px;
+}
+
+.signInError, .signUpError{
+    color: red;
+}
+
+.signin_container {
+    height: 107vh;
+    overflow: auto;
+}
+.signup_container{
+    height: 107vh;
+    overflow: auto;
+}
+
+.sign_in_form, .sign_up_form {
+    margin: auto !important;
+}
+
+.signInInput, .signUpInput {
+    left: 24%;
+    position: relative;
+}
+.signInInput:focus {
+    border-bottom: 1px rgb(211, 50, 163) !important;
+    box-shadow: 0 1px 0 0 #ce93d8 !important;
+  }
+.signInInput{
+    border-bottom: 1px solid rgb(90, 81, 30) !important;
+}
+#sign-in-container>.row, #sign-up-form>.row{
+    width: 326px !important;
+    margin-left: 1vw !important;
+}
+.signin_container{
+    background-image: linear-gradient(rgba(75, 0, 104, 0.877),rgba(43, 0, 43, 0.829));
+    background: linear-gradient( #180218ee, #240024da );
+}
+#sign-up-form>.row .input-field{
+    margin-top:2px;
+}
+#Number{
+    margin-bottom:0;
+}
+.signin_container .row .col.s9{
+        max-height: 83px;
+    
+}
+.signup_container{
+    background-image: linear-gradient(rgba(75, 0, 104, 0.877),rgba(43, 0, 43, 0.829));
+    background: linear-gradient( #180218ee, #240024da );
+}
+
+/* .signin_container>p{
+    width: 300px !important;
+    margin-right: 0px !important;
+}
+.signup_container>p{
+    width: 300px !important;
+    margin: 0px !important;
+} */
+.signInError, .signUpError{
+    display: flex;
+    left: 23%;
+    position: relative;
+    justify-content: center;
+
+}
+ .signInLabel, .signUpLabel{
+    left:23% !important
+} 
+/* .signin-button, .signup-button{
+    margin-left:94px !important;
+}  */
+.sign-up-button{
+    position: absolute;
+    left: 33%;
+}
+
+.signin_footer {
+    position: relative;
+    top: 17px;
+}
+
+/* .signup_footer{
+    position: relative;
+    top: 442px;
+} */
+
+.signUpRow{
+    margin-bottom: 0;
+    margin-top: 15px;
+    /* top: 5px; */
+    position: relative;
+    top: 14px;
+}
+
+.signInRow{
+    margin-bottom: 0;
+    margin-top: 15px;
+    /* top: 5px; */
+    position: relative;
+    top: 27px;
+}
+
+.SignInHeader{
+    font-size: 59px;
+    margin-top: 45px;
+    color: #fbc02d;
+    font-weight: lighter;
+}
+
+.SignUpHeader{
+    font-size: 59px;
+    margin-top: 5px;
+    color: #fbc02d;
+    font-weight: lighter;
+}
+
+
+.sign-up-input-field{
+    margin-bottom: 0rem !important;
+}
+
+.sign-in-validation{
+    position: relative;
+    top: 44px;
+}
+
+@media only screen and (min-width: 768px) {
+    
+    .signin_container, .signup_container {
+        padding-top: 3vh !important;
+        height: 110vh;
+    }
+
+    #sign-in-container {
+        bottom: 0;
+        margin-top: 30px;
+    }
+
+    .signin_container > p {
+        margin-top: 12vh;
+    }
+
+    #sign-up-form {
+        margin-top: 35px;
+        bottom: 0;
+    }
+
+    .signup_container > p {
+        margin-top: 42px !important;
+    }
+
+    .signup_footer {
+        left: 10%;
+    }
+
+    
+
+}

@@ -1,0 +1,324 @@
+
+.app-video {
+    position: relative;
+    justify-content: center;
+    /*left: 36%;*/
+    top: 26%;
+}
+
+.photoContainer {
+    position: relative;
+    width: 41%;
+}
+.video {
+    width: 99%;
+    position: relative;
+    height: 41%;
+}
+.introPageContainer{
+    background-color: #001;
+    height: 100vh;
+}
+.logoImgContainer{
+    position: relative;
+    top: 8%;
+}
+.introPageButtonContainer{
+    position: relative;
+    top: 6%;
+    justify-content: center;
+    /* display: flex; */
+}
+.getStartedButton{
+    background-color: #98C1D9;
+}
+
+.introPageLogoImg{
+    width:357px !important;
+    height:400px !important;
+}
+
+.introPageButton {
+    box-shadow: 0px 0px 40px #696969;
+}
+
+.intro-title {
+    position: relative;
+    font-family: Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    color: white;
+    font-weight: lighter;
+    font-size: 8em;
+    /*left: 36%;*/
+    /*top: 3%;*/
+}
+
+@media only screen and (min-width: 1650px) and (max-width: 1920px) {
+    .intro-title {
+        position: relative;
+        font-family: Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+        color: white;
+        font-weight: lighter;
+        font-size: 8em;
+        /*left: 34%;*/
+        /*top: 3%;*/
+    }
+
+    .app-video {
+        position: relative;
+        justify-content: center;
+        /*left: 34%;*/
+        top: 32%;
+        box-shadow: 0px 0px 40px #696969
+
+    }
+    #introPageButtonContainer{
+        position: relative;
+        justify-content: center;
+        /*bottom: 5px;*/
+        /*right: 2%;*/
+
+    }
+    .introPageButton {
+        box-shadow: 0px 0px 40px #696969;
+    }
+
+}
+
+@media only screen and (min-width:1466px) and (max-width: 1650px)  {
+    .intro-title {
+        position: relative;
+        font-family: Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+        color: white;
+        font-weight: lighter;
+        font-size: 8em;
+        /*left: 32%;*/
+        /*top: 1%;*/
+    }
+    .app-video {
+        position: relative;
+        justify-content: center;
+        /*left: 34%;*/
+        /*top: 32%;*/
+        box-shadow: 0px 0px 40px #696969;
+    }
+    #introPageButtonContainer{
+        position: relative;
+        justify-content: center;
+        /*top: 78%;*/
+    }
+    .introPageButton {
+        box-shadow: 0px 0px 40px #696969;
+    }
+
+
+}
+
+@media only screen and (min-width: 1260px) and (max-width: 1466px)  {
+    .intro-title {
+        position: relative;
+        font-family: Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+        color: white;
+        font-weight: lighter;
+        font-size: 8em;
+        /*left: 32%;*/
+        /*top: 1%;*/
+    }
+    .app-video {
+        position: relative;
+        justify-content: center;
+        /*left: 34%;*/
+        /*top: 32%;*/
+        box-shadow: 0px 0px 40px #696969;
+    }
+    #introPageButtonContainer {
+        position: relative;
+        justify-content: center;
+        /*top: 78%;*/
+        /*left: 4%;*/
+    }
+    .introPageButton {
+        box-shadow: 0px 0px 40px #696969;
+    }
+
+
+}
+
+@media only screen and (min-width: 1180px) and (max-width: 1259px) {
+    .intro-title {
+        position: relative;
+        font-family: Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+        color: white;
+        font-weight: lighter;
+        font-size: 8em;
+        /*left: 30%;*/
+        /*top: 1%;*/
+    }
+    .app-video {
+        position: relative;
+        justify-content: center;
+        /*left: 28%;*/
+        /*top: 32%;*/
+
+    }
+    #introPageButtonContainer{
+        position: relative;
+        justify-content: center;
+        /*top: 78%;*/
+        /*right: 2.5%;*/
+
+    }
+    .introPageButton {
+        box-shadow: 0px 0px 40px #696969;
+    }
+
+}
+
+@media only screen and (min-width: 1000px) and  (max-width: 1179px) {
+    .intro-title {
+        position: relative;
+        font-family: Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+        color: white;
+        font-weight: lighter;
+        font-size: 8em;
+        /*left: 29%;*/
+        /*top: 3%;*/
+    }
+
+    .app-video {
+        position: relative;
+        justify-content: center;
+        /*left: 28%;*/
+        /*top: 32%;*/
+        box-shadow: 0px 0px 40px #696969;
+    }
+
+    #introPageButtonContainer {
+        position: relative;
+        justify-content: center;
+        /*top: 78%;*/
+        /*right: 0.5%;*/
+    }
+    .introPageButton {
+        box-shadow: 0px 0px 40px #696969;
+    }
+}
+
+@media only screen and (min-width: 820px) and (max-width: 999px) {
+    .intro-title {
+        position: relative;
+        font-family: Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+        color: white;
+        font-weight: lighter;
+        font-size: 8em;
+        /*left: 30%;*/
+        /*top: 5%;;*/
+    }
+
+    .app-video {
+        position: relative;
+        justify-content: center;
+        /*left: 28%;*/
+        /*top: 32%;*/
+        box-shadow: 0px 0px 40px #696969;
+    }
+
+    #introPageButtonContainer {
+        position: relative;
+        justify-content: center;
+        /*top: 78%;*/
+        /*left: 4%;*/
+    }
+
+    .introPageButton {
+        box-shadow: 0px 0px 40px #696969;
+    }
+
+}
+
+@media only screen and (min-width: 709px) and (max-width: 819px) {
+     .intro-title {
+         font-family: Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+         color: white;
+         font-weight: lighter;
+         font-size: 8em;
+         /*left: 20%;*/
+         /*top: 6%;*/
+         position: relative;
+    }
+    .app-video {
+        position: relative;
+        justify-content: center;
+        /*left: 11%;*/
+        /*top: 32%;*/
+        box-shadow: 0px 0px 40px #696969;
+    }
+    #introPageButtonContainer {
+        position: relative;
+        justify-content: center;
+        /*top: 78%;*/
+        /*left: 4%;*/
+    }
+    .introPageButton {
+        box-shadow: 0px 0px 40px #696969;
+    }
+}
+
+@media only screen and (min-width: 650px) and (max-width: 709px) {
+    .intro-title {
+        font-family: Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+        color: white;
+        font-weight: lighter;
+        font-size: 8em;
+        /*left: 20%;*/
+        /*top: 6%;*/
+        position: relative;
+    }
+    .app-video {
+        position: relative;
+        justify-content: center;
+        /*left: 9%;*/
+        /*top: 32%;*/
+        box-shadow: 0px 0px 40px #696969;
+    }
+    #introPageButtonContainer {
+        position: relative;
+        justify-content: center;
+        /*top: 78%;*/
+        /*left: 4%;*/
+    }
+    .introPageButton {
+        box-shadow: 0px 0px 40px #696969;
+    }
+}
+
+
+@media only screen and (min-width: 601px) and (max-width: 650px) {
+    .intro-title {
+        font-family: Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+        color: white;
+        font-weight: lighter;
+        font-size: 8em;
+        /*left: 20%;*/
+        /*top: 6%;*/
+        position: relative;
+    }
+    .app-video {
+        position: relative;
+        justify-content: center;
+        /*left: 5%;*/
+        /*top: 32%;*/
+        box-shadow: 0px 0px 40px #696969;
+    }
+    #introPageButtonContainer {
+        position: relative;
+        justify-content: center;
+        /*top: 78%;*/
+        /*left: 4%;*/
+    }
+    .introPageButton {
+        box-shadow: 0px 0px 40px #696969;
+    }
+}
+
+
+
