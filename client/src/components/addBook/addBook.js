@@ -171,7 +171,7 @@ class AddBook extends Component {
         document.getElementById("loadingGif").style.visibility = "visible";
         try {
             let request = {...this.state};
-            const listing = await axios({
+            var listing = await axios({
                 method: 'post',
                 url: '/api/addListing',
                 headers: {
@@ -188,6 +188,9 @@ class AddBook extends Component {
         }
 
         try {
+            debugger;
+            console.log("Here it is ", accessKeyId, secretAccessKey);
+
             const {insertId} = listing.data.data;
             const prep = await axios({
                 Authorization: `AWS ${accessKeyId}: ${secretAccessKey}`,
@@ -221,6 +224,7 @@ class AddBook extends Component {
             });
 
         } catch {
+            debugger;
             console.log("Error posting book");
 
         }
