@@ -6,7 +6,6 @@ import 'materialize-css';
 import 'material-icons';
 import {BASE_URL_GOOGLE_BOOKS, API_KEY} from '../../../../config/api';
 import SearchInput from './isbn_search';
-import FormData from 'form-data';
 import {accessKeyId, secretAccessKey} from '../../../../config/amzns3_creds';
 import {Link} from 'react-router-dom';
 import loadingGif2 from './images/loadingGif2.gif';

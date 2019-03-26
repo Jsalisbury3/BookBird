@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from "react-redux"
 import {Link} from 'react-router-dom';
 import './introPage.css'
-import bookBirdLogo from './images/introPageLogo.png'
+import bookBirdLogo from './images/IntroPageLogo.png'
 import {LinkTracker} from "../../actions/linkTracker_action"
 
 class IntroPage extends Component {

@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import sfStateLogo from './images/San-Francisco-State-University-logo.png';
 import bookBirdLogo from './images/BookBirdOnlyImgWhite.png'
 import bookBirdText from './images/BookBirdOnlyTextWhite.png'
-import sfSymbol from './images/SFSymbol.png';
+import sfSymbol from './images/sfSymbol.png';
 
 export default withRouter((props)=>{
         const dontShow = ['/'];
