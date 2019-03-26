@@ -31,7 +31,7 @@ class Team extends Component {
             },
             {
                 Name: 'Kuroash Esmaili',
-                Title: 'Front-End Developer',
+                Title: 'Full-Stack Developer',
                 LinkedIn: 'https://www.linkedin.com/in/kuroash/',
                 Github: 'https://github.com/Kur0a5h',
                 Portfolio: 'http://kuroash.com/',
@@ -55,7 +55,7 @@ class Team extends Component {
             },
             {
                 Name: 'Andy Ong',
-                Title: 'Project Manager',
+                Title: 'Mentor',
                 LinkedIn: 'https://www.linkedin.com/in/andy-ong/',
                 Github: '',
                 Portfolio: '',
