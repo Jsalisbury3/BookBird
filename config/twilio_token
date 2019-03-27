@@ -1,4 +1,0 @@
-const creds = {
-   token : '12753b5a4a997d65f33eb4fafd25226f',
-}
-module.exports = creds.token;
